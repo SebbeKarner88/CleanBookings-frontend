@@ -5,6 +5,7 @@ import LandingPage from './components/LandingPage'
 import MyPages from './components/MyPages'
 import Services from './components/Services'
 import Contact from './components/Contact'
+import BookedCleanings from './components/BookedCleanings';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="/myPages" element={<MyPages />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/booked-cleanings" Component={BookedCleanings} />
         </Routes>
       </BrowserRouter> 
     </>
