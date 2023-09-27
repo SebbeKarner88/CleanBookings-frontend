@@ -1,4 +1,4 @@
-import { Nav, Navbar, Container } from "react-bootstrap";
+import { Nav, Navbar, Container, Form, Button } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
 
 const NavBar = () => {
@@ -24,6 +24,17 @@ const NavBar = () => {
                                 <Nav.Link>My Pages</Nav.Link>
                             </LinkContainer>
                         </Nav>
+
+                        <Form className="d-flex">
+                            <Form.Control
+                                type="search"
+                                placeholder="Search"
+                                className="me-2"
+                                aria-label="Search"
+                            />
+                            <Button variant="outline-dark">Search</Button>
+                        </Form>
+
                     </Navbar.Collapse>
                     <Navbar.Collapse className="justify-content-end">
                         <Navbar.Text>
