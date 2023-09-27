@@ -1,7 +1,10 @@
+import NavBar from "../common/NavBar"
+
 function MyPages() {
 
     return (
         <>
+        <NavBar />
         </>
     )
 }
