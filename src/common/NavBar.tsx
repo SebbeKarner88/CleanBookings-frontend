@@ -1,10 +1,11 @@
-import { Nav, Navbar } from "react-bootstrap";
+import { Nav, Navbar, Container } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
 
 const NavBar = () => {
     return (
         <>
             <Navbar expand="lg" className="bg-body-tertiary">
+            <Container>
                 <LinkContainer to="/">
                     <Navbar.Brand>
                         <Nav.Link>Clean Bookings</Nav.Link>
@@ -24,6 +25,7 @@ const NavBar = () => {
                         </LinkContainer>
                     </Nav>
                 </Navbar.Collapse>
+                </Container>
             </Navbar>
         </>
     )
