@@ -16,10 +16,10 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>CleanBookings</h1>
+      <h1>Clean Bookings</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
-          {count} Booked cleanings
+          {count} cleanings booked!
         </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
