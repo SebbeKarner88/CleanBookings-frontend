@@ -1,4 +1,4 @@
-function MyPages() {
+function Contact() {
 
     return (
         <>
@@ -6,4 +6,4 @@ function MyPages() {
     )
 }
 
-export default MyPages
+export default Contact
