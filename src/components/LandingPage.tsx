@@ -7,6 +7,7 @@ function LandingPage() {
         <NavBar />
         {/* TODO: add images and witty description of company and their services */}
         {/* TODO: add footer component? */}
+        Tjo bror
         </>
     )
 }

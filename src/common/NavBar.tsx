@@ -8,7 +8,7 @@ const NavBar = () => {
                 <Container>
                     <LinkContainer to="/">
                         <Navbar.Brand>
-                            <Nav.Link>Clean Bookings</Nav.Link>
+                            <Nav.Link>Clean Bookings</Nav.Link>  {/* WIP something seems off when clicking this, doesn't redirect to home? */}
                         </Navbar.Brand>
                     </LinkContainer>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
