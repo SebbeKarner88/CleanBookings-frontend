@@ -1,8 +1,11 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container'
+import MyModal from './MyModal';
+import { useState } from 'react'
 
 const BookingForm = () => {
+    const [modalVisible, setModalVisible] = useState(false)
 
     /* TODO: add logic with fetch for booking a service */
 
@@ -32,7 +35,13 @@ const BookingForm = () => {
                         <Form.Label>Notes</Form.Label>
                         <Form.Control as="textarea" rows={3} />
                     </Form.Group>
-                    <Button variant="outline-dark" type="submit">
+                    <Button variant="outline-dark" type="submit" onClick={() => {
+                        <MyModal 
+                        modalVisible={modalVisible}
+                        header='Thank you for booking!'
+                        description='You will recieve a confirmation email shortly.'
+                        onRequestClose={() => setModalVisible(!modalVisible)}/>
+                    }}>
                         Submit
                     </Button>
                 </Form>
