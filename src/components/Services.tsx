@@ -13,6 +13,8 @@ function Services() {
         { title: 'Fönstertvätt', description: 'Cristal clear' }
     ];
 
+    /* TODO: create logic for sending customer to booking page when clicking a service */
+
     return (
         <>
             <NavBar />
