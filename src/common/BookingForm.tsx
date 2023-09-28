@@ -10,6 +10,11 @@ const BookingForm = () => {
         <>
             <Container>
                 <Form>
+                    <Form.Group className="mb-3" controlId="duedate">
+                        <Form.Label>When should we clean?</Form.Label>
+                        <Form.Control type="date" name="duedate" placeholder="Due date" />
+                    </Form.Group>
+
                     <Form.Group className="mb-3" controlId="formBasicName">
                         <Form.Label>Name</Form.Label>
                         <Form.Control type="email" placeholder="Enter full name" />
@@ -27,7 +32,7 @@ const BookingForm = () => {
                         <Form.Label>Notes</Form.Label>
                         <Form.Control as="textarea" rows={3} />
                     </Form.Group>
-                    <Button variant="primary" type="submit">
+                    <Button variant="outline-dark" type="submit">
                         Submit
                     </Button>
                 </Form>
