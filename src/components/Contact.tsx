@@ -5,6 +5,9 @@ function Contact() {
     return (
         <>
         <NavBar />
+
+        {/* TODO: add contact information for the company */}
+
         </>
     )
 }

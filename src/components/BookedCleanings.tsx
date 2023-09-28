@@ -6,6 +6,7 @@ const BookedCleanings: React.FC = () => {
     return (
         <div>
             {/* JSX for displaying booked cleanings */}
+            {/* TODO: add the CancelCleaning component to make the user able to cancel a booked cleaning */}
         </div>
     );
 };
