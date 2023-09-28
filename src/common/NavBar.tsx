@@ -1,16 +1,18 @@
 import { Nav, Navbar, Container, Form, Button } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
+import { useState } from 'react'
 
 const NavBar = () => {
+    const [isSignedIn, setIsSignedIn] = useState(false)
+    const [username, setUsername] = useState('')
+
+    /** add logic for checking if user is signed in, and display username in navbar */
+
     return (
         <>
             <Navbar expand="lg" className="bg-body-tertiary">
                 <Container>
-                    <LinkContainer to="/">
-                        <Navbar.Brand>
-                            <Nav.Link>Clean Bookings</Nav.Link>  {/* WIP something seems off when clicking this, doesn't redirect to home? */}
-                        </Navbar.Brand>
-                    </LinkContainer>
+                    <Navbar.Brand href="/">Clean Bookings</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
@@ -37,9 +39,15 @@ const NavBar = () => {
 
                     </Navbar.Collapse>
                     <Navbar.Collapse className="justify-content-end">
+                        {isSignedIn ? 
                         <Navbar.Text>
-                            Signed in as: <a href="#login">Pelle Svanslös</a>  {/* WIP fix so that logged in user is shown */}
+                            Signed in as: <a href="/myPages">{username}</a>  {/* WIP fix so that logged in user is shown */}
                         </Navbar.Text>
+                        :
+                        <Navbar.Text>
+                            Sign in or register <a href="/login">here</a>
+                        </Navbar.Text>
+                        }
                     </Navbar.Collapse>
                 </Container>
             </Navbar>

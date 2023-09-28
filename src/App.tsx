@@ -6,7 +6,12 @@ import MyPages from './components/MyPages'
 import Services from './components/Services'
 import Contact from './components/Contact'
 import BookedCleanings from './components/BookedCleanings';
-import CancelCleaning from "./components/CancelCleaning";
+import BookingHistory from "./components/BookingHistory.tsx";
+import GDPRInfo from "./components/GDPRInfo.tsx";
+import BookingView from './components/BookingView.tsx'
+import LogIn from './components/LogIn.tsx'
+import Register from './components/Register.tsx'
+
 
 function App() {
 
@@ -18,8 +23,12 @@ function App() {
           <Route path="/myPages" element={<MyPages />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/booked-cleanings" Component={BookedCleanings} />
-          <Route path="/cancel-cleaning" element={<CancelCleaning />} />
+          <Route path="/booked-cleanings" element={<BookedCleanings />} />
+          <Route path="/booking-history" element={<BookingHistory />} />
+          <Route path="/gdpr-info" element={<GDPRInfo />} />
+          <Route path="/booking-view" element={<BookingView />} />
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter> 
     </>
