@@ -1,6 +1,7 @@
 import NavBar from "../common/NavBar"
 import { useState, useEffect } from 'react'
 import TypesOfCleaning from "../common/TypesOfCleaing"
+import BookingForm from "../common/BookingForm"
 
 const BookingView = () => {
     const [ isPicked, setIsPicked ] = useState(false)
@@ -22,8 +23,6 @@ const BookingView = () => {
         return () => clearInterval(interval)
     }, [])
 
-    /* TODO: add logic with fetch for booking a service */
-
     return (
         <>
             <NavBar />
@@ -34,7 +33,11 @@ const BookingView = () => {
                 <TypesOfCleaning />
             }
 
-            {/* TODO: add form for booking picked service */}
+            {/* form for booking picked service */}
+            {isPicked ?
+                <BookingForm />
+                : null
+            }
         </>
     )
 }
