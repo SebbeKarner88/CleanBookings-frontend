@@ -2,15 +2,13 @@ import { Nav, Navbar, Container, Form, Button } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
 
 const NavBar = () => {
+
+
     return (
         <>
             <Navbar expand="lg" className="bg-body-tertiary">
                 <Container>
-                    <LinkContainer to="/">
-                        <Navbar.Brand>
-                            <Nav.Link>Clean Bookings</Nav.Link>  {/* WIP something seems off when clicking this, doesn't redirect to home? */}
-                        </Navbar.Brand>
-                    </LinkContainer>
+                    <Navbar.Brand href="/">Clean Bookings</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
