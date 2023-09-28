@@ -4,8 +4,10 @@ import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import { useState } from 'react'
 
 function Services() {
+    const [choice, setChoice] = useState('')
     const services = [
         { title: 'Basic Städning', description: 'Grundläggande städning' },
         { title: 'Topp Städning', description: 'Ingående städning' },
@@ -15,7 +17,10 @@ function Services() {
 
     /* TODO: create logic for sending customer to booking view when clicking a service */
 
-    const handleClick = () => {
+    const handleChoice = (choice: string) => {
+        setChoice(choice)
+        sessionStorage.setItem('choice', choice)
+        
         location.assign('/booking-view')
     }
 
@@ -30,9 +35,9 @@ function Services() {
                                 <Card.Body>
                                     <Card.Title>{service.title}</Card.Title>
                                     <Card.Text>{service.description}</Card.Text>
-                                    <Button 
-                                    variant="outline-dark"
-                                    onClick={() => handleClick()}>Välj</Button>
+                                    <Button
+                                        variant="outline-dark"
+                                        onClick={() => handleChoice(service.title)}>Välj</Button>
                                 </Card.Body>
                             </Card>
                         </Col>
