@@ -25,6 +25,9 @@ const NavBar = () => {
                             <LinkContainer to="/myPages">
                                 <Nav.Link>My Pages</Nav.Link>
                             </LinkContainer>
+                            <LinkContainer to="/AboutUs">
+                                <Nav.Link>About Us</Nav.Link>
+                            </LinkContainer>
                         </Nav>
 
                         <Form className="d-flex">
