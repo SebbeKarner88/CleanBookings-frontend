@@ -12,6 +12,7 @@ import BookingView from './components/BookingView.tsx'
 import LogIn from './components/LogIn.tsx'
 import Register from './components/Register.tsx'
 import AboutUs from './components/AboutUs'
+import CancelCleaning from "./components/CancelCleaning";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/login" element={<LogIn />} />
           <Route path="/register" element={<Register />} />
           <Route path="/AboutUs" element={<AboutUs />} />
+          <Route path="/Cancel-cleaning" element={<CancelCleaning />} />
         </Routes>
       </BrowserRouter> 
     </>
