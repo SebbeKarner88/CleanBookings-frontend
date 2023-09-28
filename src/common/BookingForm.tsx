@@ -15,17 +15,17 @@ const BookingForm = () => {
                 <Form>
                     <Form.Group className="mb-3" controlId="duedate">
                         <Form.Label>When should we clean?</Form.Label>
-                        <Form.Control type="date" name="duedate" placeholder="Due date" />
+                        <Form.Control type="date" name="duedate" placeholder="Due date" required />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicName">
                         <Form.Label>Name</Form.Label>
-                        <Form.Control type="email" placeholder="Enter full name" />
+                        <Form.Control type="text" placeholder="Enter full name" />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
+                        <Form.Control type="email" placeholder="Enter email" required />
                         <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
                         </Form.Text>
@@ -35,7 +35,7 @@ const BookingForm = () => {
                         <Form.Label>Notes</Form.Label>
                         <Form.Control as="textarea" rows={3} />
                     </Form.Group>
-                    <Button variant="outline-dark" type="submit" onClick={() => {
+                    <Button variant="outline-dark" type="submit" onSubmit={() => {
                         <MyModal 
                         modalVisible={modalVisible}
                         header='Thank you for booking!'
