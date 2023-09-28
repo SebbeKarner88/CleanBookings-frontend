@@ -9,6 +9,8 @@ import BookedCleanings from './components/BookedCleanings';
 import BookingHistory from "./components/BookingHistory.tsx";
 import GDPRInfo from "./components/GDPRInfo.tsx";
 import BookingView from './components/BookingView.tsx'
+import LogIn from './components/LogIn.tsx'
+import Register from './components/Register.tsx'
 
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
           <Route path="/booking-history" Component={BookingHistory} />
           <Route path="/gdpr-info" Component={GDPRInfo} />
           <Route path="/booking-view" element={<BookingView />} />
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter> 
     </>

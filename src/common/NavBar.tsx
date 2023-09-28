@@ -36,7 +36,7 @@ const NavBar = () => {
                     </Navbar.Collapse>
                     <Navbar.Collapse className="justify-content-end">
                         <Navbar.Text>
-                            Signed in as: <a href="#login">Pelle Svanslös</a>  {/* WIP fix so that logged in user is shown */}
+                            Signed in as: <a href="/login">Pelle Svanslös</a>  {/* WIP fix so that logged in user is shown */}
                         </Navbar.Text>
                     </Navbar.Collapse>
                 </Container>
