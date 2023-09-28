@@ -26,8 +26,8 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/booked-cleanings/:customerId" element={<BookedCleanings />} />
-          <Route path="/booking-history" element={<BookingHistory />} />
-          <Route path="/gdpr-info" element={<GDPRInfo />} />
+          <Route path="/booking-history/:customerId" element={<BookingHistory />} />
+          <Route path="/gdpr-info/:customerId" element={<GDPRInfo />} />
           <Route path="/booking-view" element={<BookingView />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/register" element={<Register />} />

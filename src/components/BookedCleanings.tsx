@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 
 const BookedCleanings: React.FC = () => {
     // Get the 'customerId' from the route parameters
@@ -39,10 +39,10 @@ const BookedCleanings: React.FC = () => {
     ];
 
     // Function to handle canceling a booking
-    const handleCancelBooking = (bookingId: string) => {
-        // Implement cancel booking logic here (e.g., make an API request)
-        console.log(`Canceled booking with ID: ${bookingId}`);
-    };
+    // const handleCancelBooking = (bookingId: string) => {
+    //     // Implement cancel booking logic here (e.g., make an API request)
+    //     console.log(`Canceled booking with ID: ${bookingId}`);
+    // };
 
     return (
         <div className="container mt-4">
@@ -63,10 +63,14 @@ const BookedCleanings: React.FC = () => {
                         <td>{booking.id}</td>
                         <td>{booking.bookedDate}</td>
                         <td>{booking.type}</td>
+                        {/*<td>*/}
+                        {/*    <button className="btn btn-danger" onClick={() => handleCancelBooking(booking.id)}>*/}
+                        {/*        Cancel*/}
+                        {/*    </button>*/}
+                        {/*</td>*/}
                         <td>
-                            <button className="btn btn-danger" onClick={() => handleCancelBooking(booking.id)}>
-                                Cancel
-                            </button>
+                            {/*<Link to={`/Cancel-cleaning/${booking.id}`}>Cancel</Link>*/}
+                            <Link to={`/Cancel-cleaning`}>Cancel</Link>
                         </td>
                     </tr>
                 ))}
