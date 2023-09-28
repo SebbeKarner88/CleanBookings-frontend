@@ -8,10 +8,10 @@ import { useState } from 'react'
 const TypesOfCleaning = () => {
     const [choice, setChoice] = useState('')
     const services = [
-        { title: 'Basic Städning', description: 'Grundläggande städning' },
-        { title: 'Topp Städning', description: 'Ingående städning' },
-        { title: 'Diamant Städning', description: 'Heltäckande städning' },
-        { title: 'Fönstertvätt', description: 'Cristal clear' }
+        { title: 'Basic Cleaning', description: 'Basic cleaning with no extras' },
+        { title: 'Top Cleaning', description: 'Full cleaning' },
+        { title: 'Diamond Cleaing', description: 'Thorough cleaning with window cleaning included' },
+        { title: 'Window Cleaning', description: 'Crystal clear' }
     ]
 
     const handleChoice = (choice: string) => {
