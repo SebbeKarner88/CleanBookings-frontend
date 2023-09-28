@@ -1,8 +1,12 @@
 import { Nav, Navbar, Container, Form, Button } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
+import { useState } from 'react'
 
 const NavBar = () => {
+    const [isSignedIn, setIsSignedIn] = useState(false)
+    const [username, setUsername] = useState('')
 
+    /** add logic for checking if user is signed in, and display username in navbar */
 
     return (
         <>
@@ -35,9 +39,15 @@ const NavBar = () => {
 
                     </Navbar.Collapse>
                     <Navbar.Collapse className="justify-content-end">
+                        {isSignedIn ? 
                         <Navbar.Text>
-                            Signed in as: <a href="/login">Pelle Svanslös</a>  {/* WIP fix so that logged in user is shown */}
+                            Signed in as: <a href="/myPages">{username}</a>  {/* WIP fix so that logged in user is shown */}
                         </Navbar.Text>
+                        :
+                        <Navbar.Text>
+                            Sign in or register <a href="/login">here</a>
+                        </Navbar.Text>
+                        }
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
