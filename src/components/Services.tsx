@@ -13,7 +13,11 @@ function Services() {
         { title: 'Fönstertvätt', description: 'Cristal clear' }
     ];
 
-    /* TODO: create logic for sending customer to booking page when clicking a service */
+    /* TODO: create logic for sending customer to booking view when clicking a service */
+
+    const handleClick = () => {
+        location.assign('/booking-view')
+    }
 
     return (
         <>
@@ -26,7 +30,9 @@ function Services() {
                                 <Card.Body>
                                     <Card.Title>{service.title}</Card.Title>
                                     <Card.Text>{service.description}</Card.Text>
-                                    <Button variant="primary">Välj</Button>
+                                    <Button 
+                                    variant="outline-dark"
+                                    onClick={() => handleClick()}>Välj</Button>
                                 </Card.Body>
                             </Card>
                         </Col>
