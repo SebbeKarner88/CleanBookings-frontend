@@ -1,53 +1,26 @@
 
-import React from 'react';
-import {Link, useParams} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import axios from 'axios';
 
 const BookedCleanings: React.FC = () => {
-    // Get the 'customerId' from the route parameters
     const { customerId } = useParams<{ customerId: string }>();
+    const [bookedCleanings, setBookedCleanings] = useState<JobDto[]>([]);
 
-    // Dummy data for the customer
-    const customer = {
-        id: customerId,
-        firstName: 'John',
-        lastName: 'Doe',
-    };
+    useEffect(() => {
 
-    // Dummy data for booked cleanings
-    const dummyBookedCleanings = [
-        {
-            id: '1',
-            bookedDate: '2023-09-20',
-            type: 'Basic Cleaning',
-        },
-        {
-            id: '2',
-            bookedDate: '2023-09-21',
-            type: 'Top Cleaning',
-        },
-        {
-            id: '3',
-            bookedDate: '2023-09-22',
-            type: 'Diamond Cleaning',
-        },
-        {
-            id: '4',
-            bookedDate: '2023-09-23',
-            type: 'Window Washing',
-        },
-        // Add more dummy data entries as needed
-    ];
-
-    // Function to handle canceling a booking
-    // const handleCancelBooking = (bookingId: string) => {
-    //     // Implement cancel booking logic here (e.g., make an API request)
-    //     console.log(`Canceled booking with ID: ${bookingId}`);
-    // };
+        axios.get(`http://localhost:8080/api/v1/job/booked-cleanings/${customerId}`)
+            .then((response) => {
+                setBookedCleanings(response.data);
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
+            });
+    }, [customerId]);
 
     return (
         <div className="container mt-4">
             <h1 className="text-center">Booked Cleanings for Customer {customerId}</h1>
-            <h2 className="text-center">Customer: {customer.firstName} {customer.lastName}</h2>
             <table className="table table-bordered table-striped">
                 <thead className="thead-dark">
                 <tr>
@@ -58,18 +31,16 @@ const BookedCleanings: React.FC = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {dummyBookedCleanings.map((booking) => (
+                {bookedCleanings.map((booking) => (
                     <tr key={booking.id}>
                         <td>{booking.id}</td>
-                        <td>{booking.bookedDate}</td>
+                        <td>{new Date(booking.bookedDate).toLocaleDateString()}</td>
                         <td>{booking.type}</td>
-                        {/*<td>*/}
-                        {/*    <button className="btn btn-danger" onClick={() => handleCancelBooking(booking.id)}>*/}
-                        {/*        Cancel*/}
-                        {/*    </button>*/}
-                        {/*</td>*/}
                         <td>
-                            <Link to={`/Cancel-cleaning/${booking.id}`}>Cancel</Link>
+                            {/* Include your link to cancel the cleaning here */}
+                            <td>
+                                <Link to={`/Cancel-cleaning/${booking.id}`}>Cancel</Link>
+                            </td>
                         </td>
                     </tr>
                 ))}
@@ -80,3 +51,12 @@ const BookedCleanings: React.FC = () => {
 };
 
 export default BookedCleanings;
+
+interface JobDto {
+    id: string;
+    bookedDate: string; // You may need to format this date appropriately
+    type: string;
+    message: string;
+    status: string;
+}
+
