@@ -60,4 +60,22 @@ describe('<CancelCleaning />', () => {
         await waitFor(() => screen.getByText('Städningen har framgångsrikt avbokats.'));
         expect(screen.getByText('Städningen har framgångsrikt avbokats.'));
     });
+
+    //Test to see if an error message is displayed after an unsuccessful cancellation.
+    test('should display error message after unsuccessful cancellation', async () => {
+        mockFetch.mockResolvedValueOnce({
+            ok: false,
+            json: () => Promise.resolve({ message: 'Ett fel inträffade vid avbokningen.' }),
+        });
+
+        render(<CancelCleaning />);
+
+        // Simulate a click on the button.
+        fireEvent.click(screen.getByText('Avboka städning'));
+        fireEvent.click(screen.getByText('Ja'));
+
+        // Wait for the error message to appear on the screen.
+        await waitFor(() => screen.getByText('Ett fel inträffade vid avbokningen.'));
+        expect(screen.getByText('Ett fel inträffade vid avbokningen.'));
+    });
 });
