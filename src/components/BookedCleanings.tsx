@@ -69,8 +69,7 @@ const BookedCleanings: React.FC = () => {
                         {/*    </button>*/}
                         {/*</td>*/}
                         <td>
-                            {/*<Link to={`/Cancel-cleaning/${booking.id}`}>Cancel</Link>*/}
-                            <Link to={`/Cancel-cleaning`}>Cancel</Link>
+                            <Link to={`/Cancel-cleaning/${booking.id}`}>Cancel</Link>
                         </td>
                     </tr>
                 ))}

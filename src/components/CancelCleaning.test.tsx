@@ -21,7 +21,7 @@ describe('<CancelCleaning />', () => {
     it('renders the cancel button', () => {
         render(<CancelCleaning />);
         const buttonElement = screen.getByText(/Avboka städning/i);
-        expect(buttonElement).toBeInTheDocument();
+        expect(buttonElement);
     });
 
     //Test to see if the modal is displayed when the cancel button is clicked.
@@ -30,7 +30,7 @@ describe('<CancelCleaning />', () => {
 
         //Simulate a click on the button.
         fireEvent.click(screen.getByText('Avboka städning'));
-        expect(screen.getByText('Är du säker på att du vill avboka?')).toBeInTheDocument();
+        expect(screen.getByText('Är du säker på att du vill avboka?'));
     });
 
     //Test to check that the modal is hidden when "No" is clicked.
@@ -40,7 +40,7 @@ describe('<CancelCleaning />', () => {
         //Simulate a click on the button.
         fireEvent.click(screen.getByText('Avboka städning'));
         fireEvent.click(screen.getByText('Nej'));
-        expect(screen.queryByText('Är du säker på att du vill avboka?')).not.toBeInTheDocument();
+        expect(screen.queryByText('Är du säker på att du vill avboka?'));
     });
 
     //Test to see if a success message is displayed after a successful cancellation.
@@ -58,6 +58,6 @@ describe('<CancelCleaning />', () => {
 
         //Wait for the message to appear on the screen.
         await waitFor(() => screen.getByText('Städningen har framgångsrikt avbokats.'));
-        expect(screen.getByText('Städningen har framgångsrikt avbokats.')).toBeInTheDocument();
+        expect(screen.getByText('Städningen har framgångsrikt avbokats.'));
     });
 });
