@@ -1,4 +1,5 @@
 import NavBar from "../common/NavBar"
+import {FormRegister} from "./forms/FormRegister.tsx";
 
 const Register = () => {
 
@@ -6,10 +7,9 @@ const Register = () => {
 
     return (
         <>
-            <NavBar />
-            <h1>Register</h1>
-            {/* form for register */}
-            <p>Already have an account? Sign in <a href="/login">here</a></p>
+            <NavBar/>
+            <h1 className="my-3">Register</h1>
+            <FormRegister/>
         </>
     )
 }

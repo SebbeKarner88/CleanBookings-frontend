@@ -1,4 +1,5 @@
 import NavBar from "../common/NavBar"
+import {FormLogin} from "./forms/FormLogin.tsx";
 
 const LogIn = () => {
 
@@ -7,9 +8,7 @@ const LogIn = () => {
     return (
         <>
             <NavBar />
-            <h1>Log In</h1>
-            {/* form for logging in  */}
-            <p>Don't have an account? Sign up <a href="/register">here</a></p>
+            <FormLogin/>
         </>
     )
 }
