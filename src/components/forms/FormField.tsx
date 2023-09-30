@@ -56,17 +56,17 @@ export function FormField<T extends FieldValues>({
         return <div>
             {
                 options?.map((option) => (
-                    <div key={option} className="form-check">
+                    <div key={option} className="form-check form-check-inline px-0">
                         <input
                             {...register(fieldName as Path<T>)}
                             type="radio"
                             value={option}
                             id={`${fieldName}-${option}`}
-                            className={fieldError ? "form-check-input is-invalid" : "form-check-input"}
+                            className={fieldError ? "btn-check is-invalid" : "btn-check"}
                         />
                         <label
                             htmlFor={`${fieldName}-${option}`}
-                            className="form-check-label"
+                            className="btn btn-outline-primary"
                         >
                             {option}
                         </label>

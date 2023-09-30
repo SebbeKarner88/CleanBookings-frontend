@@ -29,17 +29,6 @@ export async function registerCustomer(
     password: string
 )  {
     try {
-        console.log(
-            firstName,
-            lastName,
-            customerType,
-            streetAddress,
-            postalCode,
-            city,
-            phoneNumber,
-            emailAddress,
-            password
-        );
         return await api.post(
             "customer",
             {

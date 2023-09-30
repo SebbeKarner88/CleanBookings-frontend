@@ -10,7 +10,8 @@ import {FormField} from "./FormField.tsx";
 const schema = z.object({
     emailAddress: z
         .string()
-        .nonempty({message: "Email is required."}),
+        .nonempty({message: "Email is required."})
+        .email({message: "Please provide a valid email address."}),
     password: z
         .string()
         .nonempty({message: "Password is required."}),
@@ -48,14 +49,14 @@ export function FormLogin() {
             <div className="popup">
                 <form className="mt-3 popup-content rounded-2"
                       onSubmit={handleSubmit(onSubmit)}>
-                    <h1 className="h4">Login <Link to="/">
+                    <h1 className="h4 mb-3 fw-bold">Login <Link to="/">
                         <button type="button" className="btn-close btn-dark small float-end"
                                 aria-label="Close window"></button>
                     </Link></h1>
                     {errorMessage && <div className="text-danger my-1">{errorMessage}</div>}
                     <FormField
                         fieldName="emailAddress"
-                        label="Email"
+                        label="Email address"
                         inputType="email"
                         fieldError={errors.emailAddress}
                         customError={errorMessage}
