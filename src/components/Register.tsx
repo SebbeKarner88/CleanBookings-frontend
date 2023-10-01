@@ -6,11 +6,13 @@ const Register = () => {
     /* TODO: add logic for register in as customer/employee/admin */
 
     return (
-            <div>
+        <>
             <NavBar/>
+            <div style={{"maxWidth": "800px", "margin": "auto"}}>
                 <h1 className="my-3 px-4 fw-bold text-start text-md-center">Register an account</h1>
                 <FormRegisterCustomer/>
             </div>
+        </>
     )
 }
 

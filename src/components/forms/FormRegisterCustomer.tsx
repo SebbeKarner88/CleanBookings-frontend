@@ -89,7 +89,7 @@ export function FormRegisterCustomer() {
     }
 
     return (
-        <form className="my-3 my-lg-5 mx-lg-5 text-start px-4 px-md-5"
+        <form className="my-3 my-md-5 px-4 text-start"
               onSubmit={handleSubmit(onSubmit)}>
             <h2 className="my-3 fw-bold text-primary-emphasis">New customer</h2>
             <FormField
