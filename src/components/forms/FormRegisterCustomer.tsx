@@ -59,7 +59,7 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-export function FormRegister() {
+export function FormRegisterCustomer() {
     const {
         register,
         handleSubmit,
@@ -89,18 +89,19 @@ export function FormRegister() {
     }
 
     return (
-        <form className="my-3 my-lg-5 mx-lg-5 text-start"
+        <form className="my-3 my-lg-5 mx-lg-5 text-start px-4 px-md-5"
               onSubmit={handleSubmit(onSubmit)}>
-            <h2 className="my-3 fw-bold">New customer</h2>
+            <h2 className="my-3 fw-bold text-primary-emphasis">New customer</h2>
             <FormField
                 fieldName="customerType"
-                label="Type of customer"
+                label="Type of account"
+                labelDescription="Do you wish to create an account for personal use or for your business?"
                 inputType="radio"
                 options={["PRIVATE", "BUSINESS"]}
                 fieldError={errors.customerType}
                 register={register}
             />
-            <h3 className="my-4 fw-bold">Contact information</h3>
+            <h3 className="my-3 fw-bold text-primary-emphasis">Contact details</h3>
             <div className="row">
                 <div className="col-md-6">
                     <FormField
@@ -163,7 +164,7 @@ export function FormRegister() {
                     />
                 </div>
             </div>
-            <h3 className="my-4 fw-bold">Account information</h3>
+            <h3 className="my-3 fw-bold text-primary-emphasis">Account details</h3>
             <FormField
                 fieldName="emailAddress"
                 label="Email address"

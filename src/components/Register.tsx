@@ -1,16 +1,16 @@
 import NavBar from "../common/NavBar"
-import {FormRegister} from "./forms/FormRegister.tsx";
+import {FormRegisterCustomer} from "./forms/FormRegisterCustomer.tsx";
 
 const Register = () => {
 
     /* TODO: add logic for register in as customer/employee/admin */
 
     return (
-        <>
+            <div>
             <NavBar/>
-            <h1 className="my-3">Register</h1>
-            <FormRegister/>
-        </>
+                <h1 className="my-3 px-4 fw-bold text-start text-md-center">Register an account</h1>
+                <FormRegisterCustomer/>
+            </div>
     )
 }
 

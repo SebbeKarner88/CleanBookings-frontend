@@ -10,7 +10,7 @@ const NavBar = () => {
 
     return (
         <>
-            <Navbar expand="lg" className="bg-body-tertiary">
+            <Navbar expand="lg" className="bg-body-tertiary py-2">
                 <Container>
                     <Navbar.Brand href="/">Clean Bookings</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />

@@ -10,6 +10,7 @@ interface IFormField<T extends FieldValues> {
     inputType: HTMLInputTypeAttribute;
     options?: string[];
     labelDescription?: string;
+    placeholder?: string
 }
 
 export function FormField<T extends FieldValues>({
@@ -20,7 +21,8 @@ export function FormField<T extends FieldValues>({
                                                      fieldName,
                                                      inputType,
                                                      options,
-                                                     labelDescription
+                                                     labelDescription,
+                                                     placeholder
                                                  }: IFormField<T>) {
     return (
         <>
@@ -46,6 +48,7 @@ export function FormField<T extends FieldValues>({
                                 type={inputType}
                                 className={fieldError || customError != undefined ? "form-control is-invalid" : "form-control"}
                                 id={fieldName}
+                                placeholder={placeholder}
                             />
                         )}
             </div>
@@ -56,7 +59,7 @@ export function FormField<T extends FieldValues>({
         return <div>
             {
                 options?.map((option) => (
-                    <div key={option} className="form-check form-check-inline px-0">
+                    <div key={option} className="form-check form-check-inline px-0 my-1">
                         <input
                             {...register(fieldName as Path<T>)}
                             type="radio"
@@ -66,7 +69,7 @@ export function FormField<T extends FieldValues>({
                         />
                         <label
                             htmlFor={`${fieldName}-${option}`}
-                            className="btn btn-outline-primary"
+                            className="btn btn-outline-dark"
                         >
                             {option}
                         </label>
