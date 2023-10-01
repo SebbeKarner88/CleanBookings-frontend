@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import CancelCleaning from './CancelCleaning';
+import CancelCleaning from '../CancelCleaning';
 import '@testing-library/jest-dom';
 
 //Creates a mock fetch function.

@@ -36,12 +36,9 @@ const BookedCleanings: React.FC = () => {
                         <td>{booking.id}</td>
                         <td>{new Date(booking.bookedDate).toLocaleDateString()}</td>
                         <td>{booking.type}</td>
-                        <td>
-                            {/* Include your link to cancel the cleaning here */}
                             <td>
                                 <Link to={`/Cancel-cleaning/${booking.id}`}>Cancel</Link>
                             </td>
-                        </td>
                     </tr>
                 ))}
                 </tbody>
