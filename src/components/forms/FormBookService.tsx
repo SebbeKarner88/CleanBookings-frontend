@@ -24,8 +24,8 @@ type FormData = z.infer<typeof schema>;
 
 const BookingForm = () => {
     const [ modalVisible, setModalVisible ] = useState(false)
-    const [ selectedService, setSelectedService ] = useState(''); // State to store selected service
-    const [ selectedDate, setSelectedDate ] = useState(''); // State to store selected date
+    const [ selectedService, setSelectedService ] = useState('')
+    const [ selectedDate, setSelectedDate ] = useState('')
 
 
     /* TODO: add logic with fetch for booking a service */
