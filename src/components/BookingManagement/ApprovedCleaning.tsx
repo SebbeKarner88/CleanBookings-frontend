@@ -31,6 +31,7 @@ const ApprovedCleaning: React.FC = () => {
     return (
         <div className="container mt-4">
             <h1 className="text-center">Completed Cleanings</h1>
+            {/*<Link to={`/booked-cleanings/${customerId}`}>See Booked Cleanings</Link>*/}
             <table className="table table-bordered table-striped">
                 <thead className="thead-dark">
                 <tr>
