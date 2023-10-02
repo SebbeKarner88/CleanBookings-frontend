@@ -1,7 +1,7 @@
-import NavBar from "../common/NavBar"
+import NavBar from "../../common/NavBar"
 import { useState, useEffect } from 'react'
-import TypesOfCleaning from "../common/TypesOfCleaing"
-import BookingForm from "./forms/FormBookService"
+import TypesOfCleaning from "../../common/TypesOfCleaing"
+import BookingForm from "../forms/FormBookService"
 
 const BookingView = () => {
     const [ isPicked, setIsPicked ] = useState(false)

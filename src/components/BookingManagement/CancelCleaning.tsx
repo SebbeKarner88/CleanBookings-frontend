@@ -10,7 +10,7 @@ function CancelCleaning() {
     const handleCancel = async () => {
         try {
             //The fetch for database.
-            const response = await fetch('API', {
+            const response = await fetch('http://localhost:8080/api/v1/job/cancel-cleaning', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
