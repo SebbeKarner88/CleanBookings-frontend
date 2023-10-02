@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container'
-import MyModal from './MyModal';
+import MyModal from '../../common/MyModal';
 import { useState } from 'react'
 
 const BookingForm = () => {
