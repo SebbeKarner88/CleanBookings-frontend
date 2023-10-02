@@ -24,7 +24,7 @@ describe('BookedCleanings Component', () => {
         await act(async () => {
             render(
                 //Use MemoryRouter to mock router functionality required by the component or any of its children.
-                <MemoryRouter initialEntries={['/some-route']}>
+                <MemoryRouter>
                     <BookedCleanings />
                 </MemoryRouter>
             );
@@ -47,7 +47,7 @@ describe('BookedCleanings Component', () => {
 
         await act(async () => {
             render(
-                <MemoryRouter initialEntries={['/some-route']}>
+                <MemoryRouter>
                     <BookedCleanings />
                 </MemoryRouter>
             );
@@ -69,7 +69,7 @@ describe('BookedCleanings Component', () => {
 
         await act(async () => {
             render(
-                <MemoryRouter initialEntries={['/some-route']}>
+                <MemoryRouter>
                     <BookedCleanings />
                 </MemoryRouter>
             );
