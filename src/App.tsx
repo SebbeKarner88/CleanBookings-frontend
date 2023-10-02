@@ -13,6 +13,7 @@ import LogIn from './components/LogIn.tsx'
 import Register from './components/Register.tsx'
 import AboutUs from './components/AboutUs'
 import CancelCleaning from "./components/CancelCleaning";
+import GDPRCustomerData from './components/GDPRCustomerData';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/booked-cleanings/:customerId" element={<BookedCleanings />} />
           <Route path="/booking-history/:customerId" element={<BookingHistory />} />
           <Route path="/gdpr-info/:customerId" element={<GDPRInfo />} />
+          <Route path="/gdpr-customer-data/:customerId" element={<GDPRCustomerData />} />
           <Route path="/booking-view" element={<BookingView />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/register" element={<Register />} />

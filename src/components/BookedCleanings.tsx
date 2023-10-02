@@ -20,7 +20,9 @@ const BookedCleanings: React.FC = () => {
 
     return (
         <div className="container mt-4">
-            <h1 className="text-center">Booked Cleanings for Customer {customerId}</h1>
+            {/*<h1 className="text-center">Booked Cleanings for Customer <br /> {customerId}</h1>*/}
+            <h1 className="text-center">Booked Cleanings for Customer</h1>
+            <div className="text-center" style={{ fontSize: '20px' }}>{customerId}</div>
             <table className="table table-bordered table-striped">
                 <thead className="thead-dark">
                 <tr>
@@ -37,7 +39,6 @@ const BookedCleanings: React.FC = () => {
                         <td>{new Date(booking.bookedDate).toLocaleDateString()}</td>
                         <td>{booking.type}</td>
                         <td>
-                            {/* Include your link to cancel the cleaning here */}
                             <td>
                                 <Link to={`/Cancel-cleaning/${booking.id}`}>Cancel</Link>
                             </td>
