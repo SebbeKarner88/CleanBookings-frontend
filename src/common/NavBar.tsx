@@ -1,19 +1,26 @@
-import { Nav, Navbar, Container, Form, Button } from "react-bootstrap";
-import { LinkContainer } from 'react-router-bootstrap';
-import { useState } from 'react'
+import {Nav, Navbar, Container, Form, Button} from "react-bootstrap";
+import {LinkContainer} from 'react-router-bootstrap';
+import {useContext} from 'react'
+import {AuthContext} from "../context/AuthContext.tsx";
+import {Link, useNavigate} from "react-router-dom";
 
 const NavBar = () => {
-    const [isSignedIn, setIsSignedIn] = useState(false)
-    const [username, setUsername] = useState('')
+    const {isAuthenticated, name, setIsAuthenticated, setCustomerId, setName} = useContext(AuthContext);
+    const navigation = useNavigate();
 
-    /** add logic for checking if user is signed in, and display username in navbar */
+    async function handleLogout() {
+        setIsAuthenticated(false);
+        setCustomerId("");
+        setName("");
+        navigation("/");
+    }
 
     return (
         <>
             <Navbar expand="lg" className="bg-body-tertiary py-2">
                 <Container>
                     <Navbar.Brand href="/">Clean Bookings</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <LinkContainer to="/services">
@@ -42,14 +49,22 @@ const NavBar = () => {
 
                     </Navbar.Collapse>
                     <Navbar.Collapse className="justify-content-end">
-                        {isSignedIn ? 
-                        <Navbar.Text>
-                            Signed in as: <a href="/myPages">{username}</a>  {/* WIP fix so that logged in user is shown */}
-                        </Navbar.Text>
-                        :
-                        <Navbar.Text>
-                            Sign in or register <a href="/login">here</a>
-                        </Navbar.Text>
+                        {isAuthenticated ?
+                            <Navbar.Text>
+                                <p className="visually-hidden">Signed in as: {name}</p>
+                                <Button variant="outline-danger" className="mx-3 my-3 my-md-0" onClick={handleLogout}>
+                                    Logout
+                                </Button>
+                            </Navbar.Text>
+                            :
+                            <Navbar.Text>
+                                <span><Link to="/login">Sign in</Link> or </span>
+                                <Link to="/register">
+                                    <Button variant="success" className="my-3 my-md-0">
+                                        Register
+                                    </Button>
+                                </Link>
+                            </Navbar.Text>
                         }
                     </Navbar.Collapse>
                 </Container>
@@ -57,7 +72,6 @@ const NavBar = () => {
         </>
     )
 }
-
 
 
 export default NavBar

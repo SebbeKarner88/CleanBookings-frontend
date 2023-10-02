@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {loginCustomer} from "../../api/CustomerApi.ts";
 import {BsPersonFillAdd} from "react-icons/bs";
 import {z} from "zod";
@@ -6,6 +6,7 @@ import {FieldValues, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Link, useNavigate} from "react-router-dom";
 import {FormField} from "./FormField.tsx";
+import {AuthContext} from "../../context/AuthContext.tsx";
 
 const schema = z.object({
     emailAddress: z
@@ -31,12 +32,11 @@ export function FormLogin() {
     });
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const navigation = useNavigate();
+    const {setIsAuthenticated, setCustomerId, setName} = useContext(AuthContext);
 
     function onSubmit(data: FieldValues) {
-        loginCustomer(data.emailAddress, data.password).then(response => {
+        loginCustomer(data.emailAddress, data.password, setIsAuthenticated, setCustomerId, setName).then(response => {
             if (response?.status == 200) {
-                // Set username and/or role if needed later?
-                console.log(response.data);
                 navigation("/");
             } else {
                 setErrorMessage("Email or password are incorrect!");

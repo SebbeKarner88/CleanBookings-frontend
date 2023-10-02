@@ -13,16 +13,19 @@ import LogIn from './components/LogIn.tsx'
 import Register from './components/Register.tsx'
 import AboutUs from './components/AboutUs'
 import CancelCleaning from "./components/CancelCleaning";
+import {useContext} from "react";
+import {AuthContext} from "./context/AuthContext.tsx";
 
 
 function App() {
+  const {isAuthenticated} = useContext(AuthContext);
 
   return (
     <>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/myPages" element={<MyPages />} />
+          <Route path="/myPages" element={isAuthenticated ? <MyPages /> : <LogIn/>} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/booked-cleanings/:customerId" element={<BookedCleanings />} />
