@@ -11,6 +11,8 @@ interface IFormField<T extends FieldValues> {
     options?: string[];
     labelDescription?: string;
     placeholder?: string
+    value?: string
+    onChange?: React.SetStateAction<String>
 }
 
 export function FormField<T extends FieldValues>({
