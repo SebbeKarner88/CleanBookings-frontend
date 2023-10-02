@@ -1,52 +1,52 @@
-import {FieldValues, useForm} from "react-hook-form";
-import {z} from 'zod';
-import {zodResolver} from "@hookform/resolvers/zod";
-import {registerCustomer} from "../../api/CustomerApi.ts";
-import {Link, useNavigate} from "react-router-dom";
-import {VscAccount} from "react-icons/vsc";
-import {BsExclamationCircle} from "react-icons/bs";
-import {FormField} from "./FormField.tsx";
+import { FieldValues, useForm } from "react-hook-form";
+import { z } from 'zod';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { registerCustomer } from "../../api/CustomerApi.ts";
+import { Link, useNavigate } from "react-router-dom";
+import { VscAccount } from "react-icons/vsc";
+import { BsExclamationCircle } from "react-icons/bs"
+import { FormField } from "./FormField.tsx";
 
 const schema = z.object({
     firstName: z
         .string()
-        .nonempty({message: "First name is required."}),
+        .nonempty({ message: "First name is required." }),
     lastName: z
         .string()
-        .nonempty({message: "Last name is required."}),
+        .nonempty({ message: "Last name is required." }),
     customerType: z
-        .enum(["PRIVATE", "BUSINESS"])
+        .enum([ "PRIVATE", "BUSINESS" ])
         .refine(value => value !== null,
             {
                 message: "Please select PRIVATE or BUSINESS.",
             }),
     streetAddress: z
         .string()
-        .nonempty({message: "Street address is required."}),
+        .nonempty({ message: "Street address is required." }),
     postalCode: z
         .string()
-        .regex(/\d/, {message: "Please only input numbers with no white spaces."})
-        .min(5, {message: "Postal code must be a minimum of 5 numbers."})
-        .max(5, {message: "Postal code must be a maximum of 5 numbers (with no white spaces)."}),
+        .regex(/\d/, { message: "Please only input numbers with no white spaces." })
+        .min(5, { message: "Postal code must be a minimum of 5 numbers." })
+        .max(5, { message: "Postal code must be a maximum of 5 numbers (with no white spaces)." }),
     city: z
         .string()
-        .nonempty({message: "City is required."}),
+        .nonempty({ message: "City is required." }),
     phoneNumber: z
         .string()
-        .nonempty({message: "Phone number is required."})
+        .nonempty({ message: "Phone number is required." })
         .regex(/^[0-9+\-\s]*$/, {
             message: "Invalid phone number format. Only numbers (0-9), +, -, and white space are allowed.",
         }),
     emailAddress: z
         .string()
-        .nonempty({message: "Email is required."})
-        .email({message: "Please provide a valid email address."}),
+        .nonempty({ message: "Email is required." })
+        .email({ message: "Please provide a valid email address." }),
     password: z
         .string()
-        .min(8, {message: "Password must be at least 8 characters."})
-        .regex(/\d/, {message: "Password must contain at least one digit [0-9]."})
-        .regex(/[A-Z]/, {message: "Password must contain at least one uppercase letter [A-Z]"})
-        .regex(/[a-z]/, {message: "Password must contain at least one lowercase letter [a-z]"}),
+        .min(8, { message: "Password must be at least 8 characters." })
+        .regex(/\d/, { message: "Password must contain at least one digit [0-9]." })
+        .regex(/[A-Z]/, { message: "Password must contain at least one uppercase letter [A-Z]" })
+        .regex(/[a-z]/, { message: "Password must contain at least one lowercase letter [a-z]" }),
     confirmPassword: z
         .string(),
     terms: z.boolean().refine(value => value, {
@@ -54,7 +54,7 @@ const schema = z.object({
     })
 }).refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match",
-    path: ["confirmPassword"],
+    path: [ "confirmPassword" ],
 });
 
 type FormData = z.infer<typeof schema>;
@@ -63,7 +63,7 @@ export function FormRegisterCustomer() {
     const {
         register,
         handleSubmit,
-        formState: {errors}
+        formState: { errors }
     } = useForm<FormData>({
         resolver: zodResolver(schema)
     });
@@ -90,14 +90,14 @@ export function FormRegisterCustomer() {
 
     return (
         <form className="my-3 my-md-5 px-4 text-start"
-              onSubmit={handleSubmit(onSubmit)}>
+            onSubmit={handleSubmit(onSubmit)}>
             <h2 className="my-3 fw-bold text-primary-emphasis">New customer</h2>
             <FormField
                 fieldName="customerType"
                 label="Type of account"
                 labelDescription="Do you wish to create an account for personal use or for your business?"
                 inputType="radio"
-                options={["PRIVATE", "BUSINESS"]}
+                options={[ "PRIVATE", "BUSINESS" ]}
                 fieldError={errors.customerType}
                 register={register}
             />
@@ -190,16 +190,16 @@ export function FormRegisterCustomer() {
             />
             <div className="mb-3 form-check">
                 {errors.terms && (
-                    <p className="text-danger mt-1 mb-2"><BsExclamationCircle/> {errors.terms.message}</p>
+                    <p className="text-danger mt-1 mb-2"><BsExclamationCircle /> {errors.terms.message}</p>
                 )}
-                <input {...register('terms')} type="checkbox" className="form-check-input" id="terms"/>
+                <input {...register('terms')} type="checkbox" className="form-check-input" id="terms" />
                 <label className={errors.terms ? "form-check-label is-invalid" : "form-check-label"}
-                       htmlFor="terms">I accept the <a href="">terms of service</a> and <a href="">privacy
-                    policy</a></label>
+                    htmlFor="terms">I accept the <a href="">terms of service</a> and <a href="">privacy
+                        policy</a></label>
             </div>
             <button type="submit" className="btn btn-primary w-100">Register</button>
             <div className="mt-3 d-flex gap-2 align-items-center">
-                <VscAccount size={20}/>
+                <VscAccount size={20} />
                 <strong>Already have an account? </strong><Link to="/login">Sign in</Link>
             </div>
         </form>

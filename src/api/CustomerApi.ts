@@ -3,7 +3,7 @@ import api from "./ApiRootUrl.ts";
 export async function loginCustomer(
     email: string,
     password: string
-)  {
+) {
     try {
         return await api.post(
             "customer/login",
@@ -27,7 +27,7 @@ export async function registerCustomer(
     phoneNumber: string,
     emailAddress: string,
     password: string
-)  {
+) {
     try {
         return await api.post(
             "customer",
@@ -41,6 +41,28 @@ export async function registerCustomer(
                 phoneNumber: phoneNumber,
                 emailAddress: emailAddress,
                 password: password
+            },
+        );
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export async function bookService(
+    customerId: string,
+    type: string,
+    date: string,
+    message: string
+
+) {
+    try {
+        return await api.post(
+            "job",
+            {
+                customerId: customerId,
+                type: type,
+                date: date,
+                message: message
             },
         );
     } catch (error) {
