@@ -7,7 +7,6 @@ import Services from './components/Services'
 import Contact from './components/Contact'
 import BookedCleanings from './components/BookingManagement/BookedCleanings';
 import BookingHistory from "./components/BookingManagement/BookingHistory.tsx";
-import GDPRInfo from "./components/GDPRInfo.tsx";
 import BookingView from './components/BookingManagement/BookingView.tsx'
 import LogIn from './components/LogIn.tsx'
 import Register from './components/Register.tsx'
@@ -31,7 +30,6 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/booked-cleanings/:customerId" element={<BookedCleanings />} />
           <Route path="/booking-history/:customerId" element={<BookingHistory />} />
-          <Route path="/gdpr-info/:customerId" element={<GDPRInfo />} />
           <Route path="/gdpr-customer-data/:customerId" element={<GDPRCustomerData />} />
           <Route path="/booking-view" element={<BookingView />} />
           <Route path="/login" element={<LogIn />} />
