@@ -35,7 +35,7 @@ const BookingView = () => {
 
             {/* form for booking picked service */}
             {isPicked ?
-                <BookingForm />
+                <BookingForm choice={choice}/>
                 : null
             }
         </>

@@ -9,6 +9,10 @@ import { FormField } from "./FormField.tsx";
 import MyModal from '../../common/MyModal.tsx';
 import { AuthContext } from '../../context/AuthContext.tsx';
 
+interface Props {
+    choice: string | null
+}
+
 const schema = z.object({
     type: z
         .string()
@@ -23,7 +27,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 
-const BookingForm = () => {
+const BookingForm = ({ choice }: Props) => {
     const [ modalVisible, setModalVisible ] = useState(false)
     const [ selectedService, setSelectedService ] = useState('')
     const [ selectedDate, setSelectedDate ] = useState('')
@@ -71,7 +75,8 @@ const BookingForm = () => {
                         label="Type of service"
                         labelDescription="What kind of service would you like to book?"
                         inputType="radio"
-                        options={[ "Basic Cleaning", "Top Cleaning", "Diamond Cleaning", "Window Cleaning" ]}
+                        options={[ /* OM man har valt typ av städning på sidan "Services" vill jag att detta valet ska vara markerat här, men hur?? */
+                            "Basic Cleaning", "Top Cleaning", "Diamond Cleaning", "Window Cleaning" ]}
                         fieldError={errors.type}
                         register={register}
                         value={selectedService}

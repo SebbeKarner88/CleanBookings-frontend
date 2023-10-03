@@ -8,7 +8,7 @@ interface IFormField<T extends FieldValues> {
     label: string;
     fieldName: string;
     inputType: HTMLInputTypeAttribute;
-    options?: string[];
+    options?: string[] | null;
     labelDescription?: string;
     placeholder?: string
     value?: string
