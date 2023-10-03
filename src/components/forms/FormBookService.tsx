@@ -88,6 +88,7 @@ const BookingForm = ({ choice }: Props) => {
                         label="Date"
                         inputType="date"
                         fieldError={errors.date}
+                        customError={errorMessage}
                         register={register}
                         value={selectedDate}
                     />
