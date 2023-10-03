@@ -5,6 +5,8 @@ const Contact = () => {
 
         {/* TODO: add contact information for the company */}
 
+        <h3>Contact Us</h3>
+
         </>
     )
 }
