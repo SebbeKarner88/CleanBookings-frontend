@@ -34,8 +34,6 @@ const BookingForm = ({ choice }: Props) => {
     const [ selectedCleaner, setSelectedCleaner ] = useState('')
     const { setCustomerId } = useContext(AuthContext)
 
-
-    /* TODO: add logic with fetch for booking a service */
     /* TODO: add logic to check if user is logged in before making booking possible */
     /* TODO: how to make the picked option slected when the user is redirected to this view (via BookingView.tsx)? */
 
@@ -134,11 +132,11 @@ const BookingForm = ({ choice }: Props) => {
                 description="You will receive a confirmation email shortly."
                 onRequestClose={() => setModalVisible(!modalVisible)}
             />
-            <div className="mt-3 d-flex gap-2 align-items-center">
+{/*             <div className="mt-3 d-flex gap-2 align-items-center">
                 <VscAccount size={20} />
                 <strong>Already have an account? </strong>
                 <Link to="/login">Sign in</Link>
-            </div>
+            </div> */}
         </form>
     )
 }
