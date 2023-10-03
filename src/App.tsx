@@ -5,16 +5,16 @@ import LandingPage from './components/LandingPage'
 import MyPages from './components/MyPages'
 import Services from './components/Services'
 import Contact from './components/Contact'
-import BookedCleanings from './components/BookingManagement/BookedCleanings';
-import BookingHistory from "./components/BookingManagement/BookingHistory.tsx";
-import BookingView from './components/BookingManagement/BookingView.tsx'
+import BookedCleanings from './components/booking-management/BookedCleanings';
+import BookingHistory from "./components/booking-management/BookingHistory.tsx";
+import BookingView from './components/booking-management/BookingView.tsx'
 import LogIn from './components/LogIn.tsx'
 import Register from './components/Register.tsx'
 import AboutUs from './components/AboutUs'
-import CancelCleaning from "./components/BookingManagement/CancelCleaning";
+import CancelCleaning from "./components/booking-management/CancelCleaning";
 import {useContext} from "react";
 import {AuthContext} from "./context/AuthContext.tsx";
-import ApprovedCleaning from "./components/BookingManagement/ApprovedCleaning";
+import ApprovedCleaning from "./components/booking-management/ApprovedCleaning";
 import GDPRCustomerData from "./components/GDPRCustomerData.tsx";
 
 function App() {

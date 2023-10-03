@@ -13,12 +13,14 @@
 //
 // export default BookingHistory;
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const BookingHistory: React.FC = () => {
     // Get the 'customerId' from the route parameters
     const { customerId } = useParams<{ customerId: string }>();
+    const [bookingHistory, setBookingHistory] = useState<JobDto[]>([]);
 
     // Dummy data for the customer (replace with your data structure)
     const customer = {
@@ -27,51 +29,16 @@ const BookingHistory: React.FC = () => {
         lastName: 'Doe',
     };
 
-    // Dummy data for booking history (replace with your data structure)
-    const dummyData = [
-        {
-            id: '1',
-            bookedDate: '2023-09-15',
-            type: 'Basic Cleaning',
-        },
-        {
-            id: '2',
-            bookedDate: '2023-09-16',
-            type: 'Top Cleaning',
-        },
-        {
-            id: '3',
-            bookedDate: '2023-09-17',
-            type: 'Diamond Cleaning',
-        },
-        {
-            id: '4',
-            bookedDate: '2023-09-18',
-            type: 'Window Washing',
-        },
-        {
-            id: '5',
-            bookedDate: '2023-09-19',
-            type: 'Basic Cleaning',
-        },
-        {
-            id: '6',
-            bookedDate: '2023-09-20',
-            type: 'Top Cleaning',
-        },
-        {
-            id: '7',
-            bookedDate: '2023-09-21',
-            type: 'Diamond Cleaning',
-        },
-        // Add more dummy data entries as needed
-    ];
+    useEffect(() => {
 
-    // // Function to handle viewing more info about a booking
-    // const handleViewInfo = (bookingId: string) => {
-    //     // Implement the logic to view more info about the booking (e.g., open a modal)
-    //     console.log(`View info for booking with ID: ${bookingId}`);
-    // };
+        axios.get(`http://localhost:8080/api/v1/job/booking-history/${customerId}`)
+            .then((response) => {
+                setBookingHistory(response.data);
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
+            });
+    }, [customerId]);
 
     return (
         <div className="container mt-4">
@@ -87,16 +54,12 @@ const BookingHistory: React.FC = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {dummyData.map((booking) => (
+                {bookingHistory.map((booking) => (
                     <tr key={booking.id}>
                         <td>{booking.id}</td>
-                        <td>{booking.bookedDate}</td>
+                        {/*<td>{booking.bookedDate}</td>*/}
+                        <td>{new Date(booking.bookedDate).toLocaleDateString()}</td>
                         <td>{booking.type}</td>
-                        {/*<td>*/}
-                        {/*    <button className="btn btn-info" onClick={() => handleViewInfo(booking.id)}>*/}
-                        {/*        Info*/}
-                        {/*    </button>*/}
-                        {/*</td>*/}
                     </tr>
                 ))}
                 </tbody>
@@ -106,3 +69,11 @@ const BookingHistory: React.FC = () => {
 };
 
 export default BookingHistory;
+
+interface JobDto {
+    id: string;
+    bookedDate: string; // You may need to format this date appropriately
+    type: string;
+    message: string;
+    status: string;
+}
