@@ -127,6 +127,7 @@ const BookingForm = ({ choice }: Props) => {
             >
                 Book
             </button>
+            {/** TODO: Add some logic for modal showing success message only if the booking actually is successful */}
             <MyModal
                 modalVisible={modalVisible}
                 header="Thank you for booking!"
