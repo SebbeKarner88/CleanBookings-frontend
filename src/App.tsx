@@ -16,6 +16,7 @@ import CancelCleaning from "./components/BookingManagement/CancelCleaning";
 import {useContext} from "react";
 import {AuthContext} from "./context/AuthContext.tsx";
 import ApprovedCleaning from "./components/BookingManagement/ApprovedCleaning";
+import GDPRCustomerData from "./components/GDPRCustomerData.tsx";
 
 function App() {
   const {isAuthenticated} = useContext(AuthContext);
@@ -31,6 +32,7 @@ function App() {
           <Route path="/booked-cleanings/:customerId" element={<BookedCleanings />} />
           <Route path="/booking-history/:customerId" element={<BookingHistory />} />
           <Route path="/gdpr-info/:customerId" element={<GDPRInfo />} />
+          <Route path="/gdpr-customer-data/:customerId" element={<GDPRCustomerData />} />
           <Route path="/booking-view" element={<BookingView />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/register" element={<Register />} />
