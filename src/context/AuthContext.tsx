@@ -1,4 +1,4 @@
-import React, {createContext, ReactNode, useState} from 'react';
+import React, { createContext, ReactNode, useState } from 'react';
 
 interface IAuthContext {
     isAuthenticated: boolean;
@@ -23,10 +23,10 @@ const defaultAuthContext: IAuthContext = {
 
 export const AuthContext = createContext<IAuthContext>(defaultAuthContext);
 
-export const AuthProvider = ({children}: { children: ReactNode }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [customerId, setCustomerId] = useState("");
-    const [name, setName] = useState("");
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+    const [ isAuthenticated, setIsAuthenticated ] = useState(false);
+    const [ customerId, setCustomerId ] = useState("");
+    const [ name, setName ] = useState("");
 
     const authContextValue = {
         isAuthenticated,

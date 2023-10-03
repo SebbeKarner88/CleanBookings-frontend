@@ -26,6 +26,7 @@ const BookingForm = () => {
     const [ modalVisible, setModalVisible ] = useState(false)
     const [ selectedService, setSelectedService ] = useState('')
     const [ selectedDate, setSelectedDate ] = useState('')
+    const [ selectedCleaner, setSelectedCleaner ] = useState('')
 
 
     /* TODO: add logic with fetch for booking a service */
@@ -45,6 +46,7 @@ const BookingForm = () => {
             data.customerId,  /** TODO add context for customer ID */
             selectedService,
             selectedDate,
+            selectedCleaner,
             data.message
         ).then(response => {
             if (response?.status == 201) {
@@ -64,25 +66,15 @@ const BookingForm = () => {
                     <FormField
                         fieldName="type"
                         label="Type of service"
-                        inputType="text"
+                        labelDescription="What kind of service would you like to book?"
+                        inputType="radio"
+                        options={[ "Basic Cleaning", "Top Cleaning", "Diamond Cleaning", "Window Cleaning" ]}
                         fieldError={errors.type}
                         register={register}
-                    />
-                    <select
-                        className="form-control"
-                        id="type-of-service"
-                        onChange={(e) => setSelectedService(e.target.value)}
                         value={selectedService}
-                    >
-                        <option value="">Select a service</option>
-                        <option value="Basic Cleaning">Basic Cleaning</option>
-                        <option value="Top Cleaning">Top Cleaning</option>
-                        <option value="Diamond Cleaning">Diamond Cleaning</option>
-                        <option value="Window Cleaning">Window Cleaning</option>
-                    </select>
+                    />
                 </div>
                 <div className="col-md-6">
-                    {/* Use a date picker component here */}
                     <FormField
                         fieldName="date"
                         label="Date"
@@ -90,11 +82,22 @@ const BookingForm = () => {
                         fieldError={errors.date}
                         register={register}
                         value={selectedDate}
-                        onChange={(e: any) => setSelectedDate(e.target.value)}
                     />
                 </div>
             </div>
             <div className="row">
+                <div className="col-md-6">
+                    <FormField
+                        fieldName="cleaner"
+                        label="Cleaner"
+                        labelDescription="Who would you like to perform the job?"
+                        inputType="radio"
+                        options={[ "Angelina", "Sebastian", "Jimmy", "Georgios", "Joachim", "Jonas" ]}
+                        fieldError={errors.type}
+                        register={register}
+                        value={selectedCleaner}
+                    />
+                </div>
                 <div className="col-md-6">
                     <FormField
                         fieldName="message"

@@ -64,6 +64,7 @@ export async function bookService(
     customerId: string,
     type: string,
     date: string,
+    cleaner: string,
     message: string
 ) {
     try {
@@ -73,6 +74,7 @@ export async function bookService(
                 customerId: customerId,
                 type: type,
                 date: date,
+                cleaner: cleaner,
                 message: message
             },
         );

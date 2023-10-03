@@ -1,5 +1,5 @@
-import {FieldError, FieldValues, Path, UseFormRegister} from "react-hook-form";
-import {HTMLInputTypeAttribute} from "react";
+import { FieldError, FieldValues, Path, UseFormRegister } from "react-hook-form";
+import { HTMLInputTypeAttribute } from "react";
 
 interface IFormField<T extends FieldValues> {
     fieldError: FieldError | undefined;
@@ -12,20 +12,19 @@ interface IFormField<T extends FieldValues> {
     labelDescription?: string;
     placeholder?: string
     value?: string
-    onChange?: React.SetStateAction<String>
 }
 
 export function FormField<T extends FieldValues>({
-                                                     fieldError,
-                                                     customError,
-                                                     register,
-                                                     label,
-                                                     fieldName,
-                                                     inputType,
-                                                     options,
-                                                     labelDescription,
-                                                     placeholder
-                                                 }: IFormField<T>) {
+    fieldError,
+    customError,
+    register,
+    label,
+    fieldName,
+    inputType,
+    options,
+    labelDescription,
+    placeholder
+}: IFormField<T>) {
     return (
         <>
             <div className="mb-3">
