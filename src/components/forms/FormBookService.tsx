@@ -117,7 +117,7 @@ const BookingForm = ({ choice }: Props) => {
                     />
                 </div>
             </div>
-
+            {/** TODO: Add payment options */}
             <button
                 type="submit"
                 className="btn btn-outline-dark w-100"
