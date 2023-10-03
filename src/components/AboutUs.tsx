@@ -1,4 +1,5 @@
 import NavBar from "../common/NavBar"
+import Contact from "./Contact"
 
 function AboutUs() {
 
@@ -15,6 +16,7 @@ function AboutUs() {
                 - Reviews
 
                 */}
+                <Contact />
             </div>
 
 
