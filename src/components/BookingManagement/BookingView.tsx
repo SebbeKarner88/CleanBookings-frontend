@@ -28,7 +28,7 @@ const BookingView = () => {
             <NavBar />
             <h1>BOOKING VIEW</h1>
             {isPicked ?
-                <p>You want to book {choice}</p> /* TODO: add possibility to change picked service */
+                <p>You want to book {choice}</p> /* TODO: add possibility to change picked service and to bring the choice to the form */
                 :
                 <TypesOfCleaning />
             }
