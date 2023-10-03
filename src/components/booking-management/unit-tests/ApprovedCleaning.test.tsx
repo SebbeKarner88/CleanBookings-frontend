@@ -1,4 +1,4 @@
-import { render, waitFor, screen, act } from '@testing-library/react';
+import { render, waitFor, screen, fireEvent, act } from '@testing-library/react';
 import axios from 'axios';
 import ApprovedCleaning from "../ApprovedCleaning";
 
@@ -67,20 +67,32 @@ describe('ApprovedCleaning Component', () => {
 
         mockedAxios.get.mockResolvedValueOnce({ data: mockData });
         //Mocking the PUT request to simulate a successful approval.
-        mockedAxios.put.mockResolvedValueOnce({});
+        mockedAxios.put.mockResolvedValueOnce({ /* your mocked response here */ });
 
         await act(async () => {
             render(<ApprovedCleaning />);
         });
 
-        //Simulating a button click to approve a cleaning.
+        //Simulating a button click to open the approval modal.
         const approveButton = screen.getByText('Approve');
         act(() => {
             approveButton.click();
         });
 
+        // Simulate entering feedback.
+        const feedbackTextarea = screen.getByPlaceholderText("Enter positive feedback...");
+        act(() => {
+            fireEvent.change(feedbackTextarea, { target: { value: 'Great job!' } });
+        });
+
+        // Click the 'Submit Feedback' button to approve the cleaning.
+        const submitButton = screen.getByText('Submit Feedback');
+        act(() => {
+            submitButton.click();
+        });
+
         //Expecting the axios PUT method to have been called with the correct endpoint.
-        await waitFor(() => expect(axios.put).toHaveBeenCalledWith('http://localhost:8080/api/v1/job/approve-cleaning/1'));
+        await waitFor(() => expect(axios.put).toHaveBeenCalledWith('http://localhost:8080/api/v1/job/approve-cleaning/1', {"feedback": "Great job!"}));
     });
 
     //Test to handle potential errors during the fetching of completed cleanings.
@@ -103,7 +115,43 @@ describe('ApprovedCleaning Component', () => {
     });
 
     //Test to handle potential errors during the approval of a cleaning.
-    it('should handle errors during approval of a cleaning', async () => {
+    it('should handle approval of a cleaning', async () => {
+        const mockData = [{
+            id: '1',
+            bookedDate: '2023-09-28',
+            type: 'Basic Cleaning',
+            message: 'Please clean the kitchen thoroughly.',
+            status: 'Completed',
+        }];
+        mockedAxios.get.mockResolvedValueOnce({ data: mockData });
+        //Mocking the PUT request to simulate a successful approval.
+        mockedAxios.put.mockResolvedValueOnce({ /* your mocked response here */ });
+
+        await act(async () => {
+            render(<ApprovedCleaning />);
+        });
+        //Simulating a button click to approve a cleaning.
+        const approveButton = screen.getByText('Approve');
+        fireEvent.click(approveButton);
+
+        //Expecting the axios PUT method to have been called with the correct endpoint.
+        await waitFor(() => expect(axios.put).toHaveBeenCalledWith('http://localhost:8080/api/v1/job/approve-cleaning/1'));
+    });
+
+    //Test when there are no completed cleanups.
+    it('should handle no completed cleanings', async () => {
+        mockedAxios.get.mockResolvedValueOnce({ data: [] });
+
+        await act(async () => {
+            render(<ApprovedCleaning />);
+        });
+
+        //Verifying no cleanings are displayed
+        expect(screen.queryByText('Basic Cleaning')).toBeNull();
+    });
+
+    //Test closing modal window.
+    it('should close the modal without submitting feedback', async () => {
         const mockData = [{
             id: '1',
             bookedDate: '2023-09-28',
@@ -113,22 +161,52 @@ describe('ApprovedCleaning Component', () => {
         }];
 
         mockedAxios.get.mockResolvedValueOnce({ data: mockData });
-        //Mocking a rejected PUT request to simulate an error during approval.
+        await act(async () => {
+            render(<ApprovedCleaning />);
+        });
+
+        const approveButton = screen.getByText('Approve');
+        fireEvent.click(approveButton);
+
+        const closeButton = screen.getByText('Close');
+        fireEvent.click(closeButton);
+
+        //Modal should no longer be visible.
+        expect(screen.queryByText('Approve Cleaning for 1')).toBeNull();
+    });
+
+    //Test potential errors during approval of a cleanup.
+    it('should handle errors during the approval of a cleaning', async () => {
+        const mockData = [{
+            id: '1',
+            bookedDate: '2023-09-28',
+            type: 'Basic Cleaning',
+            message: 'Please clean the kitchen thoroughly.',
+            status: 'Completed',
+        }];
+
+        mockedAxios.get.mockResolvedValueOnce({ data: mockData });
         mockedAxios.put.mockRejectedValueOnce(new Error('Failed to approve cleaning'));
+        console.error = jest.fn();
 
         await act(async () => {
             render(<ApprovedCleaning />);
         });
 
         const approveButton = screen.getByText('Approve');
-        act(() => {
-            approveButton.click();
-        });
+        fireEvent.click(approveButton);
+
+        const feedbackTextarea = screen.getByPlaceholderText("Enter positive feedback...");
+        fireEvent.change(feedbackTextarea, { target: { value: 'Great job!' } });
+
+        const submitButton = screen.getByText('Submit Feedback');
+        fireEvent.click(submitButton);
 
         //Expecting the axios PUT method to have been called once.
-        await waitFor(() => expect(axios.put).toHaveBeenCalledTimes(1));
+        await waitFor(() => expect(axios.put).toHaveBeenCalledWith('http://localhost:8080/api/v1/job/approve-cleaning/1', {"feedback": "Great job!"}));
 
         //Verifying that the error was logged to the console.
         expect(console.error).toHaveBeenCalledWith('Error approving cleaning:', expect.any(Error));
     });
+
 });
