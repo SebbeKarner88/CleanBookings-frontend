@@ -1,12 +1,11 @@
-import NavBar from "../common/NavBar"
-
-function Contact() {
+const Contact = () => {
 
     return (
         <>
-        <NavBar />
 
         {/* TODO: add contact information for the company */}
+
+        <h3>Contact Us</h3>
 
         </>
     )

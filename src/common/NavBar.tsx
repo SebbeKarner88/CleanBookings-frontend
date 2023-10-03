@@ -26,9 +26,6 @@ const NavBar = () => {
                             <LinkContainer to="/services">
                                 <Nav.Link>Services</Nav.Link>
                             </LinkContainer>
-                            <LinkContainer to="/contact">
-                                <Nav.Link>Contact</Nav.Link>
-                            </LinkContainer>
                             <LinkContainer to="/myPages">
                                 <Nav.Link>My Pages</Nav.Link>
                             </LinkContainer>

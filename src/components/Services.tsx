@@ -1,5 +1,5 @@
 import NavBar from "../common/NavBar";
-import TypesOfCleaning from "../common/TypesOfCleaing";
+import TypesOfCleaning from "../common/TypesOfCleaning";
 
 function Services() {
 
