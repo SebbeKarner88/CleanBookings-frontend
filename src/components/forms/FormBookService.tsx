@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { FieldValues, useForm } from "react-hook-form";
 import { z } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { VscAccount } from "react-icons/vsc";
 import { FormField } from "./FormField.tsx";
 import MyModal from '../../common/MyModal.tsx';
+import { AuthContext } from '../../context/AuthContext.tsx';
 
 const schema = z.object({
     type: z
@@ -27,6 +28,7 @@ const BookingForm = () => {
     const [ selectedService, setSelectedService ] = useState('')
     const [ selectedDate, setSelectedDate ] = useState('')
     const [ selectedCleaner, setSelectedCleaner ] = useState('')
+    const { setCustomerId } = useContext(AuthContext);
 
 
     /* TODO: add logic with fetch for booking a service */
@@ -43,7 +45,7 @@ const BookingForm = () => {
 
     function onSubmit(data: FieldValues) {
         bookService(
-            data.customerId,  /** TODO add context for customer ID */
+            setCustomerId,
             selectedService,
             selectedDate,
             selectedCleaner,
