@@ -1,7 +1,7 @@
 import NavBar from "../common/NavBar"
 import Image from 'react-bootstrap/Image'
 import Container from 'react-bootstrap/Container'
-import Card from 'react-bootstrap/Card'
+// import Card from 'react-bootstrap/Card'
 import sponge from '../assets/images/sponge.jpg'
 import { Footer } from "../common/Footer"
 
