@@ -45,6 +45,7 @@ const BookingForm = ({ choice }: Props) => {
         resolver: zodResolver(schema)
     });
     const navigation = useNavigate();
+    const [ errorMessage, setErrorMessage ] = useState<string | null>(null);
 
     function onSubmit(data: FieldValues) {
         bookService(
@@ -54,11 +55,12 @@ const BookingForm = ({ choice }: Props) => {
             selectedCleaner,
             data.message
         ).then(response => {
-            if (response?.status == 201) {
-                // Set data if needed
-                navigation("/")
+            if (response?.status == 200) {
+                navigation("/");
+            } else {
+                setErrorMessage("Date is already booked.");
             }
-        });
+        }).catch(error => console.error(error.message));
     }
 
     return (
@@ -92,7 +94,7 @@ const BookingForm = ({ choice }: Props) => {
                 </div>
             </div>
             <div className="row">
-                <div className="col-md-6">
+               {/*  <div className="col-md-6">
                     <FormField
                         fieldName="cleaner"
                         label="Cleaner"
@@ -103,7 +105,7 @@ const BookingForm = ({ choice }: Props) => {
                         register={register}
                         value={selectedCleaner}
                     />
-                </div>
+                </div> */}
                 <div className="col-md-6">
                     <FormField
                         fieldName="message"
@@ -132,7 +134,7 @@ const BookingForm = ({ choice }: Props) => {
                 description="You will receive a confirmation email shortly."
                 onRequestClose={() => setModalVisible(!modalVisible)}
             />
-{/*             <div className="mt-3 d-flex gap-2 align-items-center">
+            {/*             <div className="mt-3 d-flex gap-2 align-items-center">
                 <VscAccount size={20} />
                 <strong>Already have an account? </strong>
                 <Link to="/login">Sign in</Link>
