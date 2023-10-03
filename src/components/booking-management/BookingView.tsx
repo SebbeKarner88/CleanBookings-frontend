@@ -1,6 +1,6 @@
 import NavBar from "../../common/NavBar"
 import { useState, useEffect } from 'react'
-import TypesOfCleaning from "../../common/TypesOfCleaing"
+import TypesOfCleaning from "../../common/TypesOfCleaning"
 import BookingForm from "../forms/FormBookService"
 
 const BookingView = () => {
