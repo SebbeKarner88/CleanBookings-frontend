@@ -28,11 +28,12 @@ const BookingForm = () => {
     const [ selectedService, setSelectedService ] = useState('')
     const [ selectedDate, setSelectedDate ] = useState('')
     const [ selectedCleaner, setSelectedCleaner ] = useState('')
-    const { setCustomerId } = useContext(AuthContext);
+    const { setCustomerId } = useContext(AuthContext)
 
 
     /* TODO: add logic with fetch for booking a service */
     /* TODO: add logic to check if user is logged in before making booking possible */
+    /* TODO: how to make the picked option slected when the user is redirected to this view (via BookingView.tsx)? */
 
     const {
         register,
