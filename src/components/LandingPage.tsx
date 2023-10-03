@@ -11,14 +11,9 @@ function LandingPage() {
         <>
             <NavBar />
             {/* TODO: add images and witty description of company and their services */}
-            {/* TODO: add footer component? */}
-
             <Container className="mt-5">
                 <Image src={sponge} fluid />
             </Container>
-
-           
-
             <Footer />
         </>
     )
