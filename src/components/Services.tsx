@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 function Services() {
     const { isAuthenticated } = useContext(AuthContext)
     const navigation = useNavigate()
-    
+
     const handleBook = () => {
 
         if (isAuthenticated)
@@ -20,10 +20,12 @@ function Services() {
     return (
         <>
             <NavBar />
+            <h1>What We Offer</h1>
             <TypesOfCleaning />
             <Button
-                    variant="outline-dark"
-                    onClick={() => handleBook()}>Book Now</Button>
+                id="book"
+                variant="outline-dark"
+                onClick={() => handleBook()}>Book Now</Button>
         </>
     );
 }
