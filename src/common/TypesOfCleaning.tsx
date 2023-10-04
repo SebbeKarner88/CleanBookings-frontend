@@ -5,7 +5,6 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { useContext, useState } from 'react'
 import { AuthContext } from '../context/AuthContext';
-import LogIn from '../components/LogIn';
 
 const TypesOfCleaning = () => {
     const { isAuthenticated } = useContext(AuthContext)
