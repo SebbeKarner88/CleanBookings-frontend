@@ -8,32 +8,22 @@ import { FormField } from "./FormField.tsx";
 import MyModal from '../../common/MyModal.tsx';
 import { AuthContext } from '../../context/AuthContext.tsx';
 
-interface Props {
-    choice: string | null
-}
-
 const schema = z.object({
     type: z
         .string()
         .nonempty({ message: "Type is required." }),
     date: z
         .string()
-        .nonempty({ message: "Date is required." }),
+        .nonempty({message: "Date is required."}),
     message: z
         .string()
 });
 
 type FormData = z.infer<typeof schema>;
 
-
 const BookingForm = () => {
     const [ modalVisible, setModalVisible ] = useState(false)
-    const [ selectedService, setSelectedService ] = useState('')
-    const [ selectedDate, setSelectedDate ] = useState('')
     const { customerId } = useContext(AuthContext)
-
-    /* TODO: how to make the picked option slected when the user is redirected to this view (via BookingView.tsx)? */
-
     const {
         register,
         handleSubmit,
@@ -72,13 +62,9 @@ const BookingForm = () => {
                         label="Type of service"
                         labelDescription="What kind of service would you like to book?"
                         inputType="radio"
-                        checked
-                        /** FUNKAR EJ SOM JAG VILL. hur får jag choice att bli markerad och inte dyka upp som en dublett? */
-                        options={[ /* OM man har valt typ av städning på sidan "Services" vill jag att detta valet ska vara markerat här, men hur?? */
-                                "BASIC", "TOPP", "DIAMOND", "WINDOW" ]}
+                        options={["BASIC", "TOPP", "DIAMOND", "WINDOW" ]}
                         fieldError={errors.type}
                         register={register}
-                        value={selectedService}
                     />
                 </div>
                 <div className="col-md-6">
@@ -89,7 +75,6 @@ const BookingForm = () => {
                         fieldError={errors.date}
                         customError={errorMessage}
                         register={register}
-                        value={selectedDate}
                     />
                 </div>
             </div>
@@ -127,7 +112,6 @@ const BookingForm = () => {
             >
                 Book
             </button>
-            {/** TODO: Add some logic for modal showing success message only if the booking actually is successful */}
             <MyModal
                 modalVisible={modalVisible}
                 header="Thank you for booking!"
