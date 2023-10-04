@@ -38,10 +38,13 @@ export async function registerCustomer(
     city: string,
     phoneNumber: string,
     emailAddress: string,
-    password: string
+    password: string,
+    setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>,
+    setCustomerId: React.Dispatch<React.SetStateAction<string>>,
+    setName: React.Dispatch<React.SetStateAction<string>>,
 ) {
     try {
-        return await api.post(
+        const response = await api.post(
             "customer",
             {
                 firstName: firstName,
@@ -53,8 +56,14 @@ export async function registerCustomer(
                 phoneNumber: phoneNumber,
                 emailAddress: emailAddress,
                 password: password
-            },
+            }
         );
+        if (response.status == 201) {
+            setIsAuthenticated(true);
+            setCustomerId(response.data.customerId);
+            setName(response.data.name);
+            return response;
+        }
     } catch (error) {
         console.error(error);
     }
