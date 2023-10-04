@@ -1,26 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
-//React functional component for displaying and handling approved cleanings.
-const ApprovedCleaning: React.FC = () => {
-    // States
-    const [completedCleanings, setCompletedCleanings] = useState<JobDto[]>([]);
+const ApprovedCleaning: React.FC<{ completedCleanings: JobDto[]; setCompletedCleanings: React.Dispatch<React.SetStateAction<JobDto[]>> }> = ({ completedCleanings, setCompletedCleanings }) => {
     const [showModal, setShowModal] = useState(false);
     const [feedback, setFeedback] = useState('');
     const [selectedCleaning, setSelectedCleaning] = useState<JobDto | null>(null);
     const [error, setError] = useState<string | null>(null);
-
-    // Fetching data
-    useEffect(() => {
-        axios.get('http://localhost:8080/api/v1/job/completed-cleanings')
-            .then((response) => {
-                setCompletedCleanings(response.data);
-            })
-            .catch((error) => {
-                console.error("Error fetching data:", error);
-                setError('There was an error fetching the data.');
-            });
-    }, []);
 
     const approveCleaning = () => {
         if (selectedCleaning) {
@@ -40,7 +25,6 @@ const ApprovedCleaning: React.FC = () => {
         }
     };
 
-    // Rendering
     return (
         <div className="container mt-4">
             <h1 className="text-center">Completed Cleanings</h1>

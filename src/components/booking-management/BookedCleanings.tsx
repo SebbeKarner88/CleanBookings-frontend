@@ -1,7 +1,8 @@
-
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import ApprovedCleaning from "./ApprovedCleaning";
+import DisapprovedCleaning from "./DisapprovedCleaning";
 
 const BookedCleanings: React.FC = () => {
     const { customerId } = useParams<{ customerId: string }>();
@@ -17,6 +18,18 @@ const BookedCleanings: React.FC = () => {
                 console.error("Error fetching data:", error);
             });
     }, [customerId]);
+
+    const [completedCleanings, setCompletedCleanings] = useState<JobDto[]>([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:8080/api/v1/job/completed-cleanings')
+            .then((response) => {
+                setCompletedCleanings(response.data);
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
+            });
+    }, []);
 
     return (
         <div className="container mt-4">
@@ -45,6 +58,8 @@ const BookedCleanings: React.FC = () => {
                 ))}
                 </tbody>
             </table>
+            <DisapprovedCleaning completedCleanings={completedCleanings} setCompletedCleanings={setCompletedCleanings} />
+            <ApprovedCleaning completedCleanings={completedCleanings} setCompletedCleanings={setCompletedCleanings} />
         </div>
     );
 };

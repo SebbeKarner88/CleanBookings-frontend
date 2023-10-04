@@ -1,25 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
-const DisapprovedCleaning: React.FC = () => {
-    // States
-    const [completedCleanings, setCompletedCleanings] = useState<JobDto[]>([]); //Duplicate in ApprovedCleaning.tsx, need parent component.
+const DisapprovedCleaning: React.FC<{ completedCleanings: JobDto[]; setCompletedCleanings: React.Dispatch<React.SetStateAction<JobDto[]>> }> = ({ completedCleanings, setCompletedCleanings }) => {
     const [showDisapprovalModal, setShowDisapprovalModal] = useState(false);
     const [disapprovalFeedback, setDisapprovalFeedback] = useState('');
     const [selectedCleaning, setSelectedCleaning] = useState<JobDto | null>(null);
     const [error, setError] = useState<string | null>(null);
-
-    // Fetching data
-    useEffect(() => {
-        axios.get('http://localhost:8080/api/v1/job/completed-cleanings')
-            .then((response) => {
-                setCompletedCleanings(response.data);
-            })
-            .catch((error) => {
-                console.error("Error fetching data:", error);
-                setError('There was an error fetching the data.');
-            });
-    }, []);
 
     const disapproveCleaning = () => {
         if (selectedCleaning) {
@@ -39,7 +25,6 @@ const DisapprovedCleaning: React.FC = () => {
         }
     };
 
-    // Rendering
     return (
         <div className="container mt-4">
             <h1 className="text-center">Completed Cleanings</h1>
