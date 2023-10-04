@@ -70,7 +70,7 @@ export async function registerCustomer(
 }
 
 export async function bookService(
-    setCustomerId: React.Dispatch<React.SetStateAction<string>>,
+    customerId: React.Dispatch<React.SetStateAction<string>>,
     type: string,
     date: string,
     cleaner: string,
@@ -80,7 +80,7 @@ export async function bookService(
         return await api.post(
             "job",
             {
-                customerId: setCustomerId,
+                customerId: customerId,
                 type: type,
                 date: date,
                 cleaner: cleaner,
