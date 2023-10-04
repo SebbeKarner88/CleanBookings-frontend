@@ -18,6 +18,8 @@ const TypesOfCleaning = () => {
         setChoice(choice)
         sessionStorage.setItem('choice', choice)
 
+        // check if user is logged in, if not -> prompt to log in or register
+
         location.assign('/booking-view')
     }
 
