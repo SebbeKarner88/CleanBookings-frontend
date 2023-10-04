@@ -21,7 +21,8 @@ const BookedCleanings: React.FC = () => {
     return (
         <div className="container mt-4">
             <h1 className="text-center">Booked Cleanings for Customer {customerId}</h1>
-            {/*<Link to="/path-to-approved-cleanings">See Approved Cleanings</Link>*/}
+            <Link to="/path-to-approved-cleanings">See Approved Cleanings</Link>
+            <Link to="/path-to-disapproved-cleanings">See Disapproved Cleanings</Link>
             <table className="table table-bordered table-striped">
                 <thead className="thead-dark">
                 <tr>
