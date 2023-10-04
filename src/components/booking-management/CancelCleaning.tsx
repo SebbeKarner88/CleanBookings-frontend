@@ -5,13 +5,12 @@ function CancelCleaning() {
     const [showModal, setShowModal] = useState(false);
     const [feedbackMessage, setFeedbackMessage] = useState('');
 
-    const { bookingId } = useParams<{ bookingId: string }>(); //Get the bookingId from the URL parameter
+    const { bookingId } = useParams<{ bookingId: string }>();
 
     const handleCancel = async () => {
         try {
-            //The fetch for database.
-            const response = await fetch('http://localhost:8080/api/v1/job/cancel-cleaning', {
-                method: 'POST',
+            const response = await fetch('http://localhost:8080/api/v1/job/', {
+                method: 'DELETE',  // Modified HTTP method
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -19,31 +18,30 @@ function CancelCleaning() {
             });
 
             if (response.ok) {
-                setFeedbackMessage("Städningen har framgångsrikt avbokats."); //Message for successful booking.
+                setFeedbackMessage("Städningen har framgångsrikt avbokats.");
             } else {
                 const responseBody = await response.json();
-                setFeedbackMessage(responseBody.message || "Ett fel inträffade vid avbokningen."); //Message for failed booking.
+                setFeedbackMessage(responseBody.message || "Ett fel inträffade vid avbokningen.");
             }
         } catch (error) {
             console.error('Ett fel inträffade:', error);
-            setFeedbackMessage("Ett oväntat fel inträffade. Försök igen senare."); //Message for unexpected error.
+            setFeedbackMessage("Ett oväntat fel inträffade. Försök igen senare.");
         }
 
-        setShowModal(false); //After the cancellation process, hide the modal window.
-
+        setShowModal(false);
     };
 
     return (
         <div>
             <button className="btn btn-danger" onClick={() => setShowModal(true)}>Avboka städning</button>
-            {showModal && (  //If showModal is true, show the modal window.
+            {showModal && (
                 <div>
                     Är du säker på att du vill avboka?
                     <button className="btn btn-danger" onClick={handleCancel}>Ja</button>
                     <button className="btn btn-danger" onClick={() => setShowModal(false)}>Nej</button>
                 </div>
             )}
-            {feedbackMessage && <p>{feedbackMessage}</p>}  {/* Show feedback message*/}
+            {feedbackMessage && <p>{feedbackMessage}</p>}
         </div>
     );
 }
