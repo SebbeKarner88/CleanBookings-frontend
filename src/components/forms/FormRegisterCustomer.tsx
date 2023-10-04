@@ -6,6 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { VscAccount } from "react-icons/vsc";
 import { BsExclamationCircle } from "react-icons/bs"
 import { FormField } from "./FormField.tsx";
+import {useContext} from "react";
+import {AuthContext} from "../../context/AuthContext.tsx";
 
 const schema = z.object({
     firstName: z
@@ -67,6 +69,7 @@ export function FormRegisterCustomer() {
     } = useForm<FormData>({
         resolver: zodResolver(schema)
     });
+    const {setIsAuthenticated, setCustomerId, setName} = useContext(AuthContext);
     const navigation = useNavigate();
 
     function onSubmit(data: FieldValues) {
@@ -79,7 +82,10 @@ export function FormRegisterCustomer() {
             data.city,
             data.phoneNumber,
             data.emailAddress,
-            data.password
+            data.password,
+            setIsAuthenticated,
+            setCustomerId,
+            setName
         ).then(response => {
             if (response?.status == 201) {
                 // Set data if needed
