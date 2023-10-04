@@ -9,7 +9,8 @@ const ApprovedCleaning: React.FC<{ completedCleanings: JobDto[]; setCompletedCle
 
     const approveCleaning = () => {
         if (selectedCleaning) {
-            axios.put(`http://localhost:8080/api/v1/job/approve-cleaning/${selectedCleaning.id}`, {
+            axios.put(`http://localhost:8080/api/v1/job/approve-fail-cleaning`, {
+                jobId: selectedCleaning.id,
                 feedback: feedback
             })
                 .then(() => {
