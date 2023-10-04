@@ -75,6 +75,7 @@ const BookingForm = ({ choice }: Props) => {
                         labelDescription="What kind of service would you like to book?"
                         inputType="radio"
                         checked
+                        /** FUNKAR EJ SOM JAG VILL. hur får jag choice att bli markerad och inte dyka upp som en dublett? */
                         options={choice ? [ choice, "Basic Cleaning", "Top Cleaning", "Diamond Cleaning", "Window Cleaning" ]
                             :
                             [ /* OM man har valt typ av städning på sidan "Services" vill jag att detta valet ska vara markerat här, men hur?? */
