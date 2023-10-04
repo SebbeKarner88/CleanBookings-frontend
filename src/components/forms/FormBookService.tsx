@@ -32,7 +32,7 @@ const BookingForm = ({ choice }: Props) => {
     const [ selectedService, setSelectedService ] = useState('')
     const [ selectedDate, setSelectedDate ] = useState('')
     const [ selectedCleaner, setSelectedCleaner ] = useState('')
-    const { setCustomerId } = useContext(AuthContext)
+    const { customerId } = useContext(AuthContext)
 
     /* TODO: how to make the picked option slected when the user is redirected to this view (via BookingView.tsx)? */
 
@@ -48,10 +48,9 @@ const BookingForm = ({ choice }: Props) => {
 
     function onSubmit(data: FieldValues) {
         bookService(
-            setCustomerId,
-            selectedService,
-            selectedDate,
-            selectedCleaner,
+            customerId,
+            data.type,
+            data.date,
             data.message
         ).then(response => {
             if (response?.status == 200) {
@@ -76,10 +75,10 @@ const BookingForm = ({ choice }: Props) => {
                         inputType="radio"
                         checked
                         /** FUNKAR EJ SOM JAG VILL. hur får jag choice att bli markerad och inte dyka upp som en dublett? */
-                        options={choice ? [ choice, "Basic Cleaning", "Top Cleaning", "Diamond Cleaning", "Window Cleaning" ]
+                        options={choice ? [ choice, "BASIC", "TOPP", "DIAMOND", "WINDOW" ]
                             :
                             [ /* OM man har valt typ av städning på sidan "Services" vill jag att detta valet ska vara markerat här, men hur?? */
-                                "Basic Cleaning", "Top Cleaning", "Diamond Cleaning", "Window Cleaning" ]}
+                                "BASIC", "TOPP", "DIAMOND", "WINDOW" ]}
                         fieldError={errors.type}
                         register={register}
                         value={selectedService}
@@ -125,9 +124,9 @@ const BookingForm = ({ choice }: Props) => {
             <button
                 type="submit"
                 className="btn btn-outline-dark w-100"
-                onClick={() => {
-                    setModalVisible(!modalVisible);
-                }}
+                // onClick={() => {
+                //     setModalVisible(!modalVisible);
+                // }}
             >
                 Book
             </button>

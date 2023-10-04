@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { useContext, useState } from 'react'
 import { AuthContext } from '../context/AuthContext';
+import {useNavigate} from "react-router-dom";
 
 const TypesOfCleaning = () => {
     const { isAuthenticated } = useContext(AuthContext)
@@ -15,15 +16,18 @@ const TypesOfCleaning = () => {
         { title: 'Diamond Cleaing', description: 'Thorough cleaning with window cleaning included - allt som ingår i full plus grundlig rengöring av spis, ugn, microvågsugn, eventuell tvättmaskin samt fönstertvätt. 1500:-' },
         { title: 'Window Cleaning', description: 'Putsning av alla fönster i fastigheten. Från 500:-' }
     ]
+    const navigation = useNavigate();
 
     const handleChoice = (choice: string) => {
         setChoice(choice)
         sessionStorage.setItem('choice', choice)
 
         if (isAuthenticated)
-            location.assign('/booking-view')
+            // location.assign('/booking-view')
+            navigation("/booking-view");
         else
-            location.assign('/login')
+            navigation("/login");
+            // location.assign('/login')
     }
 
     return (

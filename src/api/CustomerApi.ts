@@ -70,10 +70,9 @@ export async function registerCustomer(
 }
 
 export async function bookService(
-    customerId: React.Dispatch<React.SetStateAction<string>>,
+    customerId: string,
     type: string,
     date: string,
-    cleaner: string,
     message: string
 ) {
     try {
@@ -83,7 +82,6 @@ export async function bookService(
                 customerId: customerId,
                 type: type,
                 date: date,
-                cleaner: cleaner,
                 message: message
             },
         );
