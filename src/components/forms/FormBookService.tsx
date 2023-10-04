@@ -3,8 +3,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import { z } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { bookService } from "../../api/CustomerApi.ts";
-import { Link, useNavigate } from "react-router-dom";
-import { VscAccount } from "react-icons/vsc";
+import { useNavigate } from "react-router-dom";
 import { FormField } from "./FormField.tsx";
 import MyModal from '../../common/MyModal.tsx';
 import { AuthContext } from '../../context/AuthContext.tsx';
@@ -27,11 +26,10 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 
-const BookingForm = ({ choice }: Props) => {
+const BookingForm = () => {
     const [ modalVisible, setModalVisible ] = useState(false)
     const [ selectedService, setSelectedService ] = useState('')
     const [ selectedDate, setSelectedDate ] = useState('')
-    const [ selectedCleaner, setSelectedCleaner ] = useState('')
     const { customerId } = useContext(AuthContext)
 
     /* TODO: how to make the picked option slected when the user is redirected to this view (via BookingView.tsx)? */
@@ -54,6 +52,7 @@ const BookingForm = ({ choice }: Props) => {
             data.message
         ).then(response => {
             if (response?.status == 200) {
+                setModalVisible(!modalVisible)
                 navigation("/");
             } else {
                 setErrorMessage("Date is already booked.");
@@ -75,9 +74,7 @@ const BookingForm = ({ choice }: Props) => {
                         inputType="radio"
                         checked
                         /** FUNKAR EJ SOM JAG VILL. hur får jag choice att bli markerad och inte dyka upp som en dublett? */
-                        options={choice ? [ choice, "BASIC", "TOPP", "DIAMOND", "WINDOW" ]
-                            :
-                            [ /* OM man har valt typ av städning på sidan "Services" vill jag att detta valet ska vara markerat här, men hur?? */
+                        options={[ /* OM man har valt typ av städning på sidan "Services" vill jag att detta valet ska vara markerat här, men hur?? */
                                 "BASIC", "TOPP", "DIAMOND", "WINDOW" ]}
                         fieldError={errors.type}
                         register={register}
@@ -137,11 +134,6 @@ const BookingForm = ({ choice }: Props) => {
                 description="You will receive a confirmation email shortly."
                 onRequestClose={() => setModalVisible(!modalVisible)}
             />
-            {/*             <div className="mt-3 d-flex gap-2 align-items-center">
-                <VscAccount size={20} />
-                <strong>Already have an account? </strong>
-                <Link to="/login">Sign in</Link>
-            </div> */}
         </form>
     )
 }
