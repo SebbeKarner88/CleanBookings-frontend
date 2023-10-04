@@ -6,14 +6,15 @@
 }
 
 #book {
-    margin-top: 30px;
+    margin: 50px auto;
     height: 100px;
     width: 350px;
     font-size: 2em;
     font-weight: 500;
     text-transform: uppercase;
-    border: 2px solid black;
-    background-color: lightblue;
+    border: 1px solid black;
+    background-color: #eff5f5;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 @media screen {

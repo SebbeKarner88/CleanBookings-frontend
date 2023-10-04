@@ -4,6 +4,7 @@ import TypesOfCleaning from "../common/TypesOfCleaning";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { Footer } from "../common/Footer";
 
 function Services() {
     const { isAuthenticated } = useContext(AuthContext)
@@ -26,6 +27,7 @@ function Services() {
                 id="book"
                 variant="outline-dark"
                 onClick={() => handleBook()}>Book Now</Button>
+            <Footer />
         </>
     );
 }

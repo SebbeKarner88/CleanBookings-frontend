@@ -1,5 +1,6 @@
+import { Footer } from "../common/Footer.tsx";
 import NavBar from "../common/NavBar"
-import {FormRegisterCustomer} from "./forms/FormRegisterCustomer.tsx";
+import { FormRegisterCustomer } from "./forms/FormRegisterCustomer.tsx";
 
 const Register = () => {
 
@@ -7,11 +8,12 @@ const Register = () => {
 
     return (
         <>
-            <NavBar/>
-            <div style={{"maxWidth": "800px", "margin": "auto"}}>
+            <NavBar />
+            <div style={{ "maxWidth": "800px", "margin": "auto" }}>
                 <h1 className="my-3 px-4 fw-bold text-start text-md-center">Register an account</h1>
-                <FormRegisterCustomer/>
+                <FormRegisterCustomer />
             </div>
+            <Footer />
         </>
     )
 }
