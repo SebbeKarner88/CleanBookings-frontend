@@ -3,24 +3,28 @@ import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { AuthContext } from '../context/AuthContext';
+import LogIn from '../components/LogIn';
 
 const TypesOfCleaning = () => {
-    const [choice, setChoice] = useState('')
+    const { isAuthenticated } = useContext(AuthContext)
+    const [ choice, setChoice ] = useState('')
     const services = [
-        { title: 'Basic Cleaning', description: 'Basic cleaning with no extras' },
-        { title: 'Top Cleaning', description: 'Full cleaning' },
-        { title: 'Diamond Cleaing', description: 'Thorough cleaning with window cleaning included' },
-        { title: 'Window Cleaning', description: 'Crystal clear' }
+        { title: 'Basic Cleaning', description: 'Basic cleaning - vi dammsuger, våttorkar och dammar hela ditt hem. 500:-' },
+        { title: 'Top Cleaning', description: 'Full cleaning - allt som ingår i basic plus avtorkning av kök och badrum. 1000:-' },
+        { title: 'Diamond Cleaing', description: 'Thorough cleaning with window cleaning included - allt som ingår i full plus grundlig rengöring av spis, ugn, microvågsugn, tvättmaskin. 1500:-' },
+        { title: 'Window Cleaning', description: 'Putsning av alla fönster i fastigheten. Från 500:-' }
     ]
 
     const handleChoice = (choice: string) => {
         setChoice(choice)
         sessionStorage.setItem('choice', choice)
 
-        // check if user is logged in, if not -> prompt to log in or register
-
-        location.assign('/booking-view')
+        if (isAuthenticated)
+            location.assign('/booking-view')
+        else
+            location.assign('/login')
     }
 
     return (
@@ -35,7 +39,7 @@ const TypesOfCleaning = () => {
                                     <Card.Text>{service.description}</Card.Text>
                                     <Button
                                         variant="outline-dark"
-                                        onClick={() => handleChoice(service.title)}>Välj</Button>
+                                        onClick={() => handleChoice(service.title)}>Book</Button>
                                 </Card.Body>
                             </Card>
                         </Col>

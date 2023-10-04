@@ -75,8 +75,11 @@ const BookingForm = ({ choice }: Props) => {
                         label="Type of service"
                         labelDescription="What kind of service would you like to book?"
                         inputType="radio"
-                        options={[ /* OM man har valt typ av städning på sidan "Services" vill jag att detta valet ska vara markerat här, men hur?? */
-                            "Basic Cleaning", "Top Cleaning", "Diamond Cleaning", "Window Cleaning" ]}
+                        checked
+                        options={choice ? [ choice, "Basic Cleaning", "Top Cleaning", "Diamond Cleaning", "Window Cleaning" ]
+                            :
+                            [ /* OM man har valt typ av städning på sidan "Services" vill jag att detta valet ska vara markerat här, men hur?? */
+                                "Basic Cleaning", "Top Cleaning", "Diamond Cleaning", "Window Cleaning" ]}
                         fieldError={errors.type}
                         register={register}
                         value={selectedService}
@@ -95,7 +98,7 @@ const BookingForm = ({ choice }: Props) => {
                 </div>
             </div>
             <div className="row">
-               {/*  <div className="col-md-6">
+                {/*  <div className="col-md-6">
                     <FormField
                         fieldName="cleaner"
                         label="Cleaner"

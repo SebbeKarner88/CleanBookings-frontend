@@ -12,6 +12,7 @@ interface IFormField<T extends FieldValues> {
     labelDescription?: string;
     placeholder?: string
     value?: string
+    checked?: boolean
 }
 
 export function FormField<T extends FieldValues>({
