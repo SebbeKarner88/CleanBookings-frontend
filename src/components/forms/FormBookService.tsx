@@ -45,7 +45,7 @@ const BookingForm = () => {
                 setModalVisible(!modalVisible)
                 navigation("/");
             } else {
-                setErrorMessage("Date is already booked.");
+                setErrorMessage("Something went wrong, try again.");
             }
         }).catch(error => console.error(error.message));
     }
