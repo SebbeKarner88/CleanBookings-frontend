@@ -19,7 +19,7 @@ const BookedCleanings: React.FC = () => {
             });
     }, [customerId]);
 
-    const [completedCleanings, setCompletedCleanings] = useState<JobDto[]>([]);
+   /* const [completedCleanings, setCompletedCleanings] = useState<JobDto[]>([]);
 
     useEffect(() => {
         axios.get('http://localhost:8080/api/v1/job/completed-cleanings')
@@ -29,7 +29,7 @@ const BookedCleanings: React.FC = () => {
             .catch((error) => {
                 console.error("Error fetching data:", error);
             });
-    }, []);
+    }, []);*/
 
     return (
         <div className="container mt-4">
@@ -58,8 +58,8 @@ const BookedCleanings: React.FC = () => {
                 ))}
                 </tbody>
             </table>
-            <DisapprovedCleaning completedCleanings={completedCleanings} setCompletedCleanings={setCompletedCleanings} />
-            <ApprovedCleaning completedCleanings={completedCleanings} setCompletedCleanings={setCompletedCleanings} />
+            {/*<DisapprovedCleaning completedCleanings={completedCleanings} setCompletedCleanings={setCompletedCleanings} />*/}
+            {/*<ApprovedCleaning completedCleanings={completedCleanings} setCompletedCleanings={setCompletedCleanings} />*/}
         </div>
     );
 };
