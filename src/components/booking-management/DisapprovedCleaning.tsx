@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { disapproveCleaning } from "../../api/jobApi";
 
-const DisapprovedCleaning: React.FC<{ completedCleanings: JobDto[]; setCompletedCleanings: React.Dispatch<React.SetStateAction<JobDto[]>> }> = ({ completedCleanings, setCompletedCleanings }) => {
-    const [showDisapprovalModal, setShowDisapprovalModal] = useState(false);
-    const [disapprovalFeedback, setDisapprovalFeedback] = useState('');
+interface Props {
+    completedCleanings: JobDto[];
+    setCompletedCleanings: React.Dispatch<React.SetStateAction<JobDto[]>>;
+}
+
+const DisapprovedCleaning: React.FC<Props> = ({ completedCleanings, setCompletedCleanings }) => {
+    const [showModal, setShowModal] = useState(false);
+    const [feedback, setFeedback] = useState('');
     const [selectedCleaning, setSelectedCleaning] = useState<JobDto | null>(null);
     const [error, setError] = useState<string | null>(null);
 
-    const disapproveCleaning = () => {
+    const handleDisapproveCleaning = () => {
         if (selectedCleaning) {
-            axios.put(`http://localhost:8080/api/v1/job/reissue-failed-cleaning`, {
-                jobId: selectedCleaning.id,
-                feedback: disapprovalFeedback
-            })
+            disapproveCleaning(selectedCleaning.id, feedback)
                 .then(() => {
                     setCompletedCleanings(prev => prev.filter(cleaning => cleaning.id !== selectedCleaning.id));
-                    setShowDisapprovalModal(false);
-                    setDisapprovalFeedback('');
+                    setShowModal(false);
+                    setFeedback('');
                     setSelectedCleaning(null);
                 })
                 .catch((error) => {
@@ -36,7 +38,7 @@ const DisapprovedCleaning: React.FC<{ completedCleanings: JobDto[]; setCompleted
                     <th scope="col">Booking ID</th>
                     <th scope="col">Date</th>
                     <th scope="col">Service Type</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -48,7 +50,7 @@ const DisapprovedCleaning: React.FC<{ completedCleanings: JobDto[]; setCompleted
                         <td>
                             <button onClick={() => {
                                 setSelectedCleaning(cleaning);
-                                setShowDisapprovalModal(true);
+                                setShowModal(true);
                             }}>Disapprove</button>
                         </td>
                     </tr>
@@ -56,12 +58,12 @@ const DisapprovedCleaning: React.FC<{ completedCleanings: JobDto[]; setCompleted
                 </tbody>
             </table>
 
-            {showDisapprovalModal && selectedCleaning && (
+            {showModal && selectedCleaning && (
                 <div className="modal">
                     <h2>Disapprove Cleaning for {selectedCleaning.id}</h2>
-                    <textarea value={disapprovalFeedback} onChange={(e) => setDisapprovalFeedback(e.target.value)} placeholder="Enter disapproval feedback..."></textarea>
-                    <button disabled={disapprovalFeedback.length === 0 || disapprovalFeedback.length > 1000} onClick={disapproveCleaning}>Submit Feedback</button>
-                    <button onClick={() => setShowDisapprovalModal(false)}>Close</button>
+                    <textarea value={feedback} onChange={(e) => setFeedback(e.target.value)} placeholder="Enter negative feedback..."></textarea>
+                    <button disabled={feedback.length === 0 || feedback.length > 1000} onClick={handleDisapproveCleaning}>Submit Feedback</button>
+                    <button onClick={() => setShowModal(false)}>Close</button>
                 </div>
             )}
         </div>

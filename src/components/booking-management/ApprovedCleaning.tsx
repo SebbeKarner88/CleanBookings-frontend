@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { approveCleaning } from "../../api/jobApi";
 
-const ApprovedCleaning: React.FC<{ completedCleanings: JobDto[]; setCompletedCleanings: React.Dispatch<React.SetStateAction<JobDto[]>> }> = ({ completedCleanings, setCompletedCleanings }) => {
+interface Props {
+    completedCleanings: JobDto[];
+    setCompletedCleanings: React.Dispatch<React.SetStateAction<JobDto[]>>;
+}
+
+const ApprovedCleaning: React.FC<Props> = ({ completedCleanings, setCompletedCleanings }) => {
     const [showModal, setShowModal] = useState(false);
     const [feedback, setFeedback] = useState('');
     const [selectedCleaning, setSelectedCleaning] = useState<JobDto | null>(null);
     const [error, setError] = useState<string | null>(null);
 
-    const approveCleaning = () => {
+    const handleApproveCleaning = () => {
         if (selectedCleaning) {
-            axios.put(`http://localhost:8080/api/v1/job/approve-fail-cleaning`, {
-                jobId: selectedCleaning.id,
-                feedback: feedback
-            })
+            approveCleaning(selectedCleaning.id, feedback)
                 .then(() => {
                     setCompletedCleanings(prev => prev.filter(cleaning => cleaning.id !== selectedCleaning.id));
                     setShowModal(false);
@@ -35,7 +37,7 @@ const ApprovedCleaning: React.FC<{ completedCleanings: JobDto[]; setCompletedCle
                 <tr>
                     <th scope="col">Booking ID</th>
                     <th scope="col">Date</th>
-                        <th scope="col">Service Type</th>
+                    <th scope="col">Service Type</th>
                     <th scope="col">Action</th>
                 </tr>
                 </thead>
@@ -59,16 +61,23 @@ const ApprovedCleaning: React.FC<{ completedCleanings: JobDto[]; setCompletedCle
             {showModal && selectedCleaning && (
                 <div className="modal">
                     <h2>Approve Cleaning for {selectedCleaning.id}</h2>
-                    <textarea value={feedback} onChange={(e) => setFeedback(e.target.value)} placeholder="Enter positive feedback..."></textarea>
-                    <button disabled={feedback.length === 0 || feedback.length > 1000} onClick={approveCleaning}>Submit Feedback</button>
+                    <textarea
+                        value={feedback}
+                        onChange={(e) => setFeedback(e.target.value)}
+                        placeholder="Enter positive feedback..."
+                    ></textarea>
+                    <button
+                        disabled={feedback.length === 0 || feedback.length > 1000}
+                        onClick={handleApproveCleaning} // Corrected this
+                    >
+                        Submit Feedback
+                    </button>
                     <button onClick={() => setShowModal(false)}>Close</button>
                 </div>
             )}
         </div>
     );
 };
-
-export default ApprovedCleaning;
 
 interface JobDto {
     id: string;
@@ -77,3 +86,5 @@ interface JobDto {
     message: string;
     status: string;
 }
+
+export default ApprovedCleaning;
