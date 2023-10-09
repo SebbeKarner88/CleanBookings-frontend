@@ -21,6 +21,7 @@ const BookedCleanings: React.FC = () => {
 
     const [completedCleanings, setCompletedCleanings] = useState<JobDto[]>([]);
 
+    /* TODO: This effect must be moved elsewhere because here we have only booked cleanings */
     useEffect(() => {
         axios.get('http://localhost:8080/api/v1/job/completed-cleanings')
             .then((response) => {

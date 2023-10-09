@@ -6,6 +6,7 @@ import MyPages from './components/MyPages'
 import Services from './components/Services'
 import Contact from './components/Contact'
 import BookedCleanings from './components/booking-management/BookedCleanings';
+import CleaningsPerType from './components/booking-management/CleaningsPerType';
 import BookingHistory from "./components/booking-management/BookingHistory.tsx";
 import BookingView from './components/booking-management/BookingView.tsx'
 import LogIn from './components/LogIn.tsx'
@@ -22,6 +23,7 @@ function App() {
   const {isAuthenticated} = useContext(AuthContext);
 
   return (
+
     <>
       <BrowserRouter>
         <Routes>
@@ -30,6 +32,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/booked-cleanings/:customerId" element={<BookedCleanings />} />
+          <Route path="/cleanings-per-type" element={<CleaningsPerType />} />
           <Route path="/booking-history/:customerId" element={<BookingHistory />} />
           <Route path="/gdpr-customer-data/:customerId" element={<GDPRCustomerData />} />
           <Route path="/booking-view" element={<BookingView />} />
@@ -42,6 +45,7 @@ function App() {
         </Routes>
       </BrowserRouter> 
     </>
+
   )
 }
 
