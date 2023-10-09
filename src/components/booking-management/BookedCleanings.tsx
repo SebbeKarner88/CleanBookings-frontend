@@ -19,7 +19,7 @@ const BookedCleanings: React.FC = () => {
             });
     }, [customerId]);
 
-    const [completedCleanings, setCompletedCleanings] = useState<JobDto[]>([]);
+   /* const [completedCleanings, setCompletedCleanings] = useState<JobDto[]>([]);
 
     /* TODO: This effect must be moved elsewhere because here we have only booked cleanings */
     useEffect(() => {
@@ -30,7 +30,7 @@ const BookedCleanings: React.FC = () => {
             .catch((error) => {
                 console.error("Error fetching data:", error);
             });
-    }, []);
+    }, []);*/
 
     return (
         <div className="container mt-4">
@@ -59,8 +59,8 @@ const BookedCleanings: React.FC = () => {
                 ))}
                 </tbody>
             </table>
-            <DisapprovedCleaning completedCleanings={completedCleanings} setCompletedCleanings={setCompletedCleanings} />
-            <ApprovedCleaning completedCleanings={completedCleanings} setCompletedCleanings={setCompletedCleanings} />
+            {/*<DisapprovedCleaning completedCleanings={completedCleanings} setCompletedCleanings={setCompletedCleanings} />*/}
+            {/*<ApprovedCleaning completedCleanings={completedCleanings} setCompletedCleanings={setCompletedCleanings} />*/}
         </div>
     );
 };
