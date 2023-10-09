@@ -12,11 +12,10 @@ import BookingView from './components/booking-management/BookingView.tsx'
 import LogIn from './components/LogIn.tsx'
 import Register from './components/Register.tsx'
 import AboutUs from './components/AboutUs'
-import CancelCleaning from "./components/booking-management/CancelCleaning";
 import {useContext} from "react";
 import {AuthContext} from "./context/AuthContext.tsx";
-import ApprovedCleaning from "./components/booking-management/ApprovedCleaning";
-import DisapprovedCleaning from "./components/booking-management/DisapprovedCleaning";
+// import ApprovedCleaning from "./components/booking-management/ApprovedCleaning";
+// import DisapprovedCleaning from "./components/booking-management/DisapprovedCleaning";
 import GDPRCustomerData from "./components/GDPRCustomerData.tsx";
 
 function App() {
@@ -39,9 +38,8 @@ function App() {
           <Route path="/login" element={<LogIn />} />
           <Route path="/register" element={<Register />} />
           <Route path="/AboutUs" element={<AboutUs />} />
-          <Route path="/Cancel-cleaning" element={<CancelCleaning />} />
-          <Route path="/approved-cleaning/:cleaningId" element={<ApprovedCleaning />} />
-          <Route path="/disapproved-cleaning/:cleaningId" element={<DisapprovedCleaning />} />
+          {/*<Route path="/approved-cleaning/:cleaningId" element={<ApprovedCleaning />} />*/}
+          {/*<Route path="/disapproved-cleaning/:cleaningId" element={<DisapprovedCleaning />} />*/}
         </Routes>
       </BrowserRouter> 
     </>

@@ -5,10 +5,11 @@ interface Props {
     header: string,
     description: string,
     modalVisible: boolean,
-    onRequestClose(): void
+    onRequestClose(): void,
+    onConfirm?(): void
 }
 
-const MyModal = ({ header, description, modalVisible, onRequestClose } : Props) => {
+const MyModal = ({ header, description, modalVisible, onRequestClose, onConfirm  } : Props) => {
 
     return (
       <Modal show={modalVisible} onHide={onRequestClose}>
@@ -25,6 +26,12 @@ const MyModal = ({ header, description, modalVisible, onRequestClose } : Props) 
           <Button 
           variant="outline-dark"
           onClick={onRequestClose}>Close</Button>
+            {onConfirm && (
+                <Button
+                    variant="danger"
+                    onClick={onConfirm}>Confirm</Button>
+            )}
+
         </Modal.Footer>
       </Modal.Dialog>
     </Modal>
