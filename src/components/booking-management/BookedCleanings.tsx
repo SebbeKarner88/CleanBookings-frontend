@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import ApprovedCleaning from "./ApprovedCleaning";
-import DisapprovedCleaning from "./DisapprovedCleaning";
+import { AuthContext } from '../../context/AuthContext';
+// import ApprovedCleaning from "./ApprovedCleaning";
+// import DisapprovedCleaning from "./DisapprovedCleaning";
 
 const BookedCleanings: React.FC = () => {
-    const { customerId } = useParams<{ customerId: string }>();
+    const { customerId } = useContext(AuthContext);
+    // const { customerId } = useParams<{ customerId: string }>();
     const [bookedCleanings, setBookedCleanings] = useState<JobDto[]>([]);
 
     useEffect(() => {
+        if (!customerId) {
+            return; // Ensure customerId is available
+        }
 
         axios.get(`http://localhost:8080/api/v1/job/booked-cleanings/${customerId}`)
             .then((response) => {
@@ -22,7 +27,7 @@ const BookedCleanings: React.FC = () => {
    /* const [completedCleanings, setCompletedCleanings] = useState<JobDto[]>([]);
 
     /* TODO: This effect must be moved elsewhere because here we have only booked cleanings */
-    useEffect(() => {
+    /*useEffect(() => {
         axios.get('http://localhost:8080/api/v1/job/completed-cleanings')
             .then((response) => {
                 setCompletedCleanings(response.data);
@@ -34,7 +39,7 @@ const BookedCleanings: React.FC = () => {
 
     return (
         <div className="container mt-4">
-            <h1 className="text-center">Booked Cleanings for Customer {customerId}</h1>
+            <h1 className="text-center">Booked Cleanings for Customer <br/> ID: {customerId}</h1>
             <Link to="/path-to-approved-cleanings">See Approved Cleanings</Link>
             <Link to="/path-to-disapproved-cleanings">See Disapproved Cleanings</Link>
             <table className="table table-bordered table-striped">

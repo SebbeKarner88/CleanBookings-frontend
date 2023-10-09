@@ -1,35 +1,23 @@
-// import React from 'react';
-//
-// const BookingHistory: React.FC = () => {
-//     // Component logic here
-//
-//     return (
-//         <div>
-//             <h1>Booking History</h1>
-//             {/* JSX for displaying booking history information */}
-//         </div>
-//     );
-// };
-//
-// export default BookingHistory;
 
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
+import { AuthContext } from '../../context/AuthContext';
 
 const BookingHistory: React.FC = () => {
-    // Get the 'customerId' from the route parameters
-    const { customerId } = useParams<{ customerId: string }>();
+    const { customerId } = useContext(AuthContext);
     const [bookingHistory, setBookingHistory] = useState<JobDto[]>([]);
 
     // Dummy data for the customer (replace with your data structure)
-    const customer = {
-        id: customerId,
-        firstName: 'John',
-        lastName: 'Doe',
-    };
+    // const customer = {
+    //     id: customerId,
+    //     firstName: 'John',
+    //     lastName: 'Doe',
+    // };
 
     useEffect(() => {
+        if (!customerId) {
+            return; // Ensure customerId is available
+        }
 
         axios.get(`http://localhost:8080/api/v1/job/booking-history/${customerId}`)
             .then((response) => {
@@ -42,8 +30,8 @@ const BookingHistory: React.FC = () => {
 
     return (
         <div className="container mt-4">
-            <h1 className="text-center">Booking History for Customer ID: {customerId}</h1>
-            <h2 className="text-center">Customer: {customer.firstName} {customer.lastName}</h2>
+            <h1 className="text-center">Booking History for Customer <br/> ID: {customerId}</h1>
+            {/*<h2 className="text-center">Customer: {customer.firstName} {customer.lastName}</h2>*/}
             <table className="table table-bordered table-striped">
                 <thead className="thead-dark">
                 <tr>
