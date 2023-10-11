@@ -28,6 +28,7 @@ export async function loginCustomer(
 }
 
 import React from "react";
+import CustomerDataResponse from "../dto/CustomerDataResponse";
 
 export async function registerCustomer(
     firstName: string,
@@ -87,5 +88,18 @@ export async function bookService(
         );
     } catch (error) {
         console.error(error);
+    }
+}
+export async function updateCustomerData(
+    customerId: string,
+    updatedData: CustomerDataResponse
+) {
+    try {
+        const response = await api.put(`customer/update/${customerId}`, updatedData);
+        return response.data;
+    }
+    catch (error) {
+        console.error(error);
+        throw error;
     }
 }

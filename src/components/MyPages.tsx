@@ -7,6 +7,8 @@ import GDPRCustomerData from './GDPRCustomerData';
 import { AuthContext } from '../context/AuthContext'
 import {useNavigate} from 'react-router-dom';
 import CleaningsPerType from "./booking-management/CleaningsPerType.tsx";
+import EditCustomerData from "./EditCustomerData";
+
 
 function MyPages() {
 
@@ -32,6 +34,8 @@ function MyPages() {
                 <CleaningsPerType />
                 <h2>Din personliga information</h2>
                 <GDPRCustomerData />
+                <h2>Ändra information</h2>
+                <EditCustomerData/>
                 <h2>Dina väntande bokningar</h2>
                 <BookedCleanings />
                 <h2>Dina stängda bokningar</h2>
