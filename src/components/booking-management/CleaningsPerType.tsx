@@ -4,7 +4,8 @@ import React, {useContext, useEffect, useState} from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext';
 import Pagination from 'react-bootstrap/Pagination';
-
+import MyModal from "../../common/MyModal";
+import {handleApproveCleaning, handleDisapproveCleaning} from "./JobApprovalHandlers";
 const CleaningsPerType: React.FC = () => {
     // const  customerId  = "a02d79b0-9402-4b56-9def-ec2544be0afd";
     // const  isAuthenticated  = true;
@@ -13,6 +14,7 @@ const CleaningsPerType: React.FC = () => {
     const [cleanings, setCleanings] = useState<JobDto[]>([]);
     const [currentPage, setCurrentPage] = useState<number>(1); // Current page number
     const [jobsPerPage] = useState<number>(5); // Number of jobs to display per page
+    const [errorModal, setErrorModal] = useState<{visible: boolean, message: string}>({visible: false, message: ""});
 
     // Job status options
     const jobStatusOptions = [
@@ -51,6 +53,12 @@ const CleaningsPerType: React.FC = () => {
                 });
         }
     }, [customerId, selectedStatus, isAuthenticated]);
+
+    const closeErrorModal = () => {
+        setErrorModal({visible: false, message: ""});
+    };
+
+
 
     // Pagination logic
     const indexOfLastJob = currentPage * jobsPerPage;
@@ -93,7 +101,10 @@ const CleaningsPerType: React.FC = () => {
                         <td>{booking.id}</td>
                         <td>{new Date(booking.bookedDate).toLocaleDateString()}</td>
                         <td>{booking.type}</td>
-                        <td>{/* Add any actions you want here */}</td>
+                        <td>
+                            <button onClick={() => handleApproveCleaning(booking.id, customerId, setCleanings, setErrorModal)}>Approve</button>
+                            <button onClick={() => handleDisapproveCleaning(booking.id, customerId, setCleanings, setErrorModal)}>Disapprove</button>
+                        </td>
                     </tr>
                 ))}
                 </tbody>
@@ -114,6 +125,12 @@ const CleaningsPerType: React.FC = () => {
                     )}
                 </Pagination>
             </div>
+            <MyModal
+                header="Error"
+                description={errorModal.message}
+                modalVisible={errorModal.visible}
+                onRequestClose={closeErrorModal}
+            />
         </div>
     );
 };

@@ -2,8 +2,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext';
-// import ApprovedCleaning from "./ApprovedCleaning";
-// import DisapprovedCleaning from "./DisapprovedCleaning";
 
 const BookingHistory: React.FC = () => {
     const { customerId } = useContext(AuthContext);
@@ -55,8 +53,6 @@ const BookingHistory: React.FC = () => {
                 ))}
                 </tbody>
             </table>
-            {/*<DisapprovedCleaning completedCleanings={completedCleanings} setCompletedCleanings={setCompletedCleanings} />*/}
-            {/*<ApprovedCleaning completedCleanings={completedCleanings} setCompletedCleanings={setCompletedCleanings} />*/}
         </div>
     );
 };
