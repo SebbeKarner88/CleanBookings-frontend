@@ -45,6 +45,7 @@ const BookingForm = () => {
                 setModalVisible(true)
             } else {
                 setErrorMessage("Something went wrong, try again.");
+                alert("Something went wrong.")
             }
         }).catch(error => console.error(error.message));
     }
@@ -105,9 +106,7 @@ const BookingForm = () => {
             {/** TODO: Add payment options */}
             <button
                 type="submit"
-                className="btn btn-outline-dark w-100"
-                onClick={() => setModalVisible(true)}
-            >
+                className="btn btn-outline-dark w-100">
                 Book
             </button>
         </form>
