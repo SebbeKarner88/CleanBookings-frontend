@@ -5,8 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { bookService } from "../../api/CustomerApi.ts";
 import { useNavigate } from "react-router-dom";
 import { FormField } from "./FormField.tsx";
-import MyModal from '../../common/MyModal.tsx';
 import { AuthContext } from '../../context/AuthContext.tsx';
+import { Button, Modal } from 'react-bootstrap';
 
 const schema = z.object({
     type: z
@@ -42,8 +42,7 @@ const BookingForm = () => {
             data.message
         ).then(response => {
             if (response?.status == 200) {
-                setModalVisible(!modalVisible)
-                navigation("/");
+                setModalVisible(true)
             } else {
                 setErrorMessage("Something went wrong, try again.");
             }
@@ -51,6 +50,7 @@ const BookingForm = () => {
     }
 
     return (
+        <>
         <form
             className="my-3 my-md-5 px-4 text-start"
             onSubmit={handleSubmit(onSubmit)}
@@ -106,19 +106,40 @@ const BookingForm = () => {
             <button
                 type="submit"
                 className="btn btn-outline-dark w-100"
-                // onClick={() => {
-                //     setModalVisible(!modalVisible);
-                // }}
+                onClick={() => setModalVisible(true)}
             >
                 Book
             </button>
-            <MyModal
-                modalVisible={modalVisible}
-                header="Thank you for booking!"
-                description="You will receive a confirmation email shortly."
-                onRequestClose={() => setModalVisible(!modalVisible)}
-            />
         </form>
+        <Modal
+                show={modalVisible}
+                onHide={() => setModalVisible(!modalVisible)}
+                fullscreen="md-down"
+            >
+                <Modal.Header
+                    className="bg-secondary-subtle"
+                    closeButton
+                >
+                    <Modal.Title className="fs-6 fw-bold">
+                        {"Booking successful!"}
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body className="bg-secondary-subtle">
+                    <p>You will recieve a confirmation email shortly.</p>
+                </Modal.Body>
+                <Modal.Footer className="bg-secondary-subtle">
+                    <Button
+                        variant="primary"
+                        onClick={() => {
+                            setModalVisible(!modalVisible)
+                            navigation("/myPages")
+                        }}
+                    >
+                        Return to My Pages
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
     )
 }
 
