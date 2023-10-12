@@ -29,9 +29,9 @@ const CleaningsPerType: React.FC = () => {
             return; // Ensure customerId is available
         }
 
-        console.log('customerId:', customerId);
+/*         console.log('customerId:', customerId);
         console.log('selectedStatus:', selectedStatus);
-        console.log('isAuthenticated:', isAuthenticated);
+        console.log('isAuthenticated:', isAuthenticated); */
 
         if (isAuthenticated) {
             let statusValue = selectedStatus;
