@@ -86,7 +86,7 @@ export async function bookService(
                 message: message
             },
         )
-        if (response.status == 200) {
+        if (response.status == 201) {
             return response;
         }
     } catch (error) {

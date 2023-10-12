@@ -6,7 +6,7 @@ import { bookService } from "../../api/CustomerApi.ts";
 import { useNavigate } from "react-router-dom";
 import { FormField } from "./FormField.tsx";
 import { AuthContext } from '../../context/AuthContext.tsx';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Modal, Spinner } from 'react-bootstrap';
 
 const schema = z.object({
     type: z
@@ -24,6 +24,7 @@ type FormData = z.infer<typeof schema>;
 const BookingForm = () => {
     const [ modalVisible, setModalVisible ] = useState(false)
     const { customerId } = useContext(AuthContext)
+    const [ isAssigning, setIsAssigning ] = useState(false)
     const {
         register,
         handleSubmit,
@@ -41,7 +42,8 @@ const BookingForm = () => {
             data.date,
             data.message
         ).then(response => {
-            if (response?.status == 200) {
+            if (response?.status == 201) {
+                setIsAssigning(false)
                 setModalVisible(true)
             } else {
                 setErrorMessage("Something went wrong, try again.");
@@ -104,11 +106,24 @@ const BookingForm = () => {
                 </div>
             </div>
             {/** TODO: Add payment options */}
+            { 
+            isAssigning ?
+            <button type='button' disabled>
+                <Spinner
+                                as="span"
+                                animation="border"
+                                size="sm"
+                                role="status"
+                                aria-hidden="true"
+                                aria-label={"Sending request..."}
+                            />
+            </button>
+            :
             <button
                 type="submit"
                 className="btn btn-outline-dark w-100">
                 Book
-            </button>
+            </button> }
         </form>
         <Modal
                 show={modalVisible}
