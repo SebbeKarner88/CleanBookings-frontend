@@ -28,7 +28,7 @@ export async function loginCustomer(
 }
 
 import React from "react";
-import CustomerDataResponse from "../dto/CustomerDataResponse";
+
 
 export async function registerCustomer(
     firstName: string,
@@ -93,16 +93,38 @@ export async function bookService(
         console.error(error);
     }
 }
+
 export async function updateCustomerData(
     customerId: string,
-    updatedData: CustomerDataResponse
+    firstName?: string,
+    lastName?: string,
+    customerType?: string,
+    streetAddress?: string,
+    postalCode?: number,
+    city?: string,
+    phoneNumber?: string,
+    emailAddress?: string
 ) {
     try {
-        const response = await api.put(`customer/update/${customerId}`, updatedData);
-        return response.data;
-    }
-    catch (error) {
+        const response = await api.put(
+            "customer/updateInfo",
+            {
+                customerId: customerId,
+                firstName: firstName,
+                lastName: lastName,
+                customerType: customerType,
+                streetAddress: streetAddress,
+                postalCode: postalCode,
+                city: city,
+                phoneNumber: phoneNumber,
+                emailAddress: emailAddress
+            },
+        );
+        if (response.status === 200) {
+            return response;
+        }
+    } catch (error) {
         console.error(error);
-        throw error;
     }
 }
+
