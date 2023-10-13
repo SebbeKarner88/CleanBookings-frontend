@@ -66,19 +66,38 @@ const GDPRCustomerData: React.FC = () => {
             ) : (
                 <p>Loading customer data...</p>
             )}
-
-            <Button variant="primary" onClick={() => {
-                const values = { customerId: customerData?.id, firstName: customerData?.firstName,
+            
+            
+            <Button 
+            variant='secondary'
+            className='w-20 mt-3'
+            onClick={() => {
+                const values = {
+                    customerId: customerData?.id, firstName: customerData?.firstName,
                     lastName: customerData?.lastName, customerType: customerData?.customerType,
                     streetAddress: customerData?.streetAddress, postalCode: customerData?.postalCode,
-                    city: customerData?.city, phoneNumber: customerData?.phoneNumber, emailAddress: customerData?.emailAddress}
+                    city: customerData?.city, phoneNumber: customerData?.phoneNumber, emailAddress: customerData?.emailAddress
+                }
                 handleUpdateInformation(values)
-                }}>
+            }}>
                 Update information
             </Button>
-
-            <Button variant="primary" onClick={handleShowPrivacyModal}>
+            {' '}
+            <Button
+                variant='secondary'
+                className='w-20 mt-3'
+                onClick={handleShowPrivacyModal}>
                 Privacy Policy
+            </Button>
+            {' '}
+            <Button
+                variant='secondary'
+                className='w-20 mt-3'
+                onClick={() => {
+                    navigate("/myPages")
+                }}
+            >
+                Return to My Pages
             </Button>
 
             {/* Privacy Policy Modal */}
