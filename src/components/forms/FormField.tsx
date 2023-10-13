@@ -25,7 +25,8 @@ export function FormField<T extends FieldValues>({
     inputType,
     options,
     labelDescription,
-    placeholder
+    placeholder,
+    defaultValue
 }: IFormField<T>) {
     return (
         <>
@@ -52,6 +53,7 @@ export function FormField<T extends FieldValues>({
                                 className={fieldError || customError != undefined ? "form-control is-invalid" : "form-control"}
                                 id={fieldName}
                                 placeholder={placeholder}
+                                defaultValue={defaultValue}
                             />
                         )}
             </div>
