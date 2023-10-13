@@ -12,6 +12,7 @@ interface IFormField<T extends FieldValues> {
     labelDescription?: string;
     placeholder?: string
     value?: string
+    defaultValue?: string
     checked?: boolean
 }
 

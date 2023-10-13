@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { z, } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { updateCustomerData } from "../../api/CustomerApi";
@@ -7,7 +7,6 @@ import { FormField } from "./FormField";
 import { AuthContext } from "../../context/AuthContext";
 import { Button, Modal } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom";
-
 
 const schema = z.object({
     firstName: z.string(),
@@ -21,25 +20,13 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-type FieldValues = {
-    firstName?: string;
-    lastName?: string;
-    streetAddress?: string;
-    postalCode?: string;
-    city?: string;
-    phoneNumber?: string;
-    emailAddress?: string;
-};
-
 const FormEditCustomerData = () => {
     const { customerId } = useContext(AuthContext);
     const [modalVisible, setModalVisible] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const navigation = useNavigate();
     const location = useLocation();
-    const values: FieldValues = location.state || {};
-
-
+    const values = location.state;
     const {
         register,
         handleSubmit,
@@ -48,19 +35,22 @@ const FormEditCustomerData = () => {
         resolver: zodResolver(schema)
     });
 
-    const onSubmit = async (data: FormData) => {
-        try {
-            const response = await updateCustomerData(customerId, data);
-            if (response.status === 200) {
-                setModalVisible(true);
-            } else {
-                setErrorMessage("Something went wrong, try again.");
-            }
-        } catch (error) {
-            console.error(error);
-            setErrorMessage("error");
-        }
-    };
+    function onSubmit(data: FieldValues) {
+        updateCustomerData(
+            data.firstName != values.firstName ? data.firstName : null,
+            data.lastName != values.lastName ? data.lastName : null,
+            data.streetAddress != values.streetAddress ? data.streetAddress : null,
+            data.postalCode != values.postalCode ? data.postalCode : null,
+            data.city != values.city ? data.city : null,
+            data.phoneNumber != values.phoneNumber ? data.phoneNumber : null,
+            data.emailAddress != values.emailAddress ? data.emailAddress : null
+        ).then(response => {
+            if (response?.status == 200) 
+                setModalVisible(true)
+            else
+                setErrorMessage("Something went wrong, try again.")
+        }).catch (error => console.error(error.message))
+    }
 
     return (
         <>
@@ -146,7 +136,7 @@ const FormEditCustomerData = () => {
                 <button
                     type="button"
                     className="btn btn-outline-danger w-100 mt-3"
-                    onClick={() => navigation("/my-pages")}
+                    onClick={() => navigation("/myPages")}
                 >
                     Cancel
                 </button>

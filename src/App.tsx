@@ -17,6 +17,7 @@ import {AuthContext} from "./context/AuthContext.tsx";
 // import ApprovedCleaning from "./components/booking-management/ApprovedCleaning";
 // import DisapprovedCleaning from "./components/booking-management/DisapprovedCleaning";
 import GDPRCustomerData from "./components/GDPRCustomerData.tsx";
+import FormEditCustomerData from './components/forms/FormEditCustomerData.tsx'
 
 function App() {
   const {isAuthenticated} = useContext(AuthContext);
@@ -33,11 +34,12 @@ function App() {
           <Route path="/booked-cleanings/:customerId" element={<BookedCleanings />} />
           <Route path="/cleanings-per-type" element={<CleaningsPerType />} />
           <Route path="/booking-history/:customerId" element={<BookingHistory />} />
-          <Route path="/gdpr-customer-data/:customerId" element={<GDPRCustomerData />} />
+          <Route path="/gdpr-customer-data" element={<GDPRCustomerData />} />
           <Route path="/booking-view" element={<BookingView />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/register" element={<Register />} />
           <Route path="/AboutUs" element={<AboutUs />} />
+          <Route path="/update-customer" element={<FormEditCustomerData />} />
           {/*<Route path="/approved-cleaning/:cleaningId" element={<ApprovedCleaning />} />*/}
           {/*<Route path="/disapproved-cleaning/:cleaningId" element={<DisapprovedCleaning />} />*/}
         </Routes>

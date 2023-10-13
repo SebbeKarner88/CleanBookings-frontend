@@ -5,12 +5,14 @@ import CustomerDataResponse from '../dto/CustomerDataResponse';
 import { Button, Modal } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown'; // Import ReactMarkdown
 import { AuthContext } from './../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const GDPRCustomerData: React.FC = () => {
-    const [customerData, setCustomerData] = useState<CustomerDataResponse | null>(null);
-    const [showPrivacyModal, setShowPrivacyModal] = useState(false);
+    const [ customerData, setCustomerData ] = useState<CustomerDataResponse | null>(null);
+    const [ showPrivacyModal, setShowPrivacyModal ] = useState(false);
     const { customerId } = useContext(AuthContext);
-    const [privacyPolicyText, setPrivacyPolicyText] = useState<string>(''); // State to store the Privacy Policy text
+    const [ privacyPolicyText, setPrivacyPolicyText ] = useState<string>(''); // State to store the Privacy Policy text
+    const navigate = useNavigate()
 
     useEffect(() => {
         // Fetch customer data from the backend
@@ -32,7 +34,7 @@ const GDPRCustomerData: React.FC = () => {
                 console.error('Error fetching Privacy Policy text:', error);
                 // Handle errors here (e.g., show an error message)
             });
-    }, [customerId]);
+    }, [ customerId ]);
 
     const handleClosePrivacyModal = () => {
         setShowPrivacyModal(false);
@@ -41,6 +43,10 @@ const GDPRCustomerData: React.FC = () => {
     const handleShowPrivacyModal = () => {
         setShowPrivacyModal(true);
     };
+
+    const handleUpdateInformation = (values: object) => {
+        navigate("/update-customer", { state: values })
+    }
 
     return (
         <div>
@@ -60,6 +66,16 @@ const GDPRCustomerData: React.FC = () => {
             ) : (
                 <p>Loading customer data...</p>
             )}
+
+            <Button variant="primary" onClick={() => {
+                const values = { customerId: customerData?.id, firstName: customerData?.firstName,
+                    lastName: customerData?.lastName, customerType: customerData?.customerType,
+                    streetAddress: customerData?.streetAddress, postalCode: customerData?.postalCode,
+                    city: customerData?.city, phoneNumber: customerData?.phoneNumber, emailAddress: customerData?.emailAddress}
+                handleUpdateInformation(values)
+                }}>
+                Update information
+            </Button>
 
             <Button variant="primary" onClick={handleShowPrivacyModal}>
                 Privacy Policy
