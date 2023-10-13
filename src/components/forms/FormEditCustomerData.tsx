@@ -136,7 +136,7 @@ const FormEditCustomerData = () => {
                 <button
                     type="button"
                     className="btn btn-outline-danger w-100 mt-3"
-                    onClick={() => navigation("/myPages")}
+                    onClick={() => navigation("/gdpr-customer-data")}
                 >
                     Cancel
                 </button>
@@ -163,7 +163,7 @@ const FormEditCustomerData = () => {
                         variant="primary"
                         onClick={() => {
                             setModalVisible(!modalVisible);
-                            navigation("/my-pages");
+                            navigation("/myPages");
                         }}
                     >
                         Return to My Pages
