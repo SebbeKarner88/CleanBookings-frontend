@@ -2,12 +2,9 @@ import { Footer } from "../common/Footer"
 import NavBar from "../common/NavBar"
 import { useContext, useEffect } from 'react';
 import BookingHistory from '../components/booking-management/BookingHistory';
-import BookedCleanings from '../components/booking-management/BookedCleanings';
-import GDPRCustomerData from './GDPRCustomerData';
 import { AuthContext } from '../context/AuthContext'
 import {useNavigate} from 'react-router-dom';
 import CleaningsPerType from "./booking-management/CleaningsPerType.tsx";
-import FormEditCustomerData from "./forms/FormEditCustomerData";
 import { Button } from "react-bootstrap";
 
 
