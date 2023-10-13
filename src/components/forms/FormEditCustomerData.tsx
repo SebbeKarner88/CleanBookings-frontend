@@ -37,6 +37,7 @@ const FormEditCustomerData = () => {
 
     function onSubmit(data: FieldValues) {
         updateCustomerData(
+            customerId,
             data.firstName != values.firstName ? data.firstName : null,
             data.lastName != values.lastName ? data.lastName : null,
             data.streetAddress != values.streetAddress ? data.streetAddress : null,
