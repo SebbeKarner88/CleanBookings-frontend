@@ -109,7 +109,6 @@ export async function updateCustomerData(
         const response = await api.put(
             "customer/updateInfo",
             {
-                customerId: customerId,
                 firstName: firstName,
                 lastName: lastName,
                 customerType: customerType,
@@ -119,6 +118,11 @@ export async function updateCustomerData(
                 phoneNumber: phoneNumber,
                 emailAddress: emailAddress
             },
+            { 
+                headers: {
+                    id: customerId
+                }
+            }
         );
         if (response.status === 200) {
             return response;
