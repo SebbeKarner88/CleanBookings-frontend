@@ -69,7 +69,6 @@ const CleaningsPerType: React.FC = () => {
 
     return (
         <div className="container mt-4">
-            <h1 className="text-center">Cleanings for Customer {customerId}</h1>
             <div className="form-group">
                 <label htmlFor="statusSelect">Select Job Status:</label>
                 <select

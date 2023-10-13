@@ -31,7 +31,6 @@ const BookingHistory: React.FC = () => {
 
     return (
         <div className="container mt-4">
-            <h1 className="text-center">Booking History for Customer <br/> ID: {customerId}</h1>
             {/*<h2 className="text-center">Customer: {customer.firstName} {customer.lastName}</h2>*/}
             <table className="table table-bordered table-striped">
                 <thead className="thead-dark">
