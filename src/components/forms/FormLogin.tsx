@@ -34,14 +34,16 @@ export function FormLogin() {
     const navigation = useNavigate();
     const {setIsAuthenticated, setCustomerId, setName} = useContext(AuthContext);
 
-    function onSubmit(data: FieldValues) {
-        loginCustomer(data.emailAddress, data.password, setIsAuthenticated, setCustomerId, setName).then(response => {
-            if (response?.status == 200) {
-                navigation("/");
-            } else {
+    async function onSubmit(data: FieldValues) {
+        try {
+            const response = await loginCustomer(data.emailAddress, data.password, setIsAuthenticated, setCustomerId, setName);
+            if (response?.status == 200)
+                navigation(-1);
+            else
                 setErrorMessage("Email or password are incorrect!");
-            }
-        }).catch(error => console.error(error.message));
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (

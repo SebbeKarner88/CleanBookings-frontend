@@ -19,15 +19,16 @@ const NavBar = () => {
         <>
             <Navbar expand="lg" className="bg-body-tertiary py-2">
                 <Container>
-                    <Navbar.Brand href="/">Clean Bookings</Navbar.Brand>
+                    <Navbar.Brand>
+                        <Link to="/" className="link-dark">
+                            Clean Bookings
+                        </Link>
+                    </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <LinkContainer to="/services">
                                 <Nav.Link>Services</Nav.Link>
-                            </LinkContainer>
-                            <LinkContainer to="/myPages">
-                                <Nav.Link>My Pages</Nav.Link>
                             </LinkContainer>
                             <LinkContainer to="/AboutUs">
                                 <Nav.Link>About Us</Nav.Link>
@@ -46,22 +47,37 @@ const NavBar = () => {
 
                     </Navbar.Collapse>
                     <Navbar.Collapse className="justify-content-end">
-                        {isAuthenticated ?
-                            <Navbar.Text>
-                                <p className="visually-hidden">Signed in as: {name}</p>
-                                <Button variant="outline-danger" className="mx-3 my-3 my-md-0" onClick={handleLogout}>
-                                    Logout
-                                </Button>
-                            </Navbar.Text>
-                            :
-                            <Navbar.Text>
-                                <span><Link to="/login">Sign in</Link> or </span>
-                                <Link to="/register">
-                                    <Button variant="success" className="my-3 my-md-0">
-                                        Register
-                                    </Button>
-                                </Link>
-                            </Navbar.Text>
+                        {
+                            isAuthenticated
+                                ?
+                                <>
+                                    <Navbar.Text>
+                                        <Button
+                                            variant="primary"
+                                            type="button"
+                                            className="my-3 my-md-0"
+                                            onClick={() => navigation("/myPages")}
+                                        >
+                                            My pages
+                                        </Button>
+                                    </Navbar.Text>
+                                    <Navbar.Text>
+                                        <p className="visually-hidden">Signed in as: {name}</p>
+                                        <Button variant="outline-danger" className="mx-3 my-3 my-md-0"
+                                                onClick={handleLogout}>
+                                            Logout
+                                        </Button>
+                                    </Navbar.Text>
+                                </>
+                                :
+                                <Navbar.Text>
+                                    <span><Link to="/login">Sign in</Link> or </span>
+                                    <Link to="/register">
+                                        <Button variant="success" className="my-3 my-md-0">
+                                            Register
+                                        </Button>
+                                    </Link>
+                                </Navbar.Text>
                         }
                     </Navbar.Collapse>
                 </Container>

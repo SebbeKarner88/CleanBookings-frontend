@@ -28,20 +28,25 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/myPages" element={isAuthenticated ? <MyPages /> : <LogIn/>} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/booked-cleanings/:customerId" element={<BookedCleanings />} />
-          <Route path="/cleanings-per-type" element={<CleaningsPerType />} />
-          <Route path="/booking-history/:customerId" element={<BookingHistory />} />
-          <Route path="/gdpr-customer-data" element={<GDPRCustomerData />} />
-          <Route path="/booking-view" element={<BookingView />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/register" element={<Register />} />
           <Route path="/AboutUs" element={<AboutUs />} />
-          <Route path="/update-customer" element={<FormEditCustomerData />} />
-          {/*<Route path="/approved-cleaning/:cleaningId" element={<ApprovedCleaning />} />*/}
-          {/*<Route path="/disapproved-cleaning/:cleaningId" element={<DisapprovedCleaning />} />*/}
+          <Route path="/services" element={<Services />} />
+          <Route path="/contact" element={<Contact />} />
+          {
+            isAuthenticated &&
+              <>
+                <Route path="/myPages" element={<MyPages />} />
+                <Route path="/booked-cleanings/:customerId" element={<BookedCleanings />} />
+                <Route path="/cleanings-per-type" element={<CleaningsPerType />} />
+                <Route path="/booking-history/:customerId" element={<BookingHistory />} />
+                <Route path="/gdpr-customer-data" element={<GDPRCustomerData />} />
+                <Route path="/booking-view" element={<BookingView />} />
+                <Route path="/update-customer" element={<FormEditCustomerData />} />
+                {/*<Route path="/approved-cleaning/:cleaningId" element={<ApprovedCleaning />} />*/}
+                {/*<Route path="/disapproved-cleaning/:cleaningId" element={<DisapprovedCleaning />} />*/}
+              </>
+          }
         </Routes>
       </BrowserRouter> 
     </>
