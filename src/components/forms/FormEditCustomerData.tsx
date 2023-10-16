@@ -1,27 +1,47 @@
-import { useContext, useState } from "react";
-import { FieldValues, useForm } from "react-hook-form";
-import { z, } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { updateCustomerData } from "../../api/CustomerApi";
-import { FormField } from "./FormField";
-import { AuthContext } from "../../context/AuthContext";
-import { Button, Modal } from "react-bootstrap";
-import { useNavigate, useLocation } from "react-router-dom";
+import {useContext, useState} from "react";
+import {FieldValues, useForm} from "react-hook-form";
+import {z,} from "zod";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {updateCustomerData} from "../../api/CustomerApi";
+import {FormField} from "./FormField";
+import {AuthContext} from "../../context/AuthContext";
+import {Button, Modal} from "react-bootstrap";
+import {useNavigate, useLocation} from "react-router-dom";
 
 const schema = z.object({
-    firstName: z.string(),
-    lastName: z.string(),
-    streetAddress: z.string(),
-    postalCode: z.string(),
-    city: z.string(),
-    phoneNumber: z.string(),
-    emailAddress: z.string(),
+    firstName: z
+        .string()
+        .nonempty({message: "First name is required."}),
+    lastName: z
+        .string()
+        .nonempty({message: "Last name is required."}),
+    streetAddress: z
+        .string()
+        .nonempty({message: "Street address is required."}),
+    postalCode: z
+        .string()
+        .nonempty({message: "Postal code is required."})
+        .regex(/^\d{3}\s?\d{2}$|^\d{5}$/, {
+            message: "Invalid postal code format. Only five digits, XXX XX or XXXXX format is allowed.",
+        }),
+    city: z
+        .string()
+        .nonempty({message: "City is required."}),
+    phoneNumber: z
+        .string()
+        .regex(/^[0-9+\-\s]*$/, {
+            message: "Invalid phone number format. Only numbers (0-9), +, -, and white space are allowed.",
+        }),
+    emailAddress: z
+        .string()
+        .nonempty({message: "Email is required."})
+        .email({message: "Please provide a valid email address."}),
 });
 
 type FormData = z.infer<typeof schema>;
 
 const FormEditCustomerData = () => {
-    const { customerId } = useContext(AuthContext);
+    const {customerId} = useContext(AuthContext);
     const [modalVisible, setModalVisible] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const navigation = useNavigate();
@@ -30,20 +50,12 @@ const FormEditCustomerData = () => {
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        formState: {errors},
     } = useForm<FormData>({
         resolver: zodResolver(schema)
     });
 
     function onSubmit(data: FieldValues) {
-        console.log(customerId,
-            data.firstName != values.firstName ? data.firstName : null,
-            data.lastName != values.lastName ? data.lastName : null,
-            data.streetAddress != values.streetAddress ? data.streetAddress : null,
-            data.postalCode != values.postalCode ? data.postalCode : null,
-            data.city != values.city ? data.city : null,
-            data.phoneNumber != values.phoneNumber ? data.phoneNumber : null,
-            data.emailAddress != values.emailAddress ? data.emailAddress : null)
         updateCustomerData(
             customerId,
             data.firstName != values.firstName ? data.firstName : null,
@@ -54,11 +66,11 @@ const FormEditCustomerData = () => {
             data.phoneNumber != values.phoneNumber ? data.phoneNumber : null,
             data.emailAddress != values.emailAddress ? data.emailAddress : null
         ).then(response => {
-            if (response?.status == 200) 
+            if (response?.status == 200)
                 setModalVisible(true)
             else
                 setErrorMessage("Something went wrong, try again.")
-        }).catch (error => console.error(error.message))
+        }).catch(error => console.error(error.message))
     }
 
     return (
