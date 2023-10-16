@@ -1,4 +1,4 @@
-import { FieldError, FieldValues, Path, UseFormRegister } from "react-hook-form";
+import {FieldError, FieldValues, Path, UseFormRegister} from "react-hook-form";
 import { HTMLInputTypeAttribute } from "react";
 
 interface IFormField<T extends FieldValues> {

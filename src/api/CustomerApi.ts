@@ -34,7 +34,7 @@ export async function loginCustomer(
 export async function registerCustomer(
     firstName: string,
     lastName: string,
-    customerType: "PRIVATE" | "BUSINESS",
+    personNumber: string,
     streetAddress: string,
     postalCode: number,
     city: string,
@@ -51,7 +51,8 @@ export async function registerCustomer(
             {
                 firstName: firstName,
                 lastName: lastName,
-                customerType: customerType,
+                personNumber: personNumber,
+                customerType: "PRIVATE",
                 streetAddress: streetAddress,
                 postalCode: postalCode,
                 city: city,

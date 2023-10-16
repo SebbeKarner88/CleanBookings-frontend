@@ -15,8 +15,6 @@ import Register from './components/Register.tsx'
 import AboutUs from './components/AboutUs'
 import {useContext} from "react";
 import {AuthContext} from "./context/AuthContext.tsx";
-// import ApprovedCleaning from "./components/booking-management/ApprovedCleaning";
-// import DisapprovedCleaning from "./components/booking-management/DisapprovedCleaning";
 import GDPRCustomerData from "./components/GDPRCustomerData.tsx";
 import FormEditCustomerData from './components/forms/FormEditCustomerData.tsx'
 
@@ -24,7 +22,6 @@ function App() {
   const {isAuthenticated} = useContext(AuthContext);
 
   return (
-
     <>
       <BrowserRouter>
         <Routes>
@@ -51,7 +48,6 @@ function App() {
         </Routes>
       </BrowserRouter> 
     </>
-
   )
 }
 
