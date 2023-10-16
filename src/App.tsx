@@ -1,6 +1,7 @@
 import './App.css'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import "bootstrap";
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import LandingPage from './components/LandingPage'
 import MyPages from './components/MyPages'
 import Services from './components/Services'

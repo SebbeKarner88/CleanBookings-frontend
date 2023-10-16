@@ -11,7 +11,6 @@ interface IJobsTable {
     jobs: Job[] | undefined;
     statuses?: string[];
     setTriggerUpdateOfJobs: Dispatch<SetStateAction<boolean>>;
-    setIsLoadingJobsData: Dispatch<SetStateAction<boolean>>;
 }
 
 interface Job {
@@ -23,7 +22,7 @@ interface Job {
     // employees: string[]
 }
 
-export function CustomerJobsTable({jobs, statuses, setTriggerUpdateOfJobs, setIsLoadingJobsData}: IJobsTable) {
+export function CustomerJobsTable({jobs, statuses, setTriggerUpdateOfJobs}: IJobsTable) {
     const {customerId} = useContext(AuthContext);
     const [jobId, setJobId] = useState<string>("");
     const [showUpdateJobStatusModal, setShowUpdateJobStatusModal] = useState<boolean>(false);
@@ -35,7 +34,6 @@ export function CustomerJobsTable({jobs, statuses, setTriggerUpdateOfJobs, setIs
         const response = await executedCleaningRequest(customerId, jobId);
         if (response?.status == 200) {
             setTriggerUpdateOfJobs(value => !value);
-            setIsLoadingJobsData(true);
             setShowUpdateJobStatusModal(false);
             setIsUpdating(false);
         }

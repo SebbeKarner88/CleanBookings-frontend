@@ -1,4 +1,13 @@
-import {Nav, Navbar, Container, Form, Button} from "react-bootstrap";
+import {
+    Nav,
+    Navbar,
+    Container,
+    Form,
+    Button,
+    DropdownItem,
+    NavLink,
+    SplitButton
+} from "react-bootstrap";
 import {LinkContainer} from 'react-router-bootstrap';
 import {useContext} from 'react'
 import {AuthContext} from "../context/AuthContext.tsx";
@@ -51,16 +60,22 @@ const NavBar = () => {
                             isAuthenticated
                                 ?
                                 <>
-                                    <Navbar.Text>
-                                        <Button
+                                    <Nav>
+                                        <SplitButton
+                                            title="My pages"
                                             variant="primary"
-                                            type="button"
-                                            className="my-3 my-md-0"
                                             onClick={() => navigation("/myPages")}
                                         >
-                                            My pages
-                                        </Button>
-                                    </Navbar.Text>
+                                            <DropdownItem>
+                                                <LinkContainer to="/gdpr-customer-data">
+                                                    <NavLink>
+                                                        Settings
+                                                    </NavLink>
+                                                </LinkContainer>
+                                            </DropdownItem>
+
+                                        </SplitButton>
+                                    </Nav>
                                     <Navbar.Text>
                                         <p className="visually-hidden">Signed in as: {name}</p>
                                         <Button variant="outline-danger" className="mx-3 my-3 my-md-0"
