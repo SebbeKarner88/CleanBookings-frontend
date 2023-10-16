@@ -5,7 +5,7 @@ import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext';
 import Pagination from 'react-bootstrap/Pagination';
 import MyModal from "../../common/MyModal";
-import {handleApproveCleaning, handleDisapproveCleaning} from "./JobApprovalHandlers";
+import {handleApproveCleaning, handleDisapproveCleaning} from "./JobApprovalHandlers2";
 const CleaningsPerType: React.FC = () => {
     // const  customerId  = "a02d79b0-9402-4b56-9def-ec2544be0afd";
     // const  isAuthenticated  = true;
