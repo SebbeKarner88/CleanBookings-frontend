@@ -61,7 +61,7 @@ const FormEditCustomerData = () => {
             data.firstName != values.firstName ? data.firstName : null,
             data.lastName != values.lastName ? data.lastName : null,
             data.streetAddress != values.streetAddress ? data.streetAddress : null,
-            data.postalCode != values.postalCode ? data.postalCode : null,
+            data.postalCode != values.postalCode ? data.postalCode.replace(/\s/g, '') : null,
             data.city != values.city ? data.city : null,
             data.phoneNumber != values.phoneNumber ? data.phoneNumber : null,
             data.emailAddress != values.emailAddress ? data.emailAddress : null
