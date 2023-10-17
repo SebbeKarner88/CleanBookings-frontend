@@ -12,9 +12,9 @@ const schema = z.object({
         .nonempty({message: "Street address is required."}),
     postalCode: z
         .string()
-        .regex(/\d/, {message: "Please only input numbers with no white spaces."})
-        .min(5, {message: "Postal code must be a minimum of 5 numbers."})
-        .max(5, {message: "Postal code must be a maximum of 5 numbers (with no white spaces)."}),
+        .regex(/^\d{3}\s?\d{2}$|^\d{5}$/, {
+            message: "Invalid postal code format. Only five digits, XXX XX or XXXXX format is allowed.",
+        }),
     city: z
         .string()
         .nonempty({message: "City is required."}),
@@ -65,7 +65,7 @@ export function FormRegisterContactDetails({onNext}: IFormRegisterContactDetails
             <FormField
                 fieldName="postalCode"
                 label="Postal code"
-                labelDescription="No whitespaces allowed"
+                labelDescription="XX XXX or XXXXXX allowed"
                 inputType="text"
                 fieldError={errors.postalCode}
                 register={register}

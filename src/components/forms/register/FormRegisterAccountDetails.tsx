@@ -52,7 +52,7 @@ export function FormRegisterAccountDetails() {
                 formData.lastName,
                 formData.ssn,
                 formData.streetAddress,
-                parseInt(formData.postalCode),
+                parseInt(formData.postalCode.replace(/\s/g, '')),
                 formData.city,
                 formData.phoneNumber,
                 data.emailAddress,
