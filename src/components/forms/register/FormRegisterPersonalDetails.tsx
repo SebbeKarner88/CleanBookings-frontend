@@ -7,32 +7,27 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {useFormContext} from "../../../context/RegisterFormContext.tsx";
 
 const schema = z.object({
-    streetAddress: z
+    firstName: z
         .string()
-        .nonempty({message: "Street address is required."}),
-    postalCode: z
+        .nonempty({message: "First name is required."}),
+    lastName: z
         .string()
-        .regex(/\d/, {message: "Please only input numbers with no white spaces."})
-        .min(5, {message: "Postal code must be a minimum of 5 numbers."})
-        .max(5, {message: "Postal code must be a maximum of 5 numbers (with no white spaces)."}),
-    city: z
+        .nonempty({message: "Last name is required."}),
+    ssn: z
         .string()
-        .nonempty({message: "City is required."}),
-    phoneNumber: z
-        .string()
-        .nonempty({message: "Phone number is required."})
-        .regex(/^[0-9+\-\s]*$/, {
-            message: "Invalid phone number format. Only numbers (0-9), +, -, and white space are allowed.",
-        })
+        .min(11, {message: "Invalid SSN. Should contain at least 10 numbers."})
+        .max(11, {message: "Should be in format YYMMDD-XXXX"})
+        .includes("-", {message: "Should be in format YYMMDD-XXXX"})
+        .nonempty({message: "Social security number is required."})
 });
 
 type FormData = z.infer<typeof schema>;
 
-interface IFormRegisterContactDetails {
+interface IFormRegisterPersonalDetails {
     onNext: () => void;
 }
 
-export function FormRegisterContactDetails({onNext}: IFormRegisterContactDetails) {
+export function FormRegisterPersonalDetails({onNext}: IFormRegisterPersonalDetails) {
     const {
         register,
         handleSubmit,
@@ -50,40 +45,31 @@ export function FormRegisterContactDetails({onNext}: IFormRegisterContactDetails
     return (
         <form className="my-3 my-md-5 px-4 text-start" onSubmit={handleSubmit(saveData)}>
             <h2 className="my-3 fw-bold text-primary-emphasis">
-                Contact details
+                Personal details
             </h2>
 
             <FormField
-                fieldName="streetAddress"
-                label="Street address"
-                labelDescription="Street name and number"
+                fieldName="firstName"
+                label="First name"
                 inputType="text"
-                fieldError={errors.streetAddress}
+                fieldError={errors.firstName}
                 register={register}
             />
 
             <FormField
-                fieldName="postalCode"
-                label="Postal code"
-                labelDescription="No whitespaces allowed"
+                fieldName="lastName"
+                label="Last name"
                 inputType="text"
-                fieldError={errors.postalCode}
+                fieldError={errors.lastName}
                 register={register}
             />
 
             <FormField
-                fieldName="city"
-                label="City"
+                fieldName="ssn"
+                label="Social security number"
+                labelDescription={"YYMMDD-XXXX"}
                 inputType="text"
-                fieldError={errors.city}
-                register={register}
-            />
-
-            <FormField
-                fieldName="phoneNumber"
-                label="Phone number"
-                inputType="tel"
-                fieldError={errors.phoneNumber}
+                fieldError={errors.ssn}
                 register={register}
             />
 

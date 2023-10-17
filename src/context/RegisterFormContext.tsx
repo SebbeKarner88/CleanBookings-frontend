@@ -26,7 +26,7 @@ const defaultFormData: IFormData = {
     phoneNumber: ""
 };
 
-const FormContext = createContext<IFormContext | undefined>(undefined);
+const RegisterFormContext = createContext<IFormContext | undefined>(undefined);
 
 export const FormProvider = ({children}: { children: ReactNode }) => {
     const [formData, setFormData] = useState<IFormData>(defaultFormData);
@@ -37,14 +37,14 @@ export const FormProvider = ({children}: { children: ReactNode }) => {
     };
 
     return (
-        <FormContext.Provider value={formContextValue}>
+        <RegisterFormContext.Provider value={formContextValue}>
             {children}
-        </FormContext.Provider>
+        </RegisterFormContext.Provider>
     );
 };
 
 export const useFormContext = () => {
-    const context = useContext(FormContext);
+    const context = useContext(RegisterFormContext);
     if (context === undefined) {
         throw new Error('useFormContext must be used within a FormProvider');
     }

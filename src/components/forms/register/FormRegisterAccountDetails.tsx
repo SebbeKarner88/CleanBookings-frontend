@@ -4,7 +4,7 @@ import {FormField} from "../FormField.tsx";
 import {useContext} from "react";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {useFormContext} from "../../../context/FormContext.tsx";
+import {useFormContext} from "../../../context/RegisterFormContext.tsx";
 import {useNavigate} from "react-router-dom";
 import {registerCustomer} from "../../../api/CustomerApi.ts";
 import {AuthContext} from "../../../context/AuthContext.tsx";
