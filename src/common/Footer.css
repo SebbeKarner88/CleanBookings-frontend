@@ -1,5 +1,8 @@
 .container-fluid {
-    background-color: #eff5f5;
+    background-color: #f1f1f1;
+    border-top-color: #e1dfdf;
+    border-top-style: solid;
+    border-top-width: 2px;
 }
 
 ul {
@@ -7,25 +10,25 @@ ul {
 }
 
 ul>li>a {
-    color: grey;
+    color: #8c8c8c;
     text-decoration: none;
     line-height: 1.8;
 }
 
 ul>li>a:hover,
 a:hover {
-    color: #ff6600;
+    color: #de993b;
     font-weight: 500;
 }
 
 .col-heading {
     display: block;
-    font-size: 2rem;
+    font-size: 1.2rem;
     text-transform: uppercase;
     color: #304f50;
     font-weight: 500;
-    margin: 1rem 0;
-    padding: .4rem 0px;
+    margin: 0.4rem 0;
+    padding: .4rem 0;
     border-bottom: 1px solid #c7c7c7;
     letter-spacing: 3px;
 }
@@ -51,10 +54,13 @@ a:hover {
 }
 
 #bottom-footer {
-    background-color: cadetblue;
-    color: white;
-    margin-top: 2rem;
+    background-color: #e5c192;
+    color: #363636;
+    margin-top: 0.5rem;
     padding-top: .3rem;
+    border-top-color: #ded9d9;
+    border-top-style: solid;
+    border-top-width: 2px;
 }
 
 .vertical-links>li {
@@ -63,7 +69,7 @@ a:hover {
 }
 
 .vertical-links>li>a {
-    color: white;
+    color: #424242;
     font-weight: 400;
     margin-left: 1rem;
     list-style-type: square;
