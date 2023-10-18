@@ -17,6 +17,7 @@ import {useContext} from "react";
 import {AuthContext} from "./context/AuthContext.tsx";
 import GDPRCustomerData from "./components/GDPRCustomerData.tsx";
 import FormEditCustomerData from './components/forms/FormEditCustomerData.tsx'
+import NotFoundView from "./components/NotFoundView/NotFoundView.tsx";
 
 function App() {
   const {isAuthenticated} = useContext(AuthContext);
@@ -31,6 +32,7 @@ function App() {
           <Route path="/AboutUs" element={<AboutUs />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/notfound" element={<NotFoundView />} />
           {
             isAuthenticated &&
               <>

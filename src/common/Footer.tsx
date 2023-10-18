@@ -36,7 +36,7 @@ export const Footer = () => {
                             <li><a href="#">Städafint's cleaning products</a></li>
                             <li><a href="#">Tips & Inspiration</a></li>
                             <li><a href="#">Sustainability</a></li>
-                            <li><a href="#">Our Story</a></li>
+                            <li><a href="/notfound">Our Story</a></li>
                         </ul>
                     </div>
 
