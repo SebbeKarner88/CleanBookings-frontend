@@ -81,7 +81,7 @@ const FormEditCustomerData = () => {
                     Editing customer
                 </h1>
                 <p className="h3 text-primary-emphasis">
-                    {values.firstName + " " + values.lastName} ({values.customerId})
+                    {values.firstName + " " + values.lastName} ({values.id})
                 </p>
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)}>
