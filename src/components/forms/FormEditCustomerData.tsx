@@ -74,13 +74,13 @@ const FormEditCustomerData = () => {
     }
 
     return (
-        <>
-            <div className="container bg-body-secondary my-3 p-3 p-md-4 rounded-4 text-start">
+        <div className="bg-secondary-subtle min-vh-100 min-vw-100 d-flex align-items-center">
+            <div className="container bg-light-subtle p-3 p-md-4 rounded-4 text-start border border-dark-subtle">
                 <div className="d-flex flex-column justify-content-between">
                 <h1 className="h1 fw-bold">
                     Editing customer
                 </h1>
-                <p className="h3 text-primary-emphasis">
+                <p className="h3" style={{color: "#825636"}}>
                     {values.firstName + " " + values.lastName} ({values.id})
                 </p>
                 </div>
@@ -182,14 +182,14 @@ const FormEditCustomerData = () => {
                         variant="primary"
                         onClick={() => {
                             setModalVisible(!modalVisible);
-                            navigation("/myPages");
+                            navigation("/my-pages");
                         }}
                     >
                         Return to My Pages
                     </Button>
                 </Modal.Footer>
             </Modal>
-        </>
+        </div>
     );
 };
 

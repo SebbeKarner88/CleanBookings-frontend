@@ -20,7 +20,7 @@ type Customer = {
     emailAddress: string;
 }
 
-const GDPRCustomerData = () => {
+const SettingsView = () => {
     const [customerData, setCustomerData] = useState<Customer | null>(null);
     const [showPrivacyModal, setShowPrivacyModal] = useState(false);
     const {customerId} = useContext(AuthContext);
@@ -42,11 +42,11 @@ const GDPRCustomerData = () => {
     }, [customerId]);
 
     return (
-        <>
+        <div className="bg-light-subtle min-vh-100 min-vw-100">
             <NavBar/>
-            <div className="container text-md-start">
+            <div className="container text-md-start mt-md-4">
                 {customerData ? (
-                    <div className="row my-3 mx-2 bg-body-secondary p-4 rounded-4 text-start">
+                    <div className="row my-3 mx-2 bg-white p-4 rounded-4 text-start border border-dark-subtle">
                         <div className="col-md-12 d-flex justify-content-between mb-4">
                             <h1 className="text-md-center fw-bold">
                                 Customer Data
@@ -57,7 +57,7 @@ const GDPRCustomerData = () => {
                                 aria-label="Press to edit customer data"
                                 type="button"
                                 onClick={() => navigate("/update-customer", {state: customerData})}>
-                                <MdEdit size={30}/>
+                                <MdEdit size={30} />
                             </Button>
                         </div>
 
@@ -86,9 +86,9 @@ const GDPRCustomerData = () => {
                 )}
             </div>
             <PrivacyModal onShow={showPrivacyModal} onClose={handleClosePrivacyModal} />
-        </>
+        </div>
     );
 };
 
-export default GDPRCustomerData;
+export default SettingsView;
 

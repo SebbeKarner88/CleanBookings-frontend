@@ -70,10 +70,10 @@ const NavBar = () => {
                                         <SplitButton
                                             title="My pages"
                                             variant="primary"
-                                            onClick={() => navigation("/myPages")}
+                                            onClick={() => navigation("/my-pages")}
                                         >
                                             <DropdownItem>
-                                                <LinkContainer to="/gdpr-customer-data">
+                                                <LinkContainer to="/my-pages/settings">
                                                     <NavLink>
                                                         Settings
                                                     </NavLink>

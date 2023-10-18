@@ -146,7 +146,7 @@ const BookingForm = () => {
                         variant="primary"
                         onClick={() => {
                             setModalVisible(!modalVisible)
-                            navigation("/myPages")
+                            navigation("/my-pages")
                         }}
                     >
                         Return to My Pages

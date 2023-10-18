@@ -15,7 +15,7 @@ import Register from './components/Register.tsx'
 import AboutUs from './components/AboutUs'
 import {useContext} from "react";
 import {AuthContext} from "./context/AuthContext.tsx";
-import GDPRCustomerData from "./components/GDPRCustomerData.tsx";
+import SettingsView from "./components/SettingsView.tsx";
 import FormEditCustomerData from './components/forms/FormEditCustomerData.tsx'
 import NotFoundView from "./components/NotFoundView/NotFoundView.tsx";
 
@@ -36,11 +36,11 @@ function App() {
           {
             isAuthenticated &&
               <>
-                <Route path="/myPages" element={<MyPages />} />
+                <Route path="/my-pages" element={<MyPages />} />
+                <Route path="/my-pages/settings" element={<SettingsView />} />
                 <Route path="/booked-cleanings/:customerId" element={<BookedCleanings />} />
                 <Route path="/cleanings-per-type" element={<CleaningsPerType />} />
                 <Route path="/booking-history/:customerId" element={<BookingHistory />} />
-                <Route path="/gdpr-customer-data" element={<GDPRCustomerData />} />
                 <Route path="/booking-view" element={<BookingView />} />
                 <Route path="/update-customer" element={<FormEditCustomerData />} />
                 {/*<Route path="/approved-cleaning/:cleaningId" element={<ApprovedCleaning />} />*/}
