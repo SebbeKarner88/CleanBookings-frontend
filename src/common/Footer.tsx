@@ -33,20 +33,20 @@ export const Footer = () => {
                     <div className="col-xs-12 col-sm-6 col-md-3">
                         <ul>
                             <li className="col-heading">Our Work</li>
-                            <li><a href="#">Städafint's cleaning products</a></li>
-                            <li><a href="#">Tips & Inspiration</a></li>
-                            <li><a href="#">Sustainability</a></li>
-                            <li><a href="/notfound">Our Story</a></li>
+                            <li><a href="/cleaningproducts">Städafint's cleaning products</a></li>
+                            <li><a href="/tips&inspiration">Tips & Inspiration</a></li>
+                            <li><a href="/sustainability">Sustainability</a></li>
+                            <li><a href="/ourstory">Our Story</a></li>
                         </ul>
                     </div>
 
                     <div className="col-xs-12 col-sm-6 col-md-3">
                         <ul>
                             <li className="col-heading">Information</li>
-                            <li><a href="#">GDPR</a></li>
-                            <li><a href="#">About RUT</a></li>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Sitemap</a></li>
+                            <li><a href="/GDPR">GDPR</a></li>
+                            <li><a href="/aboutRUT">About RUT</a></li>
+                            <li><a href="/FAQ">FAQ</a></li>
+                            <li><a href="/sitemap">Sitemap</a></li>
                         </ul>
                     </div>
                 </div>
@@ -55,10 +55,10 @@ export const Footer = () => {
 
                     <div className="col-xs-12 col-md-5 text-center">
                         <ul className="vertical-links small">
-                            <li><a href="#">Privacy</a></li>
-                            <li><a href="#">Terms & Conditions</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Homepage design</a></li>
+                            <li><a href="/privacypolicy">Privacy</a></li>
+                            <li><a href="terms&conditions">Terms & Conditions</a></li>
+                            <li><a href="/contactus">Contact Us</a></li>
+                            <li><a href="/design">Homepage design</a></li>
                         </ul>
                     </div>
                     <div className="col-xs-12 col-md-2 text-center">
@@ -66,7 +66,7 @@ export const Footer = () => {
                     </div>
                     <div className="col-xs-12 col-md-5 text-center">
                         <ul>
-                            <li className="small">© Copyright 2023 Website by <a href="#">CodeCrafters</a>. All Rights
+                            <li className="small">© Copyright 2023 Website by <a href="/codecrafters">CodeCrafters</a>. All Rights
                                 reserved.
                             </li>
                         </ul>

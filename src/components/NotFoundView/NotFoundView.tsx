@@ -2,10 +2,13 @@ import NavBar from "../../common/NavBar.tsx"
 import Container from 'react-bootstrap/Container'
 import {Footer} from "../../common/Footer.tsx"
 import Image from "react-bootstrap/Image";
-import notFound from '../../assets/images/notFound.jpg'
+import notFound from '../../assets/images/notFoundBlack.jpg'
 import "./notFoundStyles.css"
+import {Button} from "react-bootstrap";
+import {useNavigate} from "react-router-dom";
 
 function NotFoundView() {
+    const navigation = useNavigate();
 
     return (
         <>
@@ -13,6 +16,11 @@ function NotFoundView() {
             <NavBar/>
             <Container className="mt-5 mb-5 notFoundContainer">
                 <Image src={notFound} height={500} width={500} fluid/>
+                <h5 className="text">The page {window.location.href} does not exist!</h5>
+                <Button
+                    className="btn btn-secondary mt-4"
+                    onClick={() => navigation("/")}
+                >Return to Homepage</Button>
             </Container>
             <Footer/>
 
