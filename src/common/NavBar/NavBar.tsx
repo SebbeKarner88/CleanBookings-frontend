@@ -28,14 +28,16 @@ const NavBar = () => {
 
     return (
         <>
-            <Navbar expand="lg" className="bg-body-tertiary py-2">
+            <Navbar expand="lg" className="bg-white border-dark-subtle border-bottom">
                 <Container>
                     <Navbar.Brand>
-                        <Image
-                            className="logo"
-                            src={logo}
-                            height={80}
-                            onClick={() => navigation("/")}/>
+                        <Link to="/">
+                            <Image
+                                className="logo"
+                                src={logo}
+                                height={80}
+                            />
+                        </Link>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav">
