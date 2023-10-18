@@ -15,10 +15,10 @@ function NotFoundView() {
 
             <NavBar/>
             <Container className="mt-5 mb-5 notFoundContainer">
-                <Image src={notFound} height={500} width={500} fluid/>
+                <Image src={notFound} height={350} width={350} fluid/>
                 <h5 className="text">The page {window.location.href} does not exist!</h5>
                 <Button
-                    className="btn btn-secondary mt-4"
+                    className="btn btn-secondary mt-5"
                     onClick={() => navigation("/")}
                 >Return to Homepage</Button>
             </Container>
