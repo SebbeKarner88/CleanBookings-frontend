@@ -9,13 +9,13 @@ ul {
     list-style: none;
 }
 
-ul>li>a {
+ul > li > a {
     color: #8c8c8c;
     text-decoration: none;
     line-height: 1.8;
 }
 
-ul>li>a:hover,
+ul > li > a:hover,
 a:hover {
     color: #de993b;
     font-weight: 500;
@@ -23,7 +23,7 @@ a:hover {
 
 .col-heading {
     display: block;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     text-transform: uppercase;
     color: #304f50;
     font-weight: 500;
@@ -54,7 +54,7 @@ a:hover {
 }
 
 #bottom-footer {
-    background-color: #e5c192;
+    background-color: #e3d2b1;
     color: #363636;
     margin-top: 0.5rem;
     padding-top: .3rem;
@@ -63,12 +63,12 @@ a:hover {
     border-top-width: 2px;
 }
 
-.vertical-links>li {
+.vertical-links > li {
     display: inline-block;
     vertical-align: text-bottom;
 }
 
-.vertical-links>li>a {
+.vertical-links > li > a {
     color: #424242;
     font-weight: 400;
     margin-left: 1rem;
