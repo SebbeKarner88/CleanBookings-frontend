@@ -32,7 +32,7 @@ function App() {
           <Route path="/AboutUs" element={<AboutUs />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/notfound" element={<NotFoundView />} />
+          <Route path="/*" element={<NotFoundView />} />
           {
             isAuthenticated &&
               <>

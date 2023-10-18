@@ -11,7 +11,7 @@ function LandingPage() {
         <>
             <NavBar />
             {/* TODO: add images and witty description of company and their services */}
-            <Container className="mt-5">
+            <Container className="min-vw-100 p-0">
                 <Image src={sponge} fluid />
             </Container>
             <Footer />
