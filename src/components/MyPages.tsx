@@ -1,5 +1,5 @@
-import {Footer} from "../common/Footer"
-import NavBar from "../common/NavBar"
+import {Footer} from "../common/Footer/Footer.tsx"
+import NavBar from "../common/NavBar/NavBar.tsx"
 import {useContext, useEffect, useState} from 'react';
 import {AuthContext} from '../context/AuthContext'
 import CleaningsPerType from "./booking-management/CleaningsPerType.tsx";

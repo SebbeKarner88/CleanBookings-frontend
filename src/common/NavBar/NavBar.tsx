@@ -9,8 +9,11 @@ import {
 } from "react-bootstrap";
 import {LinkContainer} from 'react-router-bootstrap';
 import {useContext} from 'react'
-import {AuthContext} from "../context/AuthContext.tsx";
+import {AuthContext} from "../../context/AuthContext.tsx";
 import {Link, useNavigate} from "react-router-dom";
+import Image from "react-bootstrap/Image";
+import logo from "../../assets/images/croppedLogo.jpg"
+import "./NavBarStyles.css"
 
 const NavBar = () => {
     const {isAuthenticated, name, setIsAuthenticated, setCustomerId, setName} = useContext(AuthContext);
@@ -28,9 +31,11 @@ const NavBar = () => {
             <Navbar expand="lg" className="bg-body-tertiary py-2">
                 <Container>
                     <Navbar.Brand>
-                        <Link to="/" className="link-dark">
-                            Clean Bookings
-                        </Link>
+                        <Image
+                            className="logo"
+                            src={logo}
+                            height={80}
+                            onClick={() => navigation("/")}/>
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav">

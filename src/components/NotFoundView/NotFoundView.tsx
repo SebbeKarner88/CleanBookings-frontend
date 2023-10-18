@@ -1,6 +1,6 @@
-import NavBar from "../../common/NavBar.tsx"
+import NavBar from "../../common/NavBar/NavBar.tsx"
 import Container from 'react-bootstrap/Container'
-import {Footer} from "../../common/Footer.tsx"
+import {Footer} from "../../common/Footer/Footer.tsx"
 import Image from "react-bootstrap/Image";
 import notFound from '../../assets/images/notFoundBlack.jpg'
 import "./notFoundStyles.css"
@@ -15,7 +15,12 @@ function NotFoundView() {
 
             <NavBar/>
             <Container className="mt-5 mb-5 notFoundContainer">
-                <Image src={notFound} height={350} width={350} fluid/>
+                <Image
+                    src={notFound}
+                    height={360}
+                    width={360}
+                    fluid
+                />
                 <h5 className="text">The page {window.location.href} does not exist!</h5>
                 <Button
                     className="btn btn-secondary mt-5"

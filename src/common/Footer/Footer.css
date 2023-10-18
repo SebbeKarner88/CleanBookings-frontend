@@ -10,7 +10,7 @@ ul {
 }
 
 ul > li > a {
-    color: #8c8c8c;
+    color: #6c6c6c;
     text-decoration: none;
     line-height: 1.8;
 }
@@ -54,7 +54,7 @@ a:hover {
 }
 
 #bottom-footer {
-    background-color: #e3d2b1;
+    background-color: rgb(170, 115, 73);
     color: #363636;
     margin-top: 0.5rem;
     padding-top: .3rem;

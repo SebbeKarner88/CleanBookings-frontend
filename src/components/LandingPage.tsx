@@ -1,9 +1,9 @@
-import NavBar from "../common/NavBar"
+import NavBar from "../common/NavBar/NavBar.tsx"
 import Image from 'react-bootstrap/Image'
 import Container from 'react-bootstrap/Container'
 // import Card from 'react-bootstrap/Card'
 import sponge from '../assets/images/sponge.jpg'
-import { Footer } from "../common/Footer"
+import { Footer } from "../common/Footer/Footer.tsx"
 
 function LandingPage() {
 

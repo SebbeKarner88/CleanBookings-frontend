@@ -1,4 +1,4 @@
-import NavBar from "../common/NavBar"
+import NavBar from "../common/NavBar/NavBar.tsx"
 import {FormLogin} from "./forms/FormLogin.tsx";
 
 const LogIn = () => {

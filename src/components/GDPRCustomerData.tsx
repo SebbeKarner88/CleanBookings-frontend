@@ -5,7 +5,7 @@ import {Button, Modal} from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown'; // Import ReactMarkdown
 import {AuthContext} from './../context/AuthContext';
 import {useNavigate} from 'react-router-dom';
-import NavBar from "../common/NavBar.tsx";
+import NavBar from "../common/NavBar/NavBar.tsx";
 import {MdEdit} from "react-icons/md";
 
 const GDPRCustomerData: React.FC = () => {
