@@ -75,93 +75,92 @@ const FormEditCustomerData = () => {
 
     return (
         <>
-            <h1>Editing customer {values.firstName + " " + values.lastName}</h1>
-            <h3>Customer ID: {customerId}</h3>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="row">
-                    <div className="col-md-6">
-                        <FormField
-                            fieldName="firstName"
-                            label="First name"
-                            inputType="text"
-                            defaultValue={values.firstName}
-                            fieldError={errors.firstName}
-                            register={register}
-                        />
-                    </div>
-                    <div className="col-md-6">
-                        <FormField
-                            fieldName="lastName"
-                            label="Last name"
-                            inputType="text"
-                            defaultValue={values.lastName}
-                            fieldError={errors.lastName}
-                            customError={errorMessage}
-                            register={register}
-                        />
-                    </div>
-                    <div className="col-md-12">
-                        <FormField
-                            fieldName="streetAddress"
-                            label="Street Address"
-                            inputType="text"
-                            defaultValue={values.streetAddress}
-                            fieldError={errors.streetAddress}
-                            register={register}
-                        />
-                    </div>
-                    <div className="col-md-6">
-                        <FormField
-                            fieldName="postalCode"
-                            label="Postal Code"
-                            inputType="text"
-                            defaultValue={values.postalCode}
-                            fieldError={errors.postalCode}
-                            register={register}
-                        />
-                    </div>
-                    <div className="col-md-6">
-                        <FormField
-                            fieldName="city"
-                            label="City"
-                            inputType="text"
-                            defaultValue={values.city}
-                            fieldError={errors.city}
-                            register={register}
-                        />
-                    </div>
-                    <div className="col-md-6">
-                        <FormField
-                            fieldName="phoneNumber"
-                            label="Phone Number"
-                            inputType="text"
-                            defaultValue={values.phoneNumber}
-                            fieldError={errors.phoneNumber}
-                            register={register}
-                        />
-                    </div>
-                    <div className="col-md-6">
-                        <FormField
-                            fieldName="emailAddress"
-                            label="Email Address"
-                            inputType="email"
-                            defaultValue={values.emailAddress}
-                            fieldError={errors.emailAddress}
-                            register={register}
-                        />
-                    </div>
+            <div className="container bg-body-secondary my-3 p-3 p-md-4 rounded-4 text-start">
+                <div className="d-flex flex-column justify-content-between">
+                <h1 className="h1 fw-bold">
+                    Editing customer
+                </h1>
+                <p className="h3 text-primary-emphasis">
+                    {values.firstName + " " + values.lastName} ({values.customerId})
+                </p>
                 </div>
-                <button type="submit" className="btn btn-outline-dark w-100">
-                    Update Customer Data
-                </button>
-                <button
-                    type="button"
-                    className="btn btn-outline-danger w-100 mt-3"
-                    onClick={() => navigation("/gdpr-customer-data")}
-                >
-                    Cancel
-                </button>
-            </form>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                            <FormField
+                                fieldName="firstName"
+                                label="First name"
+                                inputType="text"
+                                defaultValue={values.firstName}
+                                fieldError={errors.firstName}
+                                register={register}
+                            />
+
+                            <FormField
+                                fieldName="lastName"
+                                label="Last name"
+                                inputType="text"
+                                defaultValue={values.lastName}
+                                fieldError={errors.lastName}
+                                customError={errorMessage}
+                                register={register}
+                            />
+
+                            <FormField
+                                fieldName="streetAddress"
+                                label="Street Address"
+                                inputType="text"
+                                defaultValue={values.streetAddress}
+                                fieldError={errors.streetAddress}
+                                register={register}
+                            />
+
+                            <FormField
+                                fieldName="postalCode"
+                                label="Postal Code"
+                                inputType="text"
+                                defaultValue={values.postalCode}
+                                fieldError={errors.postalCode}
+                                register={register}
+                            />
+
+                            <FormField
+                                fieldName="city"
+                                label="City"
+                                inputType="text"
+                                defaultValue={values.city}
+                                fieldError={errors.city}
+                                register={register}
+                            />
+
+                            <FormField
+                                fieldName="phoneNumber"
+                                label="Phone Number"
+                                inputType="text"
+                                defaultValue={values.phoneNumber}
+                                fieldError={errors.phoneNumber}
+                                register={register}
+                            />
+
+                            <FormField
+                                fieldName="emailAddress"
+                                label="Email Address"
+                                inputType="email"
+                                defaultValue={values.emailAddress}
+                                fieldError={errors.emailAddress}
+                                register={register}
+                            />
+
+                    <button type="submit" className="btn btn-primary w-100 my-3">
+                        Update Customer Data
+                    </button>
+                    <button
+                        type="button"
+                        className="btn btn-danger w-100"
+                        onClick={() => navigation("/gdpr-customer-data")}
+                    >
+                        Cancel
+                    </button>
+                </form>
+            </div>
             <Modal
                 show={modalVisible}
                 onHide={() => setModalVisible(!modalVisible)}
