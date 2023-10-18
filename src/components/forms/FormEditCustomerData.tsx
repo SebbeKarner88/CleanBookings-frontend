@@ -43,7 +43,6 @@ type FormData = z.infer<typeof schema>;
 const FormEditCustomerData = () => {
     const {customerId} = useContext(AuthContext);
     const [modalVisible, setModalVisible] = useState(false);
-    const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const navigation = useNavigate();
     const location = useLocation();
     const values = location.state;
@@ -55,22 +54,23 @@ const FormEditCustomerData = () => {
         resolver: zodResolver(schema)
     });
 
-    function onSubmit(data: FieldValues) {
-        updateCustomerData(
-            customerId,
-            data.firstName != values.firstName ? data.firstName : null,
-            data.lastName != values.lastName ? data.lastName : null,
-            data.streetAddress != values.streetAddress ? data.streetAddress : null,
-            data.postalCode != values.postalCode ? data.postalCode.replace(/\s/g, '') : null,
-            data.city != values.city ? data.city : null,
-            data.phoneNumber != values.phoneNumber ? data.phoneNumber : null,
-            data.emailAddress != values.emailAddress ? data.emailAddress : null
-        ).then(response => {
+    async function onSubmit(data: FieldValues) {
+        try {
+            const response = await updateCustomerData(
+                customerId,
+                data.firstName != values.firstName ? data.firstName : null,
+                data.lastName != values.lastName ? data.lastName : null,
+                data.streetAddress != values.streetAddress ? data.streetAddress : null,
+                data.postalCode != values.postalCode ? data.postalCode.replace(/\s/g, '') : null,
+                data.city != values.city ? data.city : null,
+                data.phoneNumber != values.phoneNumber ? data.phoneNumber : null,
+                data.emailAddress != values.emailAddress ? data.emailAddress : null
+            );
             if (response?.status == 200)
                 setModalVisible(true)
-            else
-                setErrorMessage("Something went wrong, try again.")
-        }).catch(error => console.error(error.message))
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (
@@ -100,7 +100,6 @@ const FormEditCustomerData = () => {
                                 inputType="text"
                                 defaultValue={values.lastName}
                                 fieldError={errors.lastName}
-                                customError={errorMessage}
                                 register={register}
                             />
 

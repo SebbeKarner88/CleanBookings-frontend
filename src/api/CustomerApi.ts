@@ -108,7 +108,7 @@ export async function updateCustomerData(
 ) {
     try {
         const response = await api.put(
-            `customer/${customerId}`,
+            `customer/updateCustomer/${customerId}`,
             {
                 firstName: firstName,
                 lastName: lastName,
