@@ -5,6 +5,13 @@
     src: url("../src/assets/fonts/NTR-Regular.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "Nunito";
+    font-weight: 200;
+    font-display: fallback;
+    src: url("../src/assets/fonts/NunitoSans_7pt-Regular.ttf") format("truetype");
+}
+
 #root {
     min-width: 100vw;
     min-height: 100vh;

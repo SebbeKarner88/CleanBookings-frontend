@@ -21,9 +21,12 @@ function LandingPage() {
 const Background = () => {
     return (
         <article
-        className=""
-        style={{ backgroundImage: `url(${mysigt})`}}>
-            <h1>VI ÄR BÄST</h1>
+            style={{ backgroundImage: `url(${mysigt})` }}>
+            <div className="intro">
+                <div className="intro-subtitle">Skrubba bort dina bekymmer</div>
+                <div className="intro-desc">Välj oss för ett glänsande resultat!
+                </div>
+            </div>
         </article>
     )
 }
