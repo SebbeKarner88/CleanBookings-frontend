@@ -10,6 +10,8 @@
     min-height: 100vh;
     margin: 0 auto;
     text-align: center;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 @media screen {
