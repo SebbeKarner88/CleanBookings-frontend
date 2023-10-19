@@ -18,6 +18,7 @@ import {AuthContext} from "./context/AuthContext.tsx";
 import SettingsView from "./components/SettingsView.tsx";
 import FormEditCustomerData from './components/forms/FormEditCustomerData.tsx'
 import NotFoundView from "./components/NotFoundView/NotFoundView.tsx";
+import FAQ from "./components/FAQ.tsx";
 
 function App() {
   const {isAuthenticated} = useContext(AuthContext);
@@ -32,6 +33,7 @@ function App() {
           <Route path="/AboutUs" element={<AboutUs />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/faq" element={<FAQ/>} />
           <Route path="/*" element={<NotFoundView />} />
           {
             isAuthenticated &&

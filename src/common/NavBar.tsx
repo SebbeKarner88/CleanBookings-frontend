@@ -15,7 +15,6 @@ import Image from "react-bootstrap/Image";
 import logo from '../assets/images/logo.png'
 import '../styles/NavBar.css'
 import '../styles/Global.css'
-import styled from "styled-components";
 
 const NavBar = () => {
     const { isAuthenticated, name, setIsAuthenticated, setCustomerId, setName } = useContext(AuthContext);
@@ -45,10 +44,19 @@ const NavBar = () => {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav>
                             <LinkContainer to="/services">
-                                <Nav.Link>Services</Nav.Link>
+                                <Nav.Link className="px-3">
+                                    Services
+                                </Nav.Link>
                             </LinkContainer>
                             <LinkContainer to="/AboutUs">
-                                <Nav.Link>About Us</Nav.Link>
+                                <Nav.Link className="px-3">
+                                    About Us
+                                </Nav.Link>
+                            </LinkContainer>
+                            <LinkContainer to="/faq">
+                                <Nav.Link className="px-3">
+                                    FAQ
+                                </Nav.Link>
                             </LinkContainer>
                         </Nav>
 
@@ -93,14 +101,18 @@ const NavBar = () => {
                                     </Navbar.Text>
                                 </>
                                 :
-                                <Navbar.Text>
-                                    <StyledLink to="/login">Sign in</StyledLink> 
+                                <Nav>
+                                    <LinkContainer to="/login">
+                                        <Button size="lg" className="btn-outline-beige btn-outline-beige-hover mx-3">
+                                            Sign in
+                                        </Button>
+                                    </LinkContainer>
                                     <Link to="/register">
-                                        <Button id="register" className="my-3 my-md-0">
+                                        <Button size="lg" className="btn-beige btn-beige-hover">
                                             Register
                                         </Button>
                                     </Link>
-                                </Navbar.Text>
+                                </Nav>
                         }
                     </Navbar.Collapse>
                 </Container>
@@ -108,13 +120,5 @@ const NavBar = () => {
         </>
     )
 }
-
-const StyledLink = styled(Link)`
-    color: var(--dark-purple);
-    font-family: 'NTR', sans-serif;
-    font-size: 1.5em;
-    text-decoration: none;
-    padding-right: 20px;¨
-`
 
 export default NavBar
