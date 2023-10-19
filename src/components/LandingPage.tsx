@@ -1,8 +1,8 @@
 import NavBar from "../common/NavBar.tsx"
-import Image from 'react-bootstrap/Image'
 import Container from 'react-bootstrap/Container'
-import vacuum from '../assets/images/vacuum.jpg'
+import mysigt from '../assets/images/myspys.jpg'
 import { Footer } from "../common/Footer.tsx"
+import '../styles/LandingPage.css'
 
 function LandingPage() {
 
@@ -11,10 +11,20 @@ function LandingPage() {
             <NavBar />
             {/* TODO: add images and witty description of company and their services */}
             <Container className="min-vw-100 p-0">
-                <Image src={vacuum} fluid />
+                <Background />
             </Container>
             <Footer />
         </>
+    )
+}
+
+const Background = () => {
+    return (
+        <article
+        className=""
+        style={{ backgroundImage: `url(${mysigt})`}}>
+            <h1>VI ÄR BÄST</h1>
+        </article>
     )
 }
 

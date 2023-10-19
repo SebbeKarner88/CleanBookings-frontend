@@ -114,7 +114,7 @@ const StyledLink = styled(Link)`
     font-family: 'NTR', sans-serif;
     font-size: 1.5em;
     text-decoration: none;
-    padding-right: 20px;
+    padding-right: 20px;¨
 `
 
 export default NavBar
