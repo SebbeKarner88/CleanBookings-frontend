@@ -66,8 +66,7 @@ export const Footer = () => {
                     </div>
                     <div className="col-xs-12 col-md-5 text-center">
                         <ul>
-                            <li className="small">© Copyright 2023 Website by <a className="text-dark" href="/codecrafters">CodeCrafters</a>. All Rights
-                                reserved.
+                            <li className="small">© Copyright 2023 Website by CodeCrafters. All Rights reserved.
                             </li>
                         </ul>
                     </div>
