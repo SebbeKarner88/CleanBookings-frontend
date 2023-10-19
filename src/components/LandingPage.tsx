@@ -9,7 +9,6 @@ function LandingPage() {
     return (
         <>
             <NavBar />
-            {/* TODO: add images and witty description of company and their services */}
             <Container className="min-vw-100 p-0">
                 <Background />
             </Container>
@@ -24,8 +23,7 @@ const Background = () => {
             style={{ backgroundImage: `url(${mysigt})` }}>
             <div className="intro">
                 <div className="intro-subtitle">Skrubba bort dina bekymmer</div>
-                <div className="intro-desc">Välj oss för ett glänsande resultat!
-                </div>
+                <div className="intro-desc">Välj oss för ett glänsande resultat!</div>
             </div>
         </article>
     )
