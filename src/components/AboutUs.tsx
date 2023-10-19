@@ -4,7 +4,7 @@ import p1 from '../assets/images/p1.jpg'
 import p2 from '../assets/images/p2.jpg'
 import p3 from '../assets/images/p3.jpg'
 import p4 from '../assets/images/p4.jpg'
-import './AboutUs.css'
+import '../styles/AboutUs.css'
 import { Footer } from "../common/Footer.tsx"
 
 function AboutUs() {
