@@ -1,12 +1,12 @@
 import { Button } from "react-bootstrap";
-import NavBar from "../common/NavBar.tsx";
-import TypesOfCleaning from "../common/TypesOfCleaning";
+import NavBar from "../../common/NavBar.tsx";
+import TypesOfCleaning from "../../common/TypesOfCleaning.tsx";
 import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext.tsx";
 import { useNavigate } from "react-router-dom";
-import { Footer } from "../common/Footer.tsx";
+import { Footer } from "../../common/Footer.tsx";
 
-function Services() {
+function ServicesView() {
     const { isAuthenticated } = useContext(AuthContext)
     const navigation = useNavigate()
 
@@ -32,4 +32,4 @@ function Services() {
     );
 }
 
-export default Services;
+export default ServicesView;

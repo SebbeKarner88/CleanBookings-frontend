@@ -4,7 +4,7 @@ import "bootstrap";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import LandingPage from './components/LandingPage'
 import MyPages from './components/MyPages'
-import Services from './components/Services'
+import ServicesView from './components/ServicesView/ServicesView.tsx'
 import Contact from './components/Contact'
 import BookedCleanings from './components/booking-management/BookedCleanings';
 import CleaningsPerType from './components/booking-management/CleaningsPerType';
@@ -31,7 +31,7 @@ function App() {
           <Route path="/login" element={<LogIn />} />
           <Route path="/register" element={<Register />} />
           <Route path="/AboutUs" element={<AboutUs />} />
-          <Route path="/services" element={<Services />} />
+          <Route path="/services" element={<ServicesView />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<FAQ/>} />
           <Route path="/*" element={<NotFoundView />} />
