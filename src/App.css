@@ -12,6 +12,11 @@
     text-align: center;
 }
 
+a,
+Link {
+    text-decoration: none;
+}
+
 #book {
     margin: 50px auto;
     height: 100px;

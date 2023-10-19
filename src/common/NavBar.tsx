@@ -15,6 +15,7 @@ import Image from "react-bootstrap/Image";
 import logo from '../assets/images/logo.png'
 import '../styles/NavBar.css'
 import '../styles/Global.css'
+import styled from "styled-components";
 
 const NavBar = () => {
     const { isAuthenticated, name, setIsAuthenticated, setCustomerId, setName } = useContext(AuthContext);
@@ -93,9 +94,9 @@ const NavBar = () => {
                                 </>
                                 :
                                 <Navbar.Text>
-                                    <span><Link to="/login">Sign in</Link> or </span>
+                                    <StyledLink to="/login">Sign in</StyledLink> 
                                     <Link to="/register">
-                                        <Button variant="success" className="my-3 my-md-0">
+                                        <Button id="register" className="my-3 my-md-0">
                                             Register
                                         </Button>
                                     </Link>
@@ -108,5 +109,12 @@ const NavBar = () => {
     )
 }
 
+const StyledLink = styled(Link)`
+    color: var(--dark-purple);
+    font-family: 'NTR', sans-serif;
+    font-size: 1.5em;
+    text-decoration: none;
+    padding-right: 20px;
+`
 
 export default NavBar
