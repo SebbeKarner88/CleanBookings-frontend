@@ -12,7 +12,7 @@ import { useContext } from 'react'
 import { AuthContext } from "../context/AuthContext.tsx";
 import { Link, useNavigate } from "react-router-dom";
 import Image from "react-bootstrap/Image";
-import logo from '../assets/images/croppedLogo.jpg'
+import logo from '../assets/images/logo.png'
 import '../styles/NavBar.css'
 import '../styles/Global.css'
 

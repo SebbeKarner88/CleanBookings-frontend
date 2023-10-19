@@ -3,13 +3,15 @@
 }
 
 .nav-link {
-    font-size: 1.5em;
+    font-family: 'NTR';
+    font-size: 1.2em;
     padding: 0 20px;
     color: var(--dark-purple);
 }
 
 .nav-link:hover {
-    color: var(--beige);
+    color: var(--dark-beige);
+    font-weight: normal;    
 }
 
 .logo {
