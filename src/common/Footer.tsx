@@ -1,5 +1,5 @@
-import './Footer.css'
-import {FaPhone, FaMobile, FaMapMarker, FaEnvelopeSquare} from 'react-icons/fa'
+import '../styles/Footer.css'
+import { FaPhone, FaMobile, FaMapMarker, FaEnvelopeSquare } from 'react-icons/fa'
 import styled from 'styled-components'
 
 export const Footer = () => {
@@ -11,12 +11,12 @@ export const Footer = () => {
                     <div className="col-xs-12 col-sm-6 col-md-3">
                         <ul>
                             <li className="col-heading">Contact</li>
-                                <li className="text-start"><Phone/> <a href="tel:0707000000">555-CLEAN-ME-NOW</a></li>
-                                <li className="text-start"><Mobile/> <a href="sms:0707000000">070-CLEAN-ME-NOW</a></li>
-                                <li className="text-start"><Map/> <a href="https://maps.app.goo.gl/HzU8kv5sVTQKF5cVA">Stockholm HQ</a></li>
-                                <li className="text-start"><Envelope/> <a
-                                    href="mailto:bokning@Cleanbookings.com?subject=Mail Hemsida">booking@cleanbookings.com</a>
-                                </li>
+                            <li className="text-start"><Phone /> <a href="tel:0707000000">555-CLEAN-ME-NOW</a></li>
+                            <li className="text-start"><Mobile /> <a href="sms:0707000000">070-CLEAN-ME-NOW</a></li>
+                            <li className="text-start"><Map /> <a href="https://maps.app.goo.gl/HzU8kv5sVTQKF5cVA">Stockholm HQ</a></li>
+                            <li className="text-start"><Envelope /> <a
+                                href="mailto:bokning@Cleanbookings.com?subject=Mail Hemsida">booking@cleanbookings.com</a>
+                            </li>
                         </ul>
                     </div>
 

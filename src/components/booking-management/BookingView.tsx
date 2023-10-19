@@ -1,4 +1,4 @@
-import NavBar from "../../common/NavBar/NavBar.tsx"
+import NavBar from "../../common/NavBar.tsx"
 import TypesOfCleaning from "../../common/TypesOfCleaning"
 import BookingForm from "../forms/FormBookService"
 

@@ -3,7 +3,7 @@ import axios from 'axios';
 import {Button} from 'react-bootstrap';
 import {AuthContext} from './../context/AuthContext';
 import {useNavigate} from 'react-router-dom';
-import NavBar from "../common/NavBar/NavBar.tsx";
+import NavBar from "../common/NavBar.tsx";
 import {MdEdit} from "react-icons/md";
 import CustomerData from "./CustomerData.tsx";
 import PrivacyModal from "./modals/PrivacyModal.tsx";

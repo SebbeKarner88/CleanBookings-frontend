@@ -1,9 +1,8 @@
-import NavBar from "../common/NavBar/NavBar.tsx"
+import NavBar from "../common/NavBar.tsx"
 import Image from 'react-bootstrap/Image'
 import Container from 'react-bootstrap/Container'
-// import Card from 'react-bootstrap/Card'
-import sponge from '../assets/images/sponge.jpg'
-import { Footer } from "../common/Footer/Footer.tsx"
+import vacuum from '../assets/images/vacuum.jpg'
+import { Footer } from "../common/Footer.tsx"
 
 function LandingPage() {
 
@@ -12,7 +11,7 @@ function LandingPage() {
             <NavBar />
             {/* TODO: add images and witty description of company and their services */}
             <Container className="min-vw-100 p-0">
-                <Image src={sponge} fluid />
+                <Image src={vacuum} fluid />
             </Container>
             <Footer />
         </>

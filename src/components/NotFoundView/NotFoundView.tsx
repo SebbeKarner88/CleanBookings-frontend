@@ -1,6 +1,6 @@
-import NavBar from "../../common/NavBar/NavBar.tsx"
+import NavBar from "../../common/NavBar.tsx"
 import Container from 'react-bootstrap/Container'
-import {Footer} from "../../common/Footer/Footer.tsx"
+import {Footer} from "../../common/Footer.tsx"
 import Image from "react-bootstrap/Image";
 import notFound from '../../assets/images/notFoundBlack.jpg'
 import "./notFoundStyles.css"

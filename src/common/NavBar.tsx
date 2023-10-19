@@ -7,16 +7,17 @@ import {
     NavLink,
     SplitButton
 } from "react-bootstrap";
-import {LinkContainer} from 'react-router-bootstrap';
-import {useContext} from 'react'
-import {AuthContext} from "../../context/AuthContext.tsx";
-import {Link, useNavigate} from "react-router-dom";
+import { LinkContainer } from 'react-router-bootstrap';
+import { useContext } from 'react'
+import { AuthContext } from "../context/AuthContext.tsx";
+import { Link, useNavigate } from "react-router-dom";
 import Image from "react-bootstrap/Image";
-import logo from "../../assets/images/croppedLogo.jpg"
-import "./NavBarStyles.css"
+import logo from '../assets/images/croppedLogo.jpg'
+import '../styles/NavBar.css'
+import '../styles/Global.css'
 
 const NavBar = () => {
-    const {isAuthenticated, name, setIsAuthenticated, setCustomerId, setName} = useContext(AuthContext);
+    const { isAuthenticated, name, setIsAuthenticated, setCustomerId, setName } = useContext(AuthContext);
     const navigation = useNavigate();
 
     async function handleLogout() {
@@ -28,7 +29,7 @@ const NavBar = () => {
 
     return (
         <>
-            <Navbar expand="lg" className="bg-white border-dark-subtle border-bottom">
+            <Navbar expand="lg" id="navbar" className="border-dark-subtle border-bottom">
                 <Container>
                     <Navbar.Brand>
                         <Link to="/">
@@ -39,7 +40,7 @@ const NavBar = () => {
                             />
                         </Link>
                     </Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav>
                             <LinkContainer to="/services">
@@ -85,7 +86,7 @@ const NavBar = () => {
                                     <Navbar.Text>
                                         <p className="visually-hidden">Signed in as: {name}</p>
                                         <Button variant="outline-danger" className="mx-3 my-3 my-md-0"
-                                                onClick={handleLogout}>
+                                            onClick={handleLogout}>
                                             Logout
                                         </Button>
                                     </Navbar.Text>
