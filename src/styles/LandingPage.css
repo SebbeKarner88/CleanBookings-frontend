@@ -12,21 +12,21 @@ article {
     padding-left: 15%;
     padding-top: 10%;
     min-height: 100vh;
-  }
-  
-  .intro-subtitle {
+}
+
+.intro-subtitle {
     margin-top: -36px;
     font-family: "Nunito", sans-serif;
     color: white;
     font-weight: bold;
     font-size: 48px;
-  }
-  
-  .intro-desc {
+}
+
+.intro-desc {
     color: white;
     font-family: "Nunito", sans-serif;
     font-size: 32px;
     max-width: 40%;
     text-align: justify;
     padding-bottom: 50px;
-  }
+}
