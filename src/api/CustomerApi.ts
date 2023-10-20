@@ -146,6 +146,19 @@ export async function getJobsByCustomerId(customerId: string) {
     }
 }
 
+export async function getAllCleaners() {
+    try {
+        const response = await api.get(
+            "/employee/getAllCleaners"
+        );
+        if (response.status == 200) {
+            return response;
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 export async function executedCleaningRequest(
     customerId: string,
     jobId: string
