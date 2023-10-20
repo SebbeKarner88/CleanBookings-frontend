@@ -8,7 +8,7 @@
 }
 
 .cleaningCard {
-    width: 17rem;
+    width: 100%;
     border: rgba(152, 110, 46, 0.63) 2px ridge;
     background-color: var(--light-brown);
     color: #332109;
@@ -37,8 +37,32 @@
     font-size: large;
 }
 
+@media only screen and (max-width: 800px) {
+    .cleaningCard {
+        max-width: 28vh;
+    }
+}
+
 @media only screen and (max-width: 600px) {
     .cleaningCard {
-        width: 3rem;
+        max-width: 28vh;
+    }
+
+    .image {
+        padding: 30px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .cleaningCard {
+        max-width: 20vh;
+    }
+
+    .cardList {
+        display: none;
+    }
+
+    .image {
+        padding: 25px;
     }
 }

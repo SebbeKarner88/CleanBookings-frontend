@@ -25,7 +25,7 @@ const TypesOfCleaning = () => {
             image: 'diamond',
             title: 'DIAMANT',
             description: 'Vår 100% steril garantistäd\nPerfekt för dig som ska utföra en operation i vardagsrummet.',
-            items: ['Dammsugning av alla ytor', 'Dammtorka möbler', 'Våttorka golv', 'Städning av kök', 'Välta kon', 'Rensa fisken', 'Cykla hem'],
+            items: ['Dammsugning av alla ytor', 'Dammtorka möbler', 'Våttorka golv', 'Städning av kök', 'Välta kon', 'Rensa fisken' ],
             price: '2495kr'
         },
         {
