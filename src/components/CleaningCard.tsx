@@ -4,7 +4,7 @@ import basic from '../../assets/images/basic-nobg.png';
 import top from '../../assets/images/top-nobg.png';
 import diamond from '../../assets/images/diamant-nobg.png';
 import win from '../../assets/images/window-nobg.png';
-import './CleaningCardStyles.css'
+import '../../styles/CleaningCard.css'
 
 
 interface props {
