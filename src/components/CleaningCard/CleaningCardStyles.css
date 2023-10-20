@@ -10,7 +10,7 @@
 .cleaningCard {
     width: 17rem;
     border: rgba(152, 110, 46, 0.63) 2px ridge;
-    background-color: rgba(208, 184, 168, 0.89);
+    background-color: var(--light-brown);
     color: #332109;
 }
 
@@ -35,5 +35,4 @@
     color: #000000;
     font-weight: bold;
     font-size: large;
-
 }

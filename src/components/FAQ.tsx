@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import NavBar from '../common/NavBar';
 
 function FAQ() {
-    const [expandedIndex, setExpandedIndex] = useState(null);
+    const [ expandedIndex, setExpandedIndex ] = useState(null);
 
     const faqs = [
 
@@ -48,17 +49,20 @@ function FAQ() {
     };
 
     return (
-        <div>
-            <h2>Frequently Asked Questions</h2>
-            {faqs.map((faq, index) => (
-                <div key={index}>
-                    <h4 onClick={() => handleClick(index)}>
-                        {faq.question}
-                    </h4>
-                    {expandedIndex === index && <p>{faq.answer}</p>}
-                </div>
-            ))}
-        </div>
+        <>
+            <NavBar />
+            <div>
+                <h2>Frequently Asked Questions</h2>
+                {faqs.map((faq, index) => (
+                    <div key={index}>
+                        <h4 onClick={() => handleClick(index)}>
+                            {faq.question}
+                        </h4>
+                        {expandedIndex === index && <p>{faq.answer}</p>}
+                    </div>
+                ))}
+            </div>
+        </>
     );
 }
 
