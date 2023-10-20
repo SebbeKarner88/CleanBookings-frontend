@@ -2,7 +2,6 @@ import { useState } from 'react';
 import NavBar from '../common/NavBar';
 import '../styles/FAQ.css'
 import { Footer } from '../common/Footer';
-import { MdExpandLess, MdExpandMore } from "react-icons/md";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 
