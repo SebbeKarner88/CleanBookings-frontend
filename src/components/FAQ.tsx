@@ -2,9 +2,10 @@ import { useState } from 'react';
 import NavBar from '../common/NavBar';
 import '../styles/FAQ.css'
 import { Footer } from '../common/Footer';
+import {MdExpandLess, MdExpandMore} from "react-icons/md";
 
 function FAQ() {
-    const [ expandedIndex, setExpandedIndex ] = useState(null);
+    const [ expandedIndex, setExpandedIndex ] = useState<number | null>(0);
     const faqs = [
         {
             question: 'Hur ofta borde jag boka en städservice?',
@@ -41,7 +42,7 @@ function FAQ() {
     ];
 
 
-    const handleClick = (index: any) => {
+    const handleClick = (index: number) => {
         setExpandedIndex(index === expandedIndex ? null : index);
     };
 
@@ -49,15 +50,22 @@ function FAQ() {
         <>
             <NavBar />
             <div className='faq-container'>
-                <h2 className='faq'>Frequently Asked Questions</h2>
+                <h1 className='faq'>Frequently Asked Questions</h1>
 
                 {faqs.map((faq, index) => (
                     <div key={index}>
-                            <h4 className='faq-question' onClick={() => {
-                                handleClick(index)
-                            }}>
-                                {faq.question}
-                            </h4>
+                            <button
+                                type="button"
+                                className='btn fs-4 faq-question'
+                                onClick={() => handleClick(index)}
+                                aria-label={`${faq.question} (Tryck på knappen för att expandera/minimera)`}
+                            >
+                                {faq.question} {
+                                    index === expandedIndex
+                                        ? <MdExpandLess size={35} aria-hidden={true} />
+                                        : <MdExpandMore size={35} aria-hidden={true} />
+                                }
+                            </button>
                         {expandedIndex === index && <div className='faq-answer'>{faq.answer}</div>}
                     </div>
                 ))}
