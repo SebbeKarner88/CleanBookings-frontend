@@ -1,20 +1,39 @@
-.cleaningCard {
-    width: 17rem;
-    border-style: ridge;
-    border-width: 2px;
-    border-color: #986e2e;
-    background-color: var(--dark-beige);
-}
-
-.image {
-    padding: 60px;
-    background: var(--beige);
-}
-
 .cardContainer {
     background-image: url('../../assets/images/myspys.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     min-height: 100vh;
+    font-family: "Nunito", sans-serif;
+}
+
+.cleaningCard {
+    width: 17rem;
+    border: rgba(152, 110, 46, 0.63) 2px ridge;
+    background-color: rgba(208, 184, 168, 0.89);
+    color: #332109;
+}
+
+.image {
+    padding: 60px;
+    background: var(--beige);
+    border-bottom: rgba(152, 110, 46, 0.63) 2px solid;
+}
+
+.cardTitle {
+    font-weight: bold;
+    color: #64461d;
+}
+
+.cardList {
+    background-color: rgba(248, 224, 194, 0.87);
+    border: rgba(152, 110, 46, 0.62) 2px solid;
+    color: #332109;
+}
+
+.cardFooter {
+    color: #000000;
+    font-weight: bold;
+    font-size: large;
+
 }

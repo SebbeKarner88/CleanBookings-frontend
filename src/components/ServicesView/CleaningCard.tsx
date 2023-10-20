@@ -33,17 +33,17 @@ function CleaningCard({image, title, description, items, price} : props) {
         <Card className="cleaningCard">
             <Card.Img className="image" variant="top" src={imgMapper(image)}  />
             <Card.Body>
-                <Card.Title>{title}</Card.Title>
+                <Card.Title className="cardTitle">{title}</Card.Title>
                 <Card.Text>
                     {description}
                 </Card.Text>
             </Card.Body>
             <ListGroup className="list-group-flush">
                 {items.map((item: string, index: number ) => (
-                    <ListGroup.Item key={index}>{item}</ListGroup.Item>))}
+                    <ListGroup.Item className="cardList" key={index}>{item}</ListGroup.Item>))}
             </ListGroup>
             <Card.Footer>
-                <small className="text-muted">{price}</small>
+                <small className="cardFooter">{price}</small>
             </Card.Footer>
         </Card>
         </>
