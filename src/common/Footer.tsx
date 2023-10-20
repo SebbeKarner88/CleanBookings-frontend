@@ -57,7 +57,7 @@ export const Footer = () => {
                         <ul className="vertical-links small">
                             <li><a href="/privacypolicy">Privacy</a></li>
                             <li><a href="terms&conditions">Terms & Conditions</a></li>
-                            <li><a href="/contactus">Contact Us</a></li>
+                            <li><a href="/contact">Contact Us</a></li>
                             <li><a href="/design">Homepage design</a></li>
                         </ul>
                     </div>
