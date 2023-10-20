@@ -42,7 +42,7 @@ const TypesOfCleaning = () => {
             <Container className="mt-5">
                 <Row>
                     {services.map((service, index) => (
-                        <Col md={3} key={index} className="mb-4">
+                        <Col key={index} className="mb-5">
                             <CleaningCard
                                 image={service.image}
                                 title={service.title}

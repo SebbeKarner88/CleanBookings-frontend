@@ -1,9 +1,20 @@
 .cleaningCard {
-    width: 15rem;
-
+    width: 17rem;
+    border-style: ridge;
+    border-width: 2px;
+    border-color: #986e2e;
+    background-color: var(--dark-beige);
 }
 
 .image {
     padding: 60px;
-    background: #f6ebe1;
+    background: var(--beige);
+}
+
+.cardContainer {
+    background-image: url('../../assets/images/myspys.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
 }

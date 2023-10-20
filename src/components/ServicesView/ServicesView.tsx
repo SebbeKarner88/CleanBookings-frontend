@@ -21,12 +21,15 @@ function ServicesView() {
     return (
         <>
             <NavBar />
+            <div
+                className="cardContainer">
             <h1>What We Offer</h1>
             <TypesOfCleaning />
             <Button
                 id="book"
                 variant="outline-dark"
                 onClick={() => handleBook()}>Book Now</Button>
+            </div>
             <Footer />
         </>
     );
