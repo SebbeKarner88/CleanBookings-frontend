@@ -39,19 +39,19 @@ const NavBar = () => {
                     </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav>
+                        <Nav className="my-3">
                             <LinkContainer to="/services">
-                                <Nav.Link className="px-3">
+                                <Nav.Link className="px-3 fs-5">
                                     Våra tjänster
                                 </Nav.Link>
                             </LinkContainer>
                             <LinkContainer to="/AboutUs">
-                                <Nav.Link className="px-3">
+                                <Nav.Link className="px-3 fs-5">
                                     Om oss
                                 </Nav.Link>
                             </LinkContainer>
                             <LinkContainer to="/faq">
-                                <Nav.Link className="px-3">
+                                <Nav.Link className="px-3 fs-5">
                                     Vanliga frågor
                                 </Nav.Link>
                             </LinkContainer>
@@ -91,12 +91,12 @@ const NavBar = () => {
                                 :
                                 <Nav>
                                     <LinkContainer to="/login">
-                                        <Button size="lg" className="btn-outline-dark-purple mx-3">
+                                        <Button variant="dark" size="lg" className="btn-outline-dark-purple my-3 my-md-0 mx-md-3">
                                             Logga in
                                         </Button>
                                     </LinkContainer>
                                     <LinkContainer to="/register">
-                                        <Button size="lg" className="btn-dark-purple mx-3">
+                                        <Button variant="dark" size="lg" className="btn-dark-purple mb-3 mb-md-0">
                                             Registrera
                                         </Button>
                                     </LinkContainer>

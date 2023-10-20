@@ -17,7 +17,7 @@
     background-color: var(--beige);
 }
 
-.btn-dark-purple {
+.btn-dark-purple, .btn-dark-purple:visited {
     background-color: var(--dark-purple);
     color: var(--beige);
     border: none;
@@ -28,13 +28,14 @@
     opacity: 0.9;
 }
 
-.btn-outline-dark-purple {
+.btn-outline-dark-purple, .btn-outline-dark-purple:visited {
     background-color: var(--beige);
     color: var(--dark-purple);
     border: 1px solid var(--dark-purple);
 }
 
 .btn-outline-dark-purple:hover {
+    color: var(--beige);
     background-color: var(--dark-purple);
     border: 1px solid var(--dark-purple);
 }
