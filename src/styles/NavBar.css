@@ -24,3 +24,9 @@
 .logo {
     padding-right: 40px;
 }
+
+@media only screen and (max-width: 1025px) {
+    .nav-link {
+        font-size: 0.9em;
+    }
+}

@@ -91,7 +91,7 @@ const NavBar = () => {
                                 :
                                 <Nav>
                                     <LinkContainer to="/login">
-                                        <Button size="lg" className="btn-outline-dark-purple mx-3 my-3">
+                                        <Button size="lg" className="btn-outline-dark-purple mx-3">
                                             Logga in
                                         </Button>
                                     </LinkContainer>
