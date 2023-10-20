@@ -3,6 +3,8 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import {useEffect, useState} from "react";
 import {getAllCleaners} from "../api/CustomerApi.ts";
+import user from '../assets/images/user.png'
+import '../styles/EmployeeCardGridStyles.css'
 
 interface Icleaner {
     id: string,
@@ -35,16 +37,16 @@ function EmployeeCardGrid() {
     }, []);
 
     return (
-        <Row xs={1} md={2} className="g-4">
+        <Row xs={1} md={2} xxl={3} className="g-1">
             {cleaners.map((cleaner, id) => (
                 <Col key={id}>
-                    <Card>
-                        <Card.Img variant="top" src="holder.js/100px160"/>
+                    <Card className="empCard">
+                        <Card.Img variant="top" src={user} className="cardImage"/>
                         <Card.Body>
-                            <Card.Title>{cleaner.firstName + " " + cleaner.lastName}</Card.Title>
+                            <Card.Title><strong>{cleaner.firstName + " " + cleaner.lastName}</strong></Card.Title>
                             <Card.Text>
-                                Phone Number: {cleaner.phoneNumber} <br/>
-                                Email Adress: {cleaner.emailAddress}
+                                <strong>Phone Number:</strong> {cleaner.phoneNumber} <br/>
+                                <strong>Email:</strong> {cleaner.emailAddress}
                             </Card.Text>
                         </Card.Body>
                     </Card>

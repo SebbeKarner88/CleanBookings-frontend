@@ -1,41 +1,19 @@
-h3 {
-    padding: 20px 0;
+* {
+    font-family: "Nunito", sans-serif;
 }
 
-.profile.area {
-    padding: 80px 0;
+.aboutContainer {
+    background-image: url('../../src/assets/images/myspys.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
 }
 
-.card {
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-    border-radius: 15px;
+.emp {
+    padding-top: 2.5rem;
+    font-size: 3rem;
+    color: #c5b195;
+    text-shadow: 2px 2px 3px #7a533a;
 }
 
-.img2 img {
-    margin-left: auto;
-    margin-right: auto;
-    z-index: 1;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    border: 7px solid #fff;
-    margin-top: 20px;
-}
-
-.main-text {
-    padding: 30px 0;
-    text-align: center;
-}
-
-.main-text h4 {
-    text-transform: uppercase;
-    font-weight: 900;
-    font-size: 20px;
-    margin: 0 0 20px;
-}
-
-.main-text p {
-    font-size: 16px;
-    padding: 0 35px;
-}
