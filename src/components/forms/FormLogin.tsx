@@ -49,9 +49,9 @@ export function FormLogin() {
     return (
         <>
             <div className="popup">
-                <form className="mt-3 popup-content rounded-2"
+                <form className="mt-3 popup-content rounded-2 bg-dark-beige"
                       onSubmit={handleSubmit(onSubmit)}>
-                    <h1 className="h4 mb-3 fw-bold">Login <Link to="/">
+                    <h1 className="my-3 fw-bold text-dark-purple">Login <Link to="/">
                         <button type="button" className="btn-close btn-dark small float-end"
                                 aria-label="Close window"></button>
                     </Link></h1>
@@ -72,10 +72,10 @@ export function FormLogin() {
                         customError={errorMessage}
                         register={register}
                     />
-                    <button type="submit" className="btn btn-primary w-100">Sign in</button>
+                    <button type="submit" className="btn btn-dark-purple w-100">Sign in</button>
                     <div className="mt-3 d-flex gap-2 align-items-center">
                         <BsPersonFillAdd size={20}/>
-                        <strong>First time? </strong><Link to="/register">Register an account</Link>
+                        <strong>First time? </strong><Link to="/register" className="text-dark-purple">Register an account</Link>
                     </div>
                 </form>
             </div>
