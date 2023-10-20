@@ -1,5 +1,4 @@
 import NavBar from "../common/NavBar.tsx"
-import Contact from "./Contact"
 import '../styles/AboutUs.css'
 import {Footer} from "../common/Footer.tsx"
 import EmployeeCardGrid from "./EmployeeCardGrid.tsx";
@@ -16,7 +15,6 @@ function AboutUs() {
                 <Container>
                     <EmployeeCardGrid/>
                 </Container>
-                <Contact/>
             </div>
             <Footer/>
         </>

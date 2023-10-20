@@ -5,6 +5,8 @@ import {useEffect, useState} from "react";
 import {getAllCleaners} from "../api/CustomerApi.ts";
 import user from '../assets/images/user.png'
 import '../styles/EmployeeCardGridStyles.css'
+import { FaPhone, FaEnvelopeSquare } from 'react-icons/fa'
+import styled from 'styled-components'
 
 interface Icleaner {
     id: string,
@@ -44,9 +46,9 @@ function EmployeeCardGrid() {
                         <Card.Img variant="top" src={user} className="cardImage"/>
                         <Card.Body>
                             <Card.Title><strong>{cleaner.firstName + " " + cleaner.lastName}</strong></Card.Title>
-                            <Card.Text>
-                                <strong>Phone Number:</strong> {cleaner.phoneNumber} <br/>
-                                <strong>Email:</strong> {cleaner.emailAddress}
+                            <Card.Text className="text-start">
+                                <Phone /> {cleaner.phoneNumber} <br/>
+                                <Envelope/> {cleaner.emailAddress}
                             </Card.Text>
                         </Card.Body>
                     </Card>
@@ -57,3 +59,17 @@ function EmployeeCardGrid() {
 }
 
 export default EmployeeCardGrid;
+
+const Phone = styled(FaPhone)`
+  color: var(--dark-purple);
+  margin-right: 10px;
+  font-size: 18px;
+  width: 2.25rem;
+`;
+
+const Envelope = styled(FaEnvelopeSquare)`
+  color: var(--dark-purple);
+  margin-right: 10px;
+  font-size: 18px;
+  width: 2.25rem;
+`;

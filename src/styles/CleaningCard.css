@@ -36,33 +36,3 @@
     font-weight: bold;
     font-size: large;
 }
-
-@media only screen and (max-width: 800px) {
-    .cleaningCard {
-        max-width: 28vh;
-    }
-}
-
-@media only screen and (max-width: 600px) {
-    .cleaningCard {
-        max-width: 28vh;
-    }
-
-    .image {
-        padding: 30px;
-    }
-}
-
-@media only screen and (max-width: 400px) {
-    .cleaningCard {
-        max-width: 20vh;
-    }
-
-    .cardList {
-        display: none;
-    }
-
-    .image {
-        padding: 25px;
-    }
-}

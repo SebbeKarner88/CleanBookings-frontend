@@ -39,8 +39,8 @@ const TypesOfCleaning = () => {
 
     return (
         <>
-            <Container className="pt-5">
-                <Row>
+            <Container className="pt-5 px-5">
+                <Row xs={1} md={2} lg={4}>
                     {services.map((service, index) => (
                         <Col key={index} className="mb-5">
                             <CleaningCard

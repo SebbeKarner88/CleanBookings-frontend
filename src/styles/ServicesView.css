@@ -1,3 +1,12 @@
+.cardContainer {
+    background-image: url('../../src/assets/images/myspys.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+    font-family: "Nunito", sans-serif;
+}
+
 .bookButton {
     margin-bottom: 3rem;
     font-family: "Nunito", sans-serif;
@@ -7,10 +16,12 @@
     color: rgba(80, 46, 46, 0.82);
     background-color: var(--light-brown);
     border: #a68251 2px ridge;
+    text-shadow: 1px 2px 1px #c7a990;
 }
 
 .bookButton:hover, .bookButton:checked {
     color: rgba(243, 234, 223, 0.76);
     background-color: rgba(143, 133, 133, 0.82);
     border: #a29179 2px ridge;
+    text-shadow: 2px 2px 3px #7a533a;
 }
