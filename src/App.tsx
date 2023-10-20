@@ -11,7 +11,7 @@ import CleaningsPerType from './components/booking-management/CleaningsPerType';
 import BookingHistory from "./components/booking-management/BookingHistory.tsx";
 import BookingView from './components/booking-management/BookingView.tsx'
 import LogIn from './components/LogIn.tsx'
-import Register from './components/Register.tsx'
+import RegisterView from './components/RegisterView.tsx'
 import AboutUs from './components/AboutUs'
 import {useContext} from "react";
 import {AuthContext} from "./context/AuthContext.tsx";
@@ -29,7 +29,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LogIn />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<RegisterView />} />
           <Route path="/AboutUs" element={<AboutUs />} />
           <Route path="/services" element={<ServicesView />} />
           <Route path="/contact" element={<Contact />} />

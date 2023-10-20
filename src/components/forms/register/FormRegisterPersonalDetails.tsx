@@ -1,10 +1,9 @@
 import {FieldValues, useForm} from "react-hook-form";
-import {Link} from "react-router-dom";
-import {VscAccount} from "react-icons/vsc";
 import {FormField} from "../FormField.tsx";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useFormContext} from "../../../context/RegisterFormContext.tsx";
+import ContinueButton from "./ContinueButton.tsx";
 
 const schema = z.object({
     firstName: z
@@ -44,13 +43,13 @@ export function FormRegisterPersonalDetails({onNext}: IFormRegisterPersonalDetai
 
     return (
         <form className="my-3 my-md-5 px-4 text-start" onSubmit={handleSubmit(saveData)}>
-            <h2 className="my-3 fw-bold text-primary-emphasis">
-                Personal details
+            <h2 className="my-3 fw-bold text-dark-purple">
+                Personuppgifter
             </h2>
 
             <FormField
                 fieldName="firstName"
-                label="First name"
+                label="Förnamn"
                 inputType="text"
                 fieldError={errors.firstName}
                 register={register}
@@ -58,7 +57,7 @@ export function FormRegisterPersonalDetails({onNext}: IFormRegisterPersonalDetai
 
             <FormField
                 fieldName="lastName"
-                label="Last name"
+                label="Efternamn"
                 inputType="text"
                 fieldError={errors.lastName}
                 register={register}
@@ -66,21 +65,14 @@ export function FormRegisterPersonalDetails({onNext}: IFormRegisterPersonalDetai
 
             <FormField
                 fieldName="ssn"
-                label="Social security number"
+                label="Personnummer"
                 labelDescription={"YYMMDD-XXXX"}
                 inputType="text"
                 fieldError={errors.ssn}
                 register={register}
             />
 
-            <button type="submit" className="btn btn-primary w-100">
-                Next
-            </button>
-
-            <div className="mt-3 d-flex gap-2 align-items-center">
-                <VscAccount size={20}/>
-                <strong>Already have an account? </strong><Link to="/login">Sign in</Link>
-            </div>
+            <ContinueButton />
         </form>
     );
 }
