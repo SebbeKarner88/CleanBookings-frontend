@@ -28,7 +28,7 @@ function ServicesView() {
                 <Button
                     id="book"
                     className="bookButton"
-                    onClick={() => handleBook()}>Boka din städning</Button>
+                    onClick={() => handleBook()}>Boka städning</Button>
             </div>
             <Footer/>
         </>

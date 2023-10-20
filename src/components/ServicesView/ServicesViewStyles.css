@@ -3,7 +3,13 @@
     margin-bottom: 3rem;
     font-family: "Nunito", sans-serif;
     font-size: 2rem;
-    color: rgba(243, 210, 168, 0.76);
-    background-color: rgba(129, 102, 102, 0.82);
+    color: rgba(80, 46, 46, 0.82);
+    background-color: rgba(229, 209, 186, 0.93);
     border: #a68251 2px ridge;
+}
+
+.bookButton:hover, .bookButton:checked {
+    color: rgba(243, 234, 223, 0.76);
+    background-color: rgba(143, 133, 133, 0.82);
+    border: #a29179 2px ridge;
 }
