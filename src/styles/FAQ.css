@@ -18,7 +18,14 @@
 .faq-question {
     cursor: pointer;
     color: var(--light-brown);
+    font-size: 1.5em;
     padding: 1% 0;
+    background-color: var(--dark-purple);
+    border: none;
+}
+
+.faq-question:hover {
+    font-weight: bold;
 }
 
 .faq-answer {
@@ -35,10 +42,11 @@
 
 @media only screen and (max-width: 800px) {
     .faq {
-        font-size: 2em;
+        font-size: 1.5em;
     }
     
     .faq-question {
         font-size: 1em;
+        
     }
 }
