@@ -127,6 +127,26 @@ export async function updateCustomerData(
     }
 }
 
+export async function updatePassword(
+    customerId: string,
+    currentPassword: string,
+    newPassword: string
+) {
+    try {
+        const response = await api.put(
+            `/customer/updatePassword/${customerId}`,
+            {
+                oldPassword: currentPassword,
+                newPassword: newPassword
+            }
+        );
+        if (response.status == 200)
+            return response;
+    } catch (error) {
+        return error;
+    }
+}
+
 export async function getJobsByCustomerId(customerId: string) {
     try {
         const response = await api.get(

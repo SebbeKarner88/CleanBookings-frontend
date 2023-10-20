@@ -1,12 +1,16 @@
 :root {
     --beige: rgba(250, 236, 225, 0.91);
     --dark-purple: rgb(89, 69, 69);
-    --dark-beige: rgb(220, 196, 161);
+    --dark-beige: rgb(208, 184, 168);
     --light-brown: rgba(208, 184, 168, 0.89);
 }
 
 .bg-dark-beige {
     background-color: var(--dark-beige);
+}
+
+.bg-light-brown {
+    background-color: var(--light-brown);
 }
 
 .bg-beige {
@@ -33,4 +37,16 @@
 .btn-outline-dark-purple:hover {
     background-color: var(--dark-purple);
     border: 1px solid var(--dark-purple);
+}
+
+.text-dark-purple {
+    color: var(--dark-purple);
+}
+
+.text-mauve {
+    color: var(--mauve);
+}
+
+.text-dark-beige {
+    color: var(--dark-beige);
 }

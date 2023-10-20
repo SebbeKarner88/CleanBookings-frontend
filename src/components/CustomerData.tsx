@@ -20,19 +20,19 @@ export default function CustomerData({customer}: ICustomerData) {
     return (
         <>
             <div className="col-md-4">
-                <CustomerDataField label="Customer ID" value={customer.id} />
-                <CustomerDataField label="First name" value={customer.firstName} />
-                <CustomerDataField label="Last name" value={customer.lastName} />
+                <CustomerDataField label="Kund ID" value={customer.id} />
+                <CustomerDataField label="Förnamn" value={customer.firstName} />
+                <CustomerDataField label="Efternamn" value={customer.lastName} />
             </div>
             <div className="col-md-4">
-                <CustomerDataField label="Type of customer" value={customer.customerType} />
-                <CustomerDataField label="Street address" value={customer.streetAddress} />
-                <CustomerDataField label="Postal code" value={customer.postalCode} />
+                <CustomerDataField label="Typ av kund" value={customer.customerType} />
+                <CustomerDataField label="Gatuadress" value={customer.streetAddress} />
+                <CustomerDataField label="Postkod" value={customer.postalCode} />
             </div>
             <div className="col-md-4">
-                <CustomerDataField label="City" value={customer.city} />
-                <CustomerDataField label="Phone number" value={customer.phoneNumber} />
-                <CustomerDataField label="Email address" value={customer.emailAddress} />
+                <CustomerDataField label="Postort" value={customer.city} />
+                <CustomerDataField label="Telefonnummer" value={customer.phoneNumber} />
+                <CustomerDataField label="Epostadress" value={customer.emailAddress} />
             </div>
         </>
     )

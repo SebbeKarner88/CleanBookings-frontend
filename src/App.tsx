@@ -16,7 +16,7 @@ import AboutUs from './components/AboutUs'
 import {useContext} from "react";
 import {AuthContext} from "./context/AuthContext.tsx";
 import SettingsView from "./components/SettingsView.tsx";
-import FormEditCustomerData from './components/forms/FormEditCustomerData.tsx'
+import EditCustomerDataView from './components/EditCustomerDataView.tsx'
 import NotFoundView from "./components/NotFoundView.tsx";
 import FAQ from "./components/FAQ.tsx";
 
@@ -44,7 +44,7 @@ function App() {
                 <Route path="/cleanings-per-type" element={<CleaningsPerType />} />
                 <Route path="/booking-history/:customerId" element={<BookingHistory />} />
                 <Route path="/booking-view" element={<BookingView />} />
-                <Route path="/update-customer" element={<FormEditCustomerData />} />
+                <Route path="/update-customer" element={<EditCustomerDataView />} />
                 {/*<Route path="/approved-cleaning/:cleaningId" element={<ApprovedCleaning />} />*/}
                 {/*<Route path="/disapproved-cleaning/:cleaningId" element={<DisapprovedCleaning />} />*/}
               </>
