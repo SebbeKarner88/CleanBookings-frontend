@@ -31,9 +31,9 @@ const NavBar = () => {
                     <Navbar.Brand>
                         <Link to="/">
                             <Image
-                                className="logo"
+                                className="mx-2"
                                 src={logo}
-                                height={80}
+                                height={70}
                             />
                         </Link>
                     </Navbar.Brand>

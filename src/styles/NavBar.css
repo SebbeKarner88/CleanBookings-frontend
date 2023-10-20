@@ -4,29 +4,15 @@
 
 .nav-link {
     font-family: 'Nunito', sans-serif;
-    /*font-size: 1.2em;*/
-    letter-spacing: normal;
-    text-transform: uppercase;
-    /*padding: 0 20px;*/
     color: var(--dark-purple);
 }
 
 .nav-link:hover {
-    color: var(--light-brown);
-    font-weight: normal;
+    font-weight: bold;
+    color: var(--dark-purple);
 }
 
 .navbar-nav .nav-link.active{
-    color: var(--light-brown);
+    color: var(--dark-purple);
     font-weight: bold;
-}
-
-.logo {
-    padding-right: 40px;
-}
-
-@media only screen and (max-width: 1200px) {
-    .nav-link {
-        font-size: 0.9em;
-    }
 }
