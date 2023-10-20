@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container'
 import { Footer } from "../common/Footer.tsx"
 import Image from "react-bootstrap/Image";
 import notFound from '../assets/images/notFoundBlack.jpg'
-import "./notFoundStyles.css"
+import "../styles/NotFound.css"
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
