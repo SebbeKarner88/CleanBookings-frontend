@@ -62,3 +62,7 @@ a:hover {
 .small {
     color: var(--beige);
 }
+
+ul li {
+    color: var(--dark-purple);
+}
