@@ -1,6 +1,6 @@
 import {Button} from "react-bootstrap";
 import NavBar from "../../common/NavBar.tsx";
-import TypesOfCleaning from "../../common/TypesOfCleaning.tsx";
+import TypesOfCleaning from "./TypesOfCleaning.tsx";
 import {useContext} from "react";
 import {AuthContext} from "../../context/AuthContext.tsx";
 import {useNavigate} from "react-router-dom";

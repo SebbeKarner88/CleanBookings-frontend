@@ -1,5 +1,5 @@
 import NavBar from "../../common/NavBar.tsx"
-import TypesOfCleaning from "../../common/TypesOfCleaning"
+import TypesOfCleaning from "../ServicesView/TypesOfCleaning.tsx"
 import BookingForm from "../forms/FormBookService"
 
 const BookingView = () => {
