@@ -4,7 +4,7 @@ import "bootstrap";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import LandingPage from './components/LandingPage'
 import MyPages from './components/MyPages'
-import ServicesView from './components/ServicesView/ServicesView.tsx'
+import ServicesView from './components/services-view/ServicesView.tsx'
 import Contact from './components/Contact'
 import BookedCleanings from './components/booking-management/BookedCleanings';
 import CleaningsPerType from './components/booking-management/CleaningsPerType';
@@ -17,7 +17,7 @@ import {useContext} from "react";
 import {AuthContext} from "./context/AuthContext.tsx";
 import SettingsView from "./components/SettingsView.tsx";
 import FormEditCustomerData from './components/forms/FormEditCustomerData.tsx'
-import NotFoundView from "./components/NotFoundView/NotFoundView.tsx";
+import NotFoundView from "./components/NotFoundView.tsx";
 import FAQ from "./components/FAQ.tsx";
 
 function App() {
