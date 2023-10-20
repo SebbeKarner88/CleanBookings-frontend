@@ -1,10 +1,11 @@
-
 .bookButton {
     margin-bottom: 3rem;
     font-family: "Nunito", sans-serif;
     font-size: 2rem;
+    text-transform: uppercase;
+    padding: 10px 20px;
     color: rgba(80, 46, 46, 0.82);
-    background-color: rgba(229, 209, 186, 0.93);
+    background-color: var(--light-brown);
     border: #a68251 2px ridge;
 }
 
