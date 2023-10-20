@@ -14,28 +14,6 @@
     font-weight: normal;
 }
 
-.btn-beige {
-    background-color: var(--dark-purple);
-    color: var(--beige);
-    border: none;
-}
-
-.btn-beige-hover:hover {
-    background-color: var(--dark-purple);
-    opacity: 0.9;
-}
-
-.btn-outline-beige {
-    background-color: var(--beige);
-    color: var(--dark-purple);
-    border: 1px solid var(--dark-purple);
-}
-
-.btn-outline-beige-hover:hover {
-    background-color: var(--dark-purple);
-    border: 1px solid var(--dark-purple);
-}
-
 .logo {
     padding-right: 40px;
 }

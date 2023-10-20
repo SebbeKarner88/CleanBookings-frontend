@@ -3,21 +3,18 @@ import {
     Navbar,
     Container,
     Button,
-    DropdownItem,
-    NavLink,
-    SplitButton
 } from "react-bootstrap";
-import { LinkContainer } from 'react-router-bootstrap';
-import { useContext } from 'react'
-import { AuthContext } from "../context/AuthContext.tsx";
-import { Link, useNavigate } from "react-router-dom";
+import {LinkContainer} from 'react-router-bootstrap';
+import {useContext} from 'react'
+import {AuthContext} from "../context/AuthContext.tsx";
+import {Link, useNavigate} from "react-router-dom";
 import Image from "react-bootstrap/Image";
 import logo from '../assets/images/logo.png'
 import '../styles/NavBar.css'
 import '../styles/Global.css'
 
 const NavBar = () => {
-    const { isAuthenticated, name, setIsAuthenticated, setCustomerId, setName } = useContext(AuthContext);
+    const {isAuthenticated, name, setIsAuthenticated, setCustomerId, setName} = useContext(AuthContext);
     const navigation = useNavigate();
 
     async function handleLogout() {
@@ -40,22 +37,22 @@ const NavBar = () => {
                             />
                         </Link>
                     </Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav>
                             <LinkContainer to="/services">
                                 <Nav.Link className="px-3">
-                                    Services
+                                    Våra tjänster
                                 </Nav.Link>
                             </LinkContainer>
                             <LinkContainer to="/AboutUs">
                                 <Nav.Link className="px-3">
-                                    About Us
+                                    Om oss
                                 </Nav.Link>
                             </LinkContainer>
                             <LinkContainer to="/faq">
                                 <Nav.Link className="px-3">
-                                    FAQ
+                                    Vanliga frågor
                                 </Nav.Link>
                             </LinkContainer>
                         </Nav>
@@ -77,39 +74,30 @@ const NavBar = () => {
                                 ?
                                 <>
                                     <Nav>
-                                        <SplitButton
-                                            title="My pages"
-                                            variant="primary"
-                                            onClick={() => navigation("/my-pages")}
-                                        >
-                                            <DropdownItem>
-                                                <LinkContainer to="/my-pages/settings">
-                                                    <NavLink>
-                                                        Settings
-                                                    </NavLink>
-                                                </LinkContainer>
-                                            </DropdownItem>
-
-                                        </SplitButton>
+                                        <Link to="/my-pages">
+                                            <Button size="lg" className="btn-beige">
+                                                Mina sidor
+                                            </Button>
+                                        </Link>
                                     </Nav>
                                     <Navbar.Text>
                                         <p className="visually-hidden">Signed in as: {name}</p>
-                                        <Button variant="outline-danger" className="mx-3 my-3 my-md-0"
-                                            onClick={handleLogout}>
-                                            Logout
+                                        <Button variant="outline-danger" size="lg" className="mx-3 my-3 my-md-0"
+                                                onClick={handleLogout}>
+                                            Logga ut
                                         </Button>
                                     </Navbar.Text>
                                 </>
                                 :
                                 <Nav>
                                     <LinkContainer to="/login">
-                                        <Button size="lg" className="btn-outline-beige btn-outline-beige-hover mx-3">
-                                            Sign in
+                                        <Button size="lg" className="btn-outline-beige mx-3">
+                                            Logga in
                                         </Button>
                                     </LinkContainer>
                                     <Link to="/register">
-                                        <Button size="lg" className="btn-beige btn-beige-hover">
-                                            Register
+                                        <Button size="lg" className="btn-beige">
+                                            Registrera
                                         </Button>
                                     </Link>
                                 </Nav>

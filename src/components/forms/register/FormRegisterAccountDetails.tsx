@@ -63,7 +63,7 @@ export function FormRegisterAccountDetails() {
             );
 
             if (response?.status == 201)
-                navigate("/myPages")
+                navigate("/my-pages")
         } catch (error) {
             console.error(error);
         }

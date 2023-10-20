@@ -74,7 +74,7 @@ const SettingsView = () => {
                             variant='danger'
                             className='w-100'
                             onClick={() => {
-                                navigate("/myPages")
+                                navigate("/my-pages")
                             }}
                         >
                             Return to My Pages
