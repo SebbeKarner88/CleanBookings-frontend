@@ -49,7 +49,7 @@ export function FormLogin() {
     return (
         <>
             <div className="popup">
-                <form className="mt-3 popup-content rounded-2 bg-dark-beige"
+                <form className="mt-3 popup-content rounded-2 bg-light-brown"
                       onSubmit={handleSubmit(onSubmit)}>
                     <h1 className="my-3 fw-bold text-dark-purple">Login <Link to="/">
                         <button type="button" className="btn-close btn-dark small float-end"

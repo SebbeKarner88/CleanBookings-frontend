@@ -14,7 +14,7 @@ export default function RegisterView() {
     const now: number = step / steps.length * 100;
 
     return (
-        <div className="bg-dark-beige">
+        <div className="bg-light-brown">
             <NavBar/>
             <div className="container" style={{maxWidth: "800px"}}>
                 <h1 className="my-3 px-4 fw-bold text-start text-md-center">Register an account</h1>

@@ -1,6 +1,6 @@
 .faq-container {
     font-family: 'Nunito';
-    background-color: var(--dark-purple);
+    background-color: var(--light-brown);
     min-height: 70vh;
     display: flex;
     flex-direction: column;
@@ -10,17 +10,17 @@
 .faq {
     font-size: 3em;
     font-weight: bold;
-    color: var(--beige);
+    color: black;
     padding-top: 5%;
     padding-bottom: 1%;
 }
 
 .faq-question {
     cursor: pointer;
-    color: var(--light-brown);
+    color: var(--dark-purple);
     font-size: 1.5em;
     padding: 1% 0;
-    background-color: var(--dark-purple);
+    background-color: inherit;
     border: none;
 }
 
@@ -29,7 +29,7 @@
 }
 
 .faq-answer {
-    color: var(--beige);
+    color: var(--dark-purple);
     margin: -1% 25% 2% 25%;
     text-align: center;
 }
