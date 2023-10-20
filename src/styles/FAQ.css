@@ -1,0 +1,42 @@
+.faq-container {
+    font-family: 'Nunito';
+    background-color: var(--dark-purple);
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.faq {
+    font-size: 3em;
+    font-weight: bold;
+    color: var(--beige);
+    padding: 5%;
+}
+
+.faq-question {
+    cursor: pointer;
+    color: var(--light-brown);
+    padding: 1% 0;
+}
+
+.faq-answer {
+    color: var(--beige);
+    margin: -1% 25% 2% 25%;
+    text-align: center;
+}
+
+@media only screen and (max-width: 1200px) {
+    .faq-answer{
+        margin: 2% 15%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .faq {
+        font-size: 2em;
+    }
+    
+    .faq-question {
+        font-size: 1em;
+    }
+}

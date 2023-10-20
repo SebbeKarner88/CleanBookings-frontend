@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import NavBar from '../common/NavBar';
+import '../styles/FAQ.css'
+import { Footer } from '../common/Footer';
 
 function FAQ() {
     const [ expandedIndex, setExpandedIndex ] = useState(null);
@@ -44,24 +46,25 @@ function FAQ() {
     ];
 
 
-    const handleClick = index => {
+    const handleClick = (index: any) => {
         setExpandedIndex(index === expandedIndex ? null : index);
     };
 
     return (
         <>
             <NavBar />
-            <div>
-                <h2>Frequently Asked Questions</h2>
+            <div className='faq-container'>
+                <h2 className='faq'>Frequently Asked Questions</h2>
                 {faqs.map((faq, index) => (
                     <div key={index}>
-                        <h4 onClick={() => handleClick(index)}>
+                        <h4 className='faq-question' onClick={() => handleClick(index)}>
                             {faq.question}
                         </h4>
-                        {expandedIndex === index && <p>{faq.answer}</p>}
+                        {expandedIndex === index && <div className='faq-answer'>{faq.answer}</div>}
                     </div>
                 ))}
             </div>
+            <Footer />
         </>
     );
 }
