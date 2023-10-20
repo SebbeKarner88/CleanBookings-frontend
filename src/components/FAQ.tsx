@@ -5,19 +5,14 @@ import { Footer } from '../common/Footer';
 
 function FAQ() {
     const [ expandedIndex, setExpandedIndex ] = useState(null);
-
     const faqs = [
-
-        //TODO - Behövs det uppdateringslogik för FAQs?
-
-
         {
-            question: 'How often should I book a cleaning service?',
-            answer: 'It depends on various factors including the size of your property/home, the level of activity and your own personal preference for cleanliness. However, many customers find that a service every other week keeps their property/home fresh and tidy.'
+            question: 'Hur ofta borde jag boka en städservice?',
+            answer: 'Det beror på många olika faktorer så som storleken på ditt hem eller din fastighet, nivån av aktivitet och dina personliga preferenser för renlighet. De flesta kunder tycker att städservice varannan vecka hjälper dem att hålla sitt hem snyggt och prydligt.'
         },
         {
-            question: 'How do I make a booking for a cleaning service?',
-            answer: 'You can book our services online through our website. Just select your desired cleaning package, specify the date and time that work best for you, and provide the necessary details about your home.'
+            question: 'Hur bokar jag en städservice hos er?',
+            answer: 'Du kan boka våra tjänster online via vår webbsida genom att klicka på "Våra tjänster" i menyn högst upp. Välj den typ av tjänst som passar dig bäst, bestäm datum och tid för när tjänsten ska utföras och fyll i dina personliga uppgifter.'
         },
         {
             question: 'What is your cancellation policy?',
@@ -55,14 +50,18 @@ function FAQ() {
             <NavBar />
             <div className='faq-container'>
                 <h2 className='faq'>Frequently Asked Questions</h2>
+
                 {faqs.map((faq, index) => (
                     <div key={index}>
-                        <h4 className='faq-question' onClick={() => handleClick(index)}>
-                            {faq.question}
-                        </h4>
+                            <h4 className='faq-question' onClick={() => {
+                                handleClick(index)
+                            }}>
+                                {faq.question}
+                            </h4>
                         {expandedIndex === index && <div className='faq-answer'>{faq.answer}</div>}
                     </div>
                 ))}
+
             </div>
             <Footer />
         </>
