@@ -58,7 +58,7 @@ function MyPages() {
                     <h1 className="text-md-center fw-bold my-3 mb-md-5 mx-2">My pages</h1>
 
                     <Link to="/my-pages/settings">
-                        <Button size="lg" variant="btn-link" className="btn-beige m-3">
+                        <Button size="lg" variant="btn-link" className="btn-dark-purple m-3">
                             <IoSettingsOutline
                                 color="var(--beige)"
                                 size={30}

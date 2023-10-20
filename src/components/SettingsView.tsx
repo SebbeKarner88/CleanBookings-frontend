@@ -42,11 +42,11 @@ const SettingsView = () => {
     }, [customerId]);
 
     return (
-        <div className="bg-light-subtle min-vh-100 min-vw-100">
+        <div className="bg-dark-beige min-vh-100 min-vw-100">
             <NavBar/>
             <div className="container text-md-start mt-md-4">
                 {customerData ? (
-                    <div className="row my-3 mx-2 bg-white p-4 rounded-4 text-start border border-dark-subtle">
+                    <div className="row my-3 mx-2 bg-beige p-4 rounded-4 text-start border border-dark-subtle">
                         <div className="col-md-12 d-flex justify-content-between mb-4">
                             <h1 className="text-md-center fw-bold">
                                 Customer Data
@@ -57,15 +57,14 @@ const SettingsView = () => {
                                 aria-label="Press to edit customer data"
                                 type="button"
                                 onClick={() => navigate("/update-customer", {state: customerData})}>
-                                <MdEdit size={30} />
+                                <MdEdit size={30} color="var(--dark-purple)" />
                             </Button>
                         </div>
 
                        <CustomerData customer={customerData} />
 
                         <Button
-                            variant='primary'
-                            className='w-100 my-3'
+                            className='btn-dark-purple w-100 my-3'
                             onClick={handleShowPrivacyModal}>
                             Privacy Policy
                         </Button>

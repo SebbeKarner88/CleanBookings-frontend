@@ -75,7 +75,7 @@ const NavBar = () => {
                                 <>
                                     <Nav>
                                         <Link to="/my-pages">
-                                            <Button size="lg" className="btn-beige">
+                                            <Button size="lg" className="btn-dark-purple">
                                                 Mina sidor
                                             </Button>
                                         </Link>
@@ -91,12 +91,12 @@ const NavBar = () => {
                                 :
                                 <Nav>
                                     <LinkContainer to="/login">
-                                        <Button size="lg" className="btn-outline-beige mx-3">
+                                        <Button size="lg" className="btn-outline-dark-purple mx-3">
                                             Logga in
                                         </Button>
                                     </LinkContainer>
                                     <Link to="/register">
-                                        <Button size="lg" className="btn-beige">
+                                        <Button size="lg" className="btn-dark-purple">
                                             Registrera
                                         </Button>
                                     </Link>
