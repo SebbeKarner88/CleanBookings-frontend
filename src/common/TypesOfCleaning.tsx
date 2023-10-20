@@ -1,7 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import CleaningCard from "../components/ServicesView/CleaningCard.tsx";
+import CleaningCard from "../components/CleaningCard/CleaningCard.tsx";
 
 
 
@@ -39,7 +39,7 @@ const TypesOfCleaning = () => {
 
     return (
         <>
-            <Container className="mt-5">
+            <Container className="pt-5">
                 <Row>
                     {services.map((service, index) => (
                         <Col key={index} className="mb-5">
