@@ -1,12 +1,12 @@
-import {useContext, useState} from "react";
+import {FormField} from "./FormField.tsx";
+import {Button} from "react-bootstrap";
+import {z} from "zod";
+import {useLocation} from "react-router-dom";
 import {FieldValues, useForm} from "react-hook-form";
-import {z,} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {updateCustomerData} from "../../api/CustomerApi";
-import {FormField} from "./FormField";
-import {AuthContext} from "../../context/AuthContext";
-import {Button, Modal} from "react-bootstrap";
-import {useNavigate, useLocation} from "react-router-dom";
+import {updateCustomerData} from "../../api/CustomerApi.ts";
+import {Dispatch, SetStateAction, useContext} from "react";
+import {AuthContext} from "../../context/AuthContext.tsx";
 
 const schema = z.object({
     firstName: z
@@ -40,10 +40,12 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-const FormEditCustomerData = () => {
+interface IFormEditCustomerData {
+    setShowModal: Dispatch<SetStateAction<boolean>>;
+}
+
+export default function FormEditCustomerData({setShowModal}: IFormEditCustomerData) {
     const {customerId} = useContext(AuthContext);
-    const [modalVisible, setModalVisible] = useState(false);
-    const navigation = useNavigate();
     const location = useLocation();
     const values = location.state;
     const {
@@ -67,131 +69,91 @@ const FormEditCustomerData = () => {
                 data.emailAddress != values.emailAddress ? data.emailAddress : null
             );
             if (response?.status == 200)
-                setModalVisible(true)
+                setShowModal(true)
         } catch (error) {
             console.error(error);
         }
     }
 
     return (
-        <div className="bg-dark-beige min-vh-100 min-vw-100 d-flex align-items-center">
-            <div className="container bg-beige p-3 p-md-4 rounded-4 text-start border border-dark-subtle">
-                <div className="d-flex flex-column justify-content-between">
-                <h1 className="h1 fw-bold">
-                    Editing customer
-                </h1>
-                <p className="h3" style={{color: "var(--dark-purple)"}}>
-                    {values.firstName + " " + values.lastName} ({values.id})
-                </p>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <FormField
+                    fieldName="firstName"
+                    label="Förnamn"
+                    inputType="text"
+                    defaultValue={values.firstName}
+                    fieldError={errors.firstName}
+                    register={register}
+                />
+
+                <FormField
+                    fieldName="lastName"
+                    label="Efternamn"
+                    inputType="text"
+                    defaultValue={values.lastName}
+                    fieldError={errors.lastName}
+                    register={register}
+                />
+
+                <FormField
+                    fieldName="streetAddress"
+                    label="Gatuadress"
+                    inputType="text"
+                    defaultValue={values.streetAddress}
+                    fieldError={errors.streetAddress}
+                    register={register}
+                />
+
+
+                <div className="row">
+                    <div className="col-md-6">
+                        <FormField
+                            fieldName="postalCode"
+                            label="Postkod"
+                            inputType="text"
+                            defaultValue={values.postalCode}
+                            fieldError={errors.postalCode}
+                            register={register}
+                        />
+                    </div>
+                    <div className="col-md-6">
+                        <FormField
+                            fieldName="city"
+                            label="Postort"
+                            inputType="text"
+                            defaultValue={values.city}
+                            fieldError={errors.city}
+                            register={register}
+                        />
+                    </div>
                 </div>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                            <FormField
-                                fieldName="firstName"
-                                label="First name"
-                                inputType="text"
-                                defaultValue={values.firstName}
-                                fieldError={errors.firstName}
-                                register={register}
-                            />
 
-                            <FormField
-                                fieldName="lastName"
-                                label="Last name"
-                                inputType="text"
-                                defaultValue={values.lastName}
-                                fieldError={errors.lastName}
-                                register={register}
-                            />
+                <div className="row">
+                    <div className="col-md-6">
+                        <FormField
+                            fieldName="phoneNumber"
+                            label="Telefonnummer"
+                            inputType="text"
+                            defaultValue={values.phoneNumber}
+                            fieldError={errors.phoneNumber}
+                            register={register}
+                        />
+                    </div>
+                    <div className="col-md-6">
+                        <FormField
+                            fieldName="emailAddress"
+                            label="Epostadress"
+                            inputType="email"
+                            defaultValue={values.emailAddress}
+                            fieldError={errors.emailAddress}
+                            register={register}
+                        />
+                    </div>
+                </div>
 
-                            <FormField
-                                fieldName="streetAddress"
-                                label="Street Address"
-                                inputType="text"
-                                defaultValue={values.streetAddress}
-                                fieldError={errors.streetAddress}
-                                register={register}
-                            />
-
-                            <FormField
-                                fieldName="postalCode"
-                                label="Postal Code"
-                                inputType="text"
-                                defaultValue={values.postalCode}
-                                fieldError={errors.postalCode}
-                                register={register}
-                            />
-
-                            <FormField
-                                fieldName="city"
-                                label="City"
-                                inputType="text"
-                                defaultValue={values.city}
-                                fieldError={errors.city}
-                                register={register}
-                            />
-
-                            <FormField
-                                fieldName="phoneNumber"
-                                label="Phone Number"
-                                inputType="text"
-                                defaultValue={values.phoneNumber}
-                                fieldError={errors.phoneNumber}
-                                register={register}
-                            />
-
-                            <FormField
-                                fieldName="emailAddress"
-                                label="Email Address"
-                                inputType="email"
-                                defaultValue={values.emailAddress}
-                                fieldError={errors.emailAddress}
-                                register={register}
-                            />
-
-                    <Button type="submit" className="btn-dark-purple w-100 my-3">
-                        Update Customer Data
-                    </Button>
-                    <Button
-                        type="button"
-                        variant="danger"
-                        className="w-100"
-                        onClick={() => navigation("/my-pages")}
-                    >
-                        Cancel
-                    </Button>
-                </form>
-            </div>
-            <Modal
-                show={modalVisible}
-                onHide={() => setModalVisible(!modalVisible)}
-                fullscreen="md-down"
-            >
-                <Modal.Header
-                    className="bg-secondary-subtle"
-                    closeButton
-                >
-                    <Modal.Title className="fs-6 fw-bold">
-                        {"Update successful!"}
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <p>The data for customer {customerId} has been updated.</p>
-                </Modal.Body>
-                <Modal.Footer>
-
-                    <Button
-                        variant="primary"
-                        onClick={() => {
-                            setModalVisible(!modalVisible);
-                            navigation("/my-pages");
-                        }}
-                    >
-                        Return to My Pages
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-        </div>
-    );
-};
-
-export default FormEditCustomerData;
+                <Button type="submit" className="btn-dark-purple w-100">
+                    Uppdatera dina uppgifter
+                </Button>
+            </form>
+    )
+}
