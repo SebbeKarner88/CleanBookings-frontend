@@ -23,7 +23,7 @@ interface Job {
 }
 
 function MyPages() {
-    const {customerId, name} = useContext(AuthContext);
+    const {customerId, username} = useContext(AuthContext);
     const [jobs, setJobs] = useState<Job[]>([]);
     const [selectedStatus, setSelectedStatus] = useState<JobStatus[]>(["OPEN", "ASSIGNED", "WAITING_FOR_APPROVAL", "NOT_APPROVED", "APPROVED", "CLOSED"]);
     const [triggerUpdateOfJobs, setTriggerUpdateOfJobs] = useState<boolean>(false);
@@ -49,9 +49,7 @@ function MyPages() {
     return (
         <>
             <NavBar/>
-
-
-            <p className="text-end my-3 mx-2 mx-md-5">Signed in as: {name}</p>
+            <p className="text-end my-3 mx-2 mx-md-5">Signed in as: {username || 'N/A'}</p>
 
             <div className="container text-md-start">
                 <div className="d-flex justify-content-between">

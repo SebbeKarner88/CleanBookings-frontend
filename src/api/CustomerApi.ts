@@ -7,6 +7,7 @@ export async function loginCustomer(
     setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>,
     setCustomerId: React.Dispatch<React.SetStateAction<string>>,
     setName: React.Dispatch<React.SetStateAction<string>>,
+    setUsername: React.Dispatch<React.SetStateAction<string>>
 )
 {
     try {
@@ -21,6 +22,7 @@ export async function loginCustomer(
             setIsAuthenticated(true);
             setCustomerId(response.data.customerId);
             setName(response.data.name);
+            setUsername(email);
             return response;
         }
     } catch (error) {

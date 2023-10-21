@@ -32,11 +32,11 @@ export function FormLogin() {
     });
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const navigation = useNavigate();
-    const {setIsAuthenticated, setCustomerId, setName} = useContext(AuthContext);
+    const {setIsAuthenticated, setCustomerId, setName, setUsername} = useContext(AuthContext);
 
     async function onSubmit(data: FieldValues) {
         try {
-            const response = await loginCustomer(data.emailAddress, data.password, setIsAuthenticated, setCustomerId, setName);
+            const response = await loginCustomer(data.emailAddress, data.password, setIsAuthenticated, setCustomerId, setName, setUsername);
             if (response?.status == 200)
                 navigation(-1);
             else
