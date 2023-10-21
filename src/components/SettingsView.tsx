@@ -3,10 +3,11 @@ import axios from 'axios';
 import {Button} from 'react-bootstrap';
 import {AuthContext} from './../context/AuthContext';
 import {useNavigate} from 'react-router-dom';
-import NavBar from "../common/NavBar/NavBar.tsx";
+import NavBar from "../common/NavBar.tsx";
 import {MdEdit} from "react-icons/md";
 import CustomerData from "./CustomerData.tsx";
 import PrivacyModal from "./modals/PrivacyModal.tsx";
+import {Footer} from "../common/Footer.tsx";
 
 type Customer = {
     id: string;
@@ -42,50 +43,53 @@ const SettingsView = () => {
     }, [customerId]);
 
     return (
-        <div className="bg-light-subtle min-vh-100 min-vw-100">
+        <div className="bg-dark-beige min-vh-100 min-vw-100">
             <NavBar/>
-            <div className="container text-md-start mt-md-4">
+            <h1 className="text-md-center fw-semibold my-3 text-dark-purple">
+                Mina inställningar
+            </h1>
+            <div className="container text-start my-md-4">
                 {customerData ? (
-                    <div className="row my-3 mx-2 bg-white p-4 rounded-4 text-start border border-dark-subtle">
+                    <div className="row my-3 mx-2 bg-beige p-4 rounded-4 border border-dark-subtle">
                         <div className="col-md-12 d-flex justify-content-between mb-4">
-                            <h1 className="text-md-center fw-bold">
-                                Customer Data
-                            </h1>
+                            <h2 className="text-md-center fw-bold">
+                                Användaruppgifter
+                            </h2>
                             <Button
                                 variant="btn"
                                 className="w-auto focus-ring focus-ring-dark"
                                 aria-label="Press to edit customer data"
                                 type="button"
                                 onClick={() => navigate("/update-customer", {state: customerData})}>
-                                <MdEdit size={30} />
+                                <MdEdit size={30} color="var(--dark-purple)"/>
                             </Button>
                         </div>
 
-                       <CustomerData customer={customerData} />
+                        <CustomerData customer={customerData}/>
 
                         <Button
-                            variant='primary'
-                            className='w-100 my-3'
+                            className='btn-dark-purple w-100 my-3'
                             onClick={handleShowPrivacyModal}>
-                            Privacy Policy
+                            Integritetspolicy - så hanterar vi din data!
                         </Button>
 
                         <Button
                             variant='danger'
                             className='w-100'
                             onClick={() => {
-                                navigate("/myPages")
+                                navigate("/my-pages")
                             }}
                         >
-                            Return to My Pages
+                            Tillbaka till mina sidor
                         </Button>
-
                     </div>
                 ) : (
                     <p>Loading customer data...</p>
                 )}
             </div>
-            <PrivacyModal onShow={showPrivacyModal} onClose={handleClosePrivacyModal} />
+            <Footer />
+
+            <PrivacyModal onShow={showPrivacyModal} onClose={handleClosePrivacyModal}/>
         </div>
     );
 };

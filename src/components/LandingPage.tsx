@@ -1,21 +1,31 @@
-import NavBar from "../common/NavBar/NavBar.tsx"
-import Image from 'react-bootstrap/Image'
+import NavBar from "../common/NavBar.tsx"
 import Container from 'react-bootstrap/Container'
-// import Card from 'react-bootstrap/Card'
-import sponge from '../assets/images/sponge.jpg'
-import { Footer } from "../common/Footer/Footer.tsx"
+import mysigt from '../assets/images/myspys.jpg'
+import { Footer } from "../common/Footer.tsx"
+import '../styles/LandingPage.css'
 
 function LandingPage() {
 
     return (
         <>
             <NavBar />
-            {/* TODO: add images and witty description of company and their services */}
             <Container className="min-vw-100 p-0">
-                <Image src={sponge} fluid />
+                <Background />
             </Container>
             <Footer />
         </>
+    )
+}
+
+const Background = () => {
+    return (
+        <article
+            style={{ backgroundImage: `url(${mysigt})` }}>
+            <div className="intro">
+                <div className="intro-subtitle">Skrubba bort dina bekymmer</div>
+                <div className="intro-desc">Välj oss för ett glänsande resultat!</div>
+            </div>
+        </article>
     )
 }
 

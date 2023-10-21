@@ -1,0 +1,53 @@
+:root {
+    --beige: rgba(250, 236, 225, 0.91);
+    --dark-purple: rgb(89, 69, 69);
+    --dark-beige: rgb(208, 184, 168);
+    --light-brown: rgba(208, 184, 168, 0.82);
+}
+
+.bg-dark-beige {
+    background-color: var(--dark-beige);
+}
+
+.bg-light-brown {
+    background-color: var(--light-brown);
+}
+
+.bg-beige {
+    background-color: var(--beige);
+}
+
+.btn-dark-purple, .btn-dark-purple:visited {
+    background-color: var(--dark-purple);
+    color: var(--beige);
+    border: none;
+}
+
+.btn-dark-purple:hover {
+    background-color: var(--dark-purple);
+    opacity: 0.9;
+}
+
+.btn-outline-dark-purple, .btn-outline-dark-purple:visited {
+    background-color: var(--beige);
+    color: var(--dark-purple);
+    border: 1px solid var(--dark-purple);
+}
+
+.btn-outline-dark-purple:hover {
+    color: var(--beige);
+    background-color: var(--dark-purple);
+    border: 1px solid var(--dark-purple);
+}
+
+.text-dark-purple {
+    color: var(--dark-purple);
+}
+
+.text-mauve {
+    color: var(--mauve);
+}
+
+.text-dark-beige {
+    color: var(--dark-beige);
+}

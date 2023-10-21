@@ -1,5 +1,5 @@
-import './Footer.css'
-import {FaPhone, FaMobile, FaMapMarker, FaEnvelopeSquare} from 'react-icons/fa'
+import '../styles/Footer.css'
+import { FaPhone, FaMobile, FaMapMarker, FaEnvelopeSquare } from 'react-icons/fa'
 import styled from 'styled-components'
 
 export const Footer = () => {
@@ -11,17 +11,17 @@ export const Footer = () => {
                     <div className="col-xs-12 col-sm-6 col-md-3">
                         <ul>
                             <li className="col-heading">Contact</li>
-                                <li className="text-start"><Phone/> <a href="tel:0707000000">555-CLEAN-ME-NOW</a></li>
-                                <li className="text-start"><Mobile/> <a href="sms:0707000000">070-CLEAN-ME-NOW</a></li>
-                                <li className="text-start"><Map/> <a href="https://maps.app.goo.gl/HzU8kv5sVTQKF5cVA">Stockholm HQ</a></li>
-                                <li className="text-start"><Envelope/> <a
-                                    href="mailto:bokning@Cleanbookings.com?subject=Mail Hemsida">booking@cleanbookings.com</a>
-                                </li>
+                            <li className="text-start"><Phone /> 555-CLEAN-ME-NOW</li>
+                            <li className="text-start"><Mobile /> 070-CLEAN-ME-NOW</li>
+                            <li className="text-start"><Map /> <a href="https://maps.app.goo.gl/HzU8kv5sVTQKF5cVA">Stockholm HQ</a></li>
+                            <li className="text-start"><Envelope /> <a
+                                href="mailto:bokning@Cleanbookings.com?subject=Mail Hemsida">booking@cleanbookings.com</a>
+                            </li>
                         </ul>
                     </div>
 
                     <div className="col-xs-12 col-sm-6 col-md-3">
-                        <ul>
+                        <ul id='icons'>
                             <li className="col-heading">Locations</li>
                             <li><a href="https://maps.app.goo.gl/5xnZx6c4h5FFELxp8">Stockholm</a></li>
                             <li><a href="https://maps.app.goo.gl/utfxFDWKkYnBKqZd6">Göteborg</a></li>
@@ -57,7 +57,7 @@ export const Footer = () => {
                         <ul className="vertical-links small">
                             <li><a href="/privacypolicy">Privacy</a></li>
                             <li><a href="terms&conditions">Terms & Conditions</a></li>
-                            <li><a href="/contactus">Contact Us</a></li>
+                            <li><a href="/contact">Contact Us</a></li>
                             <li><a href="/design">Homepage design</a></li>
                         </ul>
                     </div>
@@ -66,8 +66,7 @@ export const Footer = () => {
                     </div>
                     <div className="col-xs-12 col-md-5 text-center">
                         <ul>
-                            <li className="small">© Copyright 2023 Website by <a className="text-dark" href="/codecrafters">CodeCrafters</a>. All Rights
-                                reserved.
+                            <li className="small">© Copyright 2023 Website by CodeCrafters. All Rights reserved.
                             </li>
                         </ul>
                     </div>
@@ -78,28 +77,28 @@ export const Footer = () => {
 }
 
 const Phone = styled(FaPhone)`
-  color: #304f50;
+  color: var(--dark-purple);
   margin-right: 10px;
   font-size: 18px;
   width: 2.25rem;
 `;
 
 const Mobile = styled(FaMobile)`
-  color: #304f50;
+  color: var(--dark-purple);
   margin-right: 10px;
   font-size: 18px;
   width: 2.25rem;
 `;
 
 const Map = styled(FaMapMarker)`
-  color: #304f50;
+  color: var(--dark-purple);
   margin-right: 10px;
   font-size: 18px;
   width: 2.25rem;
 `;
 
 const Envelope = styled(FaEnvelopeSquare)`
-  color: #304f50;
+  color: var(--dark-purple);
   margin-right: 10px;
   font-size: 18px;
   width: 2.25rem;

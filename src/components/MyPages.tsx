@@ -1,5 +1,5 @@
-import {Footer} from "../common/Footer/Footer.tsx"
-import NavBar from "../common/NavBar/NavBar.tsx"
+import {Footer} from "../common/Footer.tsx"
+import NavBar from "../common/NavBar.tsx"
 import {useContext, useEffect, useState} from 'react';
 import {AuthContext} from '../context/AuthContext'
 import CleaningsPerType from "./booking-management/CleaningsPerType.tsx";
@@ -7,6 +7,9 @@ import {getJobsByCustomerId} from "../api/CustomerApi.ts";
 import StatusFilter from "./tables/jobs/StatusFilter.tsx";
 import {CustomerJobsTable} from "./tables/jobs/CustomerJobsTable.tsx";
 import CustomerJobsFiltered from "./tables/jobs/CustomerJobsFiltered.tsx";
+import {Link} from "react-router-dom";
+import {Button} from "react-bootstrap";
+import {IoSettingsOutline} from "react-icons/io5";
 
 type JobStatus = "OPEN" | "ASSIGNED" | "WAITING_FOR_APPROVAL" | "NOT_APPROVED" | "APPROVED" | "CLOSED";
 
@@ -46,10 +49,23 @@ function MyPages() {
     return (
         <>
             <NavBar/>
+
+
             <p className="text-end my-3 mx-2 mx-md-5">Signed in as: {name}</p>
 
             <div className="container text-md-start">
-                <h1 className="text-md-center fw-bold my-3 mb-md-5 mx-2">My pages</h1>
+                <div className="d-flex justify-content-between">
+                    <h1 className="text-md-center fw-bold my-3 mb-md-5 mx-2">My pages</h1>
+
+                    <Link to="/my-pages/settings">
+                        <Button size="lg" variant="btn-link" className="btn-dark-purple m-3">
+                            <IoSettingsOutline
+                                color="var(--beige)"
+                                size={30}
+                                aria-label="Inställningar" />
+                        </Button>
+                    </Link>
+                </div>
 
                 <h2 className="fw-bold my-3">My bookings (1)</h2>
                 <CleaningsPerType/>

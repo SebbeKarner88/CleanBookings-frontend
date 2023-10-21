@@ -1,11 +1,11 @@
-import NavBar from "../../common/NavBar/NavBar.tsx"
+import NavBar from "../common/NavBar.tsx"
 import Container from 'react-bootstrap/Container'
-import {Footer} from "../../common/Footer/Footer.tsx"
+import { Footer } from "../common/Footer.tsx"
 import Image from "react-bootstrap/Image";
-import notFound from '../../assets/images/notFoundBlack.jpg'
-import "./notFoundStyles.css"
-import {Button} from "react-bootstrap";
-import {useNavigate} from "react-router-dom";
+import notFound from '../assets/images/notFoundBlack.jpg'
+import "../styles/NotFound.css"
+import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function NotFoundView() {
     const navigation = useNavigate();
@@ -13,7 +13,7 @@ function NotFoundView() {
     return (
         <>
 
-            <NavBar/>
+            <NavBar />
             <Container className="mt-5 mb-5 notFoundContainer">
                 <Image
                     src={notFound}
@@ -27,7 +27,7 @@ function NotFoundView() {
                     onClick={() => navigation("/")}
                 >Return to Homepage</Button>
             </Container>
-            <Footer/>
+            <Footer />
 
         </>
     )

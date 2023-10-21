@@ -12,7 +12,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@hookform/resolvers": "^3.3.1",
+    "@mui/icons-material": "^5.14.14",
+    "@mui/material": "^5.14.14",
     "@types/axios": "^0.14.0",
     "@types/testing-library__react": "^10.2.0",
     "axios": "^1.5.1",

@@ -127,6 +127,26 @@ export async function updateCustomerData(
     }
 }
 
+export async function updatePassword(
+    customerId: string,
+    currentPassword: string,
+    newPassword: string
+) {
+    try {
+        const response = await api.put(
+            `/customer/updatePassword/${customerId}`,
+            {
+                oldPassword: currentPassword,
+                newPassword: newPassword
+            }
+        );
+        if (response.status == 200)
+            return response;
+    } catch (error) {
+        return error;
+    }
+}
+
 export async function getJobsByCustomerId(customerId: string) {
     try {
         const response = await api.get(
@@ -143,6 +163,19 @@ export async function getJobsByCustomerId(customerId: string) {
     } catch (error) {
         console.error(error);
         // return null;
+    }
+}
+
+export async function getAllCleaners() {
+    try {
+        const response = await api.get(
+            "/employee/getAllCleaners"
+        );
+        if (response.status == 200) {
+            return response;
+        }
+    } catch (error) {
+        console.error(error);
     }
 }
 

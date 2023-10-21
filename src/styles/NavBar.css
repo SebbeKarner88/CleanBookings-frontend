@@ -1,0 +1,18 @@
+#navbar {
+    background-color: var(--beige);
+}
+
+.nav-link {
+    font-family: 'Nunito', sans-serif;
+    color: var(--dark-purple);
+}
+
+.nav-link:hover {
+    font-weight: bold;
+    color: var(--dark-purple);
+}
+
+.navbar-nav .nav-link.active{
+    color: var(--dark-purple);
+    font-weight: bold;
+}
