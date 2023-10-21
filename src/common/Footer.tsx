@@ -1,11 +1,17 @@
 import '../styles/Footer.css'
 import { FaPhone, FaMobile, FaMapMarker, FaEnvelopeSquare } from 'react-icons/fa'
 import styled from 'styled-components'
+import PrivacyModal from '../components/modals/PrivacyModal';
+import TermsConditionsModal from '../components/modals/TermsConditionsModal';
+import {useState} from "react";
 
 export const Footer = () => {
+    const [showPrivacyModal, setShowPrivacyModal] = useState(false);
+    const [showTermsConditionsModal, setShowTermsConditionsModal] = useState(false);
 
     return (
         <>
+            <footer>
             <div className="container-fluid">
                 <div className="row  row-no-gutters">
                     <div className="col-xs-12 col-sm-6 col-md-3">
@@ -55,8 +61,23 @@ export const Footer = () => {
 
                     <div className="col-xs-12 col-md-5 text-center">
                         <ul className="vertical-links small">
-                            <li><a href="/privacypolicy">Privacy</a></li>
-                            <li><a href="terms&conditions">Terms & Conditions</a></li>
+                            <li>
+                                <a href="#" onClick={(e) => {
+                                    e.preventDefault();
+                                    setShowPrivacyModal(true);
+                                }}>
+                                    Privacy Policy
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" onClick={(e) => {
+                                    e.preventDefault();
+                                    setShowTermsConditionsModal(true);
+                                }}>
+                                    Terms & Conditions
+                                </a>
+                            </li>
+                            {/*<li><a href="terms&conditions">Terms & Conditions</a></li>*/}
                             <li><a href="/contact">Contact Us</a></li>
                             <li><a href="/design">Homepage design</a></li>
                         </ul>
@@ -72,6 +93,15 @@ export const Footer = () => {
                     </div>
                 </div>
             </div>
+            </footer>
+            <PrivacyModal
+                onShow={showPrivacyModal}
+                onClose={() => setShowPrivacyModal(false)}
+            />
+            <TermsConditionsModal
+                onShow={showTermsConditionsModal}
+                onClose={() => setShowTermsConditionsModal(false)}
+            />
         </>
     )
 }

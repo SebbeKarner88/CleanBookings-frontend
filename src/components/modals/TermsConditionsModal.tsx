@@ -2,21 +2,21 @@ import {Button, Modal} from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
 import {useEffect, useState} from "react";
 
-interface IPrivacyModal {
+interface ITermsConditionsModal {
     onShow: boolean;
     onClose: () => void;
 }
 
-export default function PrivacyModal({onShow, onClose}: IPrivacyModal) {
-    const [privacyPolicyText, setPrivacyPolicyText] = useState<string>("");
+export default function TermsConditionsModal({onShow, onClose}: ITermsConditionsModal) {
+    const [termsConditionsText, setTermsConditionsText] = useState<string>("");
 
     useEffect(() => {
-        // Fetch Privacy Policy text from the file
-        fetch('/privacy-policy.txt')
+        // Fetch Terms & Conditions text from the file
+        fetch('/terms-conditions.txt')
             .then((response) => response.text())
-            .then((text) => setPrivacyPolicyText(text))
+            .then((text) => setTermsConditionsText(text))
             .catch((error) => {
-                console.error('Error fetching Privacy Policy text:', error);
+                console.error('Error fetching Terms & Conditions text:', error);
                 // Handle errors here (e.g., show an error message)
             });
     }, []);
@@ -24,10 +24,10 @@ export default function PrivacyModal({onShow, onClose}: IPrivacyModal) {
     return (
             <Modal show={onShow} onHide={onClose} size="lg" fullscreen="md-down">
                 <Modal.Header closeButton className="text-mauve">
-                    <Modal.Title>Privacy Policy</Modal.Title>
+                    <Modal.Title>Terms & Conditions</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                    <ReactMarkdown>{privacyPolicyText}</ReactMarkdown>
+                <Modal.Body className="text-mauve">
+                    <ReactMarkdown>{termsConditionsText}</ReactMarkdown>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={onClose} className="btn-dark-purple">
