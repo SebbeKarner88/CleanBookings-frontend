@@ -8,10 +8,15 @@
 }
 
 button:focus {
-    outline: none !important;
+    outline: none;
     border: 3px solid var(--dark-purple);
     padding: 0.5rem;
     margin-bottom: 1.5rem;
+}
+
+button:focus:not(:focus-visible) {
+    border: none;
+    margin-bottom: 1rem;
 }
 
 .faq {
