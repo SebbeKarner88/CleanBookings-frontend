@@ -12,6 +12,7 @@ const BASE_URL = 'http://localhost:8080/api/v1/job';
 export const handleApproveCleaning = async (
     bookingId: string,
     customerId: string,
+    message: string,
     setCleanings: (jobs: any[]) => void,
     setErrorModal: (modal: {visible: boolean, message: string}) => void
 ) => {
@@ -19,7 +20,8 @@ export const handleApproveCleaning = async (
         const requestPayload: JobApproveRequest = {
             jobId: bookingId,
             customerId: customerId,
-            isApproved: true
+            isApproved: true,
+                            message: message
         };
 
         const response = await axios.put(`${BASE_URL}/approve-fail-cleaning`, requestPayload, {
@@ -35,12 +37,20 @@ export const handleApproveCleaning = async (
     } catch (error) {
         console.error("Error:", error.response.data);
         setErrorModal({visible: true, message: error.response.data || 'Ett okänt fel inträffade.'});
+        if (axios.isAxiosError(error)) {
+            console.error("Error:", error.response?.data);
+            setErrorModal({visible: true, message: error.response?.data || 'Ett okänt fel inträffade.'});
+        } else {
+            console.error("An unexpected error occurred:", error);
+            setErrorModal({visible: true, message: 'Ett okänt fel inträffade.'});
+        }
     }
 };
 
 export const handleDisapproveCleaning = async (
     bookingId: string,
     customerId: string,
+    message: string,  // <-- Lägg till detta
     setCleanings: (jobs: any[]) => void,
     setErrorModal: (modal: {visible: boolean, message: string}) => void
 
@@ -49,7 +59,8 @@ export const handleDisapproveCleaning = async (
         const requestPayload: JobApproveRequest = {
             jobId: bookingId,
             customerId: customerId,
-            isApproved: false
+            isApproved: false,
+            message: message
         };
 
         const response = await axios.put(`${BASE_URL}/approve-fail-cleaning`, requestPayload, {
@@ -63,6 +74,12 @@ export const handleDisapproveCleaning = async (
 
     } catch (error) {
         console.error("Error:", error.response.data);
-        setErrorModal({visible: true, message: error.response.data || 'Ett okänt fel inträffade.'});
+        if (axios.isAxiosError(error)) {
+            console.error("Error:", error.response?.data);
+            setErrorModal({visible: true, message: error.response?.data || 'Ett okänt fel inträffade.'});
+        } else {
+            console.error("An unexpected error occurred:", error);
+            setErrorModal({visible: true, message: 'Ett okänt fel inträffade.'});
+        }
     }
 };
