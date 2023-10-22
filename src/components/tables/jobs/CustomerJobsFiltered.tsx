@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { getJobsByCustomerId } from "../../../api/CustomerApi.ts";
 import { AuthContext } from "../../../context/AuthContext.tsx";
-import {handleApproveCleaning, handleDisapproveCleaning} from "../../booking-management/JobApprovalHandlers2";
+import {handleApproveCleaning, handleDisapproveCleaning} from "../../booking-management/JobApprovalHandlers";
 
 type JobStatus = "OPEN" | "ASSIGNED" | "WAITING_FOR_APPROVAL" | "NOT_APPROVED" | "APPROVED" | "CLOSED";
 
@@ -67,7 +67,7 @@ const CustomerJobsFiltered: React.FC<CustomerJobsFilteredProps> = ({ jobs }) => 
         filterJobs();
     }, [selectedStatuses]);
 
-    const toggleStatusFilter = (status: JobStatus) => {
+    /*const toggleStatusFilter = (status: JobStatus) => {
         setSelectedStatuses(prev => ({ ...prev, [status]: !prev[status] }));
     };
 
@@ -84,7 +84,7 @@ const CustomerJobsFiltered: React.FC<CustomerJobsFilteredProps> = ({ jobs }) => 
             APPROVED: false,
             CLOSED: false
         });
-    };
+    };*/
 
     const indexOfLastJob = currentPage * jobsPerPage;
     const indexOfFirstJob = indexOfLastJob - jobsPerPage;
@@ -95,7 +95,7 @@ const CustomerJobsFiltered: React.FC<CustomerJobsFilteredProps> = ({ jobs }) => 
         pageNumbers.push(i);
     }
 
-    return (
+    /*return (
         <div>
             <div className="d-flex justify-content-center mb-3">
                 {JOB_STATUSES.map(status => (
@@ -137,12 +137,12 @@ const CustomerJobsFiltered: React.FC<CustomerJobsFilteredProps> = ({ jobs }) => 
                         <td>{job.jobStatus}</td>
                         <td>{job.jobMessage}</td>
                         <td>{job.employees.join(", ")}</td>
-                        {/*<td>*/}
-                        {/*    <button onClick={() => handleApproveCleaning(job.jobId, customerId, setCleanings, setErrorModal)}>Approve</button>*/}
-                        {/*    <button onClick={() => handleDisapproveCleaning(job.jobId, customerId, setCleanings, setErrorModal)}>Disapprove</button>*/}
-                        {/*    /!*<button onClick={() => handleApproveCleaning(job.jobId, customerId, updateCleanings, setErrorModal)}>Approve</button>*!/*/}
-                        {/*    /!*<button onClick={() => handleDisapproveCleaning(job.jobId, customerId, updateCleanings, setErrorModal)}>Disapprove</button>*!/*/}
-                        {/*</td>*/}
+                        {/!*<td>*!/}
+                        {/!*    <button onClick={() => handleApproveCleaning(job.jobId, customerId, setCleanings, setErrorModal)}>Approve</button>*!/}
+                        {/!*    <button onClick={() => handleDisapproveCleaning(job.jobId, customerId, setCleanings, setErrorModal)}>Disapprove</button>*!/}
+                        {/!*    /!*<button onClick={() => handleApproveCleaning(job.jobId, customerId, updateCleanings, setErrorModal)}>Approve</button>*!/!*!/}
+                        {/!*    /!*<button onClick={() => handleDisapproveCleaning(job.jobId, customerId, updateCleanings, setErrorModal)}>Disapprove</button>*!/!*!/}
+                        {/!*</td>*!/}
                         <td>
                             {job.jobStatus === "WAITING_FOR_APPROVAL" && (
                                 <>
@@ -166,7 +166,7 @@ const CustomerJobsFiltered: React.FC<CustomerJobsFilteredProps> = ({ jobs }) => 
                 ))}
             </ul>
         </div>
-    );
+    );*/
 }
 
 export default CustomerJobsFiltered;

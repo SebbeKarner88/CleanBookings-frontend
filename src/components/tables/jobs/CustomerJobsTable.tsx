@@ -52,7 +52,7 @@ export function CustomerJobsTable({jobs, statuses, setTriggerUpdateOfJobs}: IJob
         return className;
     }
 
-    return (
+    /*return (
         <>
             <div className="table-responsive">
                 <table className="table table-responsive table-striped table-hover" data-bs-theme="dark">
@@ -62,8 +62,8 @@ export function CustomerJobsTable({jobs, statuses, setTriggerUpdateOfJobs}: IJob
                         <th scope="col">Type</th>
                         <th scope="col">Status</th>
                         <th scope="col">Message</th>
-                        {/*<th scope="col">Customer ID</th>*/}
-                        {/*<th scope="col">Employees</th>*/}
+                        {/!*<th scope="col">Customer ID</th>*!/}
+                        {/!*<th scope="col">Employees</th>*!/}
                     </tr>
                     </thead>
                     <tbody>
@@ -91,10 +91,10 @@ export function CustomerJobsTable({jobs, statuses, setTriggerUpdateOfJobs}: IJob
                                         }
                                     </td>
                                     <td>{job.jobMessage}</td>
-                                    {/*<td>{job.customerId}</td>*/}
-                                    {/*<td>*/}
-                                    {/*    {job.employees.join(", ")}*/}
-                                    {/*</td>*/}
+                                    {/!*<td>{job.customerId}</td>*!/}
+                                    {/!*<td>*!/}
+                                    {/!*    {job.employees.join(", ")}*!/}
+                                    {/!*</td>*!/}
                                 </tr>
                             );
                         }
@@ -113,5 +113,5 @@ export function CustomerJobsTable({jobs, statuses, setTriggerUpdateOfJobs}: IJob
             />
         </>
 
-    )
+    )*/
 }

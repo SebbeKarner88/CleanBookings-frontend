@@ -5,7 +5,8 @@ import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext';
 import Pagination from 'react-bootstrap/Pagination';
 import MyModal from "../../common/MyModal";
-import {handleApproveCleaning, handleDisapproveCleaning} from "./JobApprovalHandlers2";
+import {handleApproveCleaning, handleDisapproveCleaning} from "./JobApprovalHandlers";
+import ActionHandlerModal from "../modals/ActionHandlerModal";
 const CleaningsPerType: React.FC = () => {
     // const  customerId  = "a02d79b0-9402-4b56-9def-ec2544be0afd";
     // const  isAuthenticated  = true;
@@ -15,7 +16,44 @@ const CleaningsPerType: React.FC = () => {
     const [currentPage, setCurrentPage] = useState<number>(1); // Current page number
     const [jobsPerPage] = useState<number>(5); // Number of jobs to display per page
     const [errorModal, setErrorModal] = useState<{visible: boolean, message: string}>({visible: false, message: ""});
+    const [actionModal, setActionModal] = useState<{
+        show: boolean;
+        title: string;
+        message: string;
+        onConfirm: () => void;
+    }>({
+        show: false,
+        title: '',
+        message: '',
+        onConfirm: () => {}
+    });
+    const handleConfirmApprove = (bookingId: string) => {
+        handleApproveCleaning(bookingId, customerId, "Ditt meddelande här", setCleanings, setErrorModal);
+        setActionModal({ ...actionModal, show: false });
+    };
 
+    const handleConfirmDisapprove = (bookingId: string) => {
+        handleDisapproveCleaning(bookingId, customerId, "Ditt meddelande här", setCleanings, setErrorModal);
+        setActionModal({ ...actionModal, show: false });
+    };
+
+    const promptApprove = (bookingId: string) => {
+        setActionModal({
+            show: true,
+            title: 'Bekräfta Godkännande',
+            message: 'Är du säker på att du vill godkänna?',
+            onConfirm: () => handleConfirmApprove(bookingId)
+        });
+    };
+
+    const promptDisapprove = (bookingId: string) => {
+        setActionModal({
+            show: true,
+            title: 'Bekräfta Nekande',
+            message: 'Är du säker på att du vill neka?',
+            onConfirm: () => handleConfirmDisapprove(bookingId)
+        });
+    };
     // Job status options
     const jobStatusOptions = [
         'OPEN',
@@ -101,9 +139,16 @@ const CleaningsPerType: React.FC = () => {
                         <td>{new Date(booking.bookedDate).toLocaleDateString()}</td>
                         <td>{booking.type}</td>
                         <td>
-                            <button onClick={() => handleApproveCleaning(booking.id, customerId, setCleanings, setErrorModal)}>Approve</button>
-                            <button onClick={() => handleDisapproveCleaning(booking.id, customerId, setCleanings, setErrorModal)}>Disapprove</button>
+                            <button onClick={() => promptApprove(booking.id)}>Approve</button>
+                            <button onClick={() => promptDisapprove(booking.id)}>Disapprove</button>
                         </td>
+                        <ActionHandlerModal
+                            show={actionModal.show}
+                            title={actionModal.title}
+                            message={actionModal.message}
+                            onConfirm={actionModal.onConfirm}
+                            onCancel={() => setActionModal({ ...actionModal, show: false })}
+                        />
                     </tr>
                 ))}
                 </tbody>
