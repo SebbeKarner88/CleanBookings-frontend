@@ -18,7 +18,7 @@ export default function RegisterView() {
         <>
             <NavBar />
             <div className="outer-reg-container">
-                <div className="reg-container bg-light-brown">
+                <div className="reg-container bg-light-brown" >
                     <h1 className="fw-bold text-start text-md-center">Register an account</h1>
                     <ProgressBar
                         className="my-4 mx-4"

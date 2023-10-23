@@ -10,7 +10,8 @@
 
 .reg-container {
     padding: 2%;
-    margin: 4% 20% -10% 20%;
+    margin: 4% auto;
+    min-width: 800px;  
     border-radius: 2%;
     box-shadow: 0 0 30px rgba(0,0,0, 0.6);
 }
