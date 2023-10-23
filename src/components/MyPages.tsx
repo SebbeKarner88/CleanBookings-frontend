@@ -53,7 +53,7 @@ function MyPages() {
 
             <div className="container text-md-start">
                 <div className="d-flex justify-content-between">
-                    <h1 className="text-md-center fw-bold my-3 mb-md-5 mx-2">My pages</h1>
+                    <h1 className="fw-bold my-3 mb-md-5 mx-2 mx-md-0">My pages</h1>
 
                     <Link to="/my-pages/settings">
                         <Button size="lg" variant="btn-link" className="btn-dark-purple m-3">

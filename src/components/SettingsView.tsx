@@ -50,9 +50,9 @@ const SettingsView = () => {
             </h1>
             <div className="container text-start my-md-4">
                 {customerData ? (
-                    <div className="row my-3 mx-2 bg-beige p-4 rounded-4 border border-dark-subtle">
+                    <div className="row my-3 mx-2 mx-md-0 bg-beige p-4 rounded-4 border border-dark-subtle">
                         <div className="col-md-12 d-flex justify-content-between mb-4">
-                            <h2 className="text-md-center fw-bold">
+                            <h2 className="fw-bold">
                                 Användaruppgifter
                             </h2>
                             <Button

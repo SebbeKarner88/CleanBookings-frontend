@@ -89,9 +89,9 @@ export default function FormUpdatePassword({setShowModal}: IFormUpdatePassword) 
                 type="button"
                 variant="danger"
                 className="w-100"
-                onClick={() => navigation("/my-pages")}
+                onClick={() => navigation("/my-pages/settings")}
             >
-                Tillbaka till mina sidor
+                Tillbaka till mina inställningar
             </Button>
 
         </form>
