@@ -43,7 +43,7 @@ const SettingsView = () => {
     }, [customerId]);
 
     return (
-        <div className="bg-dark-beige min-vh-100 min-vw-100">
+        <div className="bg-light-brown min-vh-100 min-vw-100">
             <NavBar/>
             <h1 className="text-md-center fw-semibold my-3 text-dark-purple">
                 Mina inställningar
@@ -68,17 +68,16 @@ const SettingsView = () => {
                         <CustomerData customer={customerData}/>
 
                         <Button
-                            className='btn-dark-purple w-100 my-3'
+                            variant="dark"
+                            className='btn-outline-dark-purple w-100 my-3'
                             onClick={handleShowPrivacyModal}>
                             Integritetspolicy - så hanterar vi din data!
                         </Button>
 
                         <Button
-                            variant='danger'
-                            className='w-100'
-                            onClick={() => {
-                                navigate("/my-pages")
-                            }}
+                            variant="outline-danger"
+                            className="w-100"
+                            onClick={() => navigate("/my-pages")}
                         >
                             Tillbaka till mina sidor
                         </Button>
