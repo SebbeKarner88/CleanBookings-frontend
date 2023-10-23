@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container'
 import mysigt from '../assets/images/myspys.jpg'
 import { Footer } from "../common/Footer.tsx"
 import '../styles/LandingPage.css'
+import ReviewCard from "./ReviewCard.tsx"
 
 function LandingPage() {
 
@@ -25,6 +26,7 @@ const Background = () => {
                 <div className="intro-subtitle">Skrubba bort dina bekymmer</div>
                 <div className="intro-desc">Välj oss för ett glänsande resultat!</div>
             </div>
+            <ReviewCard />
         </article>
     )
 }
