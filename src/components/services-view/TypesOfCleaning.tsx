@@ -18,21 +18,21 @@ const TypesOfCleaning = () => {
             image: 'top',
             title: 'TOP',
             description: 'En grundligare städning. Ett perfekt alternativ för dig som ska flytta.',
-            items: ['Dammsugning av alla ytor', 'Dammtorka möbler', 'Våttorka golv', 'Rasta hunden', 'Kamma frun'],
+            items: ['Dammsugning av alla ytor', 'Dammtorka möbler', 'Våttorka golv', 'Rasta hunden', 'Vispa grädden'],
             price: '1495kr'
         },
         {
             image: 'diamond',
             title: 'DIAMANT',
             description: 'Vår 100% steril garantistäd\nPerfekt för dig som ska utföra en operation i vardagsrummet.',
-            items: ['Dammsugning av alla ytor', 'Dammtorka möbler', 'Våttorka golv', 'Städning av kök', 'Välta kon', 'Rensa fisken' ],
+            items: ['Dammsugning av alla ytor', 'Dammtorka möbler', 'Våttorka golv', 'Städning av kök', 'Välta kon', 'Rensa fisken', 'Sladda med EPA´n' ],
             price: '2495kr'
         },
         {
             image: 'window',
             title: 'FÖNSTER',
             description: 'En klassisk fönstertvätt.',
-            items: ['Dammsugning av alla ytor', 'Dammtorka möbler', 'Våttorka golv'],
+            items: ['Tvätta en ruta', 'Tvätta en till ruta', 'Fikapaus', 'Tvätta resten av rutorna'],
             price: '795kr'
         }
     ]
