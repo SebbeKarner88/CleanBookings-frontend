@@ -1,15 +1,15 @@
-import {Footer} from "../common/Footer.tsx"
+import { Footer } from "../common/Footer.tsx"
 import NavBar from "../common/NavBar.tsx"
-import {useContext, useEffect, useState} from 'react';
-import {AuthContext} from '../context/AuthContext'
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../context/AuthContext'
 import CleaningsPerType from "./booking-management/CleaningsPerType.tsx";
-import {getJobsByCustomerId} from "../api/CustomerApi.ts";
+import { getJobsByCustomerId } from "../api/CustomerApi.ts";
+import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import { IoSettingsOutline } from "react-icons/io5";
+import '../styles/MyPages.css'
 import StatusFilter from "./tables/jobs/StatusFilter.tsx";
-import {CustomerJobsTable} from "./tables/jobs/CustomerJobsTable.tsx";
-import CustomerJobsFiltered from "./tables/jobs/CustomerJobsFiltered.tsx";
-import {Link} from "react-router-dom";
-import {Button} from "react-bootstrap";
-import {IoSettingsOutline} from "react-icons/io5";
+import { CustomerJobsTable } from "./tables/jobs/CustomerJobsTable.tsx";
 
 type JobStatus = "OPEN" | "ASSIGNED" | "WAITING_FOR_APPROVAL" | "NOT_APPROVED" | "APPROVED" | "CLOSED";
 
@@ -23,16 +23,16 @@ interface Job {
 }
 
 function MyPages() {
-    const {customerId, username} = useContext(AuthContext);
-    const [jobs, setJobs] = useState<Job[]>([]);
-    const [selectedStatus, setSelectedStatus] = useState<JobStatus[]>(["OPEN", "ASSIGNED", "WAITING_FOR_APPROVAL", "NOT_APPROVED", "APPROVED", "CLOSED"]);
-    const [triggerUpdateOfJobs, setTriggerUpdateOfJobs] = useState<boolean>(false);
+    const { customerId, username } = useContext(AuthContext);
+    const [ jobs, setJobs ] = useState<Job[]>([]);
+    const [ selectedStatus, setSelectedStatus ] = useState<JobStatus[]>([ "OPEN", "ASSIGNED", "WAITING_FOR_APPROVAL", "NOT_APPROVED", "APPROVED", "CLOSED" ]);
+    const [ triggerUpdateOfJobs, setTriggerUpdateOfJobs ] = useState<boolean>(false);
 
     useEffect(() => {
         fetchJobsData().then(data => {
             setJobs(data);
         });
-    }, [triggerUpdateOfJobs]);
+    }, [ triggerUpdateOfJobs ]);
 
     async function fetchJobsData() {
         try {
@@ -48,13 +48,11 @@ function MyPages() {
 
     return (
         <>
-            <NavBar/>
-            <p className="text-end my-3 mx-2 mx-md-5">Signed in as: {username || 'N/A'}</p>
-
+            <NavBar />
             <div className="container text-md-start">
                 <div className="d-flex justify-content-between">
                     <h1 className="fw-bold my-3 mb-md-5 mx-2 mx-md-0">My pages</h1>
-
+                    <p className="text-right my-3 mx-2 mx-md-5">Signed in as: <span id='username'>{username || 'N/A'}</span></p>
                     <Link to="/my-pages/settings">
                         <Button size="lg" variant="btn-link" className="btn-dark-purple m-3">
                             <IoSettingsOutline
@@ -64,11 +62,10 @@ function MyPages() {
                         </Button>
                     </Link>
                 </div>
+                <h2 className="fw-bold my-3">Mina bokningar</h2>
+                <CleaningsPerType />
 
-                <h2 className="fw-bold my-3">My bookings (1)</h2>
-                <CleaningsPerType/>
-
-                <h2 className="fw-bold my-3">My bookings (2)</h2>
+                {/* <h2 className="fw-bold my-3">My bookings (2)</h2>
                 <StatusFilter
                     selectedStatus={selectedStatus}
                     setSelectedStatus={setSelectedStatus}
@@ -83,11 +80,10 @@ function MyPages() {
 
                 <h2 className="fw-bold my-3">My bookings (3)</h2>
                 <div className="my-3">
-                    <CustomerJobsFiltered jobs={jobs}/>
-                </div>
-
+                    <CustomerJobsFiltered jobs={jobs} />
+                </div> */}
             </div>
-            <Footer/>
+            <Footer />
         </>
     )
 }
