@@ -1,8 +1,9 @@
 :root {
-    --beige: rgba(250, 236, 225);
+    --beige: rgb(250, 236, 225);
     --dark-purple: rgb(89, 69, 69);
-    --dark-beige: rgb(208, 184, 168);
-    --light-brown: rgba(208, 184, 168);
+    --dark-beige: rgb(220, 196, 161);
+    --light-brown: rgb(208, 184, 168);
+    --dark-brown: rgb(102, 90, 81);
 }
 
 .bg-dark-beige {
