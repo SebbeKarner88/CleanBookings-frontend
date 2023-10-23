@@ -4,23 +4,31 @@ import {
     Container,
     Button,
 } from "react-bootstrap";
-import { LinkContainer } from 'react-router-bootstrap';
-import { useContext } from 'react'
-import { AuthContext } from "../context/AuthContext.tsx";
-import { Link, useNavigate } from "react-router-dom";
+import {LinkContainer} from 'react-router-bootstrap';
+import {useContext} from 'react'
+import {AuthContext} from "../context/AuthContext.tsx";
+import {Link, useNavigate} from "react-router-dom";
 import Image from "react-bootstrap/Image";
 import logo from '../assets/images/logo.png'
 import '../styles/NavBar.css'
 import '../styles/Global.css'
 
 const NavBar = () => {
-    const { isAuthenticated, name, setIsAuthenticated, setCustomerId, setName } = useContext(AuthContext);
+    const {
+        isAuthenticated,
+        name,
+        setIsAuthenticated,
+        setCustomerId,
+        setName,
+        setUsername
+    } = useContext(AuthContext);
     const navigation = useNavigate();
 
     async function handleLogout() {
         setIsAuthenticated(false);
         setCustomerId("");
         setName("");
+        setUsername("");
         navigation("/");
     }
 
@@ -37,7 +45,7 @@ const NavBar = () => {
                             />
                         </Link>
                     </Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="my-3">
                             <LinkContainer to="/services">
@@ -81,7 +89,7 @@ const NavBar = () => {
                                         </LinkContainer>
                                         <p className="visually-hidden">Signed in as: {name}</p>
                                         <Button variant="outline-danger" size="lg" className="mx-3 my-3 my-md-0"
-                                            onClick={handleLogout}>
+                                                onClick={handleLogout}>
                                             Logga ut
                                         </Button>
                                     </Nav>
@@ -89,7 +97,8 @@ const NavBar = () => {
                                 :
                                 <Nav>
                                     <LinkContainer to="/login">
-                                        <Button variant="dark" size="lg" className="btn-outline-dark-purple my-3 my-lg-0 mx-lg-3">
+                                        <Button variant="dark" size="lg"
+                                                className="btn-outline-dark-purple my-3 my-lg-0 mx-lg-3">
                                             Logga in
                                         </Button>
                                     </LinkContainer>
