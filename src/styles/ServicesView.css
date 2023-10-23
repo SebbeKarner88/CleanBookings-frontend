@@ -13,7 +13,7 @@
     font-size: 2rem;
     text-transform: uppercase;
     padding: 10px 20px;
-    color: var(--dark-purple);
+    color: var(--brown);
     background-color: var(--beige);
     border: 2px solid var(--dark-beige);
     text-shadow: 2px 2px 3px rgb(0, 0, 0, 0.3);
@@ -21,7 +21,7 @@
 
 .bookButton:hover, .bookButton:checked {
     color: var(--beige);
-    background-color: rgba(143, 133, 133, 0.82);
+    background-color: rgba(89, 69, 69, 0.82);
     border: 2px solid var(--dark-brown);
     text-shadow: 2px 2px 3px rgb(0, 0, 0, 0.5);
 }

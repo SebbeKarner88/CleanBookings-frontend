@@ -4,7 +4,7 @@
     overflow: hidden;
     border-radius: 25px;
     background-color: var(--light-brown);
-    color: #593e18;
+    color: var(--brown);
 }
 
 .cardImage {

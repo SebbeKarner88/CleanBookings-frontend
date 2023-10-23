@@ -21,7 +21,7 @@
 
 .cardTitle {
     font-weight: bold;
-    color: #64461d;
+    color: var(--brown);
 }
 
 .cardList {
