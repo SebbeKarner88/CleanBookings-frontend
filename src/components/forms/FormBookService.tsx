@@ -1,20 +1,19 @@
-import { useContext, useState } from 'react'
-import { FieldValues, useForm } from "react-hook-form";
-import { z } from 'zod';
-import { zodResolver } from "@hookform/resolvers/zod";
-import { bookService } from "../../api/CustomerApi.ts";
-import { useNavigate } from "react-router-dom";
-import { FormField } from "./FormField.tsx";
-import { AuthContext } from '../../context/AuthContext.tsx';
-import { Button, Modal, Spinner } from 'react-bootstrap';
+import {useContext, useState} from 'react'
+import {FieldValues, useForm} from "react-hook-form";
+import {z} from 'zod';
+import {zodResolver} from "@hookform/resolvers/zod";
+import {bookService} from "../../api/CustomerApi.ts";
+import {useNavigate} from "react-router-dom";
+import {FormField} from "./FormField.tsx";
+import {AuthContext} from '../../context/AuthContext.tsx';
+import {Button, Modal, Spinner} from 'react-bootstrap';
 
 const schema = z.object({
     type: z
-        .string()
-        .nonempty({ message: "Type is required." }),
+        .enum(["BASIC", "TOPP", "DIAMOND", "WINDOW"]),
     date: z
         .string()
-        .nonempty({message: "Date is required."}),
+        .nonempty({message: "Datum är ett obligatoriskt fält."}),
     message: z
         .string()
 });
@@ -22,66 +21,59 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 const BookingForm = () => {
-    const [ modalVisible, setModalVisible ] = useState(false)
-    const { customerId } = useContext(AuthContext)
-    const [ isAssigning, setIsAssigning ] = useState(false)
+    const {customerId} = useContext(AuthContext);
     const {
         register,
         handleSubmit,
-        formState: { errors }
+        formState: {errors}
     } = useForm<FormData>({
         resolver: zodResolver(schema)
     });
+    const [modalVisible, setModalVisible] = useState(false);
+    const closeModal = () => setModalVisible(false);
+    const [isAssigning, setIsAssigning] = useState(false);
     const navigation = useNavigate();
-    const [ errorMessage, setErrorMessage ] = useState<string | null>(null);
 
-    function onSubmit(data: FieldValues) {
-        bookService(
-            customerId,
-            data.type,
-            data.date,
-            data.message
-        ).then(response => {
+    async function onSubmit(data: FieldValues) {
+        setIsAssigning(true);
+        try {
+            const response = await bookService(
+                customerId,
+                data.type,
+                data.date,
+                data.message
+            );
             if (response?.status == 201) {
-                setIsAssigning(false)
-                setModalVisible(true)
-            } else {
-                setErrorMessage("Something went wrong, try again.");
-                alert("Something went wrong.")
+                setIsAssigning(false);
+                setModalVisible(true);
             }
-        }).catch(error => console.error(error.message));
+        } catch (error) {
+            console.error(error);
+            alert("Something went wrong.");
+        }
     }
 
     return (
         <>
-        <form
-            className="my-3 my-md-5 px-4 text-start"
-            onSubmit={handleSubmit(onSubmit)}
-        >
-            <div className="row">
-                <div className="col-md-6">
-                    <FormField
-                        fieldName="type"
-                        label="Type of service"
-                        labelDescription="What kind of service would you like to book?"
-                        inputType="radio"
-                        options={["BASIC", "TOPP", "DIAMOND", "WINDOW" ]}
-                        fieldError={errors.type}
-                        register={register}
-                    />
-                </div>
-                <div className="col-md-6">
-                    <FormField
-                        fieldName="date"
-                        label="Date"
-                        inputType="date"
-                        fieldError={errors.date}
-                        customError={errorMessage}
-                        register={register}
-                    />
-                </div>
-            </div>
-            <div className="row">
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <FormField
+                    fieldName="type"
+                    label="Val av städtjänst"
+                    labelDescription="Vilken typ av städtjänst önskar du boka?"
+                    inputType="radio"
+                    options={["BASIC", "TOPP", "DIAMOND", "WINDOW"]}
+                    fieldError={errors.type}
+                    register={register}
+                />
+
+                <FormField
+                    fieldName="date"
+                    label="Datum för utförandet"
+                    inputType="date"
+                    fieldError={errors.date}
+                    register={register}
+                />
+
                 {/*  <div className="col-md-6">
                     <FormField
                         fieldName="cleaner"
@@ -94,40 +86,51 @@ const BookingForm = () => {
                         value={selectedCleaner}
                     />
                 </div> */}
-                <div className="col-md-6">
-                    <FormField
-                        fieldName="message"
-                        label="Message"
-                        labelDescription="Message"
-                        inputType="text"
-                        fieldError={errors.message}
-                        register={register}
+
+                <div>
+                    <label htmlFor="message" className="form-label fw-semibold">
+                        Meddelande (frivilligt)
+                        <div className="form-text">
+                            Beskriv eventuella önskemål här.
+                        </div>
+                    </label>
+                    {
+                        errors.message &&
+                        <div className="text-danger my-1">
+                            {errors.message.message}
+                        </div>
+                    }
+                    <textarea
+                        {...register("message")}
+                        className={errors.message ? "form-control is-invalid" : "form-control"}
+                        id="message"
+                        rows={4}
                     />
                 </div>
-            </div>
-            {/** TODO: Add payment options */}
-            { 
-            isAssigning ?
-            <button type='button' disabled>
-                <Spinner
-                                as="span"
-                                animation="border"
-                                size="sm"
-                                role="status"
-                                aria-hidden="true"
-                                aria-label={"Sending request..."}
-                            />
-            </button>
-            :
-            <button
-                type="submit"
-                className="btn btn-outline-dark w-100">
-                Book
-            </button> }
-        </form>
-        <Modal
+
+
+                {/** TODO: Add payment options */}
+                        <button
+                            type="submit"
+                            className="btn btn-dark-purple w-100 my-3">
+                            {
+                                isAssigning
+                                ? <Spinner
+                                        as="span"
+                                        animation="border"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                        aria-label={"Sending request..."}
+                                    />
+                                : "Boka din städning"
+                            }
+                        </button>
+            </form>
+
+            <Modal
                 show={modalVisible}
-                onHide={() => setModalVisible(!modalVisible)}
+                onHide={closeModal}
                 fullscreen="md-down"
             >
                 <Modal.Header
@@ -135,21 +138,19 @@ const BookingForm = () => {
                     closeButton
                 >
                     <Modal.Title className="fs-6 fw-bold">
-                        {"Booking successful!"}
+                        Booking successful!
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="bg-secondary-subtle">
-                    <p>You will recieve a confirmation email shortly.</p>
+                    <p>You will receive a confirmation email shortly.</p>
                 </Modal.Body>
                 <Modal.Footer className="bg-secondary-subtle">
                     <Button
-                        variant="primary"
-                        onClick={() => {
-                            setModalVisible(!modalVisible)
-                            navigation("/my-pages")
-                        }}
+                        variant="dark"
+                        className="btn-dark-purple"
+                        onClick={() => navigation("/my-pages")}
                     >
-                        Return to My Pages
+                        OK
                     </Button>
                 </Modal.Footer>
             </Modal>
