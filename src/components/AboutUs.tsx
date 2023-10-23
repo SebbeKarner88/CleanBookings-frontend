@@ -13,9 +13,9 @@ function AboutUs() {
             <div className="aboutContainer">
                 <h1 className="emp">Om StädaFint AB</h1>
                 <div className="history">
-                    <p>StädaFint AB: Smutsens mörka ursprung... <br/><br/>
+                    <h4>StädaFint AB: Smutsens mörka ursprung... <br/></h4>
 
-                        I en skuggig värld av smuts och förfall, där varje vrå var täckt av ett tjockt lager av damm och hopplöshet, väcktes StädaFint AB till liv. Året var 1995, och grundarna Skurarn och Hinken började sin resa i en stad som kändes som om den hade glömts bort av tiden. Deras företag föddes inte ur en passion för renlighet, utan ur nödvändigheten att överleva i en värld där smutsen hade tagit över.</p>
+                    <p>I en skuggig värld av smuts och förfall, där varje vrå var täckt av ett tjockt lager av damm och hopplöshet, väcktes StädaFint AB till liv. Året var 1995, och grundarna Skurarn och Hinken började sin resa i en stad som kändes som om den hade glömts bort av tiden. Deras företag föddes inte ur en passion för renlighet, utan ur nödvändigheten att överleva i en värld där smutsen hade tagit över.</p>
 
                     <p>I begynnelsen var StädaFint AB inte mycket mer än en desperat strävan efter rena ytor. De började med minimala resurser och slitna städredskap. Deras arbete var smutsigt och oglamoröst, men det var en brutal reflektion av den värld de levde i. Varje skurande rörelse kändes som en kamp mot smutsens övermakt, en kamp som sällan vanns.</p>
 
