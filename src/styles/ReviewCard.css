@@ -10,20 +10,21 @@
 .reviewCard {
     width: 100%;
     background-color: var(--light-brown);
-    color: #332109;
+    color: var(--dark-purple);
 }
 
 .reviewTitle {
     font-weight: bold;
-    color: var(--dark-purple);
+    color: rgb(22, 22, 22);
     margin-bottom: 1em;
     font-size: 1.5em;
-    box-shadow: 0 0 10px rgba(89, 69, 69, 0.3);
+    /* box-shadow: 0 0 10px rgba(89, 69, 69, 0.3); */
     padding: 10px;
+    border-bottom: 1px solid rgba(89, 69, 69, 0.3);
 }
 
 .reviewFooter {
-    color: #69573c;
+    color: var(--dark-brown);
     font-weight: bold;
     font-size: large;
     font-style: italic;
