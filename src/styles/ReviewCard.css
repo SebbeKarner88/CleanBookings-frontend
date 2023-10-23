@@ -14,7 +14,7 @@
 }
 
 .reviewTitle {
-    font-weight: bold;
+    font-family: "Tiempos";
     color: var(--brown);
     margin-bottom: 1em;
     font-size: 1.5em;
