@@ -24,11 +24,11 @@ function FAQ() {
         },
         {
             question: 'Vad bör jag göra för att förbereda min bostad/fastighet innan bokad service?',
-            answer: 'Plocka bort lösa föremål från golv och andra ytor. Om det finns specifika ytor ni vill att vi ska fokusera på eller om det finns känsliga material eller områden, var vänlig och låt oss veta i förväg.'
+            answer: 'Plocka bort lösa föremål från golv och andra ytor. Om det finns specifika ytor du vill att vi ska fokusera på eller om det finns känsliga material eller områden, var vänlig och låt oss veta i förväg.'
         },
         {
             question: 'Behöver jag bistå med rengöringsprodukter eller redskap?',
-            answer: 'Nej, vår personal tar med sig allt som de kan tänkas behöva. Har ni däremot önskemål på specifika produkter ni vill att vi använder behöver ni meddela oss i förväg.'
+            answer: 'Nej, vår personal tar med sig allt som de kan tänkas behöva. Finns det däremot önskemål på specifika produkter du vill att vi använder behöver du meddela oss i förväg.'
         },
         {
             question: 'Är era rengöringsprodukter säkra för barn och djur?',
