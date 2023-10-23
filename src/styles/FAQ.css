@@ -4,7 +4,6 @@
     min-height: 70vh;
     display: flex;
     flex-direction: column;
-    padding-bottom: 5%;
 }
 
 button:focus {
@@ -12,6 +11,7 @@ button:focus {
     border: 3px solid var(--dark-purple);
     padding: 0.5rem;
     margin-bottom: 1.5rem;
+    font-weight: bold;
 }
 
 button:focus:not(:focus-visible) {
@@ -20,11 +20,18 @@ button:focus:not(:focus-visible) {
 }
 
 .faq {
-    font-size: 3em;
-    font-weight: bold;
+    font-size: 2.5em;
+    font-weight: bolder;
     color: black;
     padding-top: 5%;
     padding-bottom: 1%;
+    text-transform: uppercase;
+}
+
+#line {
+    width: 50vw;
+    margin: 10px auto;
+    color: var(--dark-purple);
 }
 
 .faq-question {
@@ -44,6 +51,11 @@ button:focus:not(:focus-visible) {
     color: var(--dark-purple);
     margin: -1% 25% 2% 25%;
     text-align: center;
+}
+
+.contact-btn {
+    background-color: var(--light-brown);
+    padding-bottom: 40px;
 }
 
 @media only screen and (max-width: 1200px) {

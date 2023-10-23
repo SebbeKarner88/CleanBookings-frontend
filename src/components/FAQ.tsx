@@ -4,6 +4,8 @@ import '../styles/FAQ.css'
 import { Footer } from '../common/Footer';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Button } from 'react-bootstrap';
 
 function FAQ() {
     const [ expandedIndex, setExpandedIndex ] = useState<number | null>(0);
@@ -17,28 +19,28 @@ function FAQ() {
             answer: 'Du kan boka våra tjänster online via vår webbsida genom att klicka på "Våra tjänster" i menyn högst upp. Välj den typ av tjänst som passar dig bäst, bestäm datum och tid för när tjänsten ska utföras och fyll i dina personliga uppgifter.'
         },
         {
-            question: 'What is your cancellation policy?',
-            answer: 'You can cancel your booking without any charge up to 48 hours before the scheduled service. If you cancel less than 48 hours in advance, a cancellation fee may apply.'
+            question: 'Hur ser er avbokningspolicy ut?',
+            answer: 'Du kan avboka din städning utan kostnad upp till 48 timmar innan den bokade tiden. Om bokningen sker senare än så kommer du debiteras en avbokningsavgift.'
         },
         {
-            question: 'What should I do to prepare my property/home for the first cleaning service?',
-            answer: 'Please ensure a clear path for our cleaners by removing any clutter. If there are specific areas you want us to focus on, or any sensitive materials or areas in your property/home, let us know beforehand.'
+            question: 'Vad bör jag göra för att förbereda min bostad/fastighet innan bokad service?',
+            answer: 'Plocka bort lösa föremål från golv och andra ytor. Om det finns specifika ytor ni vill att vi ska fokusera på eller om det finns känsliga material eller områden, var vänlig och låt oss veta i förväg.'
         },
         {
-            question: 'Do I need to provide cleaning supplies or equipment?',
-            answer: 'No, our professionals come equipped with all the necessary cleaning supplies and equipment. However, if you have specific products you want us to use, please let us know.'
+            question: 'Behöver jag bistå med rengöringsprodukter eller redskap?',
+            answer: 'Nej, vår personal tar med sig allt som de kan tänkas behöva. Har ni däremot önskemål på specifika produkter ni vill att vi använder behöver ni meddela oss i förväg.'
         },
         {
-            question: 'Are your cleaning products safe for kids and pets?',
-            answer: 'Absolutely, we use eco-friendly products that are safe for children and pets. We believe in providing a healthy environment along with our cleaning services.'
+            question: 'Är era rengöringsprodukter säkra för barn och djur?',
+            answer: 'Ja. Vi använder miljövänliga produkter som är säkra för barn och djur. Vi vill bidra till en sund miljöhållning i samband med våra städtjänster.'
         },
         {
-            question: 'What measures are in place to ensure the security of my property?',
-            answer: 'Our team is fully insured and bonded. We value your trust, so we make sure all our staff undergo thorough background checks and training to ensure the security and safety of your property.'
+            question: 'Hur kan jag vara trygg i att min bostad/fastighet är i säkra händer?',
+            answer: 'Vi värdesätter våra kunders förtroende och varje medarbetare måste genomgå grundlig bakgrundskoll och upplärning för att säkerställa er trygghet.'
         },
         {
-            question: 'How can I share my specific cleaning preferences or special instructions?',
-            answer: 'You can provide special instructions when booking your service online or simply contact us directly. We strive to meet your expectations and will communicate your preferences to the cleaning professionals.'
+            question: 'Var kan jag delge er om mina specifika önskemål gällande städning, val av produkter eller annat?',
+            answer: 'Du kan skicka med ett meddelande när du bokar en tjänst online eller kontakta oss via telefon, mail eller kontaktforumuläret. Du hittar alla våra kontaktuppgifter nedan.'
         }
     ];
 
@@ -51,7 +53,8 @@ function FAQ() {
         <>
             <NavBar />
             <div className='faq-container'>
-                <h1 className='faq'>Frequently Asked Questions</h1>
+                <h1 className='faq'>Vanliga Frågor</h1>
+                <hr id='line' />
 
                 {faqs.map((faq, index) => (
                     <div key={index}>
@@ -63,14 +66,20 @@ function FAQ() {
                         >
                             {faq.question} {
                                 index === expandedIndex
-                                    ? <ArrowDropUpIcon  />
+                                    ? <ArrowDropUpIcon />
                                     : <ArrowDropDownIcon />
                             }
                         </button>
                         {expandedIndex === index && <div className='faq-answer'>{faq.answer}</div>}
                     </div>
                 ))}
-
+            </div>
+            <div className='contact-btn'>
+                <LinkContainer to="/contact">
+                    <Button variant="dark" size="lg" className="btn-dark-purple mb-3 my-5">
+                        Kontakta oss
+                    </Button>
+                </LinkContainer>
             </div>
             <Footer />
         </>
