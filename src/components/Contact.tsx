@@ -1,7 +1,9 @@
 import { useForm } from 'react-hook-form';
 import { FormField } from "./forms/FormField";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Modal,Button } from "react-bootstrap";
 import '../styles/Contact.css'
+import {sendCustomerEmail} from "../api/CustomerApi";
+import {useState} from "react";
 
 interface IFormInput {
     name: string;
@@ -13,11 +15,28 @@ interface IFormInput {
 
 const Contact = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>();
+    const [isSending, setIsSending] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
+    const closeModal = () => setModalVisible(false);
+    const onSubmit = async (data: IFormInput) => {
+        setIsSending(true);
+        try {
+            const response = await sendCustomerEmail(
+                data.name,
+                data.email,
+                data.subject,
+                data.message);
 
-    const onSubmit = (data: any) => {
-        console.log(data);
-        alert('Formulär skickat!');
-    }
+            if (response?.status === 200) {
+                setModalVisible(true);
+            }
+        } catch (error) {
+            console.error(error);
+            alert("Något gick fel.");
+        } finally {
+            setIsSending(false);
+        }
+    };
 
     return (
         <>
@@ -74,7 +93,7 @@ const Contact = () => {
                     <Row>
                         <Col lg="12" className="form-group">
                             <FormField
-                                fieldError={errors.name}
+                                fieldError={errors.message}
                                 register={register}
                                 label="Meddelande"
                                 fieldName="message"
@@ -84,12 +103,31 @@ const Contact = () => {
                     </Row>
                     <Row>
                         <Col lg="12" className="form-group">
-                            <button type="submit" className="submit-button btn-dark-purple">Skicka</button>
+                            <button type="submit" className="submit-button btn-dark-purple" disabled={isSending}>
+                                {isSending ? 'Skickar...' : 'Skicka'}
+                            </button>
+
                         </Col>
                     </Row>
                 </form>
             </Container>
-
+            <Modal
+                show={modalVisible}
+                onHide={closeModal}
+                fullscreen="md-down"
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Meddelande skickat!</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Tack för ditt meddelande! Vi kommer att återkomma så snart som möjligt.
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={closeModal}>
+                        Stäng
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </>
 
     );

@@ -196,4 +196,28 @@ export async function executedCleaningRequest(
         console.error(error);
     }
 }
+export async function sendCustomerEmail(
+    name: string,
+    email: string,
+    subject: string,
+    message: string
+) {
+    try {
+        const response = await api.post(
+            "/send-email",
+            {
+                name: name,
+                email: email,
+                subject: subject,
+                message: message
+            },
+        )
+        if (response.status === 200) {
+            return response;
+        }
+    } catch (error) {
+        console.error('Error sending email:', error);
+    }
+}
+
 
