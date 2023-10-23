@@ -8,12 +8,14 @@
     background-position: center;
     background-size: cover;
     min-height: 100vh;
+    padding-bottom: 5%;
 }
 
 .emp {
     padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
     font-size: 3rem;
-    color: #c5b195;
-    text-shadow: 2px 2px 3px #7a533a;
+    color: #ffffff;
+    font-weight: bold;
 }
 

@@ -3,7 +3,6 @@
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     overflow: hidden;
     border-radius: 25px;
-    border: rgba(152, 110, 46, 0.77) 2px ridge;
     background-color: var(--light-brown);
     color: #593e18;
 }

@@ -9,7 +9,6 @@
 
 .cleaningCard {
     width: 100%;
-    border: rgba(152, 110, 46, 0.63) 2px ridge;
     background-color: var(--light-brown);
     color: #332109;
 }

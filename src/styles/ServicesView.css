@@ -15,13 +15,13 @@
     padding: 10px 20px;
     color: var(--dark-purple);
     background-color: var(--beige);
-    border: var(--dark-beige) 2px ridge;
+    border: 2px solid var(--dark-beige);
     text-shadow: 2px 2px 3px rgb(0, 0, 0, 0.3);
 }
 
 .bookButton:hover, .bookButton:checked {
     color: var(--beige);
     background-color: rgba(143, 133, 133, 0.82);
-    border: var(--dark-beige) 2px ridge;
+    border: 2px solid var(--dark-brown);
     text-shadow: 2px 2px 3px rgb(0, 0, 0, 0.5);
 }
