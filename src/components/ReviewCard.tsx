@@ -26,7 +26,7 @@ const ReviewCard = () => {
     return (
         <>
             <Container className="pt-5 px-5">
-                <p className='header-title'>Vad våra tidigare kunder har att säga:</p>
+                <p className='header-title'>Vad våra tidigare kunder säger om oss:</p>
                 <Row xs={1} md={2} lg={3}>
                     {reviews.map((review, index) => (
                         <Col key={index} className="mb-5 d-flex align-items-stretch">
