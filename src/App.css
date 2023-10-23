@@ -5,6 +5,29 @@
     src: url("../src/assets/fonts/NunitoSans_7pt-Regular.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "Tiempos";
+    font-weight: 200;
+    font-display: fallback;
+    src: url("../src/assets/fonts/TiemposHeadline-Regular.otf") format("opentype");
+}
+
+
+@font-face {
+    font-family: "Tiempos";
+    font-weight: 200;
+    font-style: italic;
+    font-display: fallback;
+    src: url("../src/assets/fonts/TiemposHeadline-RegularItalic.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Tiempos";
+    font-weight: bold;
+    font-display: fallback;
+    src: url("../src/assets/fonts/TiemposHeadline-Bold.otf") format("opentype");
+}
+
 #root {
     min-width: 100vw;
     min-height: 100vh;
