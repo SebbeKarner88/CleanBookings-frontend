@@ -1,0 +1,23 @@
+.contact-container {
+    padding: 3%;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+    text-align: justify;
+}
+
+.info-list {
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.contact-title {
+    text-align: center;
+}
+
+#faq-link {
+    color: var(--dark-purple);
+    text-decoration: none;
+}
+
+#faq-link:hover {
+    color: var(--light-brown);
+}

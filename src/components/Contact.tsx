@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { FormField } from "./forms/FormField";
 import { Container, Row, Col } from "react-bootstrap";
+import '../styles/Contact.css'
 
 interface IFormInput {
     name: string;
@@ -21,11 +22,9 @@ const Contact = () => {
     return (
         <>
             <Container className="contact-container bg-light-brown">
-                <h2 className="welcome-title">Välkommen till städafint!</h2>
-                <h3 className="contact-title">Har du några frågor? Kontakta oss.</h3>
-
+                <h3 className="contact-title">Har du några frågor? Hör av dig!</h3>
                 <p className="contact-description">
-                    Vi har sammanställt svaren på de vanligaste frågorna i vår <a href="/faq">FAQ-sektion</a>. Om du inte hittar den information du söker,
+                    Vi har sammanställt svaren på de vanligaste frågorna i vår <a id="faq-link" href="/faq">FAQ-sektion</a>. Om du inte hittar den information du söker,
                     eller om du önskar hjälp med att boka vår städtjänst, är det enklaste sättet att nå oss via e-post eller telefon.
                     Du kan även besöka oss personligen. Nedan finner du vår kontaktinformation samt öppettider:
                 </p>
@@ -34,7 +33,7 @@ const Contact = () => {
                     <li>Telefon: <span>555-CLEAN-ME-NOW</span></li>
                     <li>Mobil: <span>070-CLEAN-ME-NOW</span></li>
                     <li>Plats: <span>Stockholm HQ</span></li>
-                    <li> Öppettider: MÅN-FRE, 8:00 - 15:00 </li>
+                    <li> Öppettider: MÅN-FRE 8:00 - 15:00 </li>
                 </ul>
                 <p className="additional-info">Tveka inte att kontakta oss om du behöver vidare hjälp med din bokning eller har ytterligare frågor.
                     Vi strävar efter att svara på alla förfrågningar inom en arbetsdag.</p>
@@ -85,7 +84,7 @@ const Contact = () => {
                     </Row>
                     <Row>
                         <Col lg="12" className="form-group">
-                            <button type="submit" className="submit-button">Skicka</button>
+                            <button type="submit" className="submit-button btn-dark-purple">Skicka</button>
                         </Col>
                     </Row>
                 </form>
