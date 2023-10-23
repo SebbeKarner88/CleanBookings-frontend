@@ -21,7 +21,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 const BookingForm = () => {
-    const {customerId} = useContext(AuthContext);
+    const {customerId, name} = useContext(AuthContext);
     const {
         register,
         handleSubmit,
@@ -57,20 +57,21 @@ const BookingForm = () => {
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormField
+
+                    fieldName="date"
+                    label="Datum för utförandet"
+                    inputType="date"
+                    fieldError={errors.date}
+                    register={register}
+                />
+
+                <FormField
                     fieldName="type"
                     label="Val av städtjänst"
                     labelDescription="Vilken typ av städtjänst önskar du boka?"
                     inputType="radio"
                     options={["BASIC", "TOPP", "DIAMOND", "WINDOW"]}
                     fieldError={errors.type}
-                    register={register}
-                />
-
-                <FormField
-                    fieldName="date"
-                    label="Datum för utförandet"
-                    inputType="date"
-                    fieldError={errors.date}
                     register={register}
                 />
 
@@ -137,12 +138,13 @@ const BookingForm = () => {
                     className="bg-secondary-subtle"
                     closeButton
                 >
-                    <Modal.Title className="fs-6 fw-bold">
-                        Booking successful!
+                    <Modal.Title className="fw-bold">
+                        Bokningsbekräftelse
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="bg-secondary-subtle">
-                    <p>You will receive a confirmation email shortly.</p>
+                    <p>Tack för din bokning {name}!</p>
+                    <p>Du kommer snart att få en bekräftelse på din bokade städning via e-post.</p>
                 </Modal.Body>
                 <Modal.Footer className="bg-secondary-subtle">
                     <Button

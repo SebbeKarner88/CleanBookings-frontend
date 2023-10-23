@@ -23,6 +23,16 @@
     background-color: var(--beige);
 }
 
+.bg-image {
+    background-image: url('../assets/images/myspys.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    /*min-height: 100vh;*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+}
+
 .btn-dark-purple, .btn-dark-purple:visited {
     background-color: var(--dark-purple);
     color: var(--beige);
@@ -56,4 +66,8 @@
 
 .text-dark-beige {
     color: var(--dark-beige);
+}
+
+.text-beige {
+    color: var(--beige);
 }
