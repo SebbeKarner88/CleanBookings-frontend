@@ -19,6 +19,8 @@ function AboutUs() {
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam qui atque, quas dolores sint nam et ea placeat dolore voluptatum perferendis ut tempora culpa exercitationem assumenda laboriosam necessitatibus recusandae facilis.
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa ab dolore nostrum quos eos at exercitationem blanditiis commodi error nulla, quisquam quod ipsam maiores ipsum repudiandae, modi reprehenderit natus esse. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae minima, assumenda ratione accusamus delectus id dicta expedita omnis quisquam consequatur tempora eum laboriosam voluptatum molestias! Facilis consequatur fuga aperiam velit?
                     </p>
+
+                    <p style={{fontStyle: "italic"}}>— Skurarn Moppsson, VD StädaFint AB</p>
                 </div>
                 <h1 className="emp">Våra Medarbetare</h1>
                 <Container>
