@@ -15,6 +15,10 @@
     background-color: var(--dark-beige);
 }
 
+.bg-dark-purple {
+    background-color: var(--dark-purple);
+}
+
 .bg-light-brown {
     background-color: var(--light-brown);
 }
@@ -28,14 +32,11 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    /*min-height: 100vh;*/
-    /*display: flex;*/
-    /*flex-direction: column;*/
 }
 
 .btn-dark-purple, .btn-dark-purple:visited {
     background-color: var(--dark-purple);
-    color: var(--beige);
+    color: white;
     border: none;
 }
 
@@ -51,7 +52,7 @@
 }
 
 .btn-outline-dark-purple:hover {
-    color: var(--beige);
+    color: white;
     background-color: var(--dark-purple);
     border: 1px solid var(--dark-purple);
 }

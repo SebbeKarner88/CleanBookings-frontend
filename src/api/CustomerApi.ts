@@ -78,10 +78,10 @@ export async function bookService(
     customerId: string,
     type: string,
     date: string,
-    message: string
+    message?: string | undefined
 ) {
     try {
-        const response = await api.post(
+        return await api.post(
             "job",
             {
                 customerId: customerId,
@@ -90,9 +90,6 @@ export async function bookService(
                 message: message
             },
         )
-        if (response.status == 201) {
-            return response;
-        }
     } catch (error) {
         console.error(error);
     }

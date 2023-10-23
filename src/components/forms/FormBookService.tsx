@@ -3,10 +3,11 @@ import {FieldValues, useForm} from "react-hook-form";
 import {z} from 'zod';
 import {zodResolver} from "@hookform/resolvers/zod";
 import {bookService} from "../../api/CustomerApi.ts";
-import {useNavigate} from "react-router-dom";
 import {FormField} from "./FormField.tsx";
 import {AuthContext} from '../../context/AuthContext.tsx';
-import {Button, Modal, Spinner} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
+import BookingConfirmationModal from "../booking-management/BookingConfirmationModal.tsx";
+import BookingRequestModal from "../booking-management/BookingRequestModal.tsx";
 
 const schema = z.object({
     type: z
@@ -20,8 +21,14 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
+type Request = {
+    type: string;
+    date: string;
+    message?: string | undefined;
+}
+
 const BookingForm = () => {
-    const {customerId, name} = useContext(AuthContext);
+    const {customerId} = useContext(AuthContext);
     const {
         register,
         handleSubmit,
@@ -29,35 +36,47 @@ const BookingForm = () => {
     } = useForm<FormData>({
         resolver: zodResolver(schema)
     });
-    const [modalVisible, setModalVisible] = useState(false);
-    const closeModal = () => setModalVisible(false);
-    const [isAssigning, setIsAssigning] = useState(false);
-    const navigation = useNavigate();
+    const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+    const [showRequestModal, setShowRequestModal] = useState<boolean>(false);
+    const closeConfirmationModal = () => setShowConfirmationModal(false);
+    const closeRequestModal = () => setShowRequestModal(false);
+    const [isSendingRequest, setIsSendingRequest] = useState(false);
+    const [requestData, setRequestData] = useState<Request | null>(null);
+
+    async function sendRequest() {
+        if (requestData != null) {
+            setIsSendingRequest(true);
+            try {
+                const response = await bookService(
+                    customerId,
+                    requestData.type,
+                    requestData.date,
+                    requestData.message
+                );
+                if (response?.status == 201) {
+                    setIsSendingRequest(false);
+                    closeRequestModal();
+                    setShowConfirmationModal(true);
+                } else {
+                    setIsSendingRequest(false);
+                    closeRequestModal();
+                    alert(response?.data.message);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    }
 
     async function onSubmit(data: FieldValues) {
-        setIsAssigning(true);
-        try {
-            const response = await bookService(
-                customerId,
-                data.type,
-                data.date,
-                data.message
-            );
-            if (response?.status == 201) {
-                setIsAssigning(false);
-                setModalVisible(true);
-            }
-        } catch (error) {
-            console.error(error);
-            alert("Something went wrong.");
-        }
+        setRequestData({type: data.type, date: data.date, message: data.message});
+        setShowRequestModal(true);
     }
 
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormField
-
                     fieldName="date"
                     label="Datum för utförandet"
                     inputType="date"
@@ -74,19 +93,6 @@ const BookingForm = () => {
                     fieldError={errors.type}
                     register={register}
                 />
-
-                {/*  <div className="col-md-6">
-                    <FormField
-                        fieldName="cleaner"
-                        label="Cleaner"
-                        labelDescription="Who would you like to perform the job?"
-                        inputType="radio"
-                        options={[ "Angelina", "Sebastian", "Jimmy", "Georgios", "Joachim", "Jonas" ]}
-                        fieldError={errors.type}
-                        register={register}
-                        value={selectedCleaner}
-                    />
-                </div> */}
 
                 <div>
                     <label htmlFor="message" className="form-label fw-semibold">
@@ -108,54 +114,24 @@ const BookingForm = () => {
                         rows={4}
                     />
                 </div>
-
-
-                {/** TODO: Add payment options */}
-                        <button
+                        <Button
+                            variant="dark"
                             type="submit"
-                            className="btn btn-dark-purple w-100 my-3">
-                            {
-                                isAssigning
-                                ? <Spinner
-                                        as="span"
-                                        animation="border"
-                                        size="sm"
-                                        role="status"
-                                        aria-hidden="true"
-                                        aria-label={"Sending request..."}
-                                    />
-                                : "Boka din städning"
-                            }
-                        </button>
+                            className="btn-dark-purple w-100 my-3">
+                            Boka din städning
+                        </Button>
             </form>
-
-            <Modal
-                show={modalVisible}
-                onHide={closeModal}
-                fullscreen="md-down"
-            >
-                <Modal.Header
-                    className="bg-secondary-subtle"
-                    closeButton
-                >
-                    <Modal.Title className="fw-bold">
-                        Bokningsbekräftelse
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body className="bg-secondary-subtle">
-                    <p>Tack för din bokning {name}!</p>
-                    <p>Du kommer snart att få en bekräftelse på din bokade städning via e-post.</p>
-                </Modal.Body>
-                <Modal.Footer className="bg-secondary-subtle">
-                    <Button
-                        variant="dark"
-                        className="btn-dark-purple"
-                        onClick={() => navigation("/my-pages")}
-                    >
-                        OK
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            <BookingRequestModal
+                show={showRequestModal}
+                onHide={closeRequestModal}
+                handleRequest={sendRequest}
+                request={requestData}
+                isAssigning={isSendingRequest}
+            />
+            <BookingConfirmationModal
+                show={showConfirmationModal}
+                onHide={closeConfirmationModal}
+            />
         </>
     )
 }
