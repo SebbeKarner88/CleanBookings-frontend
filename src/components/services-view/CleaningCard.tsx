@@ -6,7 +6,6 @@ import diamond from '../../assets/images/diamant-nobg.png';
 import win from '../../assets/images/window-nobg.png';
 import '../../styles/CleaningCard.css'
 
-
 interface props {
     image: string,
     title: string,
@@ -15,7 +14,7 @@ interface props {
     price: string
 }
 
-function imgMapper(img:string) {
+function imgMapper(img: string) {
     if (img == 'basic')
         return basic;
     if (img == 'top')
@@ -26,26 +25,38 @@ function imgMapper(img:string) {
         return win;
 }
 
-function CleaningCard({image, title, description, items, price} : props) {
+function CleaningCard({image, title, description, items, price}: props) {
 
     return (
         <>
-        <Card className="cleaningCard">
-            <Card.Img className="image" variant="top" src={imgMapper(image)}  />
-            <Card.Body>
-                <Card.Title className="cardTitle">{title}</Card.Title>
-                <Card.Text>
-                    {description}
-                </Card.Text>
-            </Card.Body>
-            <ListGroup className="list-group-flush">
-                {items.map((item: string, index: number ) => (
-                    <ListGroup.Item className="cardList" key={index}>{item}</ListGroup.Item>))}
-            </ListGroup>
-            <Card.Footer>
-                <small className="cardFooter">{price}</small>
-            </Card.Footer>
-        </Card>
+            <Card className="cleaningCard">
+                <Card.Img className="image" variant="top" src={imgMapper(image)}/>
+                <Card.Body>
+                    <Card.Title className="cardTitle">
+                        {title}
+                    </Card.Title>
+                    <Card.Text>
+                        {description}
+                    </Card.Text>
+                </Card.Body>
+                <ListGroup className="list-group-flush">
+                    {items.map((item: string, index: number) => (
+                        <ListGroup.Item className="cardList" key={index}>{item}</ListGroup.Item>))}
+                </ListGroup>
+                {
+                    title === "BASIC" &&
+                    <div className="bg-success text-white">
+                        <h2 className="fs-5 fw-bold my-2">
+                            Mest sålda!
+                        </h2>
+                    </div>
+                }
+                <Card.Footer>
+                    <small className="cardFooter">
+                        {price}
+                    </small>
+                </Card.Footer>
+            </Card>
         </>
     );
 }
