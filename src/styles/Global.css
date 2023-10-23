@@ -1,4 +1,8 @@
 :root {
+
+    /*  OBS!!! Ändra ej värdet på dessa färger!!
+        Saknar du någon färg så LÄGG TILL en ny i listan! */
+
     --beige: rgb(250, 236, 225);
     --dark-purple: rgb(89, 69, 69);
     --dark-beige: rgb(220, 196, 161);
