@@ -13,12 +13,15 @@ function AboutUs() {
             <div className="aboutContainer">
                 <h1 className="emp">Om StädaFint AB</h1>
                 <div className="history">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sapiente ad in natus beatae architecto ducimus rerum voluptatum voluptate, ratione, iusto, sed commodi quis dolorum. Reprehenderit, atque. Odio, similique dicta.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima temporibus soluta magnam recusandae tempora vero voluptas repellendus qui? Aspernatur sed aliquid unde quas hic laborum vero possimus, amet praesentium nobis.</p>
+                    <p>StädaFint AB: Från Dröm till Ren Verklighet <br/><br/>
 
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam qui atque, quas dolores sint nam et ea placeat dolore voluptatum perferendis ut tempora culpa exercitationem assumenda laboriosam necessitatibus recusandae facilis.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa ab dolore nostrum quos eos at exercitationem blanditiis commodi error nulla, quisquam quod ipsam maiores ipsum repudiandae, modi reprehenderit natus esse. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae minima, assumenda ratione accusamus delectus id dicta expedita omnis quisquam consequatur tempora eum laboriosam voluptatum molestias! Facilis consequatur fuga aperiam velit?
-                    </p>
+                        År 1995, med en gemensam övertygelse om att varje utrymme förtjänar omsorg, grundade Skurarn och Hinkish StädaFint AB. Deras resa började som ett litet familjeföretag med en stor passion för städning och kundservice.</p>
+
+                    <p>Genom år av hängivenhet och noggrannhet växte StädaFint AB till att bli en pålitlig städtjänst. Deras fokus på överlägsen kvalitet och miljövänliga städmetoder gjorde dem snabbt populära. De investerade i avancerad teknik och högkvalitativa rengöringsprodukter för att säkerställa att varje kund fick den bästa möjliga servicen.</p>
+
+                    <p>StädaFint AB strävade inte bara efter att erbjuda enastående städning, de engagerade sig också i samhället. Genom att erbjuda arbete och stödja lokala välgörenhetsprojekt blev de en del av gemenskapen på ett meningsfullt sätt.</p>
+
+                    <p>Idag är StädaFint AB inte bara ett städföretag, det är en berättelse om framgång och passion. Deras resa är en inspirerande historia om att följa sin dröm, erbjuda enastående service och göra en verklig skillnad i samhället. Med varje städning de utför fortsätter de sin renande resa och lämnar ett rent och glänsande avtryck överallt där de går.</p>
 
                     <p style={{ fontStyle: "italic" }}>— Skurarn Moppsson, VD StädaFint AB</p>
                 </div>
