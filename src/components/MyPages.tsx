@@ -51,8 +51,8 @@ function MyPages() {
             <NavBar />
             <div className="container text-md-start">
                 <div className="d-flex justify-content-between">
-                    <h1 className="fw-bold my-3 mb-md-5 mx-2 mx-md-0">My pages</h1>
-                    <p className="text-right my-3 mx-2 mx-md-5">Signed in as: <span id='username'>{username || 'N/A'}</span></p>
+                    <h1 className="fw-bold my-3 mb-md-5 mx-2 mx-md-0">Mina sidor</h1>
+                    <p className="text-right my-3 mx-2 mx-md-5">Inloggad som: <span id='username'>{username || 'N/A'}</span></p>
                     <Link to="/my-pages/settings">
                         <Button size="lg" variant="btn-link" className="btn-dark-purple m-3">
                             <IoSettingsOutline
