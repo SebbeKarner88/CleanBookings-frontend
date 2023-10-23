@@ -87,7 +87,7 @@ export default function FormUpdatePassword({setShowModal}: IFormUpdatePassword) 
 
             <Button
                 type="button"
-                variant="danger"
+                variant="outline-danger"
                 className="w-100"
                 onClick={() => navigation("/my-pages/settings")}
             >

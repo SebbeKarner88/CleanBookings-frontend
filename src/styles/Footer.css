@@ -23,14 +23,13 @@ a:hover {
 
 .col-heading {
     display: block;
+    font-family: 'Tiempos';
     font-size: 1.3rem;
-    text-transform: uppercase;
     color: var(--dark-purple);
     font-weight: 500;   
     margin: 0.4rem 0;
     padding: .4rem 0;
     border-bottom: 1px solid #c7c7c7;
-    letter-spacing: 3px;
 }
 
 #to-top:hover {

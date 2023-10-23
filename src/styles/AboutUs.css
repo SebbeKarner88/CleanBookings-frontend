@@ -12,10 +12,11 @@
 }
 
 .emp {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
-    font-size: 3rem;
+    padding-top: 4%;
+    padding-bottom: 2%;
+    font-size: 3em;
     color: #ffffff;
+    font-family: 'Tiempos';
     font-weight: bold;
 }
 
