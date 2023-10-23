@@ -22,6 +22,7 @@
 .cardTitle {
     font-weight: bold;
     color: var(--brown);
+    font-family: 'Tiempos';
 }
 
 .cardList {

@@ -1,5 +1,4 @@
 .faq-container {
-    font-family: 'Nunito';
     background-color: var(--light-brown);
     min-height: 70vh;
     display: flex;
@@ -20,12 +19,12 @@ button:focus:not(:focus-visible) {
 }
 
 .faq {
+    font-family: 'Tiempos';
     font-size: 2.5em;
     font-weight: bolder;
     color: black;
-    padding-top: 5%;
+    padding-top: 4%;
     padding-bottom: 1%;
-    text-transform: uppercase;
 }
 
 #line {

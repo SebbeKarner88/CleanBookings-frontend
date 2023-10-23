@@ -10,8 +10,7 @@ function AboutUs() {
         <>
             <NavBar/>
             <div className="aboutContainer">
-
-                <h1 className="emp">Medarbetare</h1>
+                <h1 className="emp">Våra Medarbetare</h1>
                 <Container>
                     <EmployeeCardGrid/>
                 </Container>
