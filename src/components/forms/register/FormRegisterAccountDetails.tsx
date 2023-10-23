@@ -106,7 +106,7 @@ export function FormRegisterAccountDetails() {
                 <div className="mb-3 form-check">
                     {errors.terms && (
                         <p className="text-danger mt-1 mb-2"><BsExclamationCircle/>
-                            You must accept the terms and conditions to be able to register an account.
+                            Du måste godkänna användarvillkoren och sekretesspolicyn för att skapa ett konto.
                         </p>
                     )}
                     <input {...register('terms')} type="checkbox" className="form-check-input" id="terms"/>
@@ -122,7 +122,7 @@ export function FormRegisterAccountDetails() {
                     </label>
                 </div>
                 <Button type="submit" className="btn btn-dark-purple w-100">
-                    Register
+                    Registrera
                 </Button>
             </form>
             <PrivacyModal onShow={showPrivacyModal} onClose={() => setShowPrivacyModal(false)}/>

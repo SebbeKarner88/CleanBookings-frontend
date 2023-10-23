@@ -19,7 +19,7 @@ export default function RegisterView() {
             <NavBar />
             <div className="outer-reg-container">
                 <div className="reg-container bg-light-brown" >
-                    <h1 className="fw-bold text-start text-md-center">Register an account</h1>
+                    <h1 className="fw-bold text-start text-md-center">Registrera ett konto</h1>
                     <ProgressBar
                         className="my-4 mx-4"
                         aria-hidden={true}

@@ -51,14 +51,14 @@ export function FormLogin() {
             <div className="popup">
                 <form className="mt-5 popup-content rounded-2 bg-beige"
                     onSubmit={handleSubmit(onSubmit)}>
-                    <h1 className="my-3 fw-bold text-dark-purple" style={{ fontFamily: 'Tiempos' }}>Login <Link to="/">
+                    <h1 className="my-3 fw-bold text-dark-purple" style={{ fontFamily: 'Tiempos' }}>Logga in <Link to="/">
                         <button type="button" className="btn-close btn-dark small float-end"
                             aria-label="Close window"></button>
                     </Link></h1>
                     {errorMessage && <div className="text-danger my-1">{errorMessage}</div>}
                     <FormField
                         fieldName="emailAddress"
-                        label="Email address"
+                        label="Epostadress"
                         inputType="email"
                         fieldError={errors.emailAddress}
                         customError={errorMessage}
@@ -66,16 +66,16 @@ export function FormLogin() {
                     />
                     <FormField
                         fieldName="password"
-                        label="Password"
+                        label="Lösenord"
                         inputType="password"
                         fieldError={errors.password}
                         customError={errorMessage}
                         register={register}
                     />
-                    <button type="submit" className="btn btn-dark-purple w-100">Sign in</button>
+                    <button type="submit" className="btn btn-dark-purple w-100">Logga in</button>
                     <div className="mt-3 d-flex gap-2 align-items-center">
                         <BsPersonFillAdd size={20} />
-                        <strong>First time? </strong><Link to="/register" className="text-dark-purple">Register an account</Link>
+                        <strong>Ny kund? </strong><Link to="/register" className="text-dark-purple">Registrera ett konto.</Link>
                     </div>
                 </form>
             </div>
