@@ -85,7 +85,7 @@ const Contact = () => {
                     </Row>
                     <Row>
                         <Col lg="12" className="form-group">
-                            <button type="submit" className="submit-button">Skicka</button>
+                            <button type="submit" className="submit-button mb-3">Skicka</button>
                         </Col>
                     </Row>
                 </form>

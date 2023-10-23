@@ -13,6 +13,7 @@
 
 .history {
     background-color: var(--light-brown);
+    border-radius: 10px;
     width: 60%;
     height: 80%;
     margin: 0 auto;
