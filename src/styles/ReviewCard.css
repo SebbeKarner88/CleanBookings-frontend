@@ -1,17 +1,29 @@
+.header-title {
+    margin: 9% 0 2% 0;
+    text-align: left;
+    font-family: 'Nunito';
+    color: #dbd7d7;
+    font-style: italic;
+    font-size: 1.5rem;
+}
+
 .reviewCard {
     width: 100%;
-    border: rgba(152, 110, 46, 0.63) 2px ridge;
     background-color: var(--light-brown);
     color: #332109;
 }
 
 .reviewTitle {
     font-weight: bold;
-    color: #000000;
+    color: var(--dark-purple);
+    margin-bottom: 1em;
+    font-size: 1.5em;
+    box-shadow: 0 0 10px rgba(89, 69, 69, 0.3);
+    padding: 10px;
 }
 
 .reviewFooter {
-    color: #64461d;
+    color: #69573c;
     font-weight: bold;
     font-size: large;
     font-style: italic;

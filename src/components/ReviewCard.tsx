@@ -12,7 +12,7 @@ const ReviewCard = () => {
         {
             image: 'top',
             title: 'Imponerad',
-            description: 'Inte ens jag kan städa lika fint..',
+            description: 'Inte ens jag kan städa lika fint.. och då har jag ändå några års erfarenhet. Rekommenderas varmt!',
             signature: 'Lisa, hemmafru'
         },
         {
@@ -26,9 +26,10 @@ const ReviewCard = () => {
     return (
         <>
             <Container className="pt-5 px-5">
+                <p className='header-title'>Vad våra tidigare kunder har att säga:</p>
                 <Row xs={1} md={2} lg={3}>
                     {reviews.map((review, index) => (
-                        <Col key={index} className="mb-5">
+                        <Col key={index} className="mb-5 d-flex align-items-stretch">
                             <Card className="reviewCard">
                                 {/* <Card.Img className="image" variant="top" src={imgMapper(image)} /> */}
                                 <Card.Body>
