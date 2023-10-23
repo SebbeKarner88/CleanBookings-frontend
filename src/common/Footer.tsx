@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import PrivacyModal from '../components/modals/PrivacyModal';
 import TermsConditionsModal from '../components/modals/TermsConditionsModal';
 import {useState} from "react";
+import { Link } from 'react-router-dom';
 
 export const Footer = () => {
     const [showPrivacyModal, setShowPrivacyModal] = useState(false);
@@ -78,7 +79,7 @@ export const Footer = () => {
                                 </a>
                             </li>
                             {/*<li><a href="terms&conditions">Terms & Conditions</a></li>*/}
-                            <li><a href="/contact">Kontakta oss</a></li>
+                            <li><Link to="/AboutUs#contact-us">Kontakta oss</Link></li>
                         </ul>
                     </div>
                     <div className="col-xs-12 col-md-2 text-center">
