@@ -24,6 +24,7 @@ function ServicesView() {
             <NavBar />
             <div
                 className="cardContainer">
+                <h1 className="services-header">Våra tjänster</h1>
                 <TypesOfCleaning />
                 <Button
                     id="book"

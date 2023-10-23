@@ -74,29 +74,27 @@ const NavBar = () => {
                                 ?
                                 <>
                                     <Nav>
-                                        <Link to="/my-pages">
-                                            <Button size="lg" className="btn-dark-purple">
+                                        <LinkContainer to="/my-pages">
+                                            <Button variant="dark" size="lg" className="btn-dark-purple">
                                                 Mina sidor
                                             </Button>
-                                        </Link>
-                                    </Nav>
-                                    <Navbar.Text>
+                                        </LinkContainer>
                                         <p className="visually-hidden">Signed in as: {name}</p>
                                         <Button variant="outline-danger" size="lg" className="mx-3 my-3 my-md-0"
                                             onClick={handleLogout}>
                                             Logga ut
                                         </Button>
-                                    </Navbar.Text>
+                                    </Nav>
                                 </>
                                 :
                                 <Nav>
                                     <LinkContainer to="/login">
-                                        <Button variant="dark" size="lg" className="btn-outline-dark-purple my-3 my-md-0 mx-md-3">
+                                        <Button variant="dark" size="lg" className="btn-outline-dark-purple my-3 my-lg-0 mx-lg-3">
                                             Logga in
                                         </Button>
                                     </LinkContainer>
                                     <LinkContainer to="/register">
-                                        <Button variant="dark" size="lg" className="btn-dark-purple mb-3 mb-md-0">
+                                        <Button variant="dark" size="lg" className="btn-dark-purple mb-3 mb-lg-0">
                                             Registrera
                                         </Button>
                                     </LinkContainer>

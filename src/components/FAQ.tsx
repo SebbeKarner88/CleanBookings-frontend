@@ -52,34 +52,33 @@ function FAQ() {
     return (
         <>
             <NavBar />
-            <div className='faq-container'>
+            <div className="outer-container">
                 <h1 className='faq'>Vanliga Frågor</h1>
-                <hr id='line' />
-
-                {faqs.map((faq, index) => (
-                    <div key={index}>
-                        <button
-                            type="button"
-                            className='faq-question'
-                            onClick={() => handleClick(index)}
-                            aria-label={`${faq.question} (Tryck på knappen för att expandera/minimera)`}
-                        >
-                            {faq.question} {
-                                index === expandedIndex
-                                    ? <ArrowDropUpIcon />
-                                    : <ArrowDropDownIcon />
-                            }
-                        </button>
-                        {expandedIndex === index && <div className='faq-answer'>{faq.answer}</div>}
-                    </div>
-                ))}
-            </div>
-            <div className='contact-btn'>
-                <LinkContainer to="/contact">
-                    <Button variant="dark" size="lg" className="btn-dark-purple mb-3 my-5">
-                        Kontakta oss
-                    </Button>
-                </LinkContainer>
+                <div className='faq-container'>
+                    {faqs.map((faq, index) => (
+                        <div key={index}>
+                            <button
+                                type="button"
+                                className='faq-question'
+                                onClick={() => handleClick(index)}
+                                aria-label={`${faq.question} (Tryck på knappen för att expandera/minimera)`}
+                            >
+                                {faq.question} {
+                                    index === expandedIndex
+                                        ? <ArrowDropUpIcon />
+                                        : <ArrowDropDownIcon />
+                                }
+                            </button>
+                            {expandedIndex === index && <div className='faq-answer'>{faq.answer}</div>}
+                            <hr id='line' />
+                        </div>
+                    ))}
+                    <LinkContainer to="/contact">
+                        <Button variant="dark" size="lg" className="btn-dark-purple mb-3 my-5">
+                            Kontakta oss
+                        </Button>
+                    </LinkContainer>
+                </div>
             </div>
             <Footer />
         </>

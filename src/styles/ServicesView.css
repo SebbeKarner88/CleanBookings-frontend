@@ -1,3 +1,10 @@
+.services-header {
+    font-family: 'Tiempos';
+    color: white;
+    font-weight: bold;
+    padding-top: 3%;
+}
+
 .cardContainer {
     background-image: url('../../src/assets/images/myspys.jpg');
     background-repeat: no-repeat;

@@ -16,7 +16,7 @@ export const Footer = () => {
                 <div className="row  row-no-gutters">
                     <div className="col-xs-12 col-sm-6 col-md-3">
                         <ul>
-                            <li className="col-heading">Contact</li>
+                            <li className="col-heading">Kontakt</li>
                             <li className="text-start"><Phone /> 555-CLEAN-ME-NOW</li>
                             <li className="text-start"><Mobile /> 070-CLEAN-ME-NOW</li>
                             <li className="text-start"><Map /> <a href="https://maps.app.goo.gl/HzU8kv5sVTQKF5cVA">Stockholm HQ</a></li>
@@ -28,7 +28,7 @@ export const Footer = () => {
 
                     <div className="col-xs-12 col-sm-6 col-md-3">
                         <ul id='icons'>
-                            <li className="col-heading">Locations</li>
+                            <li className="col-heading">Var vi finns</li>
                             <li><a href="https://maps.app.goo.gl/5xnZx6c4h5FFELxp8">Stockholm</a></li>
                             <li><a href="https://maps.app.goo.gl/utfxFDWKkYnBKqZd6">Göteborg</a></li>
                             <li><a href="https://maps.app.goo.gl/8WkGFAZcsBSGxkkC8">Falun</a></li>
@@ -38,11 +38,11 @@ export const Footer = () => {
 
                     <div className="col-xs-12 col-sm-6 col-md-3">
                         <ul>
-                            <li className="col-heading">Our Work</li>
-                            <li><a href="/cleaningproducts">Städafint's cleaning products</a></li>
-                            <li><a href="/tips&inspiration">Tips & Inspiration</a></li>
-                            <li><a href="/sustainability">Sustainability</a></li>
-                            <li><a href="/ourstory">Our Story</a></li>
+                            <li className="col-heading">Om oss</li>
+                            <li><a href="/cleaningproducts">Städafint's rengöringsprodukter</a></li>
+                            <li><a href="/tips&inspiration">Tips & inspiration</a></li>
+                            <li><a href="/sustainability">Hållbarhet</a></li>
+                            <li><a href="/AboutUs">Vår historia</a></li>
                         </ul>
                     </div>
 
@@ -50,7 +50,7 @@ export const Footer = () => {
                         <ul>
                             <li className="col-heading">Information</li>
                             <li><a href="/GDPR">GDPR</a></li>
-                            <li><a href="/aboutRUT">About RUT</a></li>
+                            <li><a href="/aboutRUT">Om RUT</a></li>
                             <li><a href="/FAQ">FAQ</a></li>
                             <li><a href="/sitemap">Sitemap</a></li>
                         </ul>
@@ -78,8 +78,7 @@ export const Footer = () => {
                                 </a>
                             </li>
                             {/*<li><a href="terms&conditions">Terms & Conditions</a></li>*/}
-                            <li><a href="/contact">Contact Us</a></li>
-                            <li><a href="/design">Homepage design</a></li>
+                            <li><a href="/contact">Kontakta oss</a></li>
                         </ul>
                     </div>
                     <div className="col-xs-12 col-md-2 text-center">

@@ -1,0 +1,21 @@
+.outer-reg-container {
+    background-image: url('../../src/assets/images/myspys.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.reg-container {
+    padding: 2%;
+    margin: 4% auto;
+    min-width: 800px;  
+    border-radius: 2%;
+    box-shadow: 0 0 30px rgba(0,0,0, 0.6);
+}
+
+h1 {
+    font-family: 'Tiempos', serif;
+}

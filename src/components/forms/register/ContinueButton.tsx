@@ -11,7 +11,7 @@ export default function ContinueButton() {
 
             <div className="mt-3 d-flex gap-2 align-items-center">
                 <VscAccount size={20}/>
-                <strong>Already have an account? </strong><Link className="text-dark-purple" to="/login">Sign in</Link>
+                <strong>Är du redan kund? </strong><Link className="text-dark-purple" to="/login">Logga in.</Link>
             </div>
         </>
     )
