@@ -17,32 +17,28 @@ interface IBookingRequestModal {
 export default function BookingRequestModal({show, onHide, handleRequest, request, isAssigning}: IBookingRequestModal) {
     const body = (
         <>
-            <h2 className="fs-5 mb-4">
-                Vill du boka följande städning?
-            </h2>
-
             <Row>
                 <Col md={6}>
-                    <h2 className="fs-5 fw-bold">
+                    <h3 className="fs-5 fw-bold">
                         Datum
-                    </h2>
+                    </h3>
                     <p>
                         {request?.date}
                     </p>
                 </Col>
                 <Col md={6}>
-                    <h2 className="fs-5 fw-bold">
+                    <h3 className="fs-5 fw-bold">
                         Typ av städning
-                    </h2>
+                    </h3>
                     <p>
                         {request?.type}
                     </p>
                 </Col>
             </Row>
 
-            <h2 className="fs-5 fw-bold">
+            <h3 className="fs-5 fw-bold">
                 Meddelande
-            </h2>
+            </h3>
             <p>
                 {
                     request?.message

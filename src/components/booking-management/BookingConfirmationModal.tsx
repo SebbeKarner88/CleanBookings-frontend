@@ -9,7 +9,7 @@ interface IBookingConfirmationModal {
 }
 
 export default function BookingConfirmationModal({show, onHide}: IBookingConfirmationModal) {
-    const {name} = useContext(AuthContext);
+    const {name, username} = useContext(AuthContext);
     const navigate = useNavigate();
 
     return (
@@ -29,7 +29,10 @@ export default function BookingConfirmationModal({show, onHide}: IBookingConfirm
             </Modal.Header>
             <Modal.Body className="bg-light-brown">
                 <p>Tack för din bokning {name}!</p>
-                <p>Du kommer snart att få en bekräftelse på din bokade städning via e-post.</p>
+                <p>Du kommer snart att få en bekräftelse på din bokade städning skickad till
+                    <span className="fw-bold"> {username}</span>
+                </p>
+
             </Modal.Body>
             <Modal.Footer className="bg-light-brown border-0">
                 <Button
