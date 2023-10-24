@@ -1,16 +1,41 @@
 import {Footer} from "../common/Footer.tsx"
 import NavBar from "../common/NavBar.tsx"
-import {useContext} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {AuthContext} from '../context/AuthContext'
 import CleaningsPerType from "./booking-management/CleaningsPerType.tsx";
 import {useNavigate} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import {IoSettingsOutline} from "react-icons/io5";
 import '../styles/MyPages.css'
+import {getJobsByStatus} from "../api/CustomerApi.ts";
+import ClosedJobsTable from "./tables/jobs/ClosedJobsTable.tsx";
+
+interface Job {
+    id: string;
+    bookedDate: string;
+    type: string;
+    message: string;
+    status: string;
+}
 
 function MyPages() {
-    const {username} = useContext(AuthContext);
+    const {customerId, username} = useContext(AuthContext);
     const navigate = useNavigate();
+    const [jobs, setJobs] = useState<Job[]>([]);
+
+    useEffect(() => {
+        fetchJobs().then(data => setJobs(data));
+
+        async function fetchJobs() {
+            try {
+                const response = await getJobsByStatus(customerId);
+                if (response?.status == 200)
+                    return response.data;
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    }, [customerId]);
 
     return (
         <>
@@ -34,11 +59,11 @@ function MyPages() {
                                 aria-label="Inställningar"/>
                         </Button>
                     </div>
-                    <h2 className="fw-bold">Pågående städjobb</h2>
-                    <CleaningsPerType/>
-                    <h2 className="fw-bold">Avklarade städjobb</h2>
-                    {/*    Insert table here */}
-                    <p>Här visas en tabell över alla jobb som har status CLOSED</p>
+                    <h2 className="fw-bold my-3">Pågående städjobb</h2>
+                    {/* TODO: Add dependency to update jobs-data when approving/disapproving a job */}
+                    <CleaningsPerType />
+                    <h2 className="fw-bold my-3">Tidigare städjobb</h2>
+                    <ClosedJobsTable jobs={jobs} />
                 </div>
             </div>
             <Footer/>

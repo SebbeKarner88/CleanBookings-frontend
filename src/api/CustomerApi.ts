@@ -30,9 +30,6 @@ export async function loginCustomer(
     }
 }
 
-
-
-
 export async function registerCustomer(
     firstName: string,
     lastName: string,
@@ -162,6 +159,23 @@ export async function getJobsByCustomerId(customerId: string) {
     } catch (error) {
         console.error(error);
         // return null;
+    }
+}
+
+export async function getJobsByStatus(
+    customerId: string,
+    status?: "OPEN" | "ASSIGNED" | "WAITING_FOR_APPROVAL" | "NOT_APPROVED" | "APPROVED" | "CLOSED"
+) {
+    try {
+        return await api.get(
+            `/job/cleanings/${customerId}`,
+            {
+                params: {
+                    status: status
+                }
+            })
+    } catch (error) {
+        console.error(error);
     }
 }
 

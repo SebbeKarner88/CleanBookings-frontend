@@ -73,6 +73,6 @@
     color: var(--beige);
 }
 
-h1 {
+h1, h2 {
     font-family: 'Tiempos', serif;
 }

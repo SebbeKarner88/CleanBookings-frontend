@@ -1,3 +1,4 @@
-#username {
-    font-weight: bold;
+th, tr, td {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid var(--light-brown) !important;
 }
