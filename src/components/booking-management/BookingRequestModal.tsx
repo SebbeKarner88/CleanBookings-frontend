@@ -1,4 +1,4 @@
-import {Button, Col, Modal, Row, Spinner} from "react-bootstrap";
+import {Button, Col, Modal, Row} from "react-bootstrap";
 
 type Request = {
     type: string;
@@ -70,17 +70,7 @@ export default function BookingRequestModal({show, onHide, handleRequest, reques
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body className="bg-light-brown">
-                {
-                    isAssigning
-                        ? <Spinner
-                            as="span"
-                            animation="border"
-                            role="status"
-                            aria-hidden="true"
-                            aria-label={"Sending request..."}
-                        />
-                        : body
-                }
+                {body}
             </Modal.Body>
             <Modal.Footer className="bg-light-brown border-0">
                 <Row>
@@ -97,8 +87,9 @@ export default function BookingRequestModal({show, onHide, handleRequest, reques
                             variant="dark"
                             className="btn-dark-purple"
                             onClick={handleRequest}
+                            disabled={isAssigning}
                         >
-                            Boka
+                            {isAssigning ? "Bokar..." : "Boka"}
                         </Button>
                     </Col>
                 </Row>
