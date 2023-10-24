@@ -61,9 +61,9 @@
     color: var(--dark-purple);
 }
 
-.text-mauve {
-    color: var(--mauve);
-}
+/*.text-mauve {*/
+/*    color: var(--mauve);*/
+/*}*/
 
 .text-dark-beige {
     color: var(--dark-beige);
@@ -71,4 +71,8 @@
 
 .text-beige {
     color: var(--beige);
+}
+
+h1 {
+    font-family: 'Tiempos', serif;
 }
