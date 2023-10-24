@@ -28,9 +28,7 @@ export const handleApproveCleaning = async (
             headers: {
                 'Content-Type': 'application/json',
             }
-
         });
-
     } catch (error) {
         console.error("Error:", error.response.data);
         setErrorModal({visible: true, message: error.response.data || 'Ett okänt fel inträffade.'});

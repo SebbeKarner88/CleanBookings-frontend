@@ -87,11 +87,23 @@ const CleaningsPerType: React.FC = () => {
             // Fetch cleanings based on the selected status and customer ID
             axios.get(`http://localhost:8080/api/v1/job/cleanings/${customerId}?status=${statusValue}`)
                 .then((response) => {
-                    setCleanings(response.data);
+                    if (Array.isArray(response.data)) {
+                        setCleanings(response.data);
+                        // Update approvedJobs state
+                        const updatedApprovedJobs: Record<string, 'APPROVED' | 'DISAPPROVED' | 'PENDING'> = {};
+                        response.data.forEach(job => {
+                            updatedApprovedJobs[job.id] = job.status as 'APPROVED' | 'DISAPPROVED' | 'PENDING';
+                        });
+                        setApprovedJobs(updatedApprovedJobs);
+                    } else {
+                        console.warn("Expected response.data to be an array, received:", response.data);
+                        setCleanings([]);
+                    }
                 })
                 .catch((error) => {
                     console.error("Error fetching data:", error);
                 });
+
         }
     }, [customerId, selectedStatus, isAuthenticated]);
 
@@ -144,18 +156,24 @@ const CleaningsPerType: React.FC = () => {
                         <td>{booking.type}</td>
                         <td>
                             {
-                                approvedJobs[booking.id] === 'PENDING' || !approvedJobs[booking.id] ? (
+                                approvedJobs[booking.id] === 'APPROVED' ? (
+                                    <span>Godkänd</span>
+                                ) : approvedJobs[booking.id] === 'DISAPPROVED' ? (
+                                    <span>Ej godkänd</span>
+                                ) : booking.status === 'WAITING_FOR_APPROVAL' ? (
                                     <>
                                         <button onClick={() => promptApprove(booking.id)}>Godkänn</button>
                                         <button onClick={() => promptDisapprove(booking.id)}>Neka</button>
                                     </>
-                                ) : approvedJobs[booking.id] === 'APPROVED' ? (
+                                ) : booking.status === 'APPROVED' ? (
                                     <span>Godkänd</span>
-                                ) : (
+                                ) : booking.status === 'NOT_APPROVED' ? (
                                     <span>Ej godkänd</span>
-                                )
+                                ) : null
                             }
                         </td>
+
+
                         <ActionHandlerModal
                             show={actionModal.show}
                             title={actionModal.title}
