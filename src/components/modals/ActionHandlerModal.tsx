@@ -12,16 +12,36 @@ interface Props {
 
 const ActionHandlerModal: React.FC<Props> = ({ show, title, message, onConfirm, onCancel }) => {
     return (
-        <Modal show={show} onHide={onCancel}>
-            <Modal.Header closeButton>
-                <Modal.Title>{title}</Modal.Title>
+        <Modal
+            show={show}
+            onHide={onCancel}
+            fullscreen="md-down"
+        >
+            <Modal.Header
+                closeButton
+                closeVariant="white"
+                className="bg-dark-purple text-beige border-0"
+            >
+                <Modal.Title className="fw-bold">{title}</Modal.Title>
             </Modal.Header>
-            <Modal.Body>{message}</Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={onCancel}>
+
+            <Modal.Body className="bg-light-brown">
+                <p>{message}</p>
+            </Modal.Body>
+
+            <Modal.Footer className="bg-light-brown border-0">
+                <Button
+                    variant="dark"
+                    className="btn-dark-purple"
+                    onClick={onCancel}
+                >
                     Avbryt
                 </Button>
-                <Button variant="primary" onClick={onConfirm}>
+                <Button
+                    variant="dark"
+                    className="btn-dark-purple"
+                    onClick={onConfirm}
+                >
                     Bekräfta
                 </Button>
             </Modal.Footer>

@@ -1,3 +1,4 @@
+import Button from 'react-bootstrap/Button';
 
 import React, {useContext, useEffect, useState} from 'react';
 // import { useParams } from 'react-router-dom';
@@ -132,8 +133,20 @@ const CleaningsPerType: React.FC = () => {
             case 'OPEN':
                 return (
                     <>
-                        <button onClick={() => promptApprove(booking.id)}>Godkänn</button>
-                        <button onClick={() => promptDisapprove(booking.id)}>Neka</button>
+                        <Button
+                            variant="dark"
+                            className="btn-dark-purple mr-2"
+                            onClick={() => promptApprove(booking.id)}
+                        >
+                            Godkänn
+                        </Button>
+                        <Button
+                            variant="dark"
+                            className="btn-dark-purple"
+                            onClick={() => promptDisapprove(booking.id)}
+                        >
+                            Neka
+                        </Button>
                     </>
                 );
 
