@@ -169,6 +169,8 @@ const CleaningsPerType: React.FC = () => {
                                     <span>Godkänd</span>
                                 ) : booking.status === 'NOT_APPROVED' ? (
                                     <span>Ej godkänd</span>
+                                ) : booking.status === 'OPEN' ? (
+                                    <span>Väntar på godkännande</span>
                                 ) : null
                             }
                         </td>
