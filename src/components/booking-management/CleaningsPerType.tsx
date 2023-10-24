@@ -29,7 +29,7 @@ const CleaningsPerType: React.FC = () => {
         onConfirm: () => {}
     });
     const handleConfirmApprove = (bookingId: string) => {
-        handleApproveCleaning(bookingId, customerId, "Städningen är godkänd", setCleanings, setErrorModal);
+        handleApproveCleaning(bookingId, customerId, "Städningen är godkänd", setErrorModal);
         setActionModal({ ...actionModal, show: false });
         setApprovedJobs(prev => ({...prev, [bookingId]: 'APPROVED'}));
     };
@@ -126,6 +126,7 @@ const CleaningsPerType: React.FC = () => {
                     ))}
                 </select>
             </div>
+            <div className="table-responsive">
             <table className="table table-bordered table-striped">
                 <thead className="thead-dark">
                 <tr>
@@ -166,6 +167,7 @@ const CleaningsPerType: React.FC = () => {
                 ))}
                 </tbody>
             </table>
+            </div>
             {/* Pagination */}
             <div className="d-flex justify-content-center">
                 <Pagination>

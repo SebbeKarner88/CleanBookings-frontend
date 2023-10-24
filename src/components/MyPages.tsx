@@ -1,89 +1,40 @@
-import { Footer } from "../common/Footer.tsx"
+import {Footer} from "../common/Footer.tsx"
 import NavBar from "../common/NavBar.tsx"
-import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../context/AuthContext'
+import {useContext} from 'react';
+import {AuthContext} from '../context/AuthContext'
 import CleaningsPerType from "./booking-management/CleaningsPerType.tsx";
-import { getJobsByCustomerId } from "../api/CustomerApi.ts";
-import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
-import { IoSettingsOutline } from "react-icons/io5";
+import {Link} from "react-router-dom";
+import {Button} from "react-bootstrap";
+import {IoSettingsOutline} from "react-icons/io5";
 import '../styles/MyPages.css'
-import StatusFilter from "./tables/jobs/StatusFilter.tsx";
-import { CustomerJobsTable } from "./tables/jobs/CustomerJobsTable.tsx";
-
-type JobStatus = "OPEN" | "ASSIGNED" | "WAITING_FOR_APPROVAL" | "NOT_APPROVED" | "APPROVED" | "CLOSED";
-
-interface Job {
-    jobId: string,
-    jobType: string,
-    jobStatus: JobStatus,
-    jobMessage: string,
-    customerId: string,
-    employees: string[]
-}
 
 function MyPages() {
-    const { customerId, username } = useContext(AuthContext);
-    const [ jobs, setJobs ] = useState<Job[]>([]);
-    const [ selectedStatus, setSelectedStatus ] = useState<JobStatus[]>([ "OPEN", "ASSIGNED", "WAITING_FOR_APPROVAL", "NOT_APPROVED", "APPROVED", "CLOSED" ]);
-    const [ triggerUpdateOfJobs, setTriggerUpdateOfJobs ] = useState<boolean>(false);
-
-    useEffect(() => {
-        fetchJobsData().then(data => {
-            setJobs(data);
-        });
-    }, [ triggerUpdateOfJobs ]);
-
-    async function fetchJobsData() {
-        try {
-            const response = await getJobsByCustomerId(customerId);
-            if (response?.status == 200)
-                return response.data;
-            else
-                return [];
-        } catch (error) {
-            console.error(error);
-        }
-    }
+    const {username} = useContext(AuthContext);
 
     return (
         <>
-            <NavBar />
-            <div className="container text-md-start">
-                <div className="d-flex justify-content-between">
-                    <h1 className="fw-bold my-3 mb-md-5 mx-2 mx-md-0">Mina sidor</h1>
-                    <p className="text-right my-3 mx-2 mx-md-5">Inloggad som: <span id='username'>{username || 'N/A'}</span></p>
-                    <Link to="/my-pages/settings">
-                        <Button size="lg" variant="btn-link" className="btn-dark-purple m-3">
-                            <IoSettingsOutline
-                                color="var(--beige)"
-                                size={30}
-                                aria-label="Inställningar" />
-                        </Button>
-                    </Link>
+            <NavBar/>
+            <div className="bg-image min-vw-100 py-4 text-start">
+                <h1 className="fw-bold my-4 mx-2 text-center text-white">Mina sidor</h1>
+                <div className="container bg-light-brown p-4 rounded rounded-4 shadow">
+                    <div className="d-flex justify-content-between">
+                        <p className="my-3 mx-2 mx-md-0">
+                            Inloggad som: <span className="fw-bold">{username}</span>
+                        </p>
+                        <Link to="/my-pages/settings">
+                            <Button size="lg" variant="btn-link" className="btn-dark-purple m-3">
+                                <IoSettingsOutline
+                                    color="var(--beige)"
+                                    size={30}
+                                    aria-label="Inställningar"/>
+                            </Button>
+                        </Link>
+                    </div>
+                    <h2 className="fw-bold">Mina bokningar</h2>
+                    <CleaningsPerType/>
                 </div>
-                <h2 className="fw-bold my-3">Mina bokningar</h2>
-                <CleaningsPerType />
-
-                {/* <h2 className="fw-bold my-3">My bookings (2)</h2>
-                <StatusFilter
-                    selectedStatus={selectedStatus}
-                    setSelectedStatus={setSelectedStatus}
-                />
-                <div className="my-3">
-                    <CustomerJobsTable
-                        jobs={jobs}
-                        statuses={selectedStatus}
-                        setTriggerUpdateOfJobs={setTriggerUpdateOfJobs}
-                    />
-                </div>
-
-                <h2 className="fw-bold my-3">My bookings (3)</h2>
-                <div className="my-3">
-                    <CustomerJobsFiltered jobs={jobs} />
-                </div> */}
             </div>
-            <Footer />
+            <Footer/>
         </>
     )
 }
