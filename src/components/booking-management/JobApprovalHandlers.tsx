@@ -13,7 +13,7 @@ export const handleApproveCleaning = async (
     bookingId: string,
     customerId: string,
     message: string,
-    setCleanings: (jobs: any[]) => void,
+
     setErrorModal: (modal: {visible: boolean, message: string}) => void
 ) => {
     try {
@@ -31,9 +31,6 @@ export const handleApproveCleaning = async (
 
         });
 
-        const updatedCleanings = response.data;
-        setCleanings(updatedCleanings);
-
     } catch (error) {
         console.error("Error:", error.response.data);
         setErrorModal({visible: true, message: error.response.data || 'Ett okänt fel inträffade.'});
@@ -50,7 +47,7 @@ export const handleApproveCleaning = async (
 export const handleDisapproveCleaning = async (
     bookingId: string,
     customerId: string,
-    message: string,  // <-- Lägg till detta
+    message: string,
     setCleanings: (jobs: any[]) => void,
     setErrorModal: (modal: {visible: boolean, message: string}) => void
 
@@ -68,9 +65,6 @@ export const handleDisapproveCleaning = async (
                 'Content-Type': 'application/json',
             }
         });
-
-        const updatedCleanings = response.data;
-        setCleanings(updatedCleanings);
 
     } catch (error) {
         console.error("Error:", error.response.data);

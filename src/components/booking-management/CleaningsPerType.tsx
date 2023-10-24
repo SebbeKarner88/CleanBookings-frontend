@@ -16,6 +16,7 @@ const CleaningsPerType: React.FC = () => {
     const [currentPage, setCurrentPage] = useState<number>(1); // Current page number
     const [jobsPerPage] = useState<number>(5); // Number of jobs to display per page
     const [errorModal, setErrorModal] = useState<{visible: boolean, message: string}>({visible: false, message: ""});
+    const [approvedJobs, setApprovedJobs] = useState<Record<string, 'APPROVED' | 'DISAPPROVED' | 'PENDING'>>({});
     const [actionModal, setActionModal] = useState<{
         show: boolean;
         title: string;
@@ -28,13 +29,15 @@ const CleaningsPerType: React.FC = () => {
         onConfirm: () => {}
     });
     const handleConfirmApprove = (bookingId: string) => {
-        handleApproveCleaning(bookingId, customerId, "Ditt meddelande här", setCleanings, setErrorModal);
+        handleApproveCleaning(bookingId, customerId, "Städningen är godkänd", setCleanings, setErrorModal);
         setActionModal({ ...actionModal, show: false });
+        setApprovedJobs(prev => ({...prev, [bookingId]: 'APPROVED'}));
     };
 
     const handleConfirmDisapprove = (bookingId: string) => {
-        handleDisapproveCleaning(bookingId, customerId, "Ditt meddelande här", setCleanings, setErrorModal);
+        handleDisapproveCleaning(bookingId, customerId, "Städningen är inte godkänd", setCleanings, setErrorModal);
         setActionModal({ ...actionModal, show: false });
+        setApprovedJobs(prev => ({...prev, [bookingId]: 'DISAPPROVED'}));
     };
 
     const promptApprove = (bookingId: string) => {
@@ -139,8 +142,18 @@ const CleaningsPerType: React.FC = () => {
                         <td>{new Date(booking.bookedDate).toLocaleDateString()}</td>
                         <td>{booking.type}</td>
                         <td>
-                            <button onClick={() => promptApprove(booking.id)}>Approve</button>
-                            <button onClick={() => promptDisapprove(booking.id)}>Disapprove</button>
+                            {
+                                approvedJobs[booking.id] === 'PENDING' || !approvedJobs[booking.id] ? (
+                                    <>
+                                        <button onClick={() => promptApprove(booking.id)}>Godkänn</button>
+                                        <button onClick={() => promptDisapprove(booking.id)}>Neka</button>
+                                    </>
+                                ) : approvedJobs[booking.id] === 'APPROVED' ? (
+                                    <span>Godkänd</span>
+                                ) : (
+                                    <span>Ej godkänd</span>
+                                )
+                            }
                         </td>
                         <ActionHandlerModal
                             show={actionModal.show}
