@@ -3,13 +3,14 @@ import NavBar from "../common/NavBar.tsx"
 import {useContext} from 'react';
 import {AuthContext} from '../context/AuthContext'
 import CleaningsPerType from "./booking-management/CleaningsPerType.tsx";
-import {Link} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import {IoSettingsOutline} from "react-icons/io5";
 import '../styles/MyPages.css'
 
 function MyPages() {
     const {username} = useContext(AuthContext);
+    const navigate = useNavigate();
 
     return (
         <>
@@ -21,17 +22,23 @@ function MyPages() {
                         <p className="my-3 mx-2 mx-md-0">
                             Inloggad som: <span className="fw-bold">{username}</span>
                         </p>
-                        <Link to="/my-pages/settings">
-                            <Button size="lg" variant="btn-link" className="btn-dark-purple m-3">
-                                <IoSettingsOutline
-                                    color="var(--beige)"
-                                    size={30}
-                                    aria-label="Inställningar"/>
-                            </Button>
-                        </Link>
+                        <Button
+                            size="lg"
+                            variant="btn-link"
+                            className="btn-dark-purple m-3 focus-ring focus-ring-dark"
+                            onClick={() => navigate("/my-pages/settings")}
+                        >
+                            <IoSettingsOutline
+                                color="var(--beige)"
+                                size={30}
+                                aria-label="Inställningar"/>
+                        </Button>
                     </div>
-                    <h2 className="fw-bold">Mina bokningar</h2>
+                    <h2 className="fw-bold">Pågående städjobb</h2>
                     <CleaningsPerType/>
+                    <h2 className="fw-bold">Avklarade städjobb</h2>
+                    {/*    Insert table here */}
+                    <p>Här visas en tabell över alla jobb som har status CLOSED</p>
                 </div>
             </div>
             <Footer/>
