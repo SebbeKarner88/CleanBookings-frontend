@@ -103,9 +103,9 @@ const Contact = () => {
                     </Row>
                     <Row>
                         <Col lg="12" className="form-group">
-                            <button type="submit" className="submit-button btn-dark-purple" disabled={isSending}>
+                            <Button type="submit" variant="dark" size="lg" className="btn-dark-purple mb-3 mb-lg-0" disabled={isSending}>
                                 {isSending ? 'Skickar...' : 'Skicka'}
-                            </button>
+                            </Button>
 
                         </Col>
                     </Row>
