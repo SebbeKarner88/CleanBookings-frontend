@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../../api/ApiRootUrl';
 
 interface JobApproveRequest {
     jobId: string;
@@ -7,13 +7,10 @@ interface JobApproveRequest {
     isApproved?: boolean;
 }
 
-const BASE_URL = 'http://localhost:8080/api/v1/job';
-
 export const handleApproveCleaning = async (
     bookingId: string,
     customerId: string,
     message: string,
-
     setErrorModal: (modal: {visible: boolean, message: string}) => void
 ) => {
     try {
@@ -21,24 +18,18 @@ export const handleApproveCleaning = async (
             jobId: bookingId,
             customerId: customerId,
             isApproved: true,
-                            message: message
+            message: message
         };
 
-        const response = await axios.put(`${BASE_URL}/approve-fail-cleaning`, requestPayload, {
+        const response = await api.put(`/job/approve-fail-cleaning`, requestPayload, {
             headers: {
                 'Content-Type': 'application/json',
             }
         });
+
     } catch (error) {
-        console.error("Error:", error.response.data);
-        setErrorModal({visible: true, message: error.response.data || 'Ett okänt fel inträffade.'});
-        if (axios.isAxiosError(error)) {
-            console.error("Error:", error.response?.data);
-            setErrorModal({visible: true, message: error.response?.data || 'Ett okänt fel inträffade.'});
-        } else {
-            console.error("An unexpected error occurred:", error);
-            setErrorModal({visible: true, message: 'Ett okänt fel inträffade.'});
-        }
+        console.error("Error:", error.response?.data);
+        setErrorModal({visible: true, message: error.response?.data || 'Ett okänt fel inträffade.'});
     }
 };
 
@@ -48,7 +39,6 @@ export const handleDisapproveCleaning = async (
     message: string,
     setCleanings: (jobs: any[]) => void,
     setErrorModal: (modal: {visible: boolean, message: string}) => void
-
 ) => {
     try {
         const requestPayload: JobApproveRequest = {
@@ -58,20 +48,14 @@ export const handleDisapproveCleaning = async (
             message: message
         };
 
-        const response = await axios.put(`${BASE_URL}/approve-fail-cleaning`, requestPayload, {
+        const response = await api.put(`/job/approve-fail-cleaning`, requestPayload, {
             headers: {
                 'Content-Type': 'application/json',
             }
         });
 
     } catch (error) {
-        console.error("Error:", error.response.data);
-        if (axios.isAxiosError(error)) {
-            console.error("Error:", error.response?.data);
-            setErrorModal({visible: true, message: error.response?.data || 'Ett okänt fel inträffade.'});
-        } else {
-            console.error("An unexpected error occurred:", error);
-            setErrorModal({visible: true, message: 'Ett okänt fel inträffade.'});
-        }
+        console.error("Error:", error.response?.data);
+        setErrorModal({visible: true, message: error.response?.data || 'Ett okänt fel inträffade.'});
     }
 };

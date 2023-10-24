@@ -57,6 +57,7 @@ const CleaningsPerType: React.FC = () => {
             onConfirm: () => handleConfirmDisapprove(bookingId)
         });
     };
+
     // Job status options
     const jobStatusOptions = [
         'OPEN',
@@ -89,7 +90,6 @@ const CleaningsPerType: React.FC = () => {
                 .then((response) => {
                     if (Array.isArray(response.data)) {
                         setCleanings(response.data);
-                        // Update approvedJobs state
                         const updatedApprovedJobs: Record<string, 'APPROVED' | 'DISAPPROVED' | 'PENDING'> = {};
                         response.data.forEach(job => {
                             updatedApprovedJobs[job.id] = job.status as 'APPROVED' | 'DISAPPROVED' | 'PENDING';
@@ -119,7 +119,31 @@ const CleaningsPerType: React.FC = () => {
     const currentJobs = cleanings.slice(indexOfFirstJob, indexOfLastJob);
 
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+    const renderJobActions = (booking: JobDto) => {
+        const currentStatus = approvedJobs[booking.id] || booking.status;
 
+        switch (currentStatus) {
+            case 'APPROVED':
+                return <span>Godkänd</span>;
+
+            case 'DISAPPROVED':
+                return <span>Ej godkänd</span>;
+
+            case 'OPEN':
+                return (
+                    <>
+                        <button onClick={() => promptApprove(booking.id)}>Godkänn</button>
+                        <button onClick={() => promptDisapprove(booking.id)}>Neka</button>
+                    </>
+                );
+
+            case 'WAITING_FOR_APPROVAL':
+                return <span>Väntar på godkännande</span>;
+
+            default:
+                return null;
+        }
+    };
     return (
         <div className="container mt-4">
             <div className="form-group">
@@ -155,34 +179,8 @@ const CleaningsPerType: React.FC = () => {
                         <td>{new Date(booking.bookedDate).toLocaleDateString()}</td>
                         <td>{booking.type}</td>
                         <td>
-                            {
-                                approvedJobs[booking.id] === 'APPROVED' ? (
-                                    <span>Godkänd</span>
-                                ) : approvedJobs[booking.id] === 'DISAPPROVED' ? (
-                                    <span>Ej godkänd</span>
-                                ) : booking.status === 'WAITING_FOR_APPROVAL' ? (
-                                    <>
-                                        <button onClick={() => promptApprove(booking.id)}>Godkänn</button>
-                                        <button onClick={() => promptDisapprove(booking.id)}>Neka</button>
-                                    </>
-                                ) : booking.status === 'APPROVED' ? (
-                                    <span>Godkänd</span>
-                                ) : booking.status === 'NOT_APPROVED' ? (
-                                    <span>Ej godkänd</span>
-                                ) : booking.status === 'OPEN' ? (
-                                    <span>Väntar på godkännande</span>
-                                ) : null
-                            }
+                            {renderJobActions(booking)}
                         </td>
-
-
-                        <ActionHandlerModal
-                            show={actionModal.show}
-                            title={actionModal.title}
-                            message={actionModal.message}
-                            onConfirm={actionModal.onConfirm}
-                            onCancel={() => setActionModal({ ...actionModal, show: false })}
-                        />
                     </tr>
                 ))}
                 </tbody>
@@ -204,6 +202,13 @@ const CleaningsPerType: React.FC = () => {
                     )}
                 </Pagination>
             </div>
+            <ActionHandlerModal
+                show={actionModal.show}
+                title={actionModal.title}
+                message={actionModal.message}
+                onConfirm={actionModal.onConfirm}
+                onCancel={() => setActionModal({ ...actionModal, show: false })}
+            />
             <MyModal
                 header="Error"
                 description={errorModal.message}
