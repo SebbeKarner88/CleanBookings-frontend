@@ -51,10 +51,14 @@ export function FormLogin() {
             <div className="popup">
                 <form className="mt-5 popup-content rounded-2 bg-beige"
                     onSubmit={handleSubmit(onSubmit)}>
-                    <h1 className="my-3 fw-bold text-dark-purple" style={{ fontFamily: 'Tiempos' }}>Logga in <Link to="/">
-                        <button type="button" className="btn-close btn-dark small float-end"
-                            aria-label="Close window"></button>
-                    </Link></h1>
+                    <h1 className="fs-2 my-3 fw-bold text-dark-purple" style={{ fontFamily: 'Tiempos' }}>Logga in
+                        <button
+                            type="button"
+                            className="btn-close btn-dark small float-end"
+                            aria-label="Close window"
+                            onClick={() => navigation(-1)}
+                        />
+                    </h1>
                     {errorMessage && <div className="text-danger my-1">{errorMessage}</div>}
                     <FormField
                         fieldName="emailAddress"
