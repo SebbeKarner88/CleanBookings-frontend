@@ -43,14 +43,14 @@ const SettingsView = () => {
     }, [customerId]);
 
     return (
-        <div className="bg-light-brown min-vh-100 min-vw-100">
+        <div className="bg-image min-vh-100 min-vw-100">
             <NavBar/>
-            <h1 className="text-md-center fw-semibold my-3 text-dark-purple">
+            <h1 className="text-md-center fw-semibold my-3 text-white">
                 Mina inställningar
             </h1>
-            <div className="container text-start my-md-4">
+            <div className="container text-start my-3 mx-2 mx-md-auto bg-light-brown p-4 rounded-4 shadow">
                 {customerData ? (
-                    <div className="row my-3 mx-2 mx-md-0 bg-beige p-4 rounded-4 border border-dark-subtle">
+                    <div className="row">
                         <div className="col-md-12 d-flex justify-content-between mb-4">
                             <h2 className="fw-bold">
                                 Användaruppgifter
@@ -61,7 +61,7 @@ const SettingsView = () => {
                                 aria-label="Press to edit customer data"
                                 type="button"
                                 onClick={() => navigate("/update-customer", {state: customerData})}>
-                                <MdEdit size={30} color="var(--dark-purple)"/>
+                                <MdEdit size={30} />
                             </Button>
                         </div>
 
@@ -69,13 +69,13 @@ const SettingsView = () => {
 
                         <Button
                             variant="dark"
-                            className='btn-outline-dark-purple w-100 my-3'
+                            className='btn-dark-purple w-100 my-3'
                             onClick={handleShowPrivacyModal}>
                             Integritetspolicy - så hanterar vi din data!
                         </Button>
 
                         <Button
-                            variant="outline-danger"
+                            variant="danger"
                             className="w-100"
                             onClick={() => navigate("/my-pages")}
                         >

@@ -15,17 +15,17 @@ const EditCustomerDataView = () => {
     return (
         <>
             <NavBar />
-            <div className="bg-light-brown min-vw-100 min-vh-100 p-3">
+            <div className="bg-image min-vw-100 min-vh-100 p-3">
                 <div className="container">
 
-                    <div className="row bg-beige p-3 p-md-4 rounded-4 text-start border border-dark-subtle">
+                    <div className="row bg-light-brown p-3 p-md-4 rounded-4 text-start border border-dark-subtle">
                         <h2 className="fw-bold">
                             Ändra användaruppgifter
                         </h2>
                        <FormEditCustomerData setShowModal={setModalVisible} />
                     </div>
 
-                    <div className="row bg-beige mt-3 p-3 p-md-4 rounded-4 text-start border border-dark-subtle">
+                    <div className="row bg-light-brown mt-3 p-3 p-md-4 rounded-4 text-start border border-dark-subtle">
                         <h2 className="fw-bold">
                             Ändra lösenord
                         </h2>
