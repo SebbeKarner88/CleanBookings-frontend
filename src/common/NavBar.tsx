@@ -3,11 +3,10 @@ import {
     Navbar,
     Container,
     Button,
-    Dropdown,
     NavDropdown,
 } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { AuthContext } from "../context/AuthContext.tsx";
 import { Link, useNavigate } from "react-router-dom";
 import Image from "react-bootstrap/Image";
@@ -25,7 +24,6 @@ const NavBar = () => {
         setUsername
     } = useContext(AuthContext);
     const navigation = useNavigate();
-    const [ show, setShow ] = useState(false);
 
     async function handleLogout() {
         setIsAuthenticated(false);
@@ -61,19 +59,14 @@ const NavBar = () => {
                                     Vanliga frågor
                                 </Nav.Link>
                             </LinkContainer>
-                            <NavDropdown
-                                title="Om oss"
-                                className="px-3 fs-5"
-                                show={show}
-                                onMouseEnter={() => setShow(true)}
-                                onMouseLeave={() => setShow(false)}>
-                                <NavDropdown.Item className="bg-light-brown" href="/about">
+                            <NavDropdown title="Om oss" className="px-3 fs-5">
+                                <NavDropdown.Item href="/about">
                                     Företaget
                                 </NavDropdown.Item>
-                                <NavDropdown.Item className="bg-light-brown" href="/products">
+                                <NavDropdown.Item href="/products">
                                     Våra produkter
                                 </NavDropdown.Item>
-                                <NavDropdown.Item className="bg-light-brown" href="/contact">
+                                <NavDropdown.Item href="/contact">
                                     Kontakta oss
                                 </NavDropdown.Item>
                             </NavDropdown>

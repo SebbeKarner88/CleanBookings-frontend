@@ -16,3 +16,22 @@
     color: var(--dark-purple);
     font-weight: bold;
 }
+
+.navbar-nav .nav-link.show {
+    color: var(--dark-purple);
+}
+
+.dropdown-menu {
+    background-color: var(--beige);
+    font-size: 0.9em;
+}
+
+.dropdown-item {
+    color: var(--dark-purple);
+    font-family: 'Tiempos';
+}
+
+.dropdown-item:hover{
+    color: var(--dark-purple);
+    background-color: rgba(255, 255, 255, 0.5);
+}
