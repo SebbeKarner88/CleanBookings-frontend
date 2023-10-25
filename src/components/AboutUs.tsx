@@ -1,5 +1,4 @@
 import NavBar from "../common/NavBar.tsx"
-import '../styles/AboutUs.css'
 import { Footer } from "../common/Footer.tsx"
 import EmployeeCardGrid from "./EmployeeCardGrid.tsx";
 import Container from "react-bootstrap/Container";
