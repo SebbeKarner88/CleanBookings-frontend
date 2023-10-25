@@ -34,6 +34,10 @@ const NavBar = () => {
         navigation("/");
     }
 
+    const styleDropdown = {
+        backgroundColor: 'black'
+    }
+
     return (
         <>
             <Navbar expand="lg" id="navbar" className="border-dark-subtle border-bottom">
@@ -61,13 +65,13 @@ const NavBar = () => {
                                 </Nav.Link>
                             </LinkContainer>
                             <NavDropdown title="Om oss" className="px-3 fs-5">
-                                <NavDropdown.Item href="/about">
+                                <NavDropdown.Item className="bg-light-brown" href="/about">
                                     Företaget
                                     </NavDropdown.Item>
-                                <NavDropdown.Item href="/products">
+                                <NavDropdown.Item className="bg-light-brown" href="/products">
                                     Våra produkter
                                 </NavDropdown.Item>
-                                <NavDropdown.Item href="/contact">
+                                <NavDropdown.Item className="bg-light-brown" href="/contact">
                                     Kontakta oss
                                 </NavDropdown.Item>
                             </NavDropdown>
