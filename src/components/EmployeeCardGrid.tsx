@@ -14,7 +14,7 @@ interface Icleaner {
     firstName: string,
     lastName: string,
     phoneNumber: string,
-    emailAddress: string,
+    emailAddress: string
 }
 
 function EmployeeCardGrid() {
@@ -51,32 +51,36 @@ function EmployeeCardGrid() {
     }
 
     return (
-        <Carousel
-            activeIndex={show}
-            onSelect={handleSelect}
-            interval={5000}
-        >
-            {cleaners.reduce(reduceCleaners, []).map((item: any, index: number) => (
-                <Carousel.Item key={index}>
-                    <div className="carousel">
-                        {item.map((item: any, index: number) => {
-                            return (
-                                <Card key={index} className='empCard'>
-                                    <Card.Img variant="top" src={user} className="cardImage" />
-                                    <Card.Body>
-                                        <Card.Title><strong>{item.firstName + " " + item.lastName}</strong></Card.Title>
-                                        <Card.Text className="text-start">
-                                            <Phone /> {item.phoneNumber} <br />
-                                            <Envelope /> {item.emailAddress}
-                                        </Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            )
-                        })}
-                    </div>
-                </Carousel.Item>
-            ))}
-        </Carousel>
+        <>
+            <Carousel
+                activeIndex={show}
+                onSelect={handleSelect}
+                interval={5000}>
+                {cleaners.reduce(reduceCleaners, [])
+                    .map((item: any, index: number) => (
+                        <Carousel.Item key={index}>
+                            <div className="carousel">
+                                {item.map((item: any, index: number) => {
+                                    return (
+                                        <Card key={index} className='empCard'>
+                                            <Card.Img variant="top" src={user} className="cardImage" />
+                                            <Card.Body>
+                                                <Card.Title>
+                                                    <strong>{item.firstName + " " + item.lastName}</strong>
+                                                </Card.Title>
+                                                <Card.Text className="text-start">
+                                                    <Phone /> {item.phoneNumber} <br />
+                                                    <Envelope /> {item.emailAddress}
+                                                </Card.Text>
+                                            </Card.Body>
+                                        </Card>
+                                    )
+                                })}
+                            </div>
+                        </Carousel.Item>
+                    ))}
+            </Carousel>
+        </>
     );
 }
 
