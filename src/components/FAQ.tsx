@@ -52,9 +52,9 @@ function FAQ() {
     return (
         <>
             <NavBar />
-            <div className="outer-container">
-                <h1 className='faq'>Vanliga Frågor</h1>
-                <div className='faq-container'>
+            <div className="bg-image min-vw-100 py-4 text-start">
+                <h1 className="fw-bold my-4 mx-2 text-center text-white">Vanliga frågor</h1>
+                <div className="container bg-light-brown p-4 rounded rounded-4 shadow mb-5 mt-5 text-center">
                     {faqs.map((faq, index) => (
                         <div key={index}>
                             <button

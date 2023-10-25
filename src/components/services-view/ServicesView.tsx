@@ -22,9 +22,8 @@ function ServicesView() {
     return (
         <>
             <NavBar />
-            <div
-                className="cardContainer">
-                <h1 className="services-header">Våra tjänster</h1>
+            <div className="bg-image min-vw-100 py-4 text-start text-center">
+                <h1 className="fw-bold my-4 mx-2 text-center text-white">Våra tjänster</h1>
                 <TypesOfCleaning />
                 <Button
                     id="book"

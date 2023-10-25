@@ -47,9 +47,9 @@ const Products = () => {
     return (
         <>
             <NavBar />
-            <div className="outer-products-container">
-                <h1 id="our-products" className="emp">Våra Produkter</h1>
-                <div className='products-container'>
+            <div className="bg-image min-vw-100 py-4 text-start">
+                <h1 className="fw-bold my-4 mx-2 text-center text-white">Vanliga frågor</h1>
+                <div className="container bg-light-brown p-5 rounded rounded-4 shadow mb-5 mt-5">
                     <div className="products-info">
                         <h2 className="products-header">EcoClean</h2>
                         EcoClean-kollektionen är en serie högkvalitativa rengöringsprodukter som är skapade för att göra ditt hem skinande rent och välvårdat. Varje produkt i kollektionen har utvecklats med fokus på effektiv rengöring, omsorg om miljön och din hälsa. De innehåller naturliga ingredienser, är miljövänliga och har en mild doft som gör städningen till en fröjd. Med EcoClean-kollektionen kan du njuta av en skinande ren och välbehållen bostad samtidigt som du tar hand om vår värld.
