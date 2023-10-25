@@ -40,10 +40,10 @@ export const Footer = () => {
                     <div className="col-xs-12 col-sm-6 col-md-3">
                         <ul>
                             <li className="col-heading">Om oss</li>
-                            <li><a href="/AboutUs#our-products">Städafint's rengöringsprodukter</a></li>
+                            <li><a href="/products">Städafint's rengöringsprodukter</a></li>
                             <li><a href="/tips&inspiration">Tips & inspiration</a></li>
                             <li><a href="/sustainability">Hållbarhet</a></li>
-                            <li><a href="/AboutUs">Vår historia</a></li>
+                            <li><a href="/about">Vår historia</a></li>
                         </ul>
                     </div>
 
@@ -79,7 +79,7 @@ export const Footer = () => {
                                 </a>
                             </li>
                             {/*<li><a href="terms&conditions">Terms & Conditions</a></li>*/}
-                            <li><Link to="/AboutUs#contact-us">Kontakta oss</Link></li>
+                            <li><Link to="/contact">Kontakta oss</Link></li>
                         </ul>
                     </div>
                     <div className="col-xs-12 col-md-2 text-center">

@@ -19,6 +19,7 @@ import SettingsView from "./components/SettingsView.tsx";
 import EditCustomerDataView from './components/EditCustomerDataView.tsx'
 import NotFoundView from "./components/NotFoundView.tsx";
 import FAQ from "./components/FAQ.tsx";
+import Products from './components/Products.tsx';
 
 function App() {
   const {isAuthenticated} = useContext(AuthContext);
@@ -30,10 +31,11 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/register" element={<RegisterView />} />
-          <Route path="/AboutUs" element={<AboutUs />} />
+          <Route path="/about" element={<AboutUs />} />
           <Route path="/services" element={<ServicesView />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<FAQ/>} />
+          <Route path="/products" element={<Products/>} />
           <Route path="/*" element={<NotFoundView />} />
           {
             isAuthenticated &&
