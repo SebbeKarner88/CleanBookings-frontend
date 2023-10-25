@@ -1,5 +1,11 @@
+.carousel {
+    display: flex;
+    flex-direction: row;
+    padding: 0 5% 2% 5%;
+}
+
 .empCard {
-    margin: 30px;
+    margin: 18px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     overflow: hidden;
     border-radius: 25px;
