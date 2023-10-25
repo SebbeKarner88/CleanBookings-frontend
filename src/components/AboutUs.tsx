@@ -3,8 +3,6 @@ import '../styles/AboutUs.css'
 import { Footer } from "../common/Footer.tsx"
 import EmployeeCardGrid from "./EmployeeCardGrid.tsx";
 import Container from "react-bootstrap/Container";
-import Contact from "./Contact.tsx";
-import Products from "./Products.tsx";
 
 function AboutUs() {
 
@@ -34,10 +32,10 @@ function AboutUs() {
                 <Container>
                     <EmployeeCardGrid />
                 </Container>
-                <h1 id="our-products" className="emp">Våra Produkter</h1>
+                {/* <h1 id="our-products" className="emp">Våra Produkter</h1>
                 <Products />
                 <h1 id="contact-us" className="emp">Kontakta oss</h1>
-                <Contact />
+                <Contact /> */}
             </div>
             <Footer />
         </>

@@ -1,3 +1,12 @@
+.outer-contact-container {
+    background-image: url('../../src/assets/images/myspys.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+    padding-bottom: 5%;
+}
+
 .contact-container {
     background-color: var(--light-brown);
     width: 60%;

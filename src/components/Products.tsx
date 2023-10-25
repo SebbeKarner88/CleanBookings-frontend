@@ -2,6 +2,8 @@ import { useState } from "react";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import '../styles/Products.css'
+import { Footer } from "../common/Footer";
+import NavBar from "../common/NavBar";
 
 const Products = () => {
     const [ expandedIndex, setExpandedIndex ] = useState<number | null>(0)
@@ -44,31 +46,36 @@ const Products = () => {
 
     return (
         <>
-            <div className='products-container'>
-                <div className="products-info">
-                    <h2 className="products-header">EcoClean</h2>
-                EcoClean-kollektionen är en serie högkvalitativa rengöringsprodukter som är skapade för att göra ditt hem skinande rent och välvårdat. Varje produkt i kollektionen har utvecklats med fokus på effektiv rengöring, omsorg om miljön och din hälsa. De innehåller naturliga ingredienser, är miljövänliga och har en mild doft som gör städningen till en fröjd. Med EcoClean-kollektionen kan du njuta av en skinande ren och välbehållen bostad samtidigt som du tar hand om vår värld.
-                </div>
-                {cleaningProducts.map((product, index) => (
-                    <div key={index}>
-                        <h4 className="product-name">{product.name}</h4>
-                        <p className="product-desc">{product.desc}</p>
-                        <button
-                            type="button"
-                            className='product-content'
-                            onClick={() => handleClick(index)}
-                            aria-label={`${product.name} (Tryck på knappen för att expandera/minimera)`}
-                        >
-                            {'Innehåll'} {
-                                index === expandedIndex
-                                    ? <ArrowDropUpIcon />
-                                    : <ArrowDropDownIcon />
-                            }
-                        </button>
-                        {expandedIndex === index && <div className='product-content-div'>{product.content}</div>}
+            <NavBar />
+            <div className="outer-products-container">
+                <h1 id="our-products" className="emp">Våra Produkter</h1>
+                <div className='products-container'>
+                    <div className="products-info">
+                        <h2 className="products-header">EcoClean</h2>
+                        EcoClean-kollektionen är en serie högkvalitativa rengöringsprodukter som är skapade för att göra ditt hem skinande rent och välvårdat. Varje produkt i kollektionen har utvecklats med fokus på effektiv rengöring, omsorg om miljön och din hälsa. De innehåller naturliga ingredienser, är miljövänliga och har en mild doft som gör städningen till en fröjd. Med EcoClean-kollektionen kan du njuta av en skinande ren och välbehållen bostad samtidigt som du tar hand om vår värld.
                     </div>
-                ))}
+                    {cleaningProducts.map((product, index) => (
+                        <div key={index}>
+                            <h4 className="product-name">{product.name}</h4>
+                            <p className="product-desc">{product.desc}</p>
+                            <button
+                                type="button"
+                                className='product-content'
+                                onClick={() => handleClick(index)}
+                                aria-label={`${product.name} (Tryck på knappen för att expandera/minimera)`}
+                            >
+                                {'Innehåll'} {
+                                    index === expandedIndex
+                                        ? <ArrowDropUpIcon />
+                                        : <ArrowDropDownIcon />
+                                }
+                            </button>
+                            {expandedIndex === index && <div className='product-content-div'>{product.content}</div>}
+                        </div>
+                    ))}
+                </div>
             </div>
+            <Footer />
         </>
     )
 }
