@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import '../styles/Products.css'
 
 const Products = () => {
     const [ expandedIndex, setExpandedIndex ] = useState<number | null>(0)
@@ -43,24 +44,27 @@ const Products = () => {
 
     return (
         <>
-            {cleaningProducts.map((product, index) => {
-                <div key={index}>
-                    <button
-                        type="button"
-                        className='product-name'
-                        onClick={() => handleClick(index)}
-                        aria-label={`${product.name} (Tryck på knappen för att expandera/minimera)`}
-                    >
-                        {product.name} {
-                            index === expandedIndex
-                                ? <ArrowDropUpIcon />
-                                : <ArrowDropDownIcon />
-                        }
-                    </button>
-                    {expandedIndex === index && <div className='product-desc'>{product.desc}</div>}
-                    {expandedIndex === index && <div className='product-content'>{product.content}</div>}
-                </div>
-            })}
+            <div className='products-container'>
+                {cleaningProducts.map((product, index) => (
+                    <div key={index}>
+                        <h4 className="product-name">{product.name}</h4>
+                        <p className="product-desc">{product.desc}</p>
+                        <button
+                            type="button"
+                            className='product-content'
+                            onClick={() => handleClick(index)}
+                            aria-label={`${product.name} (Tryck på knappen för att expandera/minimera)`}
+                        >
+                            {'Innehåll'} {
+                                index === expandedIndex
+                                    ? <ArrowDropUpIcon />
+                                    : <ArrowDropDownIcon />
+                            }
+                        </button>
+                        {expandedIndex === index && <div className='product-content-div'>{product.content}</div>}
+                    </div>
+                ))}
+            </div>
         </>
     )
 }

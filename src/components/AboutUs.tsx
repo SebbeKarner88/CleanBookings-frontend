@@ -34,10 +34,8 @@ function AboutUs() {
                 <Container>
                     <EmployeeCardGrid />
                 </Container>
-                <h1 className="emp">Våra Produkter</h1>
-                <Container>
+                <h1 id="our-products" className="emp">Våra Produkter</h1>
                 <Products />
-                </Container>
                 <h1 id="contact-us" className="emp">Kontakta oss</h1>
                 <Contact />
             </div>

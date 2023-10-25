@@ -40,7 +40,7 @@ export const Footer = () => {
                     <div className="col-xs-12 col-sm-6 col-md-3">
                         <ul>
                             <li className="col-heading">Om oss</li>
-                            <li><a href="/cleaningproducts">Städafint's rengöringsprodukter</a></li>
+                            <li><a href="/AboutUs#our-products">Städafint's rengöringsprodukter</a></li>
                             <li><a href="/tips&inspiration">Tips & inspiration</a></li>
                             <li><a href="/sustainability">Hållbarhet</a></li>
                             <li><a href="/AboutUs">Vår historia</a></li>
