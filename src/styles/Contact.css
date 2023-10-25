@@ -1,24 +1,3 @@
-.outer-contact-container {
-    background-image: url('../../src/assets/images/myspys.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    min-height: 100vh;
-    padding-bottom: 5%;
-}
-
-.contact-container {
-    background-color: var(--light-brown);
-    width: 60%;
-    height: 80%;
-    margin: 0 auto;
-    margin-top: 1%;
-    padding: 2%;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
-    text-align: justify;
-    border-radius: 3%;
-}
-
 .info-list {
     text-align: center;
     font-size: 1.1em;

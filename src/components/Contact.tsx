@@ -43,9 +43,9 @@ const Contact = () => {
     return (
         <>
             <NavBar />
-            <div className="outer-contact-container">
-                <h1 id="contact-us" className="emp">Kontakta oss</h1>
-                <Container className="contact-container bg-light-brown">
+            <div className="bg-image min-vw-100 py-4 text-start">
+                <h1 className="fw-bold my-4 mx-2 text-center text-white">Kontakta oss</h1>
+                <Container className="container bg-light-brown p-4 rounded rounded-4 shadow mb-5">
                     <h3 className="contact-title">Har du några frågor? Hör av dig!</h3>
                     <p className="contact-description">
                         Vi har sammanställt svaren på de vanligaste frågorna i vår <a id="faq-link" href="/faq">FAQ-sektion</a>. Om du inte hittar den information du söker,
@@ -61,7 +61,6 @@ const Contact = () => {
                     </ul>
                     <p className="additional-info">Tveka inte att kontakta oss om du behöver vidare hjälp med din bokning eller har ytterligare frågor.
                         Vi strävar efter att svara på alla förfrågningar inom en arbetsdag.</p>
-
 
                     <form onSubmit={handleSubmit(onSubmit)} className="contact-form">
                         <Row>
