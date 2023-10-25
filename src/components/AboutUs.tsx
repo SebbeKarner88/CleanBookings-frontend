@@ -24,8 +24,6 @@ function AboutUs() {
 
                     <p>Men mitt i denna förlamande smuts och hopplöshet höll Skurarn och Hinken fast vid en gnista av hopp. De drömde om en dag när deras stad skulle resa sig ur smutsens aska och glänsa i ny glans. Deras resa var inte bara en kamp mot smutsen; det var en kamp för hoppet och värdighet i en värld som hade förlorat båda. Och det var så StädaFint ABs mörka och dystopiska historia började, som en ödesdiger strid mot en oövervinnerlig fiende, där varje seger över smutsen var en seger för mänskligheten i dess mest desperata stund.</p>
 
-                    <h4>Fakk Google!</h4>
-
                     <p style={{ fontStyle: "italic" }}>— Skurarn Moppsson, VD StädaFint AB</p>
                 </div>
                 <h1 className="emp">Våra Medarbetare</h1>
