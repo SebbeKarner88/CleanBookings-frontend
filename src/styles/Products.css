@@ -11,13 +11,14 @@
     border-radius: 3%;
 }
 
-.product-name {
-    margin: 1% 0;
+.products-header {
     font-family: 'Tiempos', serif;
     font-weight: bold;
 }
 
-.product-desc {
+.product-name {
+    margin-top: 3%;
+    font-family: 'Tiempos', serif;
 }
 
 .product-content {

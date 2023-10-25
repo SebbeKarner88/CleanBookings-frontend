@@ -8,12 +8,12 @@ const Products = () => {
     const cleaningProducts = [
         {
             name: 'Allrent',
-            desc: 'Allrent är en mångsidig rengöringslösning som är utformad för att göra ditt hem skinande rent. Den kan användas på alla ytor och tar bort smuts, fläckar och oönskad beläggning.',
+            desc: 'Allrent är en mångsidig rengöringslösning som är utformad för att göra ditt hem skinande rent. Den kan användas på alla ytor och tar bort smuts, fläckar och oönskad beläggning. En sann allt-i-ett-lösning, samtidigt som den är mild och skonsam.',
             content: 'Allrent innehåller en kombination av ekologiska enzymer och milda rengöringsmedel som effektivt bryter ned smuts och fläckar. Den har också en fräsch doft av citrus och lavendel.'
         },
         {
             name: 'Såpa',
-            desc: ' Såpa är en traditionell rengöringsprodukt som är perfekt för rengöring av golv och ytor i ditt hem. Den är känd för sin naturliga och milda rengöringskraft.',
+            desc: ' Såpa är en traditionell rengöringsprodukt som är perfekt för rengöring av golv och ytor i ditt hem. Den är känd för sin naturliga och milda rengöringskraft, samtidigt som den ger en fräsch och ren doft.',
             content: 'Såpa är gjord av naturliga ingredienser, såsom vegetabilisk olja och lut, och är fri från hårda kemikalier. Den innehåller också eteriska oljor från lavendel och citron för en frisk doft.'
         },
         {
@@ -45,6 +45,10 @@ const Products = () => {
     return (
         <>
             <div className='products-container'>
+                <div className="products-info">
+                    <h2 className="products-header">EcoClean</h2>
+                EcoClean-kollektionen är en serie högkvalitativa rengöringsprodukter som är skapade för att göra ditt hem skinande rent och välvårdat. Varje produkt i kollektionen har utvecklats med fokus på effektiv rengöring, omsorg om miljön och din hälsa. De innehåller naturliga ingredienser, är miljövänliga och har en mild doft som gör städningen till en fröjd. Med EcoClean-kollektionen kan du njuta av en skinande ren och välbehållen bostad samtidigt som du tar hand om vår värld.
+                </div>
                 {cleaningProducts.map((product, index) => (
                     <div key={index}>
                         <h4 className="product-name">{product.name}</h4>
