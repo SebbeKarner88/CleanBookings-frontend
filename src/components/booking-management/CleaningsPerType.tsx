@@ -6,6 +6,9 @@ import SortJobByStatus from "./SortJobByStatus.tsx";
 import {getJobsByStatus, handleCustomerFeedback} from "../../api/CustomerApi.ts";
 import {Alert} from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
+import formatDate from "../../utils/formatDate.ts";
+import translateStatus from "../../utils/translateStatus.ts";
+import translateJobType from "../../utils/translateJobType.ts";
 
 type JobStatus = undefined | "OPEN" | "ASSIGNED" | "WAITING_FOR_APPROVAL" | "NOT_APPROVED" | "APPROVED" | "CLOSED";
 
@@ -88,7 +91,7 @@ const CleaningsPerType = () => {
                 <table className="table table-striped">
                     <thead>
                     <tr>
-                        <th scope="col">Boknings ID</th>
+                        <th scope="col">Boknings-ID</th>
                         <th scope="col">Datum</th>
                         <th scope="col">Städtjänst</th>
                         <th scope="col">Status</th>
@@ -98,8 +101,8 @@ const CleaningsPerType = () => {
                     {currentJobs.filter((job: Job) => !["APPROVED", "CLOSED"].includes(job.status)).map((job: Job) => (
                         <tr key={job.id}>
                             <td>{job.id}</td>
-                            <td>{new Date(job.bookedDate).toLocaleDateString()}</td>
-                            <td>{job.type}</td>
+                            <td>{formatDate(job.bookedDate)}</td>
+                            <td>{translateJobType(job.type)}</td>
                             <td>
                                 {
                                     job.status === "WAITING_FOR_APPROVAL"
@@ -114,7 +117,7 @@ const CleaningsPerType = () => {
                                             >
                                                 Lämna återkoppling
                                             </Button>
-                                        : job.status
+                                        : translateStatus(job.status)
                                 }
                             </td>
                         </tr>

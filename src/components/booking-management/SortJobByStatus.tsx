@@ -17,8 +17,8 @@ export default function SortJobByStatus({selectedStatus, handleStatusChange}: IS
                 value={selectedStatus}
                 onChange={handleStatusChange}
             >
-                <option value={""}>Sortera på status...</option>
-                <option value={"OPEN" as JobStatus}>Ej tilldelad städare</option>
+                <option value={""}>Visa alla jobb...</option>
+                <option value={"OPEN" as JobStatus}>Ingen städare tilldelad jobbet</option>
                 <option value={"ASSIGNED" as JobStatus}>Städare tilldelad jobbet</option>
                 <option value={"WAITING_FOR_APPROVAL" as JobStatus}>Väntar på godkännande</option>
                 <option value={"NOT_APPROVED" as JobStatus}>Ej godkänd städning</option>

@@ -2,6 +2,8 @@ import {Button, Table} from "react-bootstrap";
 import {useState} from "react";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import formatDate from "../../../utils/formatDate.ts";
+import translateJobType from "../../../utils/translateJobType.ts";
 
 interface Job {
     id: string;
@@ -17,10 +19,6 @@ interface IClosedJobsTable {
 
 export default function ClosedJobsTable({jobs}: IClosedJobsTable) {
     const [expandedRows, setExpandedRows] = useState<Record<string, boolean>>({});
-
-    function formatDate(date: string) {
-        return new Date(date).toLocaleDateString();
-    }
 
     function toggleRowExpansion(id: string) {
         setExpandedRows((prevExpandedRows) => ({
@@ -39,7 +37,7 @@ export default function ClosedJobsTable({jobs}: IClosedJobsTable) {
                 <thead>
                 <tr>
                     <th>
-                        ID
+                        Boknings-ID
                     </th>
                     <th>
                         Datum
@@ -63,7 +61,7 @@ export default function ClosedJobsTable({jobs}: IClosedJobsTable) {
                                 {formatDate(job.bookedDate)}
                             </td>
                             <td>
-                                {job.type}
+                                {translateJobType(job.type)}
                             </td>
                             <td>
                                 <Button
