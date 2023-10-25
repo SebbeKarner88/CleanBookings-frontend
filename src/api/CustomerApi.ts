@@ -164,7 +164,7 @@ export async function getJobsByCustomerId(customerId: string) {
 
 export async function getJobsByStatus(
     customerId: string,
-    status?: "OPEN" | "ASSIGNED" | "WAITING_FOR_APPROVAL" | "NOT_APPROVED" | "APPROVED" | "CLOSED"
+    status?: null | "OPEN" | "ASSIGNED" | "WAITING_FOR_APPROVAL" | "NOT_APPROVED" | "APPROVED" | "CLOSED"
 ) {
     try {
         return await api.get(
@@ -210,6 +210,7 @@ export async function executedCleaningRequest(
         console.error(error);
     }
 }
+
 export async function sendCustomerEmail(
     name: string,
     email: string,
@@ -231,6 +232,30 @@ export async function sendCustomerEmail(
         }
     } catch (error) {
         console.error('Error sending email:', error);
+    }
+}
+
+export async function handleCustomerFeedback(
+    jobId: string,
+    customerId: string,
+    isApproved: true | false,
+    message?: string
+) {
+    try {
+        return await api.put(
+            "job/approve-fail-cleaning",
+            {
+                jobId: jobId,
+                customerId: customerId,
+                isApproved: isApproved,
+                message: message
+            }
+        );
+    } catch (error: any) {
+        if (error.response)
+            return error.response;
+        else
+            console.error(error);
     }
 }
 
