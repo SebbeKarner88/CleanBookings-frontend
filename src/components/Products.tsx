@@ -48,7 +48,7 @@ const Products = () => {
         <>
             <NavBar />
             <div className="bg-image min-vw-100 py-4 text-start">
-                <h1 className="fw-bold my-4 mx-2 text-center text-white">Vanliga frågor</h1>
+                <h1 className="fw-bold my-4 mx-2 text-center text-white">Våra produkter</h1>
                 <div className="container bg-light-brown p-5 rounded rounded-4 shadow mb-5 mt-5">
                     <div className="products-info">
                         <h2 className="products-header">EcoClean</h2>
