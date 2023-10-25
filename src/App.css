@@ -37,6 +37,10 @@
     overflow-y: hidden;
 }
 
+* {
+    font-family: "Nunito", sans-serif;
+}
+
 @media screen {
     .popup {
         background-color: rgba(0, 0, 0, 0.5);

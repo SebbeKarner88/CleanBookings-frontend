@@ -9,9 +9,9 @@ function AboutUs() {
     return (
         <>
             <NavBar />
-            <div className="aboutContainer">
-                <h1 className="emp">Om StädaFint AB</h1>
-                <div className="history">
+            <div className="bg-image min-vw-100 py-4 text-start">
+                <h1 className="fw-bold my-4 mx-2 text-center text-white">Om oss</h1>
+                <div className="container bg-light-brown p-5 rounded rounded-4 shadow mb-5">
                     <h4>StädaFint AB: Smutsens mörka ursprung... <br /></h4>
 
                     <p>I en skuggig värld av smuts och förfall, där varje vrå var täckt av ett tjockt lager av damm och hopplöshet, väcktes StädaFint AB till liv. Året var 1995, och grundarna Skurarn och Hinken började sin resa i en stad som kändes som om den hade glömts bort av tiden. Deras företag föddes inte ur en passion för renlighet, utan ur nödvändigheten att överleva i en värld där smutsen hade tagit över.</p>
@@ -28,14 +28,10 @@ function AboutUs() {
 
                     <p style={{ fontStyle: "italic" }}>— Skurarn Moppsson, VD StädaFint AB</p>
                 </div>
-                <h1 className="emp">Våra Medarbetare</h1>
+                <h1 className="fw-bold my-4 mx-2 text-center text-white">Våra medarbetare</h1>
                 <Container>
                     <EmployeeCardGrid />
                 </Container>
-                {/* <h1 id="our-products" className="emp">Våra Produkter</h1>
-                <Products />
-                <h1 id="contact-us" className="emp">Kontakta oss</h1>
-                <Contact /> */}
             </div>
             <Footer />
         </>
