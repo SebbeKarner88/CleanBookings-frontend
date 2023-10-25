@@ -97,17 +97,30 @@ const Contact = () => {
                         </Row>
                         <Row>
                             <Col lg="12" className="form-group">
-                                <FormField
-                                    fieldError={errors.message}
-                                    register={register}
-                                    label="Meddelande"
-                                    fieldName="message"
-                                    inputType="textarea"
-                                />
+                                <div>
+                                    <label htmlFor="message" className="form-label fw-semibold">
+                                        Meddelande
+                                        <div className="form-text">
+                                            Beskriv vad vi kan hjälpa dig med här.
+                                        </div>
+                                    </label>
+                                    {
+                                        errors.message &&
+                                        <div className="text-danger my-1">
+                                            {errors.message.message}
+                                        </div>
+                                    }
+                                    <textarea
+                                        {...register("message")}
+                                        className={errors.message ? "form-control is-invalid" : "form-control"}
+                                        id="message"
+                                        rows={4}
+                                    />
+                                </div>
                             </Col>
                         </Row>
                         <Row>
-                            <Col lg="12" className="form-group">
+                            <Col lg="12" className="form-group my-4">
                                 <Button type="submit" variant="dark" size="lg" className="btn-dark-purple mb-3 mb-lg-0" disabled={isSending}>
                                     {isSending ? 'Skickar...' : 'Skicka'}
                                 </Button>
