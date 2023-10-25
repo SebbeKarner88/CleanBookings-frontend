@@ -4,6 +4,7 @@ import { Footer } from "../common/Footer.tsx"
 import EmployeeCardGrid from "./EmployeeCardGrid.tsx";
 import Container from "react-bootstrap/Container";
 import Contact from "./Contact.tsx";
+import Products from "./Products.tsx";
 
 function AboutUs() {
 
@@ -13,7 +14,7 @@ function AboutUs() {
             <div className="aboutContainer">
                 <h1 className="emp">Om StädaFint AB</h1>
                 <div className="history">
-                    <h4>StädaFint AB: Smutsens mörka ursprung... <br/></h4>
+                    <h4>StädaFint AB: Smutsens mörka ursprung... <br /></h4>
 
                     <p>I en skuggig värld av smuts och förfall, där varje vrå var täckt av ett tjockt lager av damm och hopplöshet, väcktes StädaFint AB till liv. Året var 1995, och grundarna Skurarn och Hinken började sin resa i en stad som kändes som om den hade glömts bort av tiden. Deras företag föddes inte ur en passion för renlighet, utan ur nödvändigheten att överleva i en värld där smutsen hade tagit över.</p>
 
@@ -32,6 +33,10 @@ function AboutUs() {
                 <h1 className="emp">Våra Medarbetare</h1>
                 <Container>
                     <EmployeeCardGrid />
+                </Container>
+                <h1 className="emp">Våra Produkter</h1>
+                <Container>
+                <Products />
                 </Container>
                 <h1 id="contact-us" className="emp">Kontakta oss</h1>
                 <Contact />
