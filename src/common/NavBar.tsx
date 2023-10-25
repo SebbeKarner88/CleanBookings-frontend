@@ -7,7 +7,7 @@ import {
     NavDropdown,
 } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { AuthContext } from "../context/AuthContext.tsx";
 import { Link, useNavigate } from "react-router-dom";
 import Image from "react-bootstrap/Image";
@@ -25,6 +25,7 @@ const NavBar = () => {
         setUsername
     } = useContext(AuthContext);
     const navigation = useNavigate();
+    const [ show, setShow ] = useState(false);
 
     async function handleLogout() {
         setIsAuthenticated(false);
@@ -32,10 +33,6 @@ const NavBar = () => {
         setName("");
         setUsername("");
         navigation("/");
-    }
-
-    const styleDropdown = {
-        backgroundColor: 'black'
     }
 
     return (
@@ -64,10 +61,15 @@ const NavBar = () => {
                                     Vanliga frågor
                                 </Nav.Link>
                             </LinkContainer>
-                            <NavDropdown title="Om oss" className="px-3 fs-5">
+                            <NavDropdown
+                                title="Om oss"
+                                className="px-3 fs-5"
+                                show={show}
+                                onMouseEnter={() => setShow(true)}
+                                onMouseLeave={() => setShow(false)}>
                                 <NavDropdown.Item className="bg-light-brown" href="/about">
                                     Företaget
-                                    </NavDropdown.Item>
+                                </NavDropdown.Item>
                                 <NavDropdown.Item className="bg-light-brown" href="/products">
                                     Våra produkter
                                 </NavDropdown.Item>
@@ -75,55 +77,44 @@ const NavBar = () => {
                                     Kontakta oss
                                 </NavDropdown.Item>
                             </NavDropdown>
-                    </Nav>
-
-                    {/*<Form className="d-flex">*/}
-                    {/*    <Form.Control*/}
-                    {/*        type="search"*/}
-                    {/*        placeholder="Search"*/}
-                    {/*        className="me-2"*/}
-                    {/*        aria-label="Search"*/}
-                    {/*    />*/}
-                    {/*    <Button variant="outline-dark">Search</Button>*/}
-                    {/*</Form>*/}
-
-                </Navbar.Collapse>
-                <Navbar.Collapse className="justify-content-end">
-                    {
-                        isAuthenticated
-                            ?
-                            <>
+                        </Nav>
+                    </Navbar.Collapse>
+                    <Navbar.Collapse className="justify-content-end">
+                        {
+                            isAuthenticated
+                                ?
+                                <>
+                                    <Nav>
+                                        <LinkContainer to="/my-pages">
+                                            <Button variant="dark" size="lg" className="btn-dark-purple">
+                                                Mina sidor
+                                            </Button>
+                                        </LinkContainer>
+                                        <p className="visually-hidden">Signed in as: {name}</p>
+                                        <Button variant="outline-danger" size="lg" className="mx-3 my-3 my-md-0"
+                                            onClick={handleLogout}>
+                                            Logga ut
+                                        </Button>
+                                    </Nav>
+                                </>
+                                :
                                 <Nav>
-                                    <LinkContainer to="/my-pages">
-                                        <Button variant="dark" size="lg" className="btn-dark-purple">
-                                            Mina sidor
+                                    <LinkContainer to="/login">
+                                        <Button variant="dark" size="lg"
+                                            className="btn-outline-dark-purple my-3 my-lg-0 mx-lg-3">
+                                            Logga in
                                         </Button>
                                     </LinkContainer>
-                                    <p className="visually-hidden">Signed in as: {name}</p>
-                                    <Button variant="outline-danger" size="lg" className="mx-3 my-3 my-md-0"
-                                        onClick={handleLogout}>
-                                        Logga ut
-                                    </Button>
+                                    <LinkContainer to="/register">
+                                        <Button variant="dark" size="lg" className="btn-dark-purple mb-3 mb-lg-0">
+                                            Registrera
+                                        </Button>
+                                    </LinkContainer>
                                 </Nav>
-                            </>
-                            :
-                            <Nav>
-                                <LinkContainer to="/login">
-                                    <Button variant="dark" size="lg"
-                                        className="btn-outline-dark-purple my-3 my-lg-0 mx-lg-3">
-                                        Logga in
-                                    </Button>
-                                </LinkContainer>
-                                <LinkContainer to="/register">
-                                    <Button variant="dark" size="lg" className="btn-dark-purple mb-3 mb-lg-0">
-                                        Registrera
-                                    </Button>
-                                </LinkContainer>
-                            </Nav>
-                    }
-                </Navbar.Collapse>
-            </Container>
-        </Navbar >
+                        }
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar >
         </>
     )
 }
