@@ -16,7 +16,7 @@ export default function RegisterView() {
     return (
         <>
             <NavBar/>
-            <div className="bg-image min-vw-100 d-flex align-items-center">
+            <div className="bg-image min-vw-100 d-flex align-items-center py-4">
                 <div className="container bg-light-brown p-4 my-4 rounded rounded-4 shadow" style={{maxWidth: "800px"}}>
                     <h1 className="fw-bold text-start text-md-center mx-4">Registrera ett konto</h1>
                     <ProgressBar

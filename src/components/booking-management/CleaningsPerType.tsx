@@ -75,7 +75,7 @@ const CleaningsPerType = () => {
     );
 
     return (
-        <div className="container">
+        <>
             <SortJobByStatus selectedStatus={selectedStatus} handleStatusChange={handleStatusChange}/>
             {
                 errorMessage != undefined &&
@@ -186,7 +186,7 @@ const CleaningsPerType = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-        </div>
+        </>
     );
 }
 
