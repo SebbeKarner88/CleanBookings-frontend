@@ -78,6 +78,7 @@ const BookingForm = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormField
                     fieldName="date"
+                    min={new Date().toLocaleDateString()}
                     label="Datum för utförandet"
                     inputType="date"
                     fieldError={errors.date}

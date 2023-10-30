@@ -14,6 +14,7 @@ interface IFormField<T extends FieldValues> {
     value?: string
     defaultValue?: string
     checked?: boolean
+    min?: string
 }
 
 export function FormField<T extends FieldValues>({
@@ -26,7 +27,8 @@ export function FormField<T extends FieldValues>({
     options,
     labelDescription,
     placeholder,
-    defaultValue
+    defaultValue,
+    min
 }: IFormField<T>) {
     return (
         <>
@@ -50,6 +52,7 @@ export function FormField<T extends FieldValues>({
                             <input
                                 {...register(fieldName as Path<T>)}
                                 type={inputType}
+                                min={min}
                                 className={fieldError || customError != undefined ? "form-control is-invalid" : "form-control"}
                                 id={fieldName}
                                 placeholder={placeholder}
