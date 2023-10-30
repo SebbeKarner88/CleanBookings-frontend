@@ -5,6 +5,10 @@ import top from '../../assets/images/top-nobg.png';
 import diamond from '../../assets/images/diamant-nobg.png';
 import win from '../../assets/images/window-nobg.png';
 import '../../styles/CleaningCard.css'
+import {Button} from "react-bootstrap";
+import {useContext} from "react";
+import {AuthContext} from "../../context/AuthContext.tsx";
+import {useNavigate} from "react-router-dom";
 
 interface props {
     image: string,
@@ -26,6 +30,9 @@ function imgMapper(img: string) {
 }
 
 function CleaningCard({image, title, description, items, price}: props) {
+    const {isAuthenticated} = useContext(AuthContext);
+    const navigate = useNavigate();
+    const handleClick = (type: string) => navigate(isAuthenticated ? "/booking-view" : "/login", {state: type});
 
     return (
         <>
@@ -54,6 +61,15 @@ function CleaningCard({image, title, description, items, price}: props) {
                 <Card.Footer>
                     <small className="cardFooter">
                         {price}
+                        <hr />
+                        <Button
+                            variant="primary"
+                            size={"lg"}
+                            className="btn-dark-purple w-100 fw-bold"
+                            onClick={() => handleClick(title)}
+                        >
+                            BOKA NU!
+                        </Button>
                     </small>
                 </Card.Footer>
             </Card>

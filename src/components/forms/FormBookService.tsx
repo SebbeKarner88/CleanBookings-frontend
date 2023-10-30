@@ -117,6 +117,7 @@ const BookingForm = () => {
                 </div>
                         <Button
                             variant="dark"
+                            size="lg"
                             type="submit"
                             className="btn-dark-purple w-100 my-3">
                             Boka din städning
