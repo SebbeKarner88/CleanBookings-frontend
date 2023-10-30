@@ -43,7 +43,7 @@ function MyPages() {
         <>
             <NavBar/>
             <div className="bg-image min-vw-100 py-4 text-start">
-                <h1 className="fw-bold my-4 mx-2 text-center text-white">Mina sidor</h1>
+                <h1 className="fw-bold my-3 mx-2 text-center text-white">Mina sidor</h1>
                 <div className="container bg-light-brown p-4 rounded rounded-4 shadow mb-5">
                     <div className="d-flex justify-content-between">
                         <p className="my-3 mx-2 mx-md-0">
@@ -52,7 +52,7 @@ function MyPages() {
                         <Button
                             size="lg"
                             variant="btn-link"
-                            className="btn-dark-purple m-3 focus-ring focus-ring-dark"
+                            className="btn-dark-purple m-3 m-md-0 focus-ring focus-ring-dark"
                             onClick={() => navigate("/my-pages/settings")}
                         >
                             <IoSettingsOutline

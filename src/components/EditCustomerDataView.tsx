@@ -15,7 +15,7 @@ const EditCustomerDataView = () => {
     return (
         <>
             <NavBar />
-            <div className="bg-image min-vw-100 min-vh-100 p-3">
+            <div className="bg-image min-vw-100 min-vh-100 py-4">
                 <div className="container">
 
                     <div className="row bg-light-brown p-3 p-md-4 rounded-4 text-start border border-dark-subtle">

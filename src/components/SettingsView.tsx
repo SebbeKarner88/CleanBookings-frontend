@@ -1,5 +1,4 @@
 import {useEffect, useState, useContext} from 'react';
-import axios from 'axios';
 import {Button} from 'react-bootstrap';
 import {AuthContext} from './../context/AuthContext';
 import {useNavigate} from 'react-router-dom';
@@ -8,6 +7,7 @@ import {MdEdit} from "react-icons/md";
 import CustomerData from "./CustomerData.tsx";
 import PrivacyModal from "./modals/PrivacyModal.tsx";
 import {Footer} from "../common/Footer.tsx";
+import api from "../api/ApiRootUrl.ts";
 
 type Customer = {
     id: string;
@@ -30,66 +30,67 @@ const SettingsView = () => {
     const handleShowPrivacyModal = () => setShowPrivacyModal(true);
 
     useEffect(() => {
-        // Fetch customer data from the backend
-        axios.get(`http://localhost:8080/api/v1/gdpr/customer-data/${customerId}`)
-            .then((response) => {
-                const data: Customer = response.data;
-                setCustomerData(data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                // Handle errors here (e.g., show an error message)
-            });
+        const fetchUser = async () => {
+            try {
+                const response = await api.get(`/gdpr/customer-data/${customerId}`);
+                if (response?.status === 200)
+                    return response.data;
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchUser().then(data => setCustomerData(data));
     }, [customerId]);
 
     return (
-        <div className="bg-image min-vh-100 min-vw-100">
+        <>
             <NavBar/>
-            <h1 className="text-md-center fw-semibold my-3 text-white">
-                Mina inställningar
-            </h1>
-            <div className="container text-start my-3 mx-2 mx-md-auto bg-light-brown p-4 rounded-4 shadow">
-                {customerData ? (
-                    <div className="row">
-                        <div className="col-md-12 d-flex justify-content-between mb-4">
-                            <h2 className="fw-bold">
-                                Användaruppgifter
-                            </h2>
+            <div className="bg-image min-vw-100 py-4">
+                <h1 className="text-md-center fw-semibold text-white">
+                    Mina inställningar
+                </h1>
+                <div className="container text-start my-3 bg-light-brown p-4 rounded-4 shadow">
+                    {customerData ? (
+                        <div className="row">
+                            <div className="col-md-12 d-flex justify-content-between mb-4">
+                                <h2 className="fw-bold">
+                                    Användaruppgifter
+                                </h2>
+                                <Button
+                                    variant="btn"
+                                    className="w-auto focus-ring focus-ring-dark"
+                                    aria-label="Press to edit customer data"
+                                    type="button"
+                                    onClick={() => navigate("/update-customer", {state: customerData})}>
+                                    <MdEdit size={30}/>
+                                </Button>
+                            </div>
+
+                            <CustomerData customer={customerData}/>
+
                             <Button
-                                variant="btn"
-                                className="w-auto focus-ring focus-ring-dark"
-                                aria-label="Press to edit customer data"
-                                type="button"
-                                onClick={() => navigate("/update-customer", {state: customerData})}>
-                                <MdEdit size={30} />
+                                variant="dark"
+                                className='btn-dark-purple w-100 my-3'
+                                onClick={handleShowPrivacyModal}>
+                                Integritetspolicy - så hanterar vi din data!
+                            </Button>
+
+                            <Button
+                                variant="danger"
+                                className="w-100"
+                                onClick={() => navigate("/my-pages")}
+                            >
+                                Tillbaka till mina sidor
                             </Button>
                         </div>
-
-                        <CustomerData customer={customerData}/>
-
-                        <Button
-                            variant="dark"
-                            className='btn-dark-purple w-100 my-3'
-                            onClick={handleShowPrivacyModal}>
-                            Integritetspolicy - så hanterar vi din data!
-                        </Button>
-
-                        <Button
-                            variant="danger"
-                            className="w-100"
-                            onClick={() => navigate("/my-pages")}
-                        >
-                            Tillbaka till mina sidor
-                        </Button>
-                    </div>
-                ) : (
-                    <p>Loading customer data...</p>
-                )}
+                    ) : (
+                        <p>Loading customer data...</p>
+                    )}
+                </div>
             </div>
-            <Footer />
-
+            <Footer/>
             <PrivacyModal onShow={showPrivacyModal} onClose={handleClosePrivacyModal}/>
-        </div>
+        </>
     );
 };
 
