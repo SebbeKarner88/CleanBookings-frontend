@@ -20,7 +20,11 @@ interface Job {
     status: string;
 }
 
-const CleaningsPerType = () => {
+interface ICleaningsPerType {
+    onUpdate: () => void;
+}
+
+const CleaningsPerType = ({onUpdate}: ICleaningsPerType) => {
     const {customerId} = useContext(AuthContext);
     const [selectedStatus, setSelectedStatus] = useState<JobStatus>(undefined);
     const handleStatusChange = (event: ChangeEvent<HTMLSelectElement>) => setSelectedStatus(event.target.value as JobStatus);
@@ -30,8 +34,8 @@ const CleaningsPerType = () => {
     const closeConfirmModal = () => setShowConfirmModal(false);
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
     const [message, setMessage] = useState<string>("");
-    const [updateNeeded, setUpdateNeeded] = useState<boolean>(false);
     const [isSendingFeedback, setIsSendingFeedback] = useState<boolean>(false);
+    const [updateNeeded, setUpdateNeeded] = useState<boolean>(false);
 
     // Pagination logic
     const [currentPage, setCurrentPage] = useState<number>(1);
@@ -52,6 +56,7 @@ const CleaningsPerType = () => {
         if (response.status == 200) {
             setIsSendingFeedback(false);
             setUpdateNeeded(updateNeeded => !updateNeeded);
+            onUpdate();
             closeConfirmModal();
         } else
             setErrorMessage(response?.data);

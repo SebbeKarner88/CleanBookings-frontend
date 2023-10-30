@@ -2,8 +2,8 @@ import {Button, Table} from "react-bootstrap";
 import {useState} from "react";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import formatDate from "../../../utils/formatDate.ts";
-import translateJobType from "../../../utils/translateJobType.ts";
+import formatDate from "../../utils/formatDate.ts";
+import translateJobType from "../../utils/translateJobType.ts";
 
 interface Job {
     id: string;

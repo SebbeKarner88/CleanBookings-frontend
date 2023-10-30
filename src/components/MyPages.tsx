@@ -8,7 +8,7 @@ import {Button} from "react-bootstrap";
 import {IoSettingsOutline} from "react-icons/io5";
 import '../styles/MyPages.css'
 import {getJobsByStatus} from "../api/CustomerApi.ts";
-import ClosedJobsTable from "./tables/jobs/ClosedJobsTable.tsx";
+import ClosedJobsTable from "./booking-management/ClosedJobsTable.tsx";
 
 interface Job {
     id: string;
@@ -22,6 +22,8 @@ function MyPages() {
     const {customerId, username} = useContext(AuthContext);
     const navigate = useNavigate();
     const [jobs, setJobs] = useState<Job[]>([]);
+    const [updateNeeded, setUpdateNeeded] = useState<boolean>(false);
+    const onUpdate = () => setUpdateNeeded(updateNeeded => !updateNeeded);
 
     useEffect(() => {
         fetchJobs().then(data => setJobs(data));
@@ -35,7 +37,7 @@ function MyPages() {
                 console.error(error);
             }
         }
-    }, [customerId]);
+    }, [customerId, updateNeeded]);
 
     return (
         <>
@@ -61,7 +63,7 @@ function MyPages() {
                     </div>
                     <h2 className="fw-bold my-3">Pågående städjobb</h2>
                     {/* TODO: Add dependency to update jobs-data when approving/disapproving a job */}
-                    <CleaningsPerType />
+                    <CleaningsPerType onUpdate={onUpdate} />
                     <h2 className="fw-bold my-3">Tidigare städjobb</h2>
                     <ClosedJobsTable jobs={jobs} />
                 </div>
