@@ -61,13 +61,13 @@ const Products = () => {
                     <div className="container text-center my-4 p-4">
                         <div className="row">
                             <div className="col">
-                                <img src={bottles} className="img-fluid rounded" alt="Städbild" height={300} />
+                                <img src={bottles} className="img-fluid rounded" alt="Städbild" />
                             </div>
                             <div className="col">
-                                <img src={product} className="img-fluid rounded" alt="Städbild" height={300} />
+                                <img src={product} className="img-fluid rounded" alt="Städbild" />
                             </div>
                             <div className="col">
-                                <img src={bathroom} className="img-fluid rounded" alt="Städbild" height={300} />
+                                <img src={bathroom} className="img-fluid rounded" alt="Städbild" />
                             </div>
                         </div>
                     </div>

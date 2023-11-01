@@ -6,6 +6,10 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Button } from 'react-bootstrap';
+import bottles from '../assets/images/bottles.jpg'
+import product from '../assets/images/product.jpg'
+import bathroom from '../assets/images/bathroom.jpg'
+import broom from '../assets/images/broom.jpg'
 
 function FAQ() {
     const [ expandedIndex, setExpandedIndex ] = useState<number | null>(0);
@@ -54,7 +58,7 @@ function FAQ() {
             <NavBar />
             <div className="bg-image min-vw-100 py-4 text-start">
                 <h1 className="fw-bold my-4 mx-2 text-center text-white">Vanliga frågor</h1>
-                <div className="container bg-light-brown p-4 rounded rounded-4 shadow mb-5 mt-5 text-center">
+                <div className="container bg-light-brown p-5 rounded rounded-4 shadow mb-5 mt-5 text-center">
                     {faqs.map((faq, index) => (
                         <div key={index}>
                             <button
@@ -73,11 +77,29 @@ function FAQ() {
                             <hr id='line' />
                         </div>
                     ))}
+                    <div className="container text-center my-4 p-5">
+                        <div className="row">
+                            <div className="col">
+                                <img src={bottles} className="img-fluid rounded" alt="Städbild" />
+                            </div>
+                            <div className="col">
+                                <img src={product} className="img-fluid rounded" alt="Städbild" />
+                            </div>
+                            <div className="col">
+                                <img src={broom} className="img-fluid rounded" alt="Städbild" />
+                            </div>
+                            <div className="col">
+                                <img src={bathroom} className="img-fluid rounded" alt="Städbild" />
+                            </div>
+                        </div>
+                    </div>
                     <LinkContainer to="/contact">
-                        <Button variant="dark" size="lg" className="btn-dark-purple mb-3 my-5">
+                        <Button variant="dark" size="lg" className="btn-dark-purple mb-3 my-2">
                             Kontakta oss
                         </Button>
                     </LinkContainer>
+
+
                 </div>
             </div>
             <Footer />
