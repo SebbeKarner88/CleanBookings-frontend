@@ -31,14 +31,12 @@ const BookingHistory: React.FC = () => {
 
     return (
         <div className="container mt-4">
-            {/*<h2 className="text-center">Customer: {customer.firstName} {customer.lastName}</h2>*/}
             <table className="table table-bordered table-striped">
                 <thead className="thead-dark">
                 <tr>
                     <th scope="col">Booking ID</th>
                     <th scope="col">Date</th>
                     <th scope="col">Service Type</th>
-                    {/*<th scope="col">Action</th>*/}
                 </tr>
                 </thead>
                 <tbody>
@@ -60,7 +58,7 @@ export default BookingHistory;
 
 interface JobDto {
     id: string;
-    bookedDate: string; // You may need to format this date appropriately
+    bookedDate: string;
     type: string;
     message: string;
     status: string;

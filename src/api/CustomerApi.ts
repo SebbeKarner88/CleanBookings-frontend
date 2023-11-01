@@ -153,11 +153,9 @@ export async function getJobsByCustomerId(customerId: string) {
             });
         if (response.status == 200) {
             return response;
-            // return response.data;
         }
     } catch (error) {
         console.error(error);
-        // return null;
     }
 }
 
