@@ -4,6 +4,9 @@ import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import '../styles/Products.css'
 import { Footer } from "../common/Footer";
 import NavBar from "../common/NavBar";
+import bottles from '../assets/images/bottles.jpg'
+import kitchen from '../assets/images/product.jpg'
+import bathroom from '../assets/images/bathroom.jpg'
 
 const Products = () => {
     const [ expandedIndex, setExpandedIndex ] = useState<number | null>(0)
@@ -54,6 +57,21 @@ const Products = () => {
                         <h2 className="products-header">EcoClean</h2>
                         EcoClean-kollektionen är en serie högkvalitativa rengöringsprodukter som är skapade för att göra ditt hem skinande rent och välvårdat. Varje produkt i kollektionen har utvecklats med fokus på effektiv rengöring, omsorg om miljön och din hälsa. De innehåller naturliga ingredienser, är miljövänliga och har en mild doft som gör städningen till en fröjd. Med EcoClean-kollektionen kan du njuta av en skinande ren och välbehållen bostad samtidigt som du tar hand om vår värld.
                     </div>
+
+                    <div className="container text-center my-4 p-4">
+                        <div className="row">
+                            <div className="col">
+                                <img src={bottles} className="img-fluid rounded" alt="Städbild" height={300} />
+                            </div>
+                            <div className="col">
+                                <img src={kitchen} className="img-fluid rounded" alt="Städbild" height={300} />
+                            </div>
+                            <div className="col">
+                                <img src={bathroom} className="img-fluid rounded" alt="Städbild" height={300} />
+                            </div>
+                        </div>
+                    </div>
+
                     {cleaningProducts.map((product, index) => (
                         <div key={index}>
                             <h4 className="product-name">{product.name}</h4>
