@@ -8,8 +8,7 @@ export async function loginCustomer(
     setCustomerId: React.Dispatch<React.SetStateAction<string>>,
     setName: React.Dispatch<React.SetStateAction<string>>,
     setUsername: React.Dispatch<React.SetStateAction<string>>
-)
-{
+) {
     try {
         const response = await api.post(
             "customer/login",
@@ -211,7 +210,7 @@ export async function executedCleaningRequest(
     }
 }
 
-export async function sendCustomerEmail(
+export async function sendCustomerMessage(
     name: string,
     email: string,
     subject: string,
@@ -219,7 +218,7 @@ export async function sendCustomerEmail(
 ) {
     try {
         const response = await api.post(
-            "/send-email",
+            "customer/receive-msg",
             {
                 name: name,
                 email: email,
@@ -231,7 +230,7 @@ export async function sendCustomerEmail(
             return response;
         }
     } catch (error) {
-        console.error('Error sending email:', error);
+        console.error('Error sending message:', error);
     }
 }
 
@@ -258,5 +257,3 @@ export async function handleCustomerFeedback(
             console.error(error);
     }
 }
-
-
