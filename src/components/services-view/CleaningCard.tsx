@@ -5,10 +5,10 @@ import top from '../../assets/images/top-nobg.png';
 import diamond from '../../assets/images/diamant-nobg.png';
 import win from '../../assets/images/window-nobg.png';
 import '../../styles/CleaningCard.css'
-import {Button} from "react-bootstrap";
-import {useContext} from "react";
-import {AuthContext} from "../../context/AuthContext.tsx";
-import {useNavigate} from "react-router-dom";
+import { Button } from "react-bootstrap";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext.tsx";
+import { useNavigate } from "react-router-dom";
 
 interface props {
     image: string,
@@ -29,15 +29,15 @@ function imgMapper(img: string) {
         return win;
 }
 
-function CleaningCard({image, title, description, items, price}: props) {
-    const {isAuthenticated} = useContext(AuthContext);
+function CleaningCard({ image, title, description, items, price }: props) {
+    const { isAuthenticated } = useContext(AuthContext);
     const navigate = useNavigate();
-    const handleClick = (type: string) => navigate(isAuthenticated ? "/booking-view" : "/login", {state: type});
+    const handleClick = (type: string) => navigate(isAuthenticated ? "/booking-view" : "/login", { state: type });
 
     return (
         <>
             <Card className="cleaningCard">
-                <Card.Img className="image" variant="top" src={imgMapper(image)}/>
+                <Card.Img className="image" variant="top" src={imgMapper(image)} />
                 <Card.Body>
                     <Card.Title className="cardTitle">
                         {title}
@@ -68,7 +68,7 @@ function CleaningCard({image, title, description, items, price}: props) {
                             className="btn-dark-purple w-100 fw-bold"
                             onClick={() => handleClick(title)}
                         >
-                            BOKA NU!
+                            BOKA NU
                         </Button>
                     </small>
                 </Card.Footer>
