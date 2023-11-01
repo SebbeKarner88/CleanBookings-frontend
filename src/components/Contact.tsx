@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { FieldValues, useForm } from 'react-hook-form';
 import { FormField } from "./forms/FormField";
 import { Container, Row, Col, Modal, Button } from "react-bootstrap";
 import '../styles/Contact.css'
@@ -6,39 +6,50 @@ import { sendCustomerEmail } from "../api/CustomerApi";
 import { useState } from "react";
 import NavBar from '../common/NavBar';
 import { Footer } from '../common/Footer';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-interface IFormInput {
-    name: string;
-    email: string;
-    subject: string;
-    message: string;
-}
+const schema = z.object({
+    name: z
+        .string()
+        .nonempty({message: "Namn är ett obligatoriskt fält."}),
+    email: z
+        .string()
+        .nonempty({message: "Email är ett obligatoriskt fält."}),
+    subject: z
+        .string()
+        .nonempty({message: "Ämne är ett obligatoriskt fält."}),
+    message: z
+        .string()
+        .nonempty({message: "Meddelande är ett obligatoriskt fält."}),
+});
 
+type FormData = z.infer<typeof schema>;
 
 const Contact = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>();
     const [ isSending, setIsSending ] = useState(false);
     const [ modalVisible, setModalVisible ] = useState(false);
+    const [ errorMessage, setErrorMessage ] = useState<string | null>(null);
     const closeModal = () => setModalVisible(false);
-    const onSubmit = async (data: IFormInput) => {
-        setIsSending(true);
-        try {
-            const response = await sendCustomerEmail(
-                data.name,
-                data.email,
-                data.subject,
-                data.message);
+    const {
+        register,
+        handleSubmit,
+        formState: {errors}
+    } = useForm<FormData>({
+        resolver: zodResolver(schema)
+    });
 
-            if (response?.status === 200) {
-                setModalVisible(true);
-            }
+    async function onSubmit(data: FieldValues) {
+        try {
+            const response = await sendMessage(data.name, data.email, data.subject, data.message);
+            if (response?.status == 200)
+                setModalVisible(!modalVisible)
+            else
+                setErrorMessage("Email or password are incorrect!");
         } catch (error) {
             console.error(error);
-            alert("Något gick fel.");
-        } finally {
-            setIsSending(false);
         }
-    };
+    }
 
     return (
         <>
@@ -71,6 +82,7 @@ const Contact = () => {
                                     label="Namn"
                                     fieldName="name"
                                     inputType="text"
+                                    customError={errorMessage}
                                 />
                             </Col>
                             <Col lg="6" className="form-group">
@@ -80,6 +92,7 @@ const Contact = () => {
                                     label="E-post"
                                     fieldName="email"
                                     inputType="email"
+                                    customError={errorMessage}
                                 />
                             </Col>
                         </Row>
@@ -91,6 +104,7 @@ const Contact = () => {
                                     label="Ämne"
                                     fieldName="subject"
                                     inputType="text"
+                                    customError={errorMessage}
                                 />
                             </Col>
                         </Row>
@@ -128,7 +142,7 @@ const Contact = () => {
                         </Row>
                     </form>
                 </Container>
-                <Modal
+                {/* <Modal
                     show={modalVisible}
                     onHide={closeModal}
                     fullscreen="md-down"
@@ -144,7 +158,7 @@ const Contact = () => {
                             Stäng
                         </Button>
                     </Modal.Footer>
-                </Modal>
+                </Modal> */}
             </div>
             <Footer />
         </>
