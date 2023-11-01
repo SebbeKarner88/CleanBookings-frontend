@@ -27,8 +27,9 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 const Contact = () => {
-    const [ modalVisible, setModalVisible ] = useState(false);
-    const closeModal = () => setModalVisible(false);
+    const [ modalVisible, setModalVisible ] = useState(false)
+    const [ isAssigning, setIsAssigning ] = useState(false)
+    const closeModal = () => setModalVisible(false)
     const {
         register,
         handleSubmit,
@@ -39,12 +40,15 @@ const Contact = () => {
     });
 
     async function onSubmit(data: FieldValues) {
+        setIsAssigning(true)
         try {
             const response = await sendCustomerMessage(data.name, data.email, data.subject, data.message);
             if (response?.status == 200) {
+                setIsAssigning(false)
                 setModalVisible(!modalVisible)
                 reset()
             } else {
+                setIsAssigning(false)
                 console.error(errors)
             }
         } catch (error) {
@@ -136,8 +140,9 @@ const Contact = () => {
                                     type="submit"
                                     variant="dark"
                                     size="lg"
-                                    className="btn-dark-purple mb-3 mb-lg-0">
-                                    Skicka
+                                    className="btn-dark-purple mb-3 mb-lg-0"
+                                    disabled={isAssigning}>
+                                    {isAssigning ? "Skickar..." : "Skicka"}
                                 </Button>
 
                             </Col>
