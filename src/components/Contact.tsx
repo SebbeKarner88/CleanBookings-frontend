@@ -61,7 +61,7 @@ const Contact = () => {
             <NavBar />
             <div className="bg-image min-vw-100 py-4 text-start">
                 <h1 className="fw-bold my-4 mx-2 text-center text-white">Kontakta oss</h1>
-                <Container className="container bg-light-brown p-4 rounded rounded-4 shadow mb-5">
+                <Container className="container bg-light-brown p-5 rounded rounded-4 shadow mb-5">
                     <h3 className="contact-title">Har du några frågor? Hör av dig!</h3>
                     <p className="contact-description">
                         Vi har sammanställt svaren på de vanligaste frågorna i vår <a id="faq-link" href="/faq">FAQ-sektion</a>. Om du inte hittar den information du söker,

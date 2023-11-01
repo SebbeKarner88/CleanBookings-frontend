@@ -5,7 +5,7 @@ import '../styles/Products.css'
 import { Footer } from "../common/Footer";
 import NavBar from "../common/NavBar";
 import bottles from '../assets/images/bottles.jpg'
-import kitchen from '../assets/images/product.jpg'
+import product from '../assets/images/product.jpg'
 import bathroom from '../assets/images/bathroom.jpg'
 
 const Products = () => {
@@ -64,7 +64,7 @@ const Products = () => {
                                 <img src={bottles} className="img-fluid rounded" alt="Städbild" height={300} />
                             </div>
                             <div className="col">
-                                <img src={kitchen} className="img-fluid rounded" alt="Städbild" height={300} />
+                                <img src={product} className="img-fluid rounded" alt="Städbild" height={300} />
                             </div>
                             <div className="col">
                                 <img src={bathroom} className="img-fluid rounded" alt="Städbild" height={300} />
