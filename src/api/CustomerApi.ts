@@ -22,6 +22,9 @@ export async function loginCustomer(
             setCustomerId(response.data.customerId);
             setName(response.data.name);
             setUsername(email);
+            sessionStorage.setItem("access_token", response.data.accessToken);
+            sessionStorage.setItem("refresh_token", response.data.refreshToken);
+            sessionStorage.setItem("role", response.data.role);
             return response;
         }
     } catch (error) {
@@ -85,6 +88,11 @@ export async function bookService(
                 date: date,
                 message: message
             },
+            {
+                headers: {
+                    "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
+                }
+            }
         )
     } catch (error) {
         console.error(error);
@@ -112,6 +120,11 @@ export async function updateCustomerData(
                 city: city,
                 phoneNumber: phoneNumber,
                 emailAddress: emailAddress
+            },
+            {
+                headers: {
+                    "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
+                }
             }
         );
         if (response.status === 200) {
@@ -133,6 +146,11 @@ export async function updatePassword(
             {
                 oldPassword: currentPassword,
                 newPassword: newPassword
+            },
+            {
+                headers: {
+                    "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
+                }
             }
         );
         if (response.status == 200)
@@ -149,6 +167,9 @@ export async function getJobsByCustomerId(customerId: string) {
             {
                 params: {
                     customerId: customerId,
+                },
+                headers: {
+                    "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
                 }
             });
         if (response.status == 200) {
@@ -169,6 +190,9 @@ export async function getJobsByStatus(
             {
                 params: {
                     status: status
+                },
+                headers: {
+                    "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
                 }
             })
     } catch (error) {
@@ -199,7 +223,10 @@ export async function executedCleaningRequest(
             {
                 userId: customerId,
                 jobId: jobId
-
+            }, {
+                headers: {
+                    "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
+                }
             });
         if (response.status == 200)
             return response;
@@ -246,6 +273,10 @@ export async function handleCustomerFeedback(
                 customerId: customerId,
                 isApproved: isApproved,
                 message: message
+            }, {
+                headers: {
+                    "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
+                }
             }
         );
     } catch (error: any) {
