@@ -12,29 +12,28 @@ import { zodResolver } from '@hookform/resolvers/zod';
 const schema = z.object({
     name: z
         .string()
-        .nonempty({message: "Namn är ett obligatoriskt fält."}),
+        .nonempty({ message: "Namn är ett obligatoriskt fält." }),
     email: z
         .string()
-        .nonempty({message: "Epostadress är ett obligatoriskt fält."}),
+        .nonempty({ message: "Epostadress är ett obligatoriskt fält." }),
     subject: z
         .string()
-        .nonempty({message: "Ämne är ett obligatoriskt fält."}),
+        .nonempty({ message: "Ämne är ett obligatoriskt fält." }),
     message: z
         .string()
-        .nonempty({message: "Meddelande är ett obligatoriskt fält."}),
+        .nonempty({ message: "Meddelande är ett obligatoriskt fält." }),
 });
 
 type FormData = z.infer<typeof schema>;
 
 const Contact = () => {
-    const [ isSending, setIsSending ] = useState(false);
     const [ modalVisible, setModalVisible ] = useState(false);
-    const [ errorMessage, setErrorMessage ] = useState<string | null>(null);
     const closeModal = () => setModalVisible(false);
     const {
         register,
         handleSubmit,
-        formState: {errors}
+        reset,
+        formState: { errors }
     } = useForm<FormData>({
         resolver: zodResolver(schema)
     });
@@ -42,10 +41,12 @@ const Contact = () => {
     async function onSubmit(data: FieldValues) {
         try {
             const response = await sendCustomerMessage(data.name, data.email, data.subject, data.message);
-            if (response?.status == 200)
+            if (response?.status == 200) {
                 setModalVisible(!modalVisible)
-            else
-                setErrorMessage("Email or password are incorrect!");
+                reset()
+            } else {
+                console.error(errors)
+            }
         } catch (error) {
             console.error(error);
         }
@@ -131,15 +132,19 @@ const Contact = () => {
                         </Row>
                         <Row>
                             <Col lg="12" className="form-group my-4">
-                                <Button type="submit" variant="dark" size="lg" className="btn-dark-purple mb-3 mb-lg-0" disabled={isSending}>
-                                    {isSending ? 'Skickar...' : 'Skicka'}
+                                <Button
+                                    type="submit"
+                                    variant="dark"
+                                    size="lg"
+                                    className="btn-dark-purple mb-3 mb-lg-0">
+                                    Skicka
                                 </Button>
 
                             </Col>
                         </Row>
                     </form>
                 </Container>
-                {/* <Modal
+                <Modal
                     show={modalVisible}
                     onHide={closeModal}
                     fullscreen="md-down"
@@ -151,11 +156,11 @@ const Contact = () => {
                         Tack för ditt meddelande! Vi kommer att återkomma så snart som möjligt.
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={closeModal}>
+                        <Button className="btn-dark-purple mb-3 mb-lg-0" onClick={closeModal}>
                             Stäng
                         </Button>
                     </Modal.Footer>
-                </Modal> */}
+                </Modal>
             </div>
             <Footer />
         </>
