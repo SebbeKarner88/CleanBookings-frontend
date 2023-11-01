@@ -5,10 +5,10 @@ import {useState} from "react";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useFormContext} from "../../../context/RegisterFormContext.tsx";
-import {useNavigate} from "react-router-dom";
 import {registerCustomer} from "../../../api/CustomerApi.ts";
 import {Button} from "react-bootstrap";
 import PrivacyModal from "../../modals/PrivacyModal.tsx";
+import RegistrationSuccessModal from "../../modals/RegistrationSuccessModal.tsx";
 
 const schema = z.object({
     emailAddress: z
@@ -42,9 +42,9 @@ export function FormRegisterAccountDetails() {
         resolver: zodResolver(schema)
     });
     const {formData} = useFormContext();
-    const navigate = useNavigate();
     const [showPrivacyModal, setShowPrivacyModal] = useState<boolean>(false);
-
+    const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
+    const [username, setUsername] = useState<string>("");
 
     async function onSubmit(data: FieldValues) {
         try {
@@ -60,7 +60,8 @@ export function FormRegisterAccountDetails() {
                 data.password,
             );
             if (response?.status == 201)
-                navigate("/")
+                setUsername(data.emailAddress);
+                setShowSuccessModal(true);
         } catch (error) {
             console.error(error);
         }
@@ -120,6 +121,7 @@ export function FormRegisterAccountDetails() {
                 </Button>
             </form>
             <PrivacyModal onShow={showPrivacyModal} onClose={() => setShowPrivacyModal(false)}/>
+            <RegistrationSuccessModal onShow={showSuccessModal} username={username} />
         </>
     );
 }
