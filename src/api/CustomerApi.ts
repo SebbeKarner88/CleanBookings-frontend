@@ -42,9 +42,6 @@ export async function registerCustomer(
     phoneNumber: string,
     emailAddress: string,
     password: string,
-    setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>,
-    setCustomerId: React.Dispatch<React.SetStateAction<string>>,
-    setName: React.Dispatch<React.SetStateAction<string>>,
 ) {
     try {
         const response = await api.post(
@@ -63,9 +60,6 @@ export async function registerCustomer(
             }
         );
         if (response.status == 201) {
-            setIsAuthenticated(true);
-            setCustomerId(response.data.customerId);
-            setName(response.data.name);
             return response;
         }
     } catch (error) {

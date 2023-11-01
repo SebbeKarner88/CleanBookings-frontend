@@ -1,13 +1,12 @@
 import {FieldValues, useForm} from "react-hook-form";
 import {BsExclamationCircle} from "react-icons/bs"
 import {FormField} from "../FormField.tsx";
-import {useContext, useState} from "react";
+import {useState} from "react";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useFormContext} from "../../../context/RegisterFormContext.tsx";
 import {useNavigate} from "react-router-dom";
 import {registerCustomer} from "../../../api/CustomerApi.ts";
-import {AuthContext} from "../../../context/AuthContext.tsx";
 import {Button} from "react-bootstrap";
 import PrivacyModal from "../../modals/PrivacyModal.tsx";
 
@@ -43,7 +42,6 @@ export function FormRegisterAccountDetails() {
         resolver: zodResolver(schema)
     });
     const {formData} = useFormContext();
-    const {setIsAuthenticated, setCustomerId, setName} = useContext(AuthContext);
     const navigate = useNavigate();
     const [showPrivacyModal, setShowPrivacyModal] = useState<boolean>(false);
 
@@ -60,13 +58,9 @@ export function FormRegisterAccountDetails() {
                 formData.phoneNumber,
                 data.emailAddress,
                 data.password,
-                setIsAuthenticated,
-                setCustomerId,
-                setName
             );
-
             if (response?.status == 201)
-                navigate("/my-pages")
+                navigate("/")
         } catch (error) {
             console.error(error);
         }
