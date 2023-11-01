@@ -32,6 +32,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 .btn-dark-purple, .btn-dark-purple:visited {
