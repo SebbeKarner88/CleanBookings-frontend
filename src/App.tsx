@@ -6,9 +6,6 @@ import LandingPage from './components/LandingPage'
 import MyPages from './components/MyPages'
 import ServicesView from './components/services-view/ServicesView.tsx'
 import Contact from './components/Contact'
-import BookedCleanings from './components/booking-management/BookedCleanings';
-import CleaningsPerType from './components/booking-management/CleaningsPerType';
-import BookingHistory from "./components/booking-management/BookingHistory.tsx";
 import BookingView from './components/booking-management/BookingView.tsx'
 import LogIn from './components/LogIn.tsx'
 import RegisterView from './components/RegisterView.tsx'
@@ -42,13 +39,8 @@ function App() {
               <>
                 <Route path="/my-pages" element={<MyPages />} />
                 <Route path="/my-pages/settings" element={<SettingsView />} />
-                <Route path="/booked-cleanings/:customerId" element={<BookedCleanings />} />
-                <Route path="/cleanings-per-type" element={<CleaningsPerType />} />
-                <Route path="/booking-history/:customerId" element={<BookingHistory />} />
                 <Route path="/booking-view" element={<BookingView />} />
                 <Route path="/update-customer" element={<EditCustomerDataView />} />
-                {/*<Route path="/approved-cleaning/:cleaningId" element={<ApprovedCleaning />} />*/}
-                {/*<Route path="/disapproved-cleaning/:cleaningId" element={<DisapprovedCleaning />} />*/}
               </>
           }
         </Routes>

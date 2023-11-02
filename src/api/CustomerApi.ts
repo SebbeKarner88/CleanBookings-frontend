@@ -1,6 +1,27 @@
 import api from "./ApiRootUrl.ts";
 import React from "react";
 
+async function refreshToken() {
+    try {
+        const response = await api.post(
+            "customer/refresh-token",
+            null,
+            {
+                headers: {
+                    "refresh_token": sessionStorage.getItem("refresh_token")
+                }
+            }
+        );
+        if (response?.status == 200) {
+            sessionStorage.setItem("access_token", response.data.accessToken);
+            sessionStorage.setItem("refresh_token", response.data.refreshToken);
+        }
+        return response;
+    } catch (error) {
+        console.error("Error refreshing token: " + error);
+    }
+}
+
 export async function loginCustomer(
     email: string,
     password: string,
@@ -74,7 +95,7 @@ export async function bookService(
     message?: string | undefined
 ) {
     try {
-        return await api.post(
+        const response = await api.post(
             "job",
             {
                 customerId: customerId,
@@ -87,9 +108,17 @@ export async function bookService(
                     "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
                 }
             }
-        )
-    } catch (error) {
-        console.error(error);
+        );
+        if (response?.status == 201)
+            return response;
+    } catch (error: any) {
+        if (error.response.status == 401) {
+            const response = await refreshToken();
+            if (response?.status == 200)
+                return bookService(customerId, type, date, message);
+        } else {
+            console.error(error);
+        }
     }
 }
 
@@ -121,11 +150,16 @@ export async function updateCustomerData(
                 }
             }
         );
-        if (response.status === 200) {
+        if (response.status == 200)
             return response;
+    } catch (error: any) {
+        if (error.response.status == 401) {
+            const response = await refreshToken();
+            if (response?.status == 200)
+                return updateCustomerData(customerId, firstName, lastName, streetAddress, postalCode, city, phoneNumber, emailAddress);
+        } else {
+            console.error(error);
         }
-    } catch (error) {
-        console.error(error);
     }
 }
 
@@ -149,8 +183,14 @@ export async function updatePassword(
         );
         if (response.status == 200)
             return response;
-    } catch (error) {
-        return error;
+    } catch (error: any) {
+        if (error.response.status == 401) {
+            const response = await refreshToken();
+            if (response?.status == 200)
+                return updatePassword(customerId, currentPassword, newPassword);
+        } else {
+            console.error(error);
+        }
     }
 }
 
@@ -166,11 +206,16 @@ export async function getJobsByCustomerId(customerId: string) {
                     "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
                 }
             });
-        if (response.status == 200) {
+        if (response.status == 200)
             return response;
+    } catch (error: any) {
+        if (error.response.status == 401) {
+            const response = await refreshToken();
+            if (response?.status == 200)
+                return getJobsByCustomerId(customerId);
+        } else {
+            console.error(error);
         }
-    } catch (error) {
-        console.error(error);
     }
 }
 
@@ -179,7 +224,7 @@ export async function getJobsByStatus(
     status?: null | "OPEN" | "ASSIGNED" | "WAITING_FOR_APPROVAL" | "NOT_APPROVED" | "APPROVED" | "CLOSED"
 ) {
     try {
-        return await api.get(
+        const response = await api.get(
             `/job/cleanings/${customerId}`,
             {
                 params: {
@@ -188,9 +233,16 @@ export async function getJobsByStatus(
                 headers: {
                     "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
                 }
-            })
-    } catch (error) {
-        console.error(error);
+            });
+        if (response.status == 200)
+            return response;
+    } catch (error: any) {
+        if (error.response.status == 401) {
+            await refreshToken();
+            return getJobsByStatus(customerId, status);
+        } else {
+            console.error(error);
+        }
     }
 }
 
@@ -199,9 +251,8 @@ export async function getAllCleaners() {
         const response = await api.get(
             "/employee/getAllCleaners"
         );
-        if (response.status == 200) {
+        if (response.status == 200)
             return response;
-        }
     } catch (error) {
         console.error(error);
     }
@@ -224,8 +275,14 @@ export async function executedCleaningRequest(
             });
         if (response.status == 200)
             return response;
-    } catch (error) {
-        console.error(error);
+    } catch (error: any) {
+        if (error.response.status == 401) {
+            const response = await refreshToken();
+            if (response?.status == 200)
+                return executedCleaningRequest(customerId, jobId);
+        } else {
+            console.error(error);
+        }
     }
 }
 
@@ -245,7 +302,7 @@ export async function sendCustomerMessage(
                 message: message
             },
         )
-        if (response.status === 200) {
+        if (response.status == 200) {
             return response;
         }
     } catch (error) {
@@ -260,7 +317,7 @@ export async function handleCustomerFeedback(
     message?: string
 ) {
     try {
-        return await api.put(
+        const response = await api.put(
             "job/approve-fail-cleaning",
             {
                 jobId: jobId,
@@ -273,10 +330,15 @@ export async function handleCustomerFeedback(
                 }
             }
         );
+        if (response.status == 200)
+            return response;
     } catch (error: any) {
-        if (error.response)
+        if (error.response.status == 401) {
+            const response = await refreshToken();
+            if (response?.status == 200)
+                return handleCustomerFeedback(jobId, customerId, isApproved, message);
+        } else {
             return error.response;
-        else
-            console.error(error);
+        }
     }
 }
