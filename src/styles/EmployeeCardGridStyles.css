@@ -18,3 +18,15 @@
     background: #faf0e4;
     border-bottom: rgba(152, 110, 46, 0.63) 2px solid;
 }
+
+.empCard a {
+    color: var(--dark-purple);
+    text-decoration: none;
+}
+
+.empCard a:hover {
+    text-decoration: underline;
+}
+
+
+

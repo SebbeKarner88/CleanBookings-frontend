@@ -70,7 +70,7 @@ function EmployeeCardGrid() {
                                                 </Card.Title>
                                                 <Card.Text className="text-start">
                                                     <Phone /> {item.phoneNumber} <br />
-                                                    <Envelope /> {item.emailAddress}
+                                                    <Envelope /> <a href={`mailto:${item.emailAddress}`} className="email-link">{item.emailAddress}</a>
                                                 </Card.Text>
                                             </Card.Body>
                                         </Card>
