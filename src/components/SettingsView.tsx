@@ -32,7 +32,12 @@ const SettingsView = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await api.get(`/gdpr/customer-data/${customerId}`);
+                const response = await api.get(
+                    `/gdpr/customer-data/${customerId}`,
+                    {
+                        headers: {"Authorization": `Bearer ${sessionStorage.getItem("access_token")}`}
+                    }
+                );
                 if (response?.status === 200)
                     return response.data;
             } catch (error) {
