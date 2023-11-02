@@ -53,7 +53,7 @@ export function FormField<T extends FieldValues>({
                                 {...register(fieldName as Path<T>)}
                                 type={inputType}
                                 min={min}
-                                className={fieldError || customError != undefined ? "form-control is-invalid" : "form-control"}
+                                className={fieldError || customError != undefined ? "form-control is-invalid" : "form-control border-dark-purple"}
                                 id={fieldName}
                                 placeholder={placeholder}
                                 defaultValue={defaultValue}

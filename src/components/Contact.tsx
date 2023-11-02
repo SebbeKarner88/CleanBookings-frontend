@@ -127,7 +127,7 @@ const Contact = () => {
                                     }
                                     <textarea
                                         {...register("message")}
-                                        className={errors.message ? "form-control is-invalid" : "form-control"}
+                                        className={errors.message ? "form-control is-invalid" : "form-control border-dark-purple"}
                                         id="message"
                                         rows={4}
                                     />

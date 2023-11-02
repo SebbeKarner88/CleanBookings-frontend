@@ -74,6 +74,10 @@
     color: var(--beige);
 }
 
+.border-dark-purple {
+    border-color: var(--dark-purple);
+}
+
 h1, h2 {
     font-family: 'Tiempos', serif;
 }
