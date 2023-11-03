@@ -53,6 +53,28 @@ export async function loginCustomer(
     }
 }
 
+export async function logout() {
+    try {
+        const response = await api.post(
+            "customer/logout",
+            null,
+            {
+                headers: {
+                    "refresh_token": sessionStorage.getItem("refresh_token")
+                }
+            }
+        );
+        if (response?.status == 204) {
+            sessionStorage.removeItem("access_token");
+            sessionStorage.removeItem("refresh_token");
+            sessionStorage.removeItem("role");
+        }
+        return response;
+    } catch (error) {
+        console.error("Error handling logout call: " + error);
+    }
+}
+
 export async function registerCustomer(
     firstName: string,
     lastName: string,

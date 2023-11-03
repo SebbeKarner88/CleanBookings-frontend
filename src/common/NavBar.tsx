@@ -13,6 +13,7 @@ import Image from "react-bootstrap/Image";
 import logo from '../assets/images/logo.png'
 import '../styles/NavBar.css'
 import '../styles/Global.css'
+import {logout} from "../api/CustomerApi.ts";
 
 const NavBar = () => {
     const {
@@ -26,11 +27,14 @@ const NavBar = () => {
     const navigation = useNavigate();
 
     async function handleLogout() {
-        setIsAuthenticated(false);
-        setCustomerId("");
-        setName("");
-        setUsername("");
-        navigation("/");
+        const response = await logout();
+        if (response?.status === 204) {
+            setIsAuthenticated(false);
+            setCustomerId("");
+            setName("");
+            setUsername("");
+            navigation("/");
+        }
     }
 
     return (
