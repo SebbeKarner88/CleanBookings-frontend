@@ -155,7 +155,7 @@ export async function updateCustomerData(
     emailAddress?: string
 ) {
     try {
-        const response = await api.put(
+        return await api.put(
             `customer/updateCustomer/${customerId}`,
             {
                 firstName: firstName,
@@ -172,8 +172,6 @@ export async function updateCustomerData(
                 }
             }
         );
-        if (response.status == 200)
-            return response;
     } catch (error: any) {
         if (error.response.status == 401) {
             const response = await refreshToken();
@@ -191,7 +189,7 @@ export async function updatePassword(
     newPassword: string
 ) {
     try {
-        const response = await api.put(
+        return await api.put(
             `/customer/updatePassword/${customerId}`,
             {
                 oldPassword: currentPassword,
@@ -203,8 +201,6 @@ export async function updatePassword(
                 }
             }
         );
-        if (response.status == 200)
-            return response;
     } catch (error: any) {
         if (error.response.status == 401) {
             const response = await refreshToken();

@@ -1,5 +1,5 @@
 import {z} from "zod";
-import {Dispatch, SetStateAction, useContext} from "react";
+import {useContext, useState} from "react";
 import {AuthContext} from "../../context/AuthContext.tsx";
 import {FieldValues, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
@@ -7,6 +7,7 @@ import {updatePassword} from "../../api/CustomerApi.ts";
 import {FormField} from "./FormField.tsx";
 import {Button} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
+import UpdatePasswordSuccessModal from "../modals/UpdatePasswordSuccessModal.tsx";
 
 const schema = z.object({
     currentPassword: z
@@ -26,11 +27,7 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-interface IFormUpdatePassword {
-    setShowModal: Dispatch<SetStateAction<boolean>>;
-}
-
-export default function FormUpdatePassword({setShowModal}: IFormUpdatePassword) {
+export default function FormUpdatePassword() {
     const {customerId} = useContext(AuthContext);
     const {
         register,
@@ -40,60 +37,73 @@ export default function FormUpdatePassword({setShowModal}: IFormUpdatePassword) 
         resolver: zodResolver(schema)
     });
     const navigation = useNavigate();
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [showModal, setShowModal] = useState<boolean>(false);
+    const closeModal = () => setShowModal(false);
 
     async function onSubmit(data: FieldValues) {
         try {
-            await updatePassword(
+            const response = await updatePassword(
                 customerId,
                 data.currentPassword,
                 data.newPassword
             );
-            setShowModal(true)
+            if (response?.status == 204) {
+                setErrorMessage(null);
+                setShowModal(true);
+            } else {
+                setErrorMessage("Incorrect password.");
+            }
         } catch (error) {
             console.error(error);
         }
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <FormField
-                fieldName="currentPassword"
-                label="Nuvarande lösenord"
-                inputType="password"
-                fieldError={errors.currentPassword}
-                register={register}
-            />
+        <>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                {errorMessage && <div className="my-1 fw-bold text-danger">{errorMessage}</div>}
+                <FormField
+                    fieldName="currentPassword"
+                    label="Nuvarande lösenord"
+                    inputType="password"
+                    fieldError={errors.currentPassword}
+                    customError={errorMessage}
+                    register={register}
+                />
 
-            <FormField
-                fieldName="newPassword"
-                label="Nytt lösenord"
-                labelDescription="Måste innehålla minst 8 tecken, minst 1 nummer, minst 1 stor bokstav & minst 1 liten bokstav"
-                inputType="password"
-                fieldError={errors.newPassword}
-                register={register}
-            />
+                <FormField
+                    fieldName="newPassword"
+                    label="Nytt lösenord"
+                    labelDescription="Måste innehålla minst 8 tecken, minst 1 nummer, minst 1 stor bokstav & minst 1 liten bokstav"
+                    inputType="password"
+                    fieldError={errors.newPassword}
+                    register={register}
+                />
 
-            <FormField
-                fieldName="confirmPassword"
-                label="Bekräfta lösenord"
-                inputType="password"
-                fieldError={errors.confirmPassword}
-                register={register}
-            />
+                <FormField
+                    fieldName="confirmPassword"
+                    label="Bekräfta lösenord"
+                    inputType="password"
+                    fieldError={errors.confirmPassword}
+                    register={register}
+                />
 
-            <Button type="submit" className="btn-dark-purple w-100 mb-3">
-                Uppdatera lösenord
-            </Button>
+                <Button type="submit" className="btn-dark-purple w-100 mb-3">
+                    Uppdatera lösenord
+                </Button>
 
-            <Button
-                type="button"
-                variant="danger"
-                className="w-100"
-                onClick={() => navigation("/my-pages/settings")}
-            >
-                Tillbaka till mina inställningar
-            </Button>
+                <Button
+                    type="button"
+                    variant="danger"
+                    className="w-100"
+                    onClick={() => navigation("/my-pages/settings")}
+                >
+                    Tillbaka till mina inställningar
+                </Button>
 
-        </form>
+            </form>
+            <UpdatePasswordSuccessModal onShow={showModal} onClose={closeModal}/>
+        </>
     )
 }

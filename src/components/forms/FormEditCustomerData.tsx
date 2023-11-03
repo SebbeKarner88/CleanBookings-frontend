@@ -5,8 +5,9 @@ import {useLocation} from "react-router-dom";
 import {FieldValues, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {updateCustomerData} from "../../api/CustomerApi.ts";
-import {Dispatch, SetStateAction, useContext} from "react";
+import {useContext, useState} from "react";
 import {AuthContext} from "../../context/AuthContext.tsx";
+import UpdateCustomerDataSuccessModal from "../modals/UpdateCustomerDataSuccessModal.tsx";
 
 const schema = z.object({
     firstName: z
@@ -40,11 +41,7 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-interface IFormEditCustomerData {
-    setShowModal: Dispatch<SetStateAction<boolean>>;
-}
-
-export default function FormEditCustomerData({setShowModal}: IFormEditCustomerData) {
+export default function FormEditCustomerData() {
     const {customerId} = useContext(AuthContext);
     const location = useLocation();
     const values = location.state;
@@ -55,6 +52,8 @@ export default function FormEditCustomerData({setShowModal}: IFormEditCustomerDa
     } = useForm<FormData>({
         resolver: zodResolver(schema)
     });
+    const [showModal, setShowModal] = useState<boolean>(false);
+    const closeModal = () => setShowModal(false);
 
     async function onSubmit(data: FieldValues) {
         try {
@@ -76,6 +75,7 @@ export default function FormEditCustomerData({setShowModal}: IFormEditCustomerDa
     }
 
     return (
+        <>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <FormField
                     fieldName="firstName"
@@ -155,5 +155,8 @@ export default function FormEditCustomerData({setShowModal}: IFormEditCustomerDa
                     Uppdatera dina uppgifter
                 </Button>
             </form>
+
+    <UpdateCustomerDataSuccessModal onShow={showModal} onClose={closeModal} />
+    </>
     )
 }
