@@ -8,6 +8,7 @@ import {AuthContext} from '../../context/AuthContext.tsx';
 import {Button} from 'react-bootstrap';
 import BookingConfirmationModal from "../booking-management/BookingConfirmationModal.tsx";
 import BookingRequestModal from "../booking-management/BookingRequestModal.tsx";
+import {useNavigate} from "react-router-dom";
 
 const schema = z.object({
     type: z
@@ -42,6 +43,7 @@ const BookingForm = () => {
     const closeRequestModal = () => setShowRequestModal(false);
     const [isSendingRequest, setIsSendingRequest] = useState(false);
     const [requestData, setRequestData] = useState<Request | null>(null);
+    const navigate = useNavigate();
 
     async function sendRequest() {
         if (requestData != null) {
@@ -56,7 +58,9 @@ const BookingForm = () => {
                 if (response?.status == 201) {
                     setIsSendingRequest(false);
                     closeRequestModal();
-                    setShowConfirmationModal(true);
+                    // setShowConfirmationModal(true);
+                    console.log(response.data.html_snippet);
+                    navigate("/checkout", {state: {snippet: response.data.html_snippet}});
                 } else {
                     setIsSendingRequest(false);
                     closeRequestModal();

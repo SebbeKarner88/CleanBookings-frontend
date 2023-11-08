@@ -17,6 +17,7 @@ import EditCustomerDataView from './components/EditCustomerDataView.tsx'
 import NotFoundView from "./components/NotFoundView.tsx";
 import FAQ from "./components/FAQ.tsx";
 import Products from './components/Products.tsx';
+import CheckoutView from "./components/CheckoutView.tsx";
 
 function App() {
   const {isAuthenticated} = useContext(AuthContext);
@@ -33,6 +34,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<FAQ/>} />
           <Route path="/products" element={<Products/>} />
+          <Route path="/checkout" element={<CheckoutView />} />
           <Route path="/*" element={<NotFoundView />} />
           {
             isAuthenticated &&
