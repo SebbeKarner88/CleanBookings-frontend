@@ -12,7 +12,6 @@ function NotFoundView() {
 
     return (
         <>
-
             <NavBar />
             <Container className="mt-5 mb-5 notFoundContainer">
                 <Image
@@ -28,7 +27,6 @@ function NotFoundView() {
                 >Return to Homepage</Button>
             </Container>
             <Footer />
-
         </>
     )
 }

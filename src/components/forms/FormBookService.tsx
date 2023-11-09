@@ -6,8 +6,8 @@ import {bookService} from "../../api/CustomerApi.ts";
 import {FormField} from "./FormField.tsx";
 import {AuthContext} from '../../context/AuthContext.tsx';
 import {Button} from 'react-bootstrap';
-import BookingConfirmationModal from "../booking-management/BookingConfirmationModal.tsx";
-import BookingRequestModal from "../booking-management/BookingRequestModal.tsx";
+import BookingConfirmationModal from "../modals/BookingConfirmationModal.tsx";
+import BookingRequestModal from "../modals/BookingRequestModal.tsx";
 import {useNavigate} from "react-router-dom";
 
 const schema = z.object({
