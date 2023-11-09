@@ -4,8 +4,6 @@ import mysigt from '../assets/images/myspys.jpg'
 
 const LogIn = () => {
 
-    /* TODO: add logic for logging in as customer/employee/admin */
-
     return (
         <>
             <NavBar />

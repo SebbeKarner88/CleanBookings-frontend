@@ -20,6 +20,13 @@ interface Icleaner {
 function EmployeeCardGrid() {
     const [ cleaners, setCleaners ] = useState<Icleaner[]>([]);
     const [ show, setShow ] = useState(0);
+    const [ isDesktop, setDesktop ] = useState(window.innerWidth > 700);
+    const [ isMobile, setMobile ] = useState(window.innerWidth < 700);
+
+    const updateMedia = () => {
+        setDesktop(window.innerWidth > 800);
+        setMobile(window.innerWidth < 800);
+    };
 
     const handleSelect = (selectedShow: number) => {
         setShow(selectedShow);
@@ -41,6 +48,8 @@ function EmployeeCardGrid() {
         fetchCleaners().then(data => {
             setCleaners(data);
         });
+        window.addEventListener("resize", updateMedia);
+        return () => window.removeEventListener("resize", updateMedia);
     }, []);
 
     const reduceCleaners = (acc: any, cur: any, index: number) => {
@@ -52,34 +61,65 @@ function EmployeeCardGrid() {
 
     return (
         <>
-            <Carousel
-                activeIndex={show}
-                onSelect={handleSelect}
-                interval={5000}>
-                {cleaners.reduce(reduceCleaners, [])
-                    .map((item: any, index: number) => (
-                        <Carousel.Item key={index}>
-                            <div className="carousel">
+            {isDesktop &&
+                <Carousel
+                    activeIndex={show}
+                    onSelect={handleSelect}
+                    interval={5000}>
+                    {cleaners.reduce(reduceCleaners, [])
+                        .map((item: any, index: number) => (
+                            <Carousel.Item key={index}>
+                                <div className="carousel">
+                                    {item.map((item: any, index: number) => {
+                                        return (
+                                            <Card key={index} className='empCard'>
+                                                <Card.Img variant="top" src={user} className="cardImage" />
+                                                <Card.Body>
+                                                    <Card.Title className='fw-bold'>
+                                                        {item.firstName + " " + item.lastName}
+                                                    </Card.Title>
+                                                    <Card.Text className="text-start">
+                                                        <Phone /> {item.phoneNumber} <br />
+                                                        <Envelope /> <a href={`mailto:${item.emailAddress}`} className="email-link">{item.emailAddress}</a>
+                                                    </Card.Text>
+                                                </Card.Body>
+                                            </Card>
+                                        )
+                                    })}
+                                </div>
+                            </Carousel.Item>
+                        ))}
+                </Carousel>
+            }
+
+
+            {isMobile &&
+                <div>
+                    {cleaners.reduce(reduceCleaners, [])
+                        .map((item: any, index: number) => (
+                            <Row key={index} xs={1} md={2}>
                                 {item.map((item: any, index: number) => {
                                     return (
-                                        <Card key={index} className='empCard'>
-                                            <Card.Img variant="top" src={user} className="cardImage" />
-                                            <Card.Body>
-                                                <Card.Title>
-                                                    <strong>{item.firstName + " " + item.lastName}</strong>
-                                                </Card.Title>
-                                                <Card.Text className="text-start">
-                                                    <Phone /> {item.phoneNumber} <br />
-                                                    <Envelope /> <a href={`mailto:${item.emailAddress}`} className="email-link">{item.emailAddress}</a>
-                                                </Card.Text>
-                                            </Card.Body>
-                                        </Card>
+                                        <Col key={index} className=''>
+                                            <Card className='empCard'>
+                                                <Card.Body>
+                                                    <Card.Title className='fw-bold' style={{ fontSize: '15px' }}>
+                                                        {item.firstName + " " + item.lastName}
+                                                    </Card.Title>
+                                                    <Card.Text className="text-start" style={{ fontSize: '12px' }}>
+                                                        <FaPhone /> {item.phoneNumber} <br />
+                                                        <FaEnvelopeSquare /> <a href={`mailto:${item.emailAddress}`} className="email-link">{item.emailAddress}</a>
+                                                    </Card.Text>
+                                                </Card.Body>
+                                            </Card>
+                                        </Col>
                                     )
                                 })}
-                            </div>
-                        </Carousel.Item>
-                    ))}
-            </Carousel>
+                            </Row>
+                        ))}
+                </div>
+            }
+
         </>
     );
 }
