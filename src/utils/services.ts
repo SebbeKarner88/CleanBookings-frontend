@@ -8,7 +8,7 @@ export const services = [
     },
     {
         image: 'top',
-        title: 'TOP',
+        title: 'TOPP',
         description: 'En grundligare städning. Ett perfekt alternativ för dig som ska flytta.',
         items: ['Dammsugning av alla ytor', 'Dammtorka möbler', 'Våttorka golv', 'Rasta hunden', 'Kamma frun'],
         price: '1495kr'
