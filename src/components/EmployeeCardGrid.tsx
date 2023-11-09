@@ -20,6 +20,13 @@ interface Icleaner {
 function EmployeeCardGrid() {
     const [ cleaners, setCleaners ] = useState<Icleaner[]>([]);
     const [ show, setShow ] = useState(0);
+    const [ isDesktop, setDesktop ] = useState(window.innerWidth > 1000);
+    const [ isMobile, setMobile ] = useState(window.innerWidth < 700);
+
+    const updateMedia = () => {
+        setDesktop(window.innerWidth > 800);
+        setMobile(window.innerWidth < 800);
+    };
 
     const handleSelect = (selectedShow: number) => {
         setShow(selectedShow);
@@ -41,6 +48,8 @@ function EmployeeCardGrid() {
         fetchCleaners().then(data => {
             setCleaners(data);
         });
+        window.addEventListener("resize", updateMedia);
+        return () => window.removeEventListener("resize", updateMedia);
     }, []);
 
     const reduceCleaners = (acc: any, cur: any, index: number) => {
@@ -52,18 +61,18 @@ function EmployeeCardGrid() {
 
     return (
         <>
-            <Carousel
-                activeIndex={show}
-                onSelect={handleSelect}
-                interval={5000}>
-                {cleaners.reduce(reduceCleaners, [])
-                    .map((item: any, index: number) => (
-                        <Carousel.Item key={index}>
-                            <Row xs={1} md={2} lg={3} className="carousel">
-                                {item.map((item: any, index: number) => {
-                                    return (
-                                        <Col key={index} className='d-flex align-items-stretch'>
-                                            <Card className='empCard'>
+            {isDesktop &&
+                <Carousel
+                    activeIndex={show}
+                    onSelect={handleSelect}
+                    interval={5000}>
+                    {cleaners.reduce(reduceCleaners, [])
+                        .map((item: any, index: number) => (
+                            <Carousel.Item key={index}>
+                                <div className="carousel">
+                                    {item.map((item: any, index: number) => {
+                                        return (
+                                            <Card key={index} className='empCard'>
                                                 <Card.Img variant="top" src={user} className="cardImage" />
                                                 <Card.Body>
                                                     <Card.Title className='fw-bold'>
@@ -75,13 +84,42 @@ function EmployeeCardGrid() {
                                                     </Card.Text>
                                                 </Card.Body>
                                             </Card>
+                                        )
+                                    })}
+                                </div>
+                            </Carousel.Item>
+                        ))}
+                </Carousel>
+            }
+
+
+            {isMobile &&
+                <div>
+                    {cleaners.reduce(reduceCleaners, [])
+                        .map((item: any, index: number) => (
+                            <Row key={index} xs={3} md={3}>
+                                {item.map((item: any, index: number) => {
+                                    return (
+                                        <Col key={index} className='d-flex align-items-stretch'>
+                                            <Card className='empCard'>
+                                                <Card.Body>
+                                                    <Card.Title className='fw-bold' style={{ fontSize: '12px' }}>
+                                                        {item.firstName + " " + item.lastName}
+                                                    </Card.Title>
+                                                    <Card.Text className="text-start" style={{ fontSize: '12px' }}>
+                                                        {item.phoneNumber} <br />
+                                                        <a href={`mailto:${item.emailAddress}`} className="email-link">{item.emailAddress}</a>
+                                                    </Card.Text>
+                                                </Card.Body>
+                                            </Card>
                                         </Col>
                                     )
                                 })}
                             </Row>
-                        </Carousel.Item>
-                    ))}
-            </Carousel>
+                        ))}
+                </div>
+            }
+
         </>
     );
 }
