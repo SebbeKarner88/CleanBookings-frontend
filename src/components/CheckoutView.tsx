@@ -11,7 +11,8 @@ export default function CheckoutView() {
                 <div className="bg-white p-md-4 rounded rounded-4 my-md-4 m-auto">
                     <iframe
                         width={800}
-                        height={screen.height}
+                        height={900}
+                        className={"m-auto"}
                         style={{maxWidth: "100vw", maxHeight: "100vh"}}
                         srcDoc={location.state.snippet}
                     ></iframe>
