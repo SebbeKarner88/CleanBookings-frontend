@@ -97,18 +97,18 @@ function EmployeeCardGrid() {
                 <div>
                     {cleaners.reduce(reduceCleaners, [])
                         .map((item: any, index: number) => (
-                            <Row key={index} xs={3} md={3}>
+                            <Row key={index} xs={1} md={2}>
                                 {item.map((item: any, index: number) => {
                                     return (
-                                        <Col key={index} className='d-flex align-items-stretch'>
+                                        <Col key={index} className=''>
                                             <Card className='empCard'>
                                                 <Card.Body>
-                                                    <Card.Title className='fw-bold' style={{ fontSize: '12px' }}>
+                                                    <Card.Title className='fw-bold' style={{ fontSize: '15px' }}>
                                                         {item.firstName + " " + item.lastName}
                                                     </Card.Title>
                                                     <Card.Text className="text-start" style={{ fontSize: '12px' }}>
-                                                        {item.phoneNumber} <br />
-                                                        <a href={`mailto:${item.emailAddress}`} className="email-link">{item.emailAddress}</a>
+                                                        <FaPhone /> {item.phoneNumber} <br />
+                                                        <FaEnvelopeSquare /> <a href={`mailto:${item.emailAddress}`} className="email-link">{item.emailAddress}</a>
                                                     </Card.Text>
                                                 </Card.Body>
                                             </Card>
