@@ -12,6 +12,7 @@ export default function BookingView() {
             </h1>
             <div className="bg-light-brown container p-2 p-md-4 my-4 mb-5 rounded rounded-4">
                 <div className="container text-start">
+
                     <BookingForm />
                 </div>
             </div>
