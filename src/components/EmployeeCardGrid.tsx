@@ -20,7 +20,7 @@ interface Icleaner {
 function EmployeeCardGrid() {
     const [ cleaners, setCleaners ] = useState<Icleaner[]>([]);
     const [ show, setShow ] = useState(0);
-    const [ isDesktop, setDesktop ] = useState(window.innerWidth > 1000);
+    const [ isDesktop, setDesktop ] = useState(window.innerWidth > 700);
     const [ isMobile, setMobile ] = useState(window.innerWidth < 700);
 
     const updateMedia = () => {
