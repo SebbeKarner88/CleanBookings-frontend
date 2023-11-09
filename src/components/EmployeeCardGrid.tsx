@@ -59,24 +59,26 @@ function EmployeeCardGrid() {
                 {cleaners.reduce(reduceCleaners, [])
                     .map((item: any, index: number) => (
                         <Carousel.Item key={index}>
-                            <div className="carousel">
+                            <Row xs={1} md={2} lg={3} className="carousel">
                                 {item.map((item: any, index: number) => {
                                     return (
-                                        <Card key={index} className='empCard'>
-                                            <Card.Img variant="top" src={user} className="cardImage" />
-                                            <Card.Body>
-                                                <Card.Title>
-                                                    <strong>{item.firstName + " " + item.lastName}</strong>
-                                                </Card.Title>
-                                                <Card.Text className="text-start">
-                                                    <Phone /> {item.phoneNumber} <br />
-                                                    <Envelope /> <a href={`mailto:${item.emailAddress}`} className="email-link">{item.emailAddress}</a>
-                                                </Card.Text>
-                                            </Card.Body>
-                                        </Card>
+                                        <Col key={index} className='d-flex align-items-stretch'>
+                                            <Card className='empCard'>
+                                                <Card.Img variant="top" src={user} className="cardImage" />
+                                                <Card.Body>
+                                                    <Card.Title className='fw-bold'>
+                                                        {item.firstName + " " + item.lastName}
+                                                    </Card.Title>
+                                                    <Card.Text className="text-start">
+                                                        <Phone /> {item.phoneNumber} <br />
+                                                        <Envelope /> <a href={`mailto:${item.emailAddress}`} className="email-link">{item.emailAddress}</a>
+                                                    </Card.Text>
+                                                </Card.Body>
+                                            </Card>
+                                        </Col>
                                     )
                                 })}
-                            </div>
+                            </Row>
                         </Carousel.Item>
                     ))}
             </Carousel>
