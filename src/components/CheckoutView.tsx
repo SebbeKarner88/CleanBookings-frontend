@@ -4,6 +4,7 @@ import {Footer} from "../common/Footer.tsx";
 
 export default function CheckoutView() {
     const location = useLocation();
+
     return (
         <>
             <NavBar/>

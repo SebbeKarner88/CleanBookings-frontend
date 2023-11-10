@@ -5,6 +5,7 @@
     color: #e0e0e0;
     font-size: 1.2rem;
     padding: .6%;
+    border-radius: 7px;
     background-color:rgba(255, 255, 255, 0.1);
 }
 
@@ -19,7 +20,6 @@
     color: var(--brown);
     margin-bottom: 1em;
     font-size: 1.5em;
-    /* box-shadow: 0 0 10px rgba(89, 69, 69, 0.3); */
     padding: 10px;
     border-bottom: 1px solid rgba(89, 69, 69, 0.3);
 }

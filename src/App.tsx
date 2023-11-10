@@ -40,10 +40,10 @@ function App() {
           <Route path="/*" element={<NotFoundView />} />
           {
             isAuthenticated &&
-              <>
+            <>
+                <Route path="/booking-view" element={<BookingView />} />
                 <Route path="/my-pages" element={<MyPages />} />
                 <Route path="/my-pages/settings" element={<SettingsView />} />
-                <Route path="/booking-view" element={<BookingView />} />
                 <Route path="/update-customer" element={<EditCustomerDataView />} />
               </>
           }
