@@ -5,10 +5,11 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {bookService} from "../../api/CustomerApi.ts";
 import {FormField} from "./FormField.tsx";
 import {AuthContext} from '../../context/AuthContext.tsx';
-import {Button} from 'react-bootstrap';
+import {Button, Card, Col, Row} from 'react-bootstrap';
 import BookingConfirmationModal from "../modals/BookingConfirmationModal.tsx";
 import BookingRequestModal from "../modals/BookingRequestModal.tsx";
 import {useNavigate} from "react-router-dom";
+import { services } from '../../utils/services.ts';
 
 const schema = z.object({
     type: z
@@ -44,6 +45,7 @@ const BookingForm = () => {
     const [isSendingRequest, setIsSendingRequest] = useState(false);
     const [requestData, setRequestData] = useState<Request | null>(null);
     const navigate = useNavigate();
+    const [isActive, setIsActive] = useState(false)
 
     async function sendRequest() {
         if (requestData != null) {
@@ -80,14 +82,35 @@ const BookingForm = () => {
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <FormField
-                    fieldName="date"
-                    min={new Date().toLocaleDateString()}
-                    label="Datum för utförandet"
-                    inputType="date"
-                    fieldError={errors.date}
-                    register={register}
-                />
+
+            <Row xs={1} md={2} lg={4}>
+                        {services.map((service, index) => (
+                            <Col key={index} className="mb-5 text-center">
+                               <label>
+                                <input onClick={() => setIsActive(true)} type="radio" name="service" style={{display: 'none'}} />
+                                <Card 
+                                style={{ backgroundColor: 'var(--beige)', width: '100%', cursor: 'pointer', border: isActive ? '2px solid black' : 'none' }} 
+                                onClick={() => {
+                                    // NÅN LOGIC HÄR FÖR ATT SKICKA MED TYPE TILL HANDLESUBMIT??
+                                    console.log(service.type)}}>
+                                    <Card.Body>
+                                        <Card.Title className="cardTitle">
+                                            {service.title}
+                                        </Card.Title>
+                                        <Card.Text>
+                                            {service.description}
+                                        </Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer>
+                                        <small className="cardFooter">
+                                            {service.price}
+                                        </small>
+                                    </Card.Footer>
+                                </Card>
+                                </label>
+                            </Col>
+                        ))}
+                    </Row>
 
                 <FormField
                     fieldName="type"
@@ -98,6 +121,15 @@ const BookingForm = () => {
                     fieldError={errors.type}
                     register={register}
                 />
+                <FormField
+                    fieldName="date"
+                    min={new Date().toLocaleDateString()}
+                    label="Datum för utförandet"
+                    inputType="date"
+                    fieldError={errors.date}
+                    register={register}
+                />
+
 
                 <div>
                     <label htmlFor="message" className="form-label fw-semibold">
