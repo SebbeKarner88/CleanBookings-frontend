@@ -38,10 +38,10 @@ function App() {
           <Route path="/checkout" element={<CheckoutView />} />
           <Route path="/checkout/confirmation" element={<ConfirmationView />} />
           <Route path="/*" element={<NotFoundView />} />
-          <Route path="/booking-view" element={<BookingView />} />
           {
             isAuthenticated &&
-              <>
+            <>
+                <Route path="/booking-view" element={<BookingView />} />
                 <Route path="/my-pages" element={<MyPages />} />
                 <Route path="/my-pages/settings" element={<SettingsView />} />
                 <Route path="/update-customer" element={<EditCustomerDataView />} />

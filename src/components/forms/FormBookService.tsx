@@ -1,22 +1,22 @@
-import {useContext, useState} from 'react'
-import {FieldValues, useForm} from "react-hook-form";
-import {z} from 'zod';
-import {zodResolver} from "@hookform/resolvers/zod";
-import {bookService} from "../../api/CustomerApi.ts";
-import {FormField} from "./FormField.tsx";
-import {AuthContext} from '../../context/AuthContext.tsx';
-import {Button, Card, Col, Row} from 'react-bootstrap';
+import { useContext, useState } from 'react'
+import { FieldValues, useForm } from "react-hook-form";
+import { z } from 'zod';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { bookService } from "../../api/CustomerApi.ts";
+import { FormField } from "./FormField.tsx";
+import { AuthContext } from '../../context/AuthContext.tsx';
+import { Button, Card, Col, Row } from 'react-bootstrap';
 import BookingConfirmationModal from "../modals/BookingConfirmationModal.tsx";
 import BookingRequestModal from "../modals/BookingRequestModal.tsx";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { services } from '../../utils/services.ts';
 
 const schema = z.object({
     type: z
-        .enum(["BASIC", "TOPP", "DIAMOND", "WINDOW"]),
+        .enum([ "BASIC", "TOPP", "DIAMOND", "WINDOW" ]),
     date: z
         .string()
-        .nonempty({message: "Datum är ett obligatoriskt fält."}),
+        .nonempty({ message: "Datum är ett obligatoriskt fält." }),
     message: z
         .string()
 });
@@ -30,22 +30,22 @@ type Request = {
 }
 
 const BookingForm = () => {
-    const {customerId} = useContext(AuthContext);
+    const { customerId } = useContext(AuthContext);
     const {
         register,
         handleSubmit,
-        formState: {errors}
+        formState: { errors }
     } = useForm<FormData>({
         resolver: zodResolver(schema)
     });
-    const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-    const [showRequestModal, setShowRequestModal] = useState<boolean>(false);
+    const [ showConfirmationModal, setShowConfirmationModal ] = useState(false);
+    const [ showRequestModal, setShowRequestModal ] = useState<boolean>(false);
     const closeConfirmationModal = () => setShowConfirmationModal(false);
     const closeRequestModal = () => setShowRequestModal(false);
-    const [isSendingRequest, setIsSendingRequest] = useState(false);
-    const [requestData, setRequestData] = useState<Request | null>(null);
+    const [ isSendingRequest, setIsSendingRequest ] = useState(false);
+    const [ requestData, setRequestData ] = useState<Request | null>(null);
     const navigate = useNavigate();
-    const [isActive, setIsActive] = useState(false)
+    const [ isActive, setIsActive ] = useState(false)
 
     async function sendRequest() {
         if (requestData != null) {
@@ -62,7 +62,7 @@ const BookingForm = () => {
                     closeRequestModal();
                     // setShowConfirmationModal(true);
                     console.log(response.data.html_snippet);
-                    navigate("/checkout", {state: {snippet: response.data.html_snippet}});
+                    navigate("/checkout", { state: { snippet: response.data.html_snippet } });
                 } else {
                     setIsSendingRequest(false);
                     closeRequestModal();
@@ -75,7 +75,7 @@ const BookingForm = () => {
     }
 
     async function onSubmit(data: FieldValues) {
-        setRequestData({type: data.type, date: data.date, message: data.message});
+        setRequestData({ type: data.type, date: data.date, message: data.message });
         setShowRequestModal(true);
     }
 
@@ -83,16 +83,17 @@ const BookingForm = () => {
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
 
-            <Row xs={1} md={2} lg={4}>
-                        {services.map((service, index) => (
-                            <Col key={index} className="mb-5 text-center">
-                               <label>
-                                <input onClick={() => setIsActive(true)} type="radio" name="service" style={{display: 'none'}} />
-                                <Card 
-                                style={{ backgroundColor: 'var(--beige)', width: '100%', cursor: 'pointer', border: isActive ? '2px solid black' : 'none' }} 
-                                onClick={() => {
-                                    // NÅN LOGIC HÄR FÖR ATT SKICKA MED TYPE TILL HANDLESUBMIT??
-                                    console.log(service.type)}}>
+                <Row xs={1} md={2} lg={4}>
+                    {services.map((service, index) => (
+                        <Col key={index} className="mb-5 text-center">
+                            <label>
+                                <input onClick={() => setIsActive(true)} type="radio" name="service" style={{ display: 'none' }} />
+                                <Card                                                                       // FEL. MARKERAR ALLA KORT
+                                    style={{ backgroundColor: 'var(--beige)', width: '100%', cursor: 'pointer', border: isActive ? '2px solid black' : 'none' }}
+                                    onClick={() => {
+                                        // NÅN LOGIC HÄR FÖR ATT SKICKA MED TYPE TILL HANDLESUBMIT??
+                                        console.log(service.type)
+                                    }}>
                                     <Card.Body>
                                         <Card.Title className="cardTitle">
                                             {service.title}
@@ -107,17 +108,17 @@ const BookingForm = () => {
                                         </small>
                                     </Card.Footer>
                                 </Card>
-                                </label>
-                            </Col>
-                        ))}
-                    </Row>
+                            </label>
+                        </Col>
+                    ))}
+                </Row>
 
                 <FormField
                     fieldName="type"
                     label="Val av städtjänst"
                     labelDescription="Vilken typ av städtjänst önskar du boka?"
                     inputType="radio"
-                    options={["BASIC", "TOPP", "DIAMOND", "WINDOW"]}
+                    options={[ "BASIC", "TOPP", "DIAMOND", "WINDOW" ]}
                     fieldError={errors.type}
                     register={register}
                 />
@@ -151,13 +152,13 @@ const BookingForm = () => {
                         rows={4}
                     />
                 </div>
-                        <Button
-                            variant="dark"
-                            size="lg"
-                            type="submit"
-                            className="btn-dark-purple w-100 my-3">
-                            Boka din städning
-                        </Button>
+                <Button
+                    variant="dark"
+                    size="lg"
+                    type="submit"
+                    className="btn-dark-purple w-100 my-3">
+                    Boka din städning
+                </Button>
             </form>
             <BookingRequestModal
                 show={showRequestModal}
