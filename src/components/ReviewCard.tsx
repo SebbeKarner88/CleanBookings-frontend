@@ -18,7 +18,7 @@ const ReviewCard = () => {
         {
             image: 'diamond',
             title: 'Förbaskat rent!',
-            description: 'Städaren jobbade snabbt och diskret. Rummen kändes som nya när han var klar. Jag kan varmt rekommendera StädaFint!',
+            description: 'Städaren jobbade snabbt och diskret. Rummet såg ut som nytt när de var klara! Jag kan varmt rekommendera StädaFint!',
             signature: 'Hasse, motellägare'
         },
     ]

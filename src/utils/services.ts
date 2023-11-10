@@ -4,7 +4,7 @@ export const services = [
         title: 'DIAMANT',
         type: 'DIAMOND',
         description: 'Vår 100% steril garantistäd\nPerfekt för dig som ska utföra en operation i vardagsrummet.',
-        items: ['Dammsugning av alla ytor', 'Dammtorka möbler', 'Våttorka golv', 'Städning av kök', 'Välta kon', 'Rensa fisken' ],
+        items: ['Dammsugning av alla ytor', 'Dammtorka möbler', 'Våttorka golv', 'Städning av kök', 'Desinficering', 'Tvätt av kund' ],
         price: '2495kr'
     },
     {
@@ -12,7 +12,7 @@ export const services = [
         title: 'TOPP',
         type: 'TOPP',
         description: 'En grundligare städning. Ett perfekt alternativ för dig som ska flytta.',
-        items: ['Dammsugning av alla ytor', 'Dammtorka möbler', 'Våttorka golv', 'Rasta hunden', 'Kamma frun'],
+        items: ['Dammsugning av alla ytor', 'Dammtorka möbler', 'Våttorka golv', 'Bäddning av sängar', 'Torrdamma elektronik'],
         price: '1495kr'
     },
     {
