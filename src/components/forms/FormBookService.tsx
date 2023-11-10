@@ -87,7 +87,12 @@ const BookingForm = () => {
                     {services.map((service, index) => (
                         <Col key={index} className="mb-5 text-center">
                             <label>
-                                <input onClick={() => setIsActive(true)} type="radio" name="service" style={{ display: 'none' }} />
+                                <input 
+                                {...register("type")}
+                                onClick={() => setIsActive(true)} 
+                                type="radio" 
+                                name="type" 
+                                style={{ display: 'none' }} />
                                 <Card                                                                       // FEL. MARKERAR ALLA KORT
                                     style={{ backgroundColor: 'var(--beige)', width: '100%', cursor: 'pointer', border: isActive ? '2px solid black' : 'none' }}
                                     onClick={() => {
@@ -113,7 +118,7 @@ const BookingForm = () => {
                     ))}
                 </Row>
 
-                <FormField
+{/*                 <FormField
                     fieldName="type"
                     label="Val av städtjänst"
                     labelDescription="Vilken typ av städtjänst önskar du boka?"
@@ -121,7 +126,8 @@ const BookingForm = () => {
                     options={[ "BASIC", "TOPP", "DIAMOND", "WINDOW" ]}
                     fieldError={errors.type}
                     register={register}
-                />
+                /> */}
+
                 <FormField
                     fieldName="date"
                     min={new Date().toLocaleDateString()}
