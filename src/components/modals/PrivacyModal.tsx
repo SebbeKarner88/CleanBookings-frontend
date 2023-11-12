@@ -12,7 +12,7 @@ export default function PrivacyModal({onShow, onClose}: IPrivacyModal) {
 
     useEffect(() => {
         // Fetch Privacy Policy text from the file
-        fetch('/privacy-policy.txt')
+        fetch('/privacy-policy-sv.txt')
             .then((response) => response.text())
             .then((text) => setPrivacyPolicyText(text))
             .catch((error) => {
