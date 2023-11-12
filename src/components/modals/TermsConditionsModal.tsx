@@ -12,7 +12,7 @@ export default function TermsConditionsModal({onShow, onClose}: ITermsConditions
 
     useEffect(() => {
         // Fetch Terms & Conditions text from the file
-        fetch('/terms-conditions.txt')
+        fetch('/terms-conditions-sv.txt')
             .then((response) => response.text())
             .then((text) => setTermsConditionsText(text))
             .catch((error) => {
@@ -24,7 +24,8 @@ export default function TermsConditionsModal({onShow, onClose}: ITermsConditions
     return (
             <Modal show={onShow} onHide={onClose} size="lg" fullscreen="md-down">
                 <Modal.Header closeButton className="text-mauve">
-                    <Modal.Title>Terms & Conditions</Modal.Title>
+                    {/*<Modal.Title>Terms & Conditions</Modal.Title>*/}
+                    <Modal.Title>Allmänna Villkor</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="text-mauve">
                     <ReactMarkdown>{termsConditionsText}</ReactMarkdown>

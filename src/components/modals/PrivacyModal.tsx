@@ -24,7 +24,8 @@ export default function PrivacyModal({onShow, onClose}: IPrivacyModal) {
     return (
             <Modal show={onShow} onHide={onClose} size="lg" fullscreen="md-down">
                 <Modal.Header closeButton className="text-mauve">
-                    <Modal.Title>Privacy Policy</Modal.Title>
+                    {/*<Modal.Title>Privacy Policy</Modal.Title>*/}
+                    <Modal.Title>Integritetspolicy</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <ReactMarkdown>{privacyPolicyText}</ReactMarkdown>

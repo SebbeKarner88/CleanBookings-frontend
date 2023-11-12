@@ -67,7 +67,8 @@ export const Footer = () => {
                                         e.preventDefault();
                                         setShowPrivacyModal(true);
                                     }}>
-                                        Privacy Policy
+                                        {/*Privacy Policy*/}
+                                        Integritetspolicy
                                     </a>
                                 </li>
                                 <li>
@@ -75,7 +76,8 @@ export const Footer = () => {
                                         e.preventDefault();
                                         setShowTermsConditionsModal(true);
                                     }}>
-                                        Terms & Conditions
+                                        {/*Terms & Conditions*/}
+                                        Allmänna Villkor
                                     </a>
                                 </li>
                                 <li><Link to="/contact">Kontakta oss</Link></li>
