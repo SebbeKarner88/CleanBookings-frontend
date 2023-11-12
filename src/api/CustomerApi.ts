@@ -360,3 +360,27 @@ export async function handleCustomerFeedback(
         }
     }
 }
+
+export async function cancelJob(jobId: string) {
+    try {
+        return await api.delete(
+            `job`,
+            {
+                headers: {
+                    "Authorization": `Bearer ${sessionStorage.getItem("access_token")}`
+                },
+                params: {
+                    jobId: jobId
+                }
+            }
+        )
+    } catch (error: any) {
+        if (error.response.status == 401) {
+            const response = await refreshToken();
+            if (response?.status == 200)
+                return cancelJob(jobId);
+        } else {
+            return error.response;
+        }
+    }
+}

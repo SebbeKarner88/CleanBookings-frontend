@@ -3,12 +3,13 @@ import {ChangeEvent, useCallback, useContext, useEffect, useState} from 'react';
 import {AuthContext} from '../../context/AuthContext';
 import Pagination from 'react-bootstrap/Pagination';
 import SortJobByStatus from "./SortJobByStatus.tsx";
-import {getJobsByStatus, handleCustomerFeedback} from "../../api/CustomerApi.ts";
+import {cancelJob, getJobsByStatus, handleCustomerFeedback} from "../../api/CustomerApi.ts";
 import {Alert} from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import formatDate from "../../utils/formatDate.ts";
 import translateStatus from "../../utils/translateStatus.ts";
 import translateJobType from "../../utils/translateJobType.ts";
+import ConfirmCancelModal from "../modals/ConfirmCancelModal.tsx";
 
 type JobStatus = undefined | "OPEN" | "ASSIGNED" | "WAITING_FOR_APPROVAL" | "NOT_APPROVED" | "APPROVED" | "CLOSED";
 
@@ -32,9 +33,11 @@ const CleaningsPerType = ({onUpdate}: ICleaningsPerType) => {
     const [jobId, setJobId] = useState<string>("");
     const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
     const closeConfirmModal = () => setShowConfirmModal(false);
+    const [showConfirmCancelModal, setShowConfirmCancelModal] = useState<boolean>(false);
+    const closeConfirmCancelModal = () => setShowConfirmCancelModal(false);
     const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
     const [message, setMessage] = useState<string>("");
-    const [isSendingFeedback, setIsSendingFeedback] = useState<boolean>(false);
+    const [isSendingRequest, setIsSendingRequest] = useState<boolean>(false);
     const [updateNeeded, setUpdateNeeded] = useState<boolean>(false);
 
     // Pagination logic
@@ -46,7 +49,7 @@ const CleaningsPerType = ({onUpdate}: ICleaningsPerType) => {
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
     const handleFeedback = useCallback(async (jobId: string, isApproved: boolean, message: string) => {
-        setIsSendingFeedback(true);
+        setIsSendingRequest(true);
         const response = await handleCustomerFeedback(
             jobId,
             customerId,
@@ -54,13 +57,24 @@ const CleaningsPerType = ({onUpdate}: ICleaningsPerType) => {
             message
         );
         if (response.status == 200) {
-            setIsSendingFeedback(false);
+            setIsSendingRequest(false);
             setUpdateNeeded(updateNeeded => !updateNeeded);
             onUpdate();
             closeConfirmModal();
         } else
             setErrorMessage(response?.data);
     }, [customerId]);
+
+    const handleCancelRequest = async() => {
+        setIsSendingRequest(true);
+        const response = await cancelJob(jobId);
+        if (response?.status == 204) {
+            setIsSendingRequest(false);
+            closeConfirmCancelModal();
+        } else {
+            alert("Något gick fel. Försök igen!");
+        }
+    }
 
     useEffect(() => {
             const fetchJobsByStatus = async () => {
@@ -76,8 +90,33 @@ const CleaningsPerType = ({onUpdate}: ICleaningsPerType) => {
                 }
             }
             fetchJobsByStatus().then(data => setCleanings(data));
-        }, [customerId, selectedStatus, updateNeeded]
+        }, [customerId, selectedStatus, updateNeeded, isSendingRequest]
     );
+
+    function renderFeedbackButton(job: Job) {
+        return <Button
+            variant="dark"
+            className="btn-dark-purple"
+            onClick={() => {
+                setJobId(job.id);
+                setShowConfirmModal(true);
+            }}
+        >
+            Lämna återkoppling
+        </Button>;
+    }
+
+    function renderCancelButton(job: Job) {
+        return <Button
+            variant="danger"
+            onClick={() => {
+                setJobId(job.id);
+                setShowConfirmCancelModal(true);
+            }}
+        >
+            Avboka förfrågan
+        </Button>;
+    }
 
     return (
         <>
@@ -110,19 +149,9 @@ const CleaningsPerType = ({onUpdate}: ICleaningsPerType) => {
                             <td>{translateJobType(job.type)}</td>
                             <td>
                                 {
-                                    job.status === "WAITING_FOR_APPROVAL"
-                                        ?
-                                            <Button
-                                                variant="dark"
-                                                className="btn-dark-purple"
-                                                onClick={() => {
-                                                    setJobId(job.id);
-                                                    setShowConfirmModal(true);
-                                                }}
-                                            >
-                                                Lämna återkoppling
-                                            </Button>
-                                        : translateStatus(job.status)
+                                    job.status === "WAITING_FOR_APPROVAL" ? renderFeedbackButton(job) :
+                                        job.status === "OPEN" ? renderCancelButton(job)
+                                            : translateStatus(job.status)
                                 }
                             </td>
                         </tr>
@@ -146,6 +175,14 @@ const CleaningsPerType = ({onUpdate}: ICleaningsPerType) => {
                     )}
                 </Pagination>
             </div>
+
+            <ConfirmCancelModal
+                show={showConfirmCancelModal}
+                onClose={closeConfirmCancelModal}
+                jobId={jobId}
+                handleRequest={handleCancelRequest}
+                isSendingRequest={isSendingRequest}
+            />
 
             {/* TODO: Extract modal to separate component... */}
             <Modal
@@ -181,13 +218,13 @@ const CleaningsPerType = ({onUpdate}: ICleaningsPerType) => {
                 </Modal.Body>
                 <Modal.Footer className="bg-light-brown border-0">
                     <Button variant="danger" onClick={() => handleFeedback(jobId, false, message)}>
-                        {isSendingFeedback ? "Skickar..." : "Ej godkänd"}
+                        {isSendingRequest ? "Skickar..." : "Ej godkänd"}
                     </Button>
                     <Button
                         variant="success"
                         onClick={() => handleFeedback(jobId, true, message)}
                     >
-                        {isSendingFeedback ? "Skickar..." : "Godkänd"}
+                        {isSendingRequest ? "Skickar..." : "Godkänd"}
                     </Button>
                 </Modal.Footer>
             </Modal>
