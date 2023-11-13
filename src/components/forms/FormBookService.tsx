@@ -82,7 +82,7 @@ const BookingForm = () => {
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <label>Vilken typ av städtjänst önskar du boka?</label>
+                {/* <label>Vilken typ av städtjänst önskar du boka?</label>
                 <Row xs={1} md={2} lg={4}>
                     {services.map((service, index) => (
                         <Col key={index} className="mb-5 text-center">
@@ -115,9 +115,9 @@ const BookingForm = () => {
                             </Card>
                         </Col>
                     ))}
-                </Row>
+                </Row> */}
 
-                {/*                 <FormField
+                <FormField
                     fieldName="type"
                     label="Val av städtjänst"
                     labelDescription="Vilken typ av städtjänst önskar du boka?"
@@ -125,7 +125,7 @@ const BookingForm = () => {
                     options={[ "BASIC", "TOPP", "DIAMOND", "WINDOW" ]}
                     fieldError={errors.type}
                     register={register}
-                /> */}
+                />
 
                 <FormField
                     fieldName="date"
