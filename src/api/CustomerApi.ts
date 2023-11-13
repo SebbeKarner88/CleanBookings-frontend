@@ -114,6 +114,7 @@ export async function bookService(
     customerId: string,
     type: string,
     date: string,
+    timeslot: string,
     message?: string | undefined
 ) {
     try {
@@ -123,6 +124,7 @@ export async function bookService(
                 customerId: customerId,
                 type: type,
                 date: date,
+                timeslot: timeslot,
                 message: message
             },
             {
@@ -137,7 +139,7 @@ export async function bookService(
         if (error.response.status == 401) {
             const response = await refreshToken();
             if (response?.status == 200)
-                return bookService(customerId, type, date, message);
+                return bookService(customerId, type, date, timeslot, message);
         } else {
             console.error(error);
         }

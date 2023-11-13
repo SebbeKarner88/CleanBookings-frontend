@@ -15,6 +15,7 @@ interface IFormField<T extends FieldValues> {
     defaultValue?: string
     checked?: boolean
     min?: string
+    radioLabel?: string
 }
 
 export function FormField<T extends FieldValues>({
@@ -28,7 +29,8 @@ export function FormField<T extends FieldValues>({
     labelDescription,
     placeholder,
     defaultValue,
-    min
+    min,
+    radioLabel
 }: IFormField<T>) {
     return (
         <>

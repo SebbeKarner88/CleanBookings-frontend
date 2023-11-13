@@ -17,6 +17,8 @@ const schema = z.object({
     date: z
         .string()
         .nonempty({ message: "Datum är ett obligatoriskt fält." }),
+    timeslot: z
+        .enum([ "MORNING", "AFTERNOON", "EVENING" ]),
     message: z
         .string()
 });
@@ -26,6 +28,7 @@ type FormData = z.infer<typeof schema>;
 type Request = {
     type: string;
     date: string;
+    timeslot: string;
     message?: string | undefined;
 }
 
@@ -55,6 +58,7 @@ const BookingForm = () => {
                     customerId,
                     requestData.type,
                     requestData.date,
+                    requestData.timeslot,
                     requestData.message
                 );
                 if (response?.status == 201) {
@@ -75,7 +79,7 @@ const BookingForm = () => {
     }
 
     async function onSubmit(data: FieldValues) {
-        setRequestData({ type: data.type, date: data.date, message: data.message });
+        setRequestData({ type: data.type, date: data.date, timeslot: data.timeslot, message: data.message });
         setShowRequestModal(true);
     }
 
@@ -124,6 +128,16 @@ const BookingForm = () => {
                     inputType="radio"
                     options={[ "BASIC", "TOPP", "DIAMOND", "WINDOW" ]}
                     fieldError={errors.type}
+                    register={register}
+                />
+
+                <FormField
+                    fieldName="timeslot"
+                    label="Tid"
+                    labelDescription="När vill du att vi ska städa?"
+                    inputType="radio"
+                    options={[ "MORNING", "AFTERNOON", "EVENING" ]}
+                    fieldError={errors.timeslot}
                     register={register}
                 />
 
