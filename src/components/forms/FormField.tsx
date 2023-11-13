@@ -1,6 +1,11 @@
 import {FieldError, FieldValues, Path, UseFormRegister} from "react-hook-form";
 import { HTMLInputTypeAttribute } from "react";
 
+type option = {
+    value: string,
+    label: string
+};
+
 interface IFormField<T extends FieldValues> {
     fieldError: FieldError | undefined;
     customError?: string | null;
@@ -8,7 +13,7 @@ interface IFormField<T extends FieldValues> {
     label: string;
     fieldName: string;
     inputType: HTMLInputTypeAttribute;
-    options?: string[] | null;
+    options?: option[] | null;
     labelDescription?: string;
     placeholder?: string
     value?: string
@@ -29,8 +34,7 @@ export function FormField<T extends FieldValues>({
     labelDescription,
     placeholder,
     defaultValue,
-    min,
-    radioLabel
+    min
 }: IFormField<T>) {
     return (
         <>
@@ -69,19 +73,19 @@ export function FormField<T extends FieldValues>({
         return <div>
             {
                 options?.map((option) => (
-                    <div key={option} className="form-check form-check-inline px-0 my-1">
+                    <div key={option.value} className="form-check form-check-inline px-0 my-1">
                         <input
                             {...register(fieldName as Path<T>)}
                             type="radio"
-                            value={option}
-                            id={`${fieldName}-${option}`}
+                            value={option.value}
+                            id={`${fieldName}-${option.value}`}
                             className={fieldError ? "btn-check is-invalid" : "btn-check"}
                         />
                         <label
-                            htmlFor={`${fieldName}-${option}`}
+                            htmlFor={`${fieldName}-${option.value}`}
                             className="btn btn-outline-dark"
                         >
-                            {option}
+                            {option.label}
                         </label>
                     </div>
                 ))}
