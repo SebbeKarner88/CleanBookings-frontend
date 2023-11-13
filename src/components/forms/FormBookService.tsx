@@ -82,43 +82,42 @@ const BookingForm = () => {
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
-
+                <label>Vilken typ av städtjänst önskar du boka?</label>
                 <Row xs={1} md={2} lg={4}>
                     {services.map((service, index) => (
                         <Col key={index} className="mb-5 text-center">
-                            <label>
-                                <input 
+                            <input
                                 {...register("type")}
-                                onClick={() => setIsActive(true)} 
-                                type="radio" 
-                                name="type" 
-                                style={{ display: 'none' }} />
-                                <Card                                                                       // FEL. MARKERAR ALLA KORT
-                                    style={{ backgroundColor: 'var(--beige)', width: '100%', cursor: 'pointer', border: isActive ? '2px solid black' : 'none' }}
-                                    onClick={() => {
-                                        // NÅN LOGIC HÄR FÖR ATT SKICKA MED TYPE TILL HANDLESUBMIT??
-                                        console.log(service.type)
-                                    }}>
-                                    <Card.Body>
-                                        <Card.Title className="cardTitle">
-                                            {service.title}
-                                        </Card.Title>
-                                        <Card.Text>
-                                            {service.description}
-                                        </Card.Text>
-                                    </Card.Body>
-                                    <Card.Footer>
-                                        <small className="cardFooter">
-                                            {service.price}
-                                        </small>
-                                    </Card.Footer>
-                                </Card>
-                            </label>
+                                type="radio"
+                                name="type"
+                                style={{ display: 'none' }}
+                                value={service.type} />
+                            <Card                                                                       // OBS FEL. MARKERAR ALLA KORT
+                                style={{ backgroundColor: 'var(--beige)', width: '100%', cursor: 'pointer', border: isActive ? '2px solid black' : 'none' }}
+                                onClick={() => {
+                                    // NÅN LOGIC HÄR FÖR ATT SKICKA MED TYPE TILL HANDLESUBMIT??
+                                    setIsActive(true)
+                                    console.log(service.type)
+                                }}>
+                                <Card.Body>
+                                    <Card.Title className="cardTitle">
+                                        {service.title}
+                                    </Card.Title>
+                                    <Card.Text>
+                                        {service.description}
+                                    </Card.Text>
+                                </Card.Body>
+                                <Card.Footer>
+                                    <small className="cardFooter">
+                                        {service.price}
+                                    </small>
+                                </Card.Footer>
+                            </Card>
                         </Col>
                     ))}
                 </Row>
 
-{/*                 <FormField
+                {/*                 <FormField
                     fieldName="type"
                     label="Val av städtjänst"
                     labelDescription="Vilken typ av städtjänst önskar du boka?"
@@ -136,7 +135,6 @@ const BookingForm = () => {
                     fieldError={errors.date}
                     register={register}
                 />
-
 
                 <div>
                     <label htmlFor="message" className="form-label fw-semibold">
