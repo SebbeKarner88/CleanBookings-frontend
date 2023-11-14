@@ -44,7 +44,7 @@ export default function TermsConditionsModal({ onShow, onClose }: ITermsConditio
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={onClose} className="btn-dark-purple">
-                    Close
+                    {language === "sv" ? "Stäng" : "Close"}
                 </Button>
             </Modal.Footer>
         </Modal>
