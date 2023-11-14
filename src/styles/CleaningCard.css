@@ -36,3 +36,20 @@
     font-weight: bold;
     font-size: large;
 }
+
+.card-input-element {
+    display: none;
+}
+
+.card-input {
+    background-color: var(--beige); 
+    width: 100%;
+}
+
+.card-input:hover {
+    cursor: pointer;
+}
+
+.card-input-element:checked + .card-input {
+     box-shadow: 0 0 1px 1px #000000;
+ }

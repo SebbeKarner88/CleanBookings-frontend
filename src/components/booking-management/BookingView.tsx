@@ -1,7 +1,6 @@
 import NavBar from "../../common/NavBar.tsx"
 import BookingForm from "../forms/FormBookService"
 import { Footer } from "../../common/Footer.tsx";
-import { TypesOfServices } from "./TypesOfServices.tsx";
 
 export default function BookingView() {
 
@@ -13,7 +12,6 @@ export default function BookingView() {
             </h1>
             <div className="bg-light-brown container p-2 p-md-4 my-4 mb-5 rounded rounded-4">
                 <div className="container text-start">
-                    <TypesOfServices />
                     <BookingForm />
                 </div>
             </div>

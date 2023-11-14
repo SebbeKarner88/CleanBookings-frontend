@@ -45,7 +45,6 @@ const BookingForm = () => {
     const [ isSendingRequest, setIsSendingRequest ] = useState(false);
     const [ requestData, setRequestData ] = useState<Request | null>(null);
     const navigate = useNavigate();
-    const [ isActive, setIsActive ] = useState(false)
 
     async function sendRequest() {
         if (requestData != null) {
@@ -82,42 +81,39 @@ const BookingForm = () => {
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
-                {/* <label>Vilken typ av städtjänst önskar du boka?</label>
                 <Row xs={1} md={2} lg={4}>
                     {services.map((service, index) => (
-                        <Col key={index} className="mb-5 text-center">
-                            <input
-                                {...register("type")}
-                                type="radio"
-                                name="type"
-                                style={{ display: 'none' }}
-                                value={service.type} />
-                            <Card                                                                       // OBS FEL. MARKERAR ALLA KORT
-                                style={{ backgroundColor: 'var(--beige)', width: '100%', cursor: 'pointer', border: isActive ? '2px solid black' : 'none' }}
-                                onClick={() => {
-                                    // NÅN LOGIC HÄR FÖR ATT SKICKA MED TYPE TILL HANDLESUBMIT??
-                                    setIsActive(true)
-                                    console.log(service.type)
-                                }}>
-                                <Card.Body>
-                                    <Card.Title className="cardTitle">
-                                        {service.title}
-                                    </Card.Title>
-                                    <Card.Text>
-                                        {service.description}
-                                    </Card.Text>
-                                </Card.Body>
-                                <Card.Footer>
-                                    <small className="cardFooter">
-                                        {service.price}
-                                    </small>
-                                </Card.Footer>
-                            </Card>
-                        </Col>
+                        <label htmlFor={service.title}>
+                            <Col key={index} className="mb-5 text-center">
+                                <input
+                                    {...register("type")}
+                                    type="radio"
+                                    name="type"
+                                    value={service.type}
+                                    key={service.type}
+                                    id={service.type}
+                                    className='card-input-element' />
+                                <Card className='card-input'>
+                                    <Card.Body>
+                                        <Card.Title className="cardTitle">
+                                            {service.title}
+                                        </Card.Title>
+                                        <Card.Text>
+                                            {service.description}
+                                        </Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer>
+                                        <small className="cardFooter">
+                                            {service.price}
+                                        </small>
+                                    </Card.Footer>
+                                </Card>
+                            </Col>
+                        </label>
                     ))}
-                </Row> */}
+                </Row>
 
-                <FormField
+                {/* <FormField
                     fieldName="type"
                     label="Val av städtjänst"
                     labelDescription="Vilken typ av städtjänst önskar du boka?"
@@ -125,7 +121,7 @@ const BookingForm = () => {
                     options={[ "BASIC", "TOPP", "DIAMOND", "WINDOW" ]}
                     fieldError={errors.type}
                     register={register}
-                />
+                /> */}
 
                 <FormField
                     fieldName="date"
