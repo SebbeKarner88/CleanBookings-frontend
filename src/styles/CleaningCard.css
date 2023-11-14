@@ -44,6 +44,7 @@
 .card-input {
     background-color: var(--beige); 
     width: 100%;
+    min-height: 230px;
 }
 
 .card-input:hover {

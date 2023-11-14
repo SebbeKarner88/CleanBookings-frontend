@@ -3,7 +3,7 @@ export const services = [
         image: 'diamond',
         title: 'DIAMANT',
         type: 'DIAMOND',
-        description: 'Vår 100% steril garantistäd\nPerfekt för dig som ska utföra en operation i vardagsrummet.',
+        description: 'Vår 100% steril garantistäd.\nPerfekt för dig som ska utföra en operation i vardagsrummet.',
         items: ['Dammsugning av alla ytor', 'Dammtorka möbler', 'Våttorka golv', 'Städning av kök', 'Desinficering', 'Tvätt av kund' ],
         price: '2495kr'
     },
@@ -19,7 +19,7 @@ export const services = [
         image: 'basic',
         title: 'BASIC',
         type: 'BASIC',
-        description: 'Basic Städning. Det mest prisvärda alternativet, Storsäljaren.',
+        description: 'Basic städning. Det mest prisvärda alternativet! Storsäljaren.',
         items: ['Dammsugning av alla ytor', 'Dammtorka möbler', 'Våttorka golv'],
         price: '795kr'
     },
@@ -27,7 +27,7 @@ export const services = [
         image: 'window',
         title: 'FÖNSTER',
         type: 'WINDOW',
-        description: 'En klassisk fönstertvätt.',
+        description: 'En klassisk fönstertvätt. Dina grannar kommer kunna se allt du gör och lite till.',
         items: [],
         price: '795kr'
     }

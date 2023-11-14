@@ -43,12 +43,12 @@ const timeslotOptions: option[] = [
     { value: "EVENING", label: "17-20" }
 ]
 
-const serviceOptions: option[] = [
+/* const serviceOptions: option[] = [
     { value: "BASIC", label: "BASIC-städning" },
     { value: "TOPP", label: "TOPP-städning" },
     { value: "DIAMOND", label: "DIAMANT-städning" },
     { value: "WINDOW", label: "Fönsterputsning" }
-]
+] */
 
 const BookingForm = () => {
     const { customerId } = useContext(AuthContext);
@@ -104,7 +104,7 @@ const BookingForm = () => {
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label className="form-label fw-semibold mb-3">Vilken tjänst vill du boka?</label>
-                <Row xs={1} md={2} lg={4}>
+                <Row xs={2} md={2} lg={4}>
                     {services.map((service, index) => (
                         <label htmlFor={service.type}>
                             <Col key={index} className="mb-4 text-center">
@@ -118,7 +118,7 @@ const BookingForm = () => {
                                     className='card-input-element' />
                                 <Card className='card-input'>
                                     <Card.Body>
-                                        <Card.Title className="cardTitle">
+                                        <Card.Title className="cardTitle mb-2">
                                             {service.title}
                                         </Card.Title>
                                         <Card.Text>
@@ -136,7 +136,7 @@ const BookingForm = () => {
                     ))}
                 </Row>
 
-                {/* <FormField
+{/*                 <FormField
                     fieldName="type"
                     label="Val av städtjänst"
                     labelDescription="Vilken typ av städtjänst önskar du boka?"
