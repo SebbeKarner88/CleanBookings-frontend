@@ -1,24 +1,24 @@
-import {useContext, useState} from 'react'
-import {FieldValues, useForm} from "react-hook-form";
-import {z} from 'zod';
-import {zodResolver} from "@hookform/resolvers/zod";
-import {bookService} from "../../api/CustomerApi.ts";
-import {FormField} from "./FormField.tsx";
-import {AuthContext} from '../../context/AuthContext.tsx';
-import {Button, Card, Col, Row} from 'react-bootstrap';
+import { useContext, useState } from 'react'
+import { FieldValues, useForm } from "react-hook-form";
+import { z } from 'zod';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { bookService } from "../../api/CustomerApi.ts";
+import { FormField } from "./FormField.tsx";
+import { AuthContext } from '../../context/AuthContext.tsx';
+import { Button, Card, Col, Row } from 'react-bootstrap';
 import BookingConfirmationModal from "../modals/BookingConfirmationModal.tsx";
 import BookingRequestModal from "../modals/BookingRequestModal.tsx";
-import {useNavigate} from "react-router-dom";
-import {services} from '../../utils/services.ts';
+import { useNavigate } from "react-router-dom";
+import { services } from '../../utils/services.ts';
 
 const schema = z.object({
     type: z
-        .enum(["BASIC", "TOPP", "DIAMOND", "WINDOW"]),
+        .enum([ "BASIC", "TOPP", "DIAMOND", "WINDOW" ]),
     date: z
         .string()
-        .nonempty({message: "Datum är ett obligatoriskt fält."}),
+        .nonempty({ message: "Datum är ett obligatoriskt fält." }),
     timeslot: z
-        .enum(["MORNING", "AFTERNOON", "EVENING"]),
+        .enum([ "MORNING", "AFTERNOON", "EVENING" ]),
     message: z
         .string()
 });
@@ -38,35 +38,34 @@ type option = {
 };
 
 const timeslotOptions: option[] = [
-    {value: "MORNING", label: "8-12"},
-    {value: "AFTERNOON", label: "13-16"},
-    {value: "EVENING", label: "17-20"}
+    { value: "MORNING", label: "8-12" },
+    { value: "AFTERNOON", label: "13-16" },
+    { value: "EVENING", label: "17-20" }
 ]
 
 const serviceOptions: option[] = [
-    {value: "BASIC", label: "BASIC-städning"},
-    {value: "TOPP", label: "TOPP-städning"},
-    {value: "DIAMOND", label: "DIAMANT-städning"},
-    {value: "WINDOW", label: "Fönsterputsning"}
+    { value: "BASIC", label: "BASIC-städning" },
+    { value: "TOPP", label: "TOPP-städning" },
+    { value: "DIAMOND", label: "DIAMANT-städning" },
+    { value: "WINDOW", label: "Fönsterputsning" }
 ]
 
 const BookingForm = () => {
-    const {customerId} = useContext(AuthContext);
+    const { customerId } = useContext(AuthContext);
     const {
         register,
         handleSubmit,
-        formState: {errors}
+        formState: { errors }
     } = useForm<FormData>({
         resolver: zodResolver(schema)
     });
-    const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-    const [showRequestModal, setShowRequestModal] = useState<boolean>(false);
+    const [ showConfirmationModal, setShowConfirmationModal ] = useState(false);
+    const [ showRequestModal, setShowRequestModal ] = useState<boolean>(false);
     const closeConfirmationModal = () => setShowConfirmationModal(false);
     const closeRequestModal = () => setShowRequestModal(false);
-    const [isSendingRequest, setIsSendingRequest] = useState(false);
-    const [requestData, setRequestData] = useState<Request | null>(null);
+    const [ isSendingRequest, setIsSendingRequest ] = useState(false);
+    const [ requestData, setRequestData ] = useState<Request | null>(null);
     const navigate = useNavigate();
-    const [isActive, setIsActive] = useState(false)
 
     async function sendRequest() {
         if (requestData != null) {
@@ -84,7 +83,7 @@ const BookingForm = () => {
                     closeRequestModal();
                     // setShowConfirmationModal(true);
                     console.log(response.data.html_snippet);
-                    navigate("/checkout", {state: {snippet: response.data.html_snippet}});
+                    navigate("/checkout", { state: { snippet: response.data.html_snippet } });
                 } else {
                     setIsSendingRequest(false);
                     closeRequestModal();
@@ -97,17 +96,18 @@ const BookingForm = () => {
     }
 
     async function onSubmit(data: FieldValues) {
-        setRequestData({type: data.type, date: data.date, timeslot: data.timeslot, message: data.message});
+        setRequestData({ type: data.type, date: data.date, timeslot: data.timeslot, message: data.message });
         setShowRequestModal(true);
     }
 
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
+                <label className="form-label fw-semibold mb-3">Vilken tjänst vill du boka?</label>
                 <Row xs={1} md={2} lg={4}>
                     {services.map((service, index) => (
-                        <label htmlFor={service.title}>
-                            <Col key={index} className="mb-5 text-center">
+                        <label htmlFor={service.type}>
+                            <Col key={index} className="mb-4 text-center">
                                 <input
                                     {...register("type")}
                                     type="radio"
