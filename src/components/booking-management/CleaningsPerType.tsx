@@ -165,11 +165,11 @@ const CleaningsPerType = ({ onUpdate }: ICleaningsPerType) => {
             </div>
 
             <div className="d-flex justify-content-center">
-                <Pagination>
+                <Pagination> 
                     {Array.from({ length: Math.ceil(cleanings.length / jobsPerPage) }).map(
                         (_, index) => (
                             <Pagination.Item
-                                linkStyle={{backgroundColor: 'var(--dark-purple)'}}
+                                linkStyle={{ backgroundColor: 'var(--dark-purple)', border: 'none', color: 'white' }}
                                 key={index}
                                 active={index + 1 === currentPage}
                                 onClick={() => paginate(index + 1)}
