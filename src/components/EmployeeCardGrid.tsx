@@ -20,8 +20,8 @@ interface Icleaner {
 function EmployeeCardGrid() {
     const [ cleaners, setCleaners ] = useState<Icleaner[]>([]);
     const [ show, setShow ] = useState(0);
-    const [ isDesktop, setDesktop ] = useState(window.innerWidth > 700);
-    const [ isMobile, setMobile ] = useState(window.innerWidth < 700);
+    const [ isDesktop, setDesktop ] = useState(window.innerWidth > 1000);
+    const [ isMobile, setMobile ] = useState(window.innerWidth < 1000);
 
     const updateMedia = () => {
         setDesktop(window.innerWidth > 800);
@@ -92,34 +92,29 @@ function EmployeeCardGrid() {
                 </Carousel>
             }
 
-
             {isMobile &&
                 <div>
-                    {cleaners.reduce(reduceCleaners, [])
-                        .map((item: any, index: number) => (
-                            <Row key={index} xs={1} md={2}>
-                                {item.map((item: any, index: number) => {
-                                    return (
-                                        <Col key={index} className=''>
-                                            <Card className='empCard'>
-                                                <Card.Body>
-                                                    <Card.Title className='fw-bold' style={{ fontSize: '15px' }}>
-                                                        {item.firstName + " " + item.lastName}
-                                                    </Card.Title>
-                                                    <Card.Text className="text-start" style={{ fontSize: '12px' }}>
-                                                        <FaPhone /> {item.phoneNumber} <br />
-                                                        <FaEnvelopeSquare /> <a href={`mailto:${item.emailAddress}`} className="email-link">{item.emailAddress}</a>
-                                                    </Card.Text>
-                                                </Card.Body>
-                                            </Card>
-                                        </Col>
-                                    )
-                                })}
-                            </Row>
-                        ))}
+                    <Row xs={1} sm={2} md={2}>
+                        {cleaners.map((item: any, index: number) => {
+                            return (
+                                <Col key={index} className='px-4'>
+                                    <Card className='empCard'>
+                                        <Card.Body>
+                                            <Card.Title className='fw-bold' style={{ fontSize: '15px' }}>
+                                                {item.firstName + " " + item.lastName}
+                                            </Card.Title>
+                                            <Card.Text className="text-start" style={{ fontSize: '12px' }}>
+                                                <FaPhone /> {item.phoneNumber} <br />
+                                                <FaEnvelopeSquare /> <a href={`mailto:${item.emailAddress}`} className="email-link">{item.emailAddress}</a>
+                                            </Card.Text>
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
+                            )
+                        })}
+                    </Row>
                 </div>
             }
-
         </>
     );
 }
