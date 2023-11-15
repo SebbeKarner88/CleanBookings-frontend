@@ -6,7 +6,7 @@ import formatDate from "../../utils/formatDate.ts";
 import translateJobType from "../../utils/translateJobType.ts";
 import convertTimeslot from "../../utils/convertTimslot.ts";
 
-interface Job {
+export interface Job {
     id: string;
     bookedDate: string;
     timeslot: string;

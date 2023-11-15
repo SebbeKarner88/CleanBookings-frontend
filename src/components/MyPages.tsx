@@ -8,15 +8,7 @@ import { Button } from "react-bootstrap";
 import { IoSettingsOutline } from "react-icons/io5";
 import '../styles/MyPages.css'
 import { getJobsByStatus } from "../api/CustomerApi.ts";
-import ClosedJobsTable from "./booking-management/ClosedJobsTable.tsx";
-
-interface Job {
-    id: string;
-    bookedDate: string;
-    type: string;
-    message: string;
-    status: string;
-}
+import ClosedJobsTable, { Job } from "./booking-management/ClosedJobsTable.tsx";
 
 function MyPages() {
     const { customerId, username } = useContext(AuthContext);
