@@ -1,50 +1,42 @@
 import Button from 'react-bootstrap/Button';
-import {ChangeEvent, useCallback, useContext, useEffect, useState} from 'react';
-import {AuthContext} from '../../context/AuthContext';
+import { ChangeEvent, useCallback, useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 import Pagination from 'react-bootstrap/Pagination';
 import SortJobByStatus from "./SortJobByStatus.tsx";
-import {cancelJob, getJobsByStatus, handleCustomerFeedback} from "../../api/CustomerApi.ts";
-import {Alert} from "react-bootstrap";
+import { cancelJob, getJobsByStatus, handleCustomerFeedback } from "../../api/CustomerApi.ts";
+import { Alert } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import formatDate from "../../utils/formatDate.ts";
 import translateStatus from "../../utils/translateStatus.ts";
 import translateJobType from "../../utils/translateJobType.ts";
 import ConfirmCancelModal from "../modals/ConfirmCancelModal.tsx";
 import convertTimeslot from "../../utils/convertTimslot.ts";
+import { Job } from './ClosedJobsTable.tsx';
 
 type JobStatus = undefined | "OPEN" | "ASSIGNED" | "WAITING_FOR_APPROVAL" | "NOT_APPROVED" | "APPROVED" | "CLOSED";
-
-interface Job {
-    id: string;
-    bookedDate: string;
-    timeslot: string;
-    type: string;
-    message: string;
-    status: string;
-}
 
 interface ICleaningsPerType {
     onUpdate: () => void;
 }
 
-const CleaningsPerType = ({onUpdate}: ICleaningsPerType) => {
-    const {customerId} = useContext(AuthContext);
-    const [selectedStatus, setSelectedStatus] = useState<JobStatus>(undefined);
+const CleaningsPerType = ({ onUpdate }: ICleaningsPerType) => {
+    const { customerId } = useContext(AuthContext);
+    const [ selectedStatus, setSelectedStatus ] = useState<JobStatus>(undefined);
     const handleStatusChange = (event: ChangeEvent<HTMLSelectElement>) => setSelectedStatus(event.target.value as JobStatus);
-    const [cleanings, setCleanings] = useState<Job[]>([]);
-    const [jobId, setJobId] = useState<string>("");
-    const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
+    const [ cleanings, setCleanings ] = useState<Job[]>([]);
+    const [ jobId, setJobId ] = useState<string>("");
+    const [ showConfirmModal, setShowConfirmModal ] = useState<boolean>(false);
     const closeConfirmModal = () => setShowConfirmModal(false);
-    const [showConfirmCancelModal, setShowConfirmCancelModal] = useState<boolean>(false);
+    const [ showConfirmCancelModal, setShowConfirmCancelModal ] = useState<boolean>(false);
     const closeConfirmCancelModal = () => setShowConfirmCancelModal(false);
-    const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
-    const [message, setMessage] = useState<string>("");
-    const [isSendingRequest, setIsSendingRequest] = useState<boolean>(false);
-    const [updateNeeded, setUpdateNeeded] = useState<boolean>(false);
+    const [ errorMessage, setErrorMessage ] = useState<string | undefined>(undefined);
+    const [ message, setMessage ] = useState<string>("");
+    const [ isSendingRequest, setIsSendingRequest ] = useState<boolean>(false);
+    const [ updateNeeded, setUpdateNeeded ] = useState<boolean>(false);
 
     // Pagination logic
-    const [currentPage, setCurrentPage] = useState<number>(1);
-    const [jobsPerPage] = useState<number>(5); // Number of jobs to display per page
+    const [ currentPage, setCurrentPage ] = useState<number>(1);
+    const [ jobsPerPage ] = useState<number>(5); // Number of jobs to display per page
     const indexOfLastJob = currentPage * jobsPerPage;
     const indexOfFirstJob = indexOfLastJob - jobsPerPage;
     const currentJobs = cleanings.slice(indexOfFirstJob, indexOfLastJob);
@@ -65,9 +57,9 @@ const CleaningsPerType = ({onUpdate}: ICleaningsPerType) => {
             closeConfirmModal();
         } else
             setErrorMessage(response?.data);
-    }, [customerId]);
+    }, [ customerId ]);
 
-    const handleCancelRequest = async() => {
+    const handleCancelRequest = async () => {
         setIsSendingRequest(true);
         const response = await cancelJob(jobId);
         if (response?.status == 204) {
@@ -79,20 +71,20 @@ const CleaningsPerType = ({onUpdate}: ICleaningsPerType) => {
     }
 
     useEffect(() => {
-            const fetchJobsByStatus = async () => {
-                try {
-                    const response = await getJobsByStatus(
-                        customerId,
-                        selectedStatus
-                    );
-                    if (response?.status === 200)
-                        return response.data;
-                } catch (error) {
-                    console.error(error);
-                }
+        const fetchJobsByStatus = async () => {
+            try {
+                const response = await getJobsByStatus(
+                    customerId,
+                    selectedStatus
+                );
+                if (response?.status === 200)
+                    return response.data;
+            } catch (error) {
+                console.error(error);
             }
-            fetchJobsByStatus().then(data => setCleanings(data));
-        }, [customerId, selectedStatus, updateNeeded, isSendingRequest]
+        }
+        fetchJobsByStatus().then(data => setCleanings(data));
+    }, [ customerId, selectedStatus, updateNeeded, isSendingRequest ]
     );
 
     function renderFeedbackButton(job: Job) {
@@ -122,7 +114,7 @@ const CleaningsPerType = ({onUpdate}: ICleaningsPerType) => {
 
     return (
         <>
-            <SortJobByStatus selectedStatus={selectedStatus} handleStatusChange={handleStatusChange}/>
+            <SortJobByStatus selectedStatus={selectedStatus} handleStatusChange={handleStatusChange} />
             {
                 errorMessage != undefined &&
                 <Alert
@@ -136,37 +128,37 @@ const CleaningsPerType = ({onUpdate}: ICleaningsPerType) => {
             <div className="table-responsive">
                 <table className="table table-striped">
                     <thead>
-                    <tr>
-                        <th scope="col">Boknings-ID</th>
-                        <th scope="col">Datum</th>
-                        <th scope="col">Tid</th>
-                        <th scope="col">Städtjänst</th>
-                        <th scope="col">Status</th>
-                    </tr>
+                        <tr>
+                            <th scope="col">Boknings-ID</th>
+                            <th scope="col">Datum</th>
+                            <th scope="col">Tid</th>
+                            <th scope="col">Städtjänst</th>
+                            <th scope="col">Status</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    {currentJobs.filter((job: Job) => !["APPROVED", "CLOSED"].includes(job.status)).map((job: Job) => (
-                        <tr key={job.id}>
-                            <td>{job.id}</td>
-                            <td>{formatDate(job.bookedDate)}</td>
-                            <td>{convertTimeslot(job.timeslot)}</td>
-                            <td>{translateJobType(job.type)}</td>
-                            <td>
-                                {
-                                    job.status === "WAITING_FOR_APPROVAL" ? renderFeedbackButton(job) :
-                                        job.status === "OPEN" ? renderCancelButton(job)
-                                            : translateStatus(job.status)
-                                }
-                            </td>
-                        </tr>
-                    ))}
+                        {currentJobs.filter((job: Job) => ![ "APPROVED", "CLOSED" ].includes(job.status)).map((job: Job) => (
+                            <tr key={job.id}>
+                                <td>{job.id}</td>
+                                <td>{formatDate(job.bookedDate)}</td>
+                                <td>{convertTimeslot(job.timeslot)}</td>
+                                <td>{translateJobType(job.type)}</td>
+                                <td>
+                                    {
+                                        job.status === "WAITING_FOR_APPROVAL" ? renderFeedbackButton(job) :
+                                            job.status === "OPEN" ? renderCancelButton(job)
+                                                : translateStatus(job.status)
+                                    }
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
 
             <div className="d-flex justify-content-center">
                 <Pagination>
-                    {Array.from({length: Math.ceil(cleanings.length / jobsPerPage)}).map(
+                    {Array.from({ length: Math.ceil(cleanings.length / jobsPerPage) }).map(
                         (_, index) => (
                             <Pagination.Item
                                 key={index}
