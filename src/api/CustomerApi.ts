@@ -310,7 +310,8 @@ export async function sendCustomerMessage(
     name: string,
     email: string,
     subject: string,
-    message: string
+    message: string,
+    htmlSnippet: string
 ) {
     try {
         const response = await api.post(
@@ -319,8 +320,9 @@ export async function sendCustomerMessage(
                 name: name,
                 email: email,
                 subject: subject,
-                message: message
-            },
+                message: message,
+                htmlSnippet: htmlSnippet
+            }
         )
         if (response.status == 200) {
             return response;

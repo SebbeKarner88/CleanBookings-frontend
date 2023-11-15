@@ -1,5 +1,5 @@
 import {FieldError, FieldValues, Path, UseFormRegister} from "react-hook-form";
-import { HTMLInputTypeAttribute } from "react";
+import {HTMLInputTypeAttribute} from "react";
 
 type option = {
     value: string,
@@ -24,18 +24,18 @@ interface IFormField<T extends FieldValues> {
 }
 
 export function FormField<T extends FieldValues>({
-    fieldError,
-    customError,
-    register,
-    label,
-    fieldName,
-    inputType,
-    options,
-    labelDescription,
-    placeholder,
-    defaultValue,
-    min
-}: IFormField<T>) {
+                                                     fieldError,
+                                                     customError,
+                                                     register,
+                                                     label,
+                                                     fieldName,
+                                                     inputType,
+                                                     options,
+                                                     labelDescription,
+                                                     placeholder,
+                                                     defaultValue,
+                                                     min
+                                                 }: IFormField<T>) {
     return (
         <>
             <div className="mb-3">

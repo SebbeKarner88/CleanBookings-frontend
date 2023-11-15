@@ -8,6 +8,8 @@ import NavBar from '../common/NavBar';
 import { Footer } from '../common/Footer';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { render } from '@react-email/render';
+import {Email} from "./emails/Email.tsx";
 
 const schema = z.object({
     name: z
@@ -40,9 +42,14 @@ const Contact = () => {
     });
 
     async function onSubmit(data: FieldValues) {
+        // TODO: Generate a snippet that actually contains the data from the form below...
+        const htmlSnippet = render(<Email />, {
+            pretty: true,
+        });
+
         setIsAssigning(true)
         try {
-            const response = await sendCustomerMessage(data.name, data.email, data.subject, data.message);
+            const response = await sendCustomerMessage(data.name, data.email, data.subject, data.message, htmlSnippet);
             if (response?.status == 200) {
                 setIsAssigning(false)
                 setModalVisible(!modalVisible)
