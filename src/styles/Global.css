@@ -62,9 +62,9 @@
     color: var(--dark-purple);
 }
 
-/*.text-mauve {*/
-/*    color: var(--mauve);*/
-/*}*/
+.text-brown {
+    color: var(--brown);
+}
 
 .text-dark-beige {
     color: var(--dark-beige);
