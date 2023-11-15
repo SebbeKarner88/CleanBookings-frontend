@@ -11,7 +11,15 @@ import translateStatus from "../../utils/translateStatus.ts";
 import translateJobType from "../../utils/translateJobType.ts";
 import ConfirmCancelModal from "../modals/ConfirmCancelModal.tsx";
 import convertTimeslot from "../../utils/convertTimslot.ts";
-import { Job } from './ClosedJobsTable.tsx';
+
+export interface Job {
+    id: string;
+    bookedDate: string;
+    timeslot: string;
+    type: string;
+    message: string;
+    status: string;
+}
 
 type JobStatus = undefined | "OPEN" | "ASSIGNED" | "WAITING_FOR_APPROVAL" | "NOT_APPROVED" | "APPROVED" | "CLOSED";
 
@@ -109,7 +117,7 @@ const CleaningsPerType = ({ onUpdate }: ICleaningsPerType) => {
             }}
         >
             Avboka förfrågan
-        </Button>;
+        </Button>
     }
 
     return (
@@ -161,6 +169,7 @@ const CleaningsPerType = ({ onUpdate }: ICleaningsPerType) => {
                     {Array.from({ length: Math.ceil(cleanings.length / jobsPerPage) }).map(
                         (_, index) => (
                             <Pagination.Item
+                                linkStyle={{backgroundColor: 'var(--dark-purple)'}}
                                 key={index}
                                 active={index + 1 === currentPage}
                                 onClick={() => paginate(index + 1)}

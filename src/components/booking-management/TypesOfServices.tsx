@@ -1,9 +1,7 @@
 import { Card, Col, Row } from "react-bootstrap"
 import { services } from "../../utils/services"
-import { useState } from "react"
 
 export const TypesOfServices = () => {
-    const [choice, setChoice] = useState('')
     return (
         <>
         <Row xs={1} md={2} lg={4}>

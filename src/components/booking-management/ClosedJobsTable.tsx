@@ -5,15 +5,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import formatDate from "../../utils/formatDate.ts";
 import translateJobType from "../../utils/translateJobType.ts";
 import convertTimeslot from "../../utils/convertTimslot.ts";
-
-export interface Job {
-    id: string;
-    bookedDate: string;
-    timeslot: string;
-    type: string;
-    message: string;
-    status: string;
-}
+import { Job } from "./CleaningsPerType.tsx";
 
 interface IClosedJobsTable {
     jobs: Job[] | undefined;

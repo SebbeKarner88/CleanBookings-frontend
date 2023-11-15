@@ -2,13 +2,13 @@ import { Footer } from "../common/Footer.tsx"
 import NavBar from "../common/NavBar.tsx"
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext'
-import CleaningsPerType from "./booking-management/CleaningsPerType.tsx";
+import CleaningsPerType, { Job } from "./booking-management/CleaningsPerType.tsx";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { IoSettingsOutline } from "react-icons/io5";
 import '../styles/MyPages.css'
 import { getJobsByStatus } from "../api/CustomerApi.ts";
-import ClosedJobsTable, { Job } from "./booking-management/ClosedJobsTable.tsx";
+import ClosedJobsTable from "./booking-management/ClosedJobsTable.tsx";
 
 function MyPages() {
     const { customerId, username } = useContext(AuthContext);
