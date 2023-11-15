@@ -28,9 +28,7 @@ const Background = () => {
                 <div className="intro-desc">Välj oss för ett glänsande resultat!</div>
             </div>
             <ReviewCard />
-            <Email />
         </article>
-
     )
 }
 
