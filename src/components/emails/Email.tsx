@@ -13,7 +13,7 @@ export const Email = () => {
                     </Section>
                     <Container className='bg-beige'>
                         {/* MAILETS HUVUDINNEHÅLL HÄR NEDAN */}
-                        <Heading as='h2' className='mt-3 '>Lorem Ipsum</Heading>
+                        <Heading as='h3' className='mt-3 '>Hej kundens-namn!</Heading>
                         <Text>
                             Du har bokat följade ...
                             Ayo
