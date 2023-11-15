@@ -24,8 +24,8 @@ function EmployeeCardGrid() {
     const [ isMobile, setMobile ] = useState(window.innerWidth < 1000);
 
     const updateMedia = () => {
-        setDesktop(window.innerWidth > 800);
-        setMobile(window.innerWidth < 800);
+        setDesktop(window.innerWidth > 1000);
+        setMobile(window.innerWidth < 1000);
     };
 
     const handleSelect = (selectedShow: number) => {
@@ -97,7 +97,7 @@ function EmployeeCardGrid() {
                     <Row xs={1} sm={2} md={2}>
                         {cleaners.map((item: any, index: number) => {
                             return (
-                                <Col key={index} className='px-4'>
+                                <Col key={index} className='px-1'>
                                     <Card className='empCard'>
                                         <Card.Body>
                                             <Card.Title className='fw-bold' style={{ fontSize: '15px' }}>
