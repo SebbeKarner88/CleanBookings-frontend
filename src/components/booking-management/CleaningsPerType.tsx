@@ -10,12 +10,14 @@ import formatDate from "../../utils/formatDate.ts";
 import translateStatus from "../../utils/translateStatus.ts";
 import translateJobType from "../../utils/translateJobType.ts";
 import ConfirmCancelModal from "../modals/ConfirmCancelModal.tsx";
+import convertTimeslot from "../../utils/convertTimslot.ts";
 
 type JobStatus = undefined | "OPEN" | "ASSIGNED" | "WAITING_FOR_APPROVAL" | "NOT_APPROVED" | "APPROVED" | "CLOSED";
 
 interface Job {
     id: string;
     bookedDate: string;
+    timeslot: string;
     type: string;
     message: string;
     status: string;
@@ -137,6 +139,7 @@ const CleaningsPerType = ({onUpdate}: ICleaningsPerType) => {
                     <tr>
                         <th scope="col">Boknings-ID</th>
                         <th scope="col">Datum</th>
+                        <th scope="col">Tid</th>
                         <th scope="col">Städtjänst</th>
                         <th scope="col">Status</th>
                     </tr>
@@ -146,6 +149,7 @@ const CleaningsPerType = ({onUpdate}: ICleaningsPerType) => {
                         <tr key={job.id}>
                             <td>{job.id}</td>
                             <td>{formatDate(job.bookedDate)}</td>
+                            <td>{convertTimeslot(job.timeslot)}</td>
                             <td>{translateJobType(job.type)}</td>
                             <td>
                                 {

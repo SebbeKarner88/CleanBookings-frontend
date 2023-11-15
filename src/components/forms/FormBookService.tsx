@@ -43,13 +43,6 @@ const timeslotOptions: option[] = [
     { value: "EVENING", label: "17-20" }
 ]
 
-/* const serviceOptions: option[] = [
-    { value: "BASIC", label: "BASIC-städning" },
-    { value: "TOPP", label: "TOPP-städning" },
-    { value: "DIAMOND", label: "DIAMANT-städning" },
-    { value: "WINDOW", label: "Fönsterputsning" }
-] */
-
 const BookingForm = () => {
     const { customerId } = useContext(AuthContext);
     const {
@@ -136,15 +129,6 @@ const BookingForm = () => {
                     ))}
                 </Row>
 
-{/*                 <FormField
-                    fieldName="type"
-                    label="Val av städtjänst"
-                    labelDescription="Vilken typ av städtjänst önskar du boka?"
-                    inputType="radio"
-                    options={serviceOptions}
-                    fieldError={errors.type}
-                    register={register}
-                /> */}
 
                 <FormField
                     fieldName="timeslot"
