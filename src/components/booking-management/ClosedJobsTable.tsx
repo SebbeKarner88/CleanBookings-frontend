@@ -4,10 +4,12 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import formatDate from "../../utils/formatDate.ts";
 import translateJobType from "../../utils/translateJobType.ts";
+import convertTimeslot from "../../utils/convertTimslot.ts";
 
 interface Job {
     id: string;
     bookedDate: string;
+    timeslot: string;
     type: string;
     message: string;
     status: string;
@@ -43,6 +45,9 @@ export default function ClosedJobsTable({jobs}: IClosedJobsTable) {
                         Datum
                     </th>
                     <th>
+                        Tid
+                    </th>
+                    <th>
                         Städtjänst
                     </th>
                     <th>
@@ -61,6 +66,9 @@ export default function ClosedJobsTable({jobs}: IClosedJobsTable) {
                                 {formatDate(job.bookedDate)}
                             </td>
                             <td>
+                                {convertTimeslot(job.timeslot)}
+                            </td>
+                            <td>
                                 {translateJobType(job.type)}
                             </td>
                             <td>
@@ -72,7 +80,7 @@ export default function ClosedJobsTable({jobs}: IClosedJobsTable) {
                                     aria-label={expandedRows[job.id] ? "Dölj alla meddelanden" : "Visa alla meddelanden"}>
                                     {
                                         expandedRows[job.id]
-                                            ? <>{job.message} <ArrowDropUpIcon className="float-end"/></>
+                                            ? <>{job.message ? job.message : "Inga Meddelanden"} <ArrowDropUpIcon className="float-end"/></>
                                             : <>Visa alla meddelanden? <ArrowDropDownIcon className="float-end"/></>
                                     }
                                 </Button>
