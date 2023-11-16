@@ -1,7 +1,6 @@
 import { Footer } from "../common/Footer.tsx"
 import NavBar from "../common/NavBar.tsx"
-import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../context/AuthContext'
+import { useEffect, useState } from 'react';
 import CleaningsPerType, { Job } from "./booking-management/CleaningsPerType.tsx";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
@@ -11,7 +10,7 @@ import { getJobsByStatus } from "../api/CustomerApi.ts";
 import ClosedJobsTable from "./booking-management/ClosedJobsTable.tsx";
 
 function MyPages() {
-    const { customerId, username } = useContext(AuthContext);
+    const customerId = sessionStorage.getItem("customerId");
     const navigate = useNavigate();
     const [ jobs, setJobs ] = useState<Job[]>([]);
     const [ updateNeeded, setUpdateNeeded ] = useState<boolean>(false);
@@ -39,7 +38,7 @@ function MyPages() {
                 <div className="container bg-light-brown p-4 rounded rounded-4 shadow mb-5">
                     <div className="d-flex justify-content-between">
                         <p className="my-3 mx-2 mx-md-0">
-                            Inloggad som: <span className="fw-bold">{username}</span>
+                            Inloggad som: <span className="fw-bold">{sessionStorage.getItem("username")}</span>
                         </p>
                         <Button
                             size="lg"

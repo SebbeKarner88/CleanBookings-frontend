@@ -1,6 +1,4 @@
 import {Button, Modal} from "react-bootstrap";
-import {AuthContext} from "../../context/AuthContext.tsx";
-import {useContext} from "react";
 import {useNavigate} from "react-router-dom";
 
 interface IBookingConfirmationModal {
@@ -9,7 +7,6 @@ interface IBookingConfirmationModal {
 }
 
 export default function BookingConfirmationModal({show, onHide}: IBookingConfirmationModal) {
-    const {name, username} = useContext(AuthContext);
     const navigate = useNavigate();
 
     return (
@@ -28,9 +25,9 @@ export default function BookingConfirmationModal({show, onHide}: IBookingConfirm
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body className="bg-light-brown">
-                <p>Tack för din bokning {name}!</p>
+                <p>Tack för din bokning {sessionStorage.getItem("name")}!</p>
                 <p>Du kommer snart att få en bekräftelse på din bokade städning skickad till
-                    <span className="fw-bold"> {username}</span>
+                    <span className="fw-bold"> {sessionStorage.getItem("username")}</span>
                 </p>
 
             </Modal.Body>

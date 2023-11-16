@@ -6,8 +6,6 @@ import {
     NavDropdown,
 } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
-import { useContext } from 'react'
-import { AuthContext } from "../context/AuthContext.tsx";
 import { Link, useNavigate } from "react-router-dom";
 import Image from "react-bootstrap/Image";
 import logo from '../assets/images/logo.png'
@@ -16,23 +14,21 @@ import '../styles/Global.css'
 import {logout} from "../api/CustomerApi.ts";
 
 const NavBar = () => {
-    const {
-        isAuthenticated,
-        name,
-        setIsAuthenticated,
-        setCustomerId,
-        setName,
-        setUsername
-    } = useContext(AuthContext);
     const navigation = useNavigate();
 
     async function handleLogout() {
         const response = await logout();
         if (response?.status === 204) {
-            setIsAuthenticated(false);
-            setCustomerId("");
-            setName("");
-            setUsername("");
+            sessionStorage.removeItem("isAuthenticated");
+            sessionStorage.removeItem("access_token");
+            sessionStorage.removeItem("refresh_token");
+            sessionStorage.removeItem("customerId");
+            sessionStorage.removeItem("name");
+            sessionStorage.removeItem("username");
+            // setIsAuthenticated(false);
+            // setCustomerId("");
+            // setName("");
+            // setUsername("");
             navigation("/");
         }
     }
@@ -78,7 +74,7 @@ const NavBar = () => {
                     </Navbar.Collapse>
                     <Navbar.Collapse className="justify-content-end">
                         {
-                            isAuthenticated
+                            sessionStorage.getItem("isAuthenticated") === "true"
                                 ?
                                 <>
                                     <Nav>
@@ -87,7 +83,7 @@ const NavBar = () => {
                                                 Mina sidor
                                             </Button>
                                         </LinkContainer>
-                                        <p className="visually-hidden">Signed in as: {name}</p>
+                                        <p className="visually-hidden">Signed in as: {sessionStorage.getItem("username")}</p>
                                         <Button variant="outline-danger" size="lg" className="mx-3 my-3 my-md-0"
                                             onClick={handleLogout}>
                                             Logga ut

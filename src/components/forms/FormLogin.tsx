@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { loginCustomer } from "../../api/CustomerApi.ts";
 import { BsPersonFillAdd } from "react-icons/bs";
 import { z } from "zod";
@@ -6,7 +6,6 @@ import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate } from "react-router-dom";
 import { FormField } from "./FormField.tsx";
-import { AuthContext } from "../../context/AuthContext.tsx";
 
 const schema = z.object({
     emailAddress: z
@@ -32,11 +31,10 @@ export function FormLogin() {
     });
     const [ errorMessage, setErrorMessage ] = useState<string | null>(null);
     const navigation = useNavigate();
-    const { setIsAuthenticated, setCustomerId, setName, setUsername } = useContext(AuthContext);
 
     async function onSubmit(data: FieldValues) {
         try {
-            const response = await loginCustomer(data.emailAddress, data.password, setIsAuthenticated, setCustomerId, setName, setUsername);
+            const response = await loginCustomer(data.emailAddress, data.password);
             if (response?.status == 200)
                 navigation(-1);
             else

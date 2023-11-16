@@ -1,6 +1,5 @@
 import Button from 'react-bootstrap/Button';
-import { ChangeEvent, useCallback, useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../context/AuthContext';
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import Pagination from 'react-bootstrap/Pagination';
 import SortJobByStatus from "./SortJobByStatus.tsx";
 import { cancelJob, getJobsByStatus, handleCustomerFeedback } from "../../api/CustomerApi.ts";
@@ -28,7 +27,7 @@ interface ICleaningsPerType {
 }
 
 const CleaningsPerType = ({ onUpdate }: ICleaningsPerType) => {
-    const { customerId } = useContext(AuthContext);
+    const customerId = sessionStorage.getItem("customerId");
     const [ selectedStatus, setSelectedStatus ] = useState<JobStatus>(undefined);
     const handleStatusChange = (event: ChangeEvent<HTMLSelectElement>) => setSelectedStatus(event.target.value as JobStatus);
     const [ cleanings, setCleanings ] = useState<Job[]>([]);
@@ -65,7 +64,7 @@ const CleaningsPerType = ({ onUpdate }: ICleaningsPerType) => {
             closeConfirmModal();
         } else
             setErrorMessage(response?.data);
-    }, [ customerId ]);
+    }, [ customerId, onUpdate ]);
 
     const handleCancelRequest = async () => {
         setIsSendingRequest(true);
@@ -165,7 +164,7 @@ const CleaningsPerType = ({ onUpdate }: ICleaningsPerType) => {
             </div>
 
             <div className="d-flex justify-content-center">
-                <Pagination> 
+                <Pagination>
                     {Array.from({ length: Math.ceil(cleanings.length / jobsPerPage) }).map(
                         (_, index) => (
                             <Pagination.Item

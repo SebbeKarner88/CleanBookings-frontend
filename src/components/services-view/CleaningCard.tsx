@@ -6,8 +6,6 @@ import diamond from '../../assets/images/diamant-nobg.png';
 import win from '../../assets/images/window-nobg.png';
 import '../../styles/CleaningCard.css'
 import { Button, Col, Container, Row } from "react-bootstrap";
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext.tsx";
 import { useNavigate } from "react-router-dom";
 import { services } from '../../utils/services.ts';
 
@@ -23,9 +21,17 @@ function imgMapper(img: string) {
 }
 
 function CleaningCard() {
-    const { isAuthenticated } = useContext(AuthContext);
     const navigate = useNavigate();
-    const handleClick = (type: string) => navigate(isAuthenticated ? "/booking-view" : "/login", { state: type });
+    const handleClick = (type: string) => navigate(sessionStorage.getItem("isAuthenticated") === "true" ? "/booking-view" : "/login", { state: {type: getValueFromTitle(type)} });
+
+    function getValueFromTitle(title: string) {
+        switch (title) {
+            case "DIAMANT": return "DIAMOND";
+            case "TOPP": return "TOPP";
+            case "BASIC": return "BASIC";
+            case "FÖNSTER": return "WINDOW";
+        }
+    }
 
     return (
         <>

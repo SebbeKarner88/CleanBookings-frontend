@@ -1,6 +1,5 @@
 import {z} from "zod";
-import {useContext, useState} from "react";
-import {AuthContext} from "../../context/AuthContext.tsx";
+import {useState} from "react";
 import {FieldValues, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {updatePassword} from "../../api/CustomerApi.ts";
@@ -28,7 +27,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 export default function FormUpdatePassword() {
-    const {customerId} = useContext(AuthContext);
+    const customerId = sessionStorage.getItem("customerId");
     const {
         register,
         handleSubmit,

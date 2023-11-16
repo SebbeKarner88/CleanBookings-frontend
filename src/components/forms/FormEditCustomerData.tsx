@@ -5,8 +5,7 @@ import {useLocation} from "react-router-dom";
 import {FieldValues, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {updateCustomerData} from "../../api/CustomerApi.ts";
-import {useContext, useState} from "react";
-import {AuthContext} from "../../context/AuthContext.tsx";
+import {useState} from "react";
 import UpdateCustomerDataSuccessModal from "../modals/UpdateCustomerDataSuccessModal.tsx";
 
 const schema = z.object({
@@ -42,7 +41,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 export default function FormEditCustomerData() {
-    const {customerId} = useContext(AuthContext);
+    const customerId = sessionStorage.getItem("customerId");
     const location = useLocation();
     const values = location.state;
     const {

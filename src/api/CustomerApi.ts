@@ -1,5 +1,4 @@
 import api from "./ApiRootUrl.ts";
-import React from "react";
 
 async function refreshToken() {
     try {
@@ -24,11 +23,7 @@ async function refreshToken() {
 
 export async function loginCustomer(
     email: string,
-    password: string,
-    setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>,
-    setCustomerId: React.Dispatch<React.SetStateAction<string>>,
-    setName: React.Dispatch<React.SetStateAction<string>>,
-    setUsername: React.Dispatch<React.SetStateAction<string>>
+    password: string
 ) {
     try {
         const response = await api.post(
@@ -39,10 +34,11 @@ export async function loginCustomer(
             }
         );
         if (response.status == 200) {
-            setIsAuthenticated(true);
-            setCustomerId(response.data.customerId);
-            setName(response.data.name);
-            setUsername(email);
+            sessionStorage.setItem("isAuthenticated", "true");
+            // TODO: Customer ID could be removed when backend is updated to not require this anymore (it's included in the access_token)
+            sessionStorage.setItem("customerId", response.data.customerId);
+            sessionStorage.setItem("name", response.data.name);
+            sessionStorage.setItem("username", email);
             sessionStorage.setItem("access_token", response.data.accessToken);
             sessionStorage.setItem("refresh_token", response.data.refreshToken);
             sessionStorage.setItem("role", response.data.role);
@@ -111,14 +107,14 @@ export async function registerCustomer(
 }
 
 export async function bookService(
-    customerId: string,
+    customerId: string | null,
     type: string,
     date: string,
     timeslot: string,
     message?: string | undefined
 ) {
     try {
-        const response = await api.post(
+        return await api.post(
             "job",
             {
                 customerId: customerId,
@@ -133,8 +129,6 @@ export async function bookService(
                 }
             }
         );
-        if (response?.status == 201)
-            return response;
     } catch (error: any) {
         if (error.response.status == 401) {
             const response = await refreshToken();
@@ -142,12 +136,13 @@ export async function bookService(
                 return bookService(customerId, type, date, timeslot, message);
         } else {
             console.error(error);
+            return error;
         }
     }
 }
 
 export async function updateCustomerData(
-    customerId: string,
+    customerId: string | null,
     firstName?: string,
     lastName?: string,
     streetAddress?: string,
@@ -186,7 +181,7 @@ export async function updateCustomerData(
 }
 
 export async function updatePassword(
-    customerId: string,
+    customerId: string | null,
     currentPassword: string,
     newPassword: string
 ) {
@@ -214,7 +209,7 @@ export async function updatePassword(
     }
 }
 
-export async function getJobsByCustomerId(customerId: string) {
+export async function getJobsByCustomerId(customerId: string | null) {
     try {
         const response = await api.get(
             "/job/jobs",
@@ -240,7 +235,7 @@ export async function getJobsByCustomerId(customerId: string) {
 }
 
 export async function getJobsByStatus(
-    customerId: string,
+    customerId: string | null,
     status?: null | "OPEN" | "ASSIGNED" | "WAITING_FOR_APPROVAL" | "NOT_APPROVED" | "APPROVED" | "CLOSED"
 ) {
     try {
@@ -280,7 +275,7 @@ export async function getAllCleaners() {
 }
 
 export async function executedCleaningRequest(
-    customerId: string,
+    customerId: string | null,
     jobId: string
 ) {
     try {
@@ -335,7 +330,7 @@ export async function sendCustomerMessage(
 
 export async function handleCustomerFeedback(
     jobId: string,
-    customerId: string,
+    customerId: string | null,
     isApproved: true | false,
     message?: string
 ) {

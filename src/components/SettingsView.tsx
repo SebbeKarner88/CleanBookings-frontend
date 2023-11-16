@@ -1,6 +1,5 @@
-import {useEffect, useState, useContext} from 'react';
+import {useEffect, useState} from 'react';
 import {Button} from 'react-bootstrap';
-import {AuthContext} from './../context/AuthContext';
 import {useNavigate} from 'react-router-dom';
 import NavBar from "../common/NavBar.tsx";
 import {MdEdit} from "react-icons/md";
@@ -22,9 +21,9 @@ type Customer = {
 }
 
 const SettingsView = () => {
+    const customerId = sessionStorage.getItem("customerId");
     const [customerData, setCustomerData] = useState<Customer | null>(null);
     const [showPrivacyModal, setShowPrivacyModal] = useState(false);
-    const {customerId} = useContext(AuthContext);
     const navigate = useNavigate();
     const handleClosePrivacyModal = () => setShowPrivacyModal(false);
     const handleShowPrivacyModal = () => setShowPrivacyModal(true);
