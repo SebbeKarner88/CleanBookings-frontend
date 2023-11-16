@@ -258,8 +258,9 @@ export async function getJobsByStatus(
             return response;
     } catch (error: any) {
         if (error.response.status == 401) {
-            await refreshToken();
-            return getJobsByStatus(customerId, status);
+            const response = await refreshToken();
+            if (response?.status === 200)
+                return getJobsByStatus(customerId, status);
         } else {
             console.error(error);
         }
