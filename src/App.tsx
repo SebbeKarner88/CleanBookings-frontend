@@ -33,7 +33,7 @@ function App() {
                     <Route path="/products" element={<Products/>}/>
                     <Route path="/*" element={<NotFoundView/>}/>
                     {
-                        sessionStorage.getItem("isAuthenticated") === "true" &&
+                        sessionStorage.getItem("isAuthenticated") == "true" &&
                         <>
                             <Route path="/booking-view" element={<BookingView/>}/>
                             <Route path="/checkout" element={<CheckoutView/>}/>

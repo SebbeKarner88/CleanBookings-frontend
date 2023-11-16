@@ -22,7 +22,7 @@ function imgMapper(img: string) {
 
 function CleaningCard() {
     const navigate = useNavigate();
-    const handleClick = (type: string) => navigate(sessionStorage.getItem("isAuthenticated") === "true" ? "/booking-view" : "/login", { state: {type: getValueFromTitle(type)} });
+    const handleClick = (type: string) => navigate(sessionStorage.getItem("isAuthenticated") == "true" ? "/booking-view" : "/login", { state: {type: getValueFromTitle(type)} });
 
     function getValueFromTitle(title: string) {
         switch (title) {
