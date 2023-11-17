@@ -42,11 +42,12 @@ const CleaningsPerType = ({ onUpdate }: ICleaningsPerType) => {
     const [ updateNeeded, setUpdateNeeded ] = useState<boolean>(false);
 
     // Pagination logic
+    const filteredCleanings = cleanings.filter(job => ![ "APPROVED", "CLOSED" ].includes(job.status));
     const [ currentPage, setCurrentPage ] = useState<number>(1);
     const [ jobsPerPage ] = useState<number>(5); // Number of jobs to display per page
     const indexOfLastJob = currentPage * jobsPerPage;
     const indexOfFirstJob = indexOfLastJob - jobsPerPage;
-    const currentJobs = cleanings.slice(indexOfFirstJob, indexOfLastJob);
+    const currentJobs = filteredCleanings.slice(indexOfFirstJob, indexOfLastJob);
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
     const handleFeedback = useCallback(async (jobId: string, isApproved: boolean, message: string) => {
@@ -144,7 +145,7 @@ const CleaningsPerType = ({ onUpdate }: ICleaningsPerType) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {currentJobs.filter((job: Job) => ![ "APPROVED", "CLOSED" ].includes(job.status)).map((job: Job) => (
+                        {currentJobs.map((job: Job) => (
                             <tr key={job.id}>
                                 <td>{job.id}</td>
                                 <td>{formatDate(job.bookedDate)}</td>
@@ -165,7 +166,7 @@ const CleaningsPerType = ({ onUpdate }: ICleaningsPerType) => {
 
             <div className="d-flex justify-content-center">
                 <Pagination>
-                    {Array.from({ length: Math.ceil(cleanings.length / jobsPerPage) }).map(
+                    {Array.from({ length: Math.ceil(filteredCleanings.length / jobsPerPage) }).map(
                         (_, index) => (
                             <Pagination.Item
                                 linkStyle={{ backgroundColor: 'var(--dark-purple)', border: 'none', color: 'white' }}
