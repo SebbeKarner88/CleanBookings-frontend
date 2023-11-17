@@ -9,6 +9,7 @@ import {registerCustomer} from "../../../api/CustomerApi.ts";
 import {Button} from "react-bootstrap";
 import PrivacyModal from "../../modals/PrivacyModal.tsx";
 import RegistrationSuccessModal from "../../modals/RegistrationSuccessModal.tsx";
+import ErrorModal from "../../modals/ErrorModal.tsx";
 
 const schema = z.object({
     emailAddress: z
@@ -44,6 +45,9 @@ export function FormRegisterAccountDetails() {
     const {formData} = useFormContext();
     const [showPrivacyModal, setShowPrivacyModal] = useState<boolean>(false);
     const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
+    const [showErrorModal, setShowErrorModal] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<string>("");
+    const closeErrorModal = () => setShowErrorModal(false);
     const [username, setUsername] = useState<string>("");
 
     async function onSubmit(data: FieldValues) {
@@ -59,11 +63,26 @@ export function FormRegisterAccountDetails() {
                 data.emailAddress,
                 data.password,
             );
-            if (response?.status == 201)
+            if (response.status == 201) {
                 setUsername(data.emailAddress);
                 setShowSuccessModal(true);
+            } else {
+                handleErrorMessage(response.response.data);
+                setShowErrorModal(true);
+            }
         } catch (error) {
             console.error(error);
+        }
+    }
+
+    function handleErrorMessage (errorMessage: string) {
+        switch (errorMessage) {
+            case "Username is already taken": setErrorMessage("Användarnamnet är upptaget av en annan användare.");
+            break;
+            case "Social security number already exists": setErrorMessage("En användare med detta personnummer finns redan registrerad.");
+            break;
+            default: setErrorMessage(errorMessage);
+            break;
         }
     }
 
@@ -121,7 +140,8 @@ export function FormRegisterAccountDetails() {
                 </Button>
             </form>
             <PrivacyModal onShow={showPrivacyModal} onClose={() => setShowPrivacyModal(false)}/>
-            <RegistrationSuccessModal onShow={showSuccessModal} username={username} />
+            <RegistrationSuccessModal onShow={showSuccessModal} username={username}/>
+            <ErrorModal onShow={showErrorModal} onClose={closeErrorModal} message={errorMessage}/>
         </>
     );
 }

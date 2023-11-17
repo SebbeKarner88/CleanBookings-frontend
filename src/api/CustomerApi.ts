@@ -83,7 +83,7 @@ export async function registerCustomer(
     password: string,
 ) {
     try {
-        const response = await api.post(
+        return await api.post(
             "customer",
             {
                 firstName: firstName,
@@ -98,11 +98,9 @@ export async function registerCustomer(
                 password: password
             }
         );
-        if (response.status == 201) {
-            return response;
-        }
-    } catch (error) {
+    } catch (error: any) {
         console.error(error);
+        return error;
     }
 }
 
