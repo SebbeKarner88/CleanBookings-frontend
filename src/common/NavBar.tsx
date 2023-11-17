@@ -74,7 +74,7 @@ const NavBar = () => {
                     </Navbar.Collapse>
                     <Navbar.Collapse className="justify-content-end">
                         {
-                            sessionStorage.getItem("isAuthenticated") == "true"
+                            sessionStorage.getItem("isAuthenticated") === "true"
                                 ?
                                 <>
                                     <Nav>

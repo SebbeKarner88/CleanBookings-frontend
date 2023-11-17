@@ -4,7 +4,7 @@ import { BsPersonFillAdd } from "react-icons/bs";
 import { z } from "zod";
 import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link, useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { FormField } from "./FormField.tsx";
 
 const schema = z.object({
@@ -31,12 +31,16 @@ export function FormLogin() {
     });
     const [ errorMessage, setErrorMessage ] = useState<string | null>(null);
     const navigation = useNavigate();
+    const prevPage = sessionStorage.getItem("prevPage");
 
     async function onSubmit(data: FieldValues) {
         try {
             const response = await loginCustomer(data.emailAddress, data.password);
-            if (response?.status == 200)
-                navigation(-1);
+            if (response?.status == 200) {
+                // navigation(-1);
+                sessionStorage.removeItem("prevPage");
+                location.assign(prevPage ? prevPage : "/");
+            }
             else
                 setErrorMessage("Email or password are incorrect!");
         } catch (error) {

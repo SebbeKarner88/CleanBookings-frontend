@@ -5,9 +5,9 @@ import top from '../../assets/images/top-nobg.png';
 import diamond from '../../assets/images/diamant-nobg.png';
 import win from '../../assets/images/window-nobg.png';
 import '../../styles/CleaningCard.css'
-import { Button, Col, Container, Row } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import { services } from '../../utils/services.ts';
+import {Button, Col, Container, Row} from "react-bootstrap";
+import {useNavigate} from "react-router-dom";
+import {services} from '../../utils/services.ts';
 
 function imgMapper(img: string) {
     if (img == 'basic')
@@ -22,14 +22,33 @@ function imgMapper(img: string) {
 
 function CleaningCard() {
     const navigate = useNavigate();
-    const handleClick = (type: string) => navigate(sessionStorage.getItem("isAuthenticated") == "true" ? "/booking-view" : "/login", { state: {type: getValueFromTitle(type)} });
+    const handleClick = (type: string) => {
+        const isAuthenticated = sessionStorage.getItem("isAuthenticated") === "true";
+        if (isAuthenticated) {
+            navigate(
+                "/booking-view",
+                {
+                    state: {
+                        type: getValueFromTitle(type)
+                    }
+                }
+            )
+        } else {
+            sessionStorage.setItem("prevPage", location.pathname);
+            navigate("/login");
+        }
+    };
 
     function getValueFromTitle(title: string) {
         switch (title) {
-            case "DIAMANT": return "DIAMOND";
-            case "TOPP": return "TOPP";
-            case "BASIC": return "BASIC";
-            case "FÖNSTER": return "WINDOW";
+            case "DIAMANT":
+                return "DIAMOND";
+            case "TOPP":
+                return "TOPP";
+            case "BASIC":
+                return "BASIC";
+            case "FÖNSTER":
+                return "WINDOW";
         }
     }
 
@@ -40,7 +59,7 @@ function CleaningCard() {
                     {services.map((service, index) => (
                         <Col key={index} className="mb-5 d-flex align-items-stretch">
                             <Card className="cleaningCard">
-                                <Card.Img className="image" variant="top" src={imgMapper(service.image)} />
+                                <Card.Img className="image" variant="top" src={imgMapper(service.image)}/>
                                 <Card.Body>
                                     <Card.Title className="cardTitle">
                                         {service.title}
@@ -65,7 +84,7 @@ function CleaningCard() {
                                 <Card.Footer>
                                     <small className="cardFooter">
                                         {service.price}
-                                        <hr />
+                                        <hr/>
                                         <Button
                                             variant="primary"
                                             size={"lg"}

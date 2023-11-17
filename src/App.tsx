@@ -19,6 +19,8 @@ import CheckoutView from "./components/CheckoutView.tsx";
 import ConfirmationView from "./components/ConfirmationView.tsx";
 
 function App() {
+    const isAuthenticated = sessionStorage.getItem("isAuthenticated") === "true";
+
     return (
         <>
             <BrowserRouter>
@@ -33,7 +35,7 @@ function App() {
                     <Route path="/products" element={<Products/>}/>
                     <Route path="/*" element={<NotFoundView/>}/>
                     {
-                        sessionStorage.getItem("isAuthenticated") == "true" &&
+                        isAuthenticated &&
                         <>
                             <Route path="/booking-view" element={<BookingView/>}/>
                             <Route path="/checkout" element={<CheckoutView/>}/>
